@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "lovelyCrow.png",
       "idiom" : "universal"
     }
   ],
