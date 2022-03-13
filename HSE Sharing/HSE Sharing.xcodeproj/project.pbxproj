@@ -37,6 +37,8 @@
 		34CBC5AC27DBA6270082FAF0 /* EntryMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34CBC5AB27DBA6270082FAF0 /* EntryMessageView.xib */; };
 		34CBC5AE27DBA6980082FAF0 /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34CBC5AD27DBA6980082FAF0 /* ConversationTableViewCell.xib */; };
 		34CBC5B327DBA9BE0082FAF0 /* RootTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */; };
+		34F4A88727DE866200C51CE2 /* SearchSkillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */; };
+		34F4A88927DE8E5E00C51CE2 /* SearchSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		34CBC5AB27DBA6270082FAF0 /* EntryMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryMessageView.xib; sourceTree = "<group>"; };
 		34CBC5AD27DBA6980082FAF0 /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationTableViewCell.xib; sourceTree = "<group>"; };
 		34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewController.swift; sourceTree = "<group>"; };
+		34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSkillCell.xib; sourceTree = "<group>"; };
+		34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSkillCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +259,8 @@
 		34CBC5B127DBA86F0082FAF0 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */,
+				34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */,
+				34F4A88727DE866200C51CE2 /* SearchSkillCell.xib in Resources */,
 				342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */,
 				34CBC5AE27DBA6980082FAF0 /* ConversationTableViewCell.xib in Resources */,
 				342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */,
@@ -347,6 +354,7 @@
 				342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */,
 				347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */,
 				342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */,
+				34F4A88927DE8E5E00C51CE2 /* SearchSkillCell.swift in Sources */,
 				34CBC5A327DB6C9A0082FAF0 /* ConversationViewController.swift in Sources */,
 				347375E527C653E90029A419 /* MemoryManager.swift in Sources */,
 				34CBC5B327DBA9BE0082FAF0 /* RootTabBarViewController.swift in Sources */,
