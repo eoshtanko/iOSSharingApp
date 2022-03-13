@@ -9,7 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    internal weak var conversationsListViewController: ConversationsListViewController?
+    static var isEnglish = false
+    private var isProfileInfoEditing = false
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -19,11 +20,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var wantButton: UIButton!
     @IBOutlet weak var russianLangButton: UIButton!
     @IBOutlet weak var englishLangButton: UIButton!
+    @IBOutlet weak var maleButton: UIButton!
+    @IBOutlet weak var femaleButton: UIButton!
+    @IBOutlet weak var bottomButtom: UIButton!
     
     @IBOutlet weak var nameTextFiled: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var socialNetworkTextField: UITextField!
+    @IBOutlet weak var eduProgramTextField: UITextField!
+    @IBOutlet weak var dormTextField: UITextField!
+    @IBOutlet weak var stageOfEduTextField: UITextField!
+    @IBOutlet weak var campusLocationTextField: UITextField!
+    @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var aboutMeTextView: UITextView!
     
     @IBOutlet weak var myDataLabel: UILabel!
@@ -31,19 +40,65 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var surnameLabel: UILabel!
     @IBOutlet weak var socialNetworkLabel: UILabel!
     @IBOutlet weak var aboutMeLabel: UILabel!
+    @IBOutlet weak var eduProgramLabel: UILabel!
+    @IBOutlet weak var dormLabel: UILabel!
+    @IBOutlet weak var stageOfEduLabel: UILabel!
+    @IBOutlet weak var campusLocationLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var birthdayLabel: UILabel!
     
     
     @IBAction func editPhotoButtonPressed(_ sender: Any) {
-        print("Выбери изображение профиля")
         pickImage()
     }
-    @IBAction func CanButtonPressed(_ sender: Any) {
+    
+    @IBAction func editProfileInfoButtonPressed(_ sender: Any) {
+        isProfileInfoEditing = true
+        editProfileButton.layer.isHidden = true
+        bottomButtom.setTitle(ProfileViewController.isEnglish ? "Save" : "Сохранить", for: .normal)
+        activateEditing()
     }
+    
+    @IBAction func canButtonPressed(_ sender: Any) {
+        
+    }
+    
     @IBAction func wantButtonPressed(_ sender: Any) {
+        
     }
+    
     @IBAction func russianButtonPressed(_ sender: Any) {
+        if ProfileViewController.isEnglish {
+            translateToRussia()
+        }
     }
+    
     @IBAction func englishButtonPressed(_ sender: Any) {
+        if !ProfileViewController.isEnglish {
+            translateToEnglish()
+        }
+    }
+    
+    @IBAction func maleButtonPressed(_ sender: Any) {
+        if isProfileInfoEditing {
+            maleButton.tintColor = .systemBlue
+            femaleButton.tintColor = .gray
+        }
+    }
+    
+    @IBAction func femaleButtonPressed(_ sender: Any) {
+        if isProfileInfoEditing {
+            femaleButton.tintColor = .systemBlue
+            maleButton.tintColor = .gray
+        }
+    }
+    
+    @IBAction func bottomButtonPressed(_ sender: Any) {
+        if isProfileInfoEditing {
+            editProfileButton.layer.isHidden = false
+            bottomButtom.setTitle(ProfileViewController.isEnglish ? "Log out" : "Выйти из аккаунта", for: .normal)
+            deactivateEditing()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -55,8 +110,23 @@ class ProfileViewController: UIViewController {
         configureProfileImageView()
         configureTextFields()
         configureButtons()
+        ProfileViewController.isEnglish ? translateToEnglish() : translateToRussia()
     }
-
+    
+    private func translateToRussia() {
+        ProfileViewController.isEnglish = false
+        russianLangButton.tintColor = .systemBlue
+        englishLangButton.tintColor = .gray
+        translateProfileView(isEnglish: false)
+    }
+    
+    private func translateToEnglish() {
+        ProfileViewController.isEnglish = true
+        englishLangButton.tintColor = .systemBlue
+        russianLangButton.tintColor = .gray
+        translateProfileView(isEnglish: true)
+    }
+    
     private func configureProfileImageView() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
         if(CurrentUser.user.photo != nil) {
@@ -75,15 +145,16 @@ class ProfileViewController: UIViewController {
     private func configureButtons() {
         makeButtonCircle(button: editPhotoButton)
         makeButtonCircle(button: editProfileButton)
-        configureCanAndWantButton(button: canButton)
-        configureCanAndWantButton(button: wantButton)
+        makeButtonOval(button: canButton)
+        makeButtonOval(button: wantButton)
+        makeButtonOval(button: bottomButtom)
     }
     
     private func configureTextView() {
         aboutMeTextView.delegate = self
-        aboutMeTextView.translatesAutoresizingMaskIntoConstraints = true
-        aboutMeTextView.sizeToFit()
-        aboutMeTextView.isScrollEnabled = false
+        aboutMeTextView.layer.borderWidth = 0.5
+        aboutMeTextView.layer.borderColor = CGColor(red: 0.557, green: 0.557, blue: 0.576, alpha: 1)
+        aboutMeTextView.layer.cornerRadius = 10
     }
     
     private func configureTextFieldsDelegate(textField: UITextField) {
@@ -95,11 +166,69 @@ class ProfileViewController: UIViewController {
         button.clipsToBounds = true
     }
     
-    private func configureCanAndWantButton(button: UIButton) {
+    private func makeButtonOval(button: UIButton) {
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
     }
-
+    
+    private func translateProfileView(isEnglish: Bool) {
+        if (isEnglish) {
+            myDataLabel.text = "My information"
+            nameLabel.text = "Name"
+            nameTextFiled.placeholder = "Enter a name"
+            surnameLabel.text = "Surname"
+            surnameTextField.placeholder = "Enter a surname"
+            emailTextField.placeholder = "Enter email"
+            socialNetworkLabel.text = "Social network"
+            socialNetworkTextField.placeholder = "Enter the link to the social network"
+            aboutMeLabel.text = "About me"
+            canButton.setTitle("Can", for: .normal)
+            wantButton.setTitle("Want", for: .normal)
+        } else {
+            myDataLabel.text = "Мои данные"
+            nameLabel.text = "Имя"
+            nameTextFiled.placeholder = "Введите имя"
+            surnameLabel.text = "Фамилия"
+            surnameTextField.placeholder = "Введите фамилию"
+            emailTextField.placeholder = "Введите почту"
+            socialNetworkLabel.text = "Социальная сеть"
+            socialNetworkTextField.placeholder = "Введите ссылку на социальную сеть"
+            aboutMeLabel.text = "Обо мне"
+            canButton.setTitle("Могу", for: .normal)
+            wantButton.setTitle("Хочу", for: .normal)
+        }
+    }
+    
+    private func activateEditing() {
+        nameTextFiled.isUserInteractionEnabled = true
+        surnameTextField.isUserInteractionEnabled = true
+        emailTextField.isUserInteractionEnabled = true
+        socialNetworkTextField.isUserInteractionEnabled = true
+        eduProgramTextField.isUserInteractionEnabled = true
+        dormTextField.isUserInteractionEnabled = true
+        stageOfEduTextField.isUserInteractionEnabled = true
+        campusLocationTextField.isUserInteractionEnabled = true
+        birthdayTextField.isUserInteractionEnabled = true
+        aboutMeTextView.isUserInteractionEnabled = true
+        maleButton.isUserInteractionEnabled = true
+        femaleButton.isUserInteractionEnabled = true
+    }
+    
+    private func deactivateEditing() {
+        nameTextFiled.isUserInteractionEnabled = false
+        surnameTextField.isUserInteractionEnabled = false
+        emailTextField.isUserInteractionEnabled = false
+        socialNetworkTextField.isUserInteractionEnabled = false
+        eduProgramTextField.isUserInteractionEnabled = false
+        dormTextField.isUserInteractionEnabled = false
+        stageOfEduTextField.isUserInteractionEnabled = false
+        campusLocationTextField.isUserInteractionEnabled = false
+        birthdayTextField.isUserInteractionEnabled = false
+        aboutMeTextView.isUserInteractionEnabled = false
+        maleButton.isUserInteractionEnabled = false
+        femaleButton.isUserInteractionEnabled = false
+    }
+    
     private enum Const {
         static let buttonBorderRadius: CGFloat = 14
         static let maxNumOfCharsInName = 16

@@ -63,7 +63,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureNavigationTitle() {
-        navigationItem.title = "Chat"
+        navigationItem.title = ProfileViewController.isEnglish ? "Chat" : "Переписки"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -128,7 +128,8 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        section == 0 ? "Online" : "History"
+        section == 0 ? ProfileViewController.isEnglish ? "Online" : "Онлайн" :
+        ProfileViewController.isEnglish ? "History" : "История"
     }
 }
 
