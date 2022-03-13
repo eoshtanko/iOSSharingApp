@@ -4,5 +4,9 @@
 <dict>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to your camera so that you can take a picture as your profile picture.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to your photo library so that you can select your profile picture.</string>
 </dict>
 </plist>

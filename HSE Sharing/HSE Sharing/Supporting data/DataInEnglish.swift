@@ -9,9 +9,9 @@ import Foundation
 
 struct DataInEnglish {
     
-    let categories = ["Study", "Not study"]
+    static let categories = ["Study", "Not study"]
     
-    let subcategoriesStudy = [
+    static let subcategoriesStudy = [
         "Other",
         "Languages",
         "Programming",
@@ -27,7 +27,7 @@ struct DataInEnglish {
         "Presentations"
     ];
     
-    let subcategoriesNonStudy = [
+    static let subcategoriesNonStudy = [
         "Other",
         "Transport",
         "Entertainments",
@@ -39,11 +39,11 @@ struct DataInEnglish {
         "Household"
     ];
     
-    let gender = ["Male", "Female"];
+    static let gender = ["Male", "Female"];
     
-    let statuses = ["Can", "Want"];
+    static let statuses = ["Can", "Want"];
     
-    let educationPrograms = [
+    static let eduPrograms = [
         "Urban planning",
         "Cellular and molecular biotechnology",
         "Arabic studies: language, literature, culture",
@@ -100,7 +100,7 @@ struct DataInEnglish {
         "Fundamental and Computational linguistics"
     ];
     
-    let dormitories = [
+    static let dormitories = [
         "-",
         "Dorm 1",
         "Dorm 2",
@@ -116,7 +116,7 @@ struct DataInEnglish {
         "Dubki"
     ];
     
-    let universityCampuses = [
+    static let universityCampuses = [
         "Myasnitskaya",
         "Pokrovka",
         "Shabolovka",
@@ -124,7 +124,7 @@ struct DataInEnglish {
         "Other"
     ];
     
-    let stagesOfEducation = [
+    static let stagesOfEdu = [
         "Bachelor 1st year",
         "Bachelor 2st year",
         "Bachelor 3st year",

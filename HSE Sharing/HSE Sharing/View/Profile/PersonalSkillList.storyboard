@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Personal Skill List View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="PersonalSkillList" id="Y6W-OH-hqX" customClass="PersonalSkillListViewController" customModule="HSE_Sharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2tO-v2-GVb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crowCosmonautLeft" translatesAutoresizingMaskIntoConstraints="NO" id="DId-IG-zOy">
+                                <rect key="frame" x="90" y="331" width="234" height="234"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DId-IG-zOy" secondAttribute="height" multiplier="1:1" id="8qe-vN-CDq"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mvh-hf-WwN"/>
+                        <color key="backgroundColor" name="BlueLightColor"/>
+                        <color key="tintColor" name="BlueLightColor"/>
+                        <constraints>
+                            <constraint firstItem="DId-IG-zOy" firstAttribute="centerY" secondItem="2tO-v2-GVb" secondAttribute="centerY" id="1Le-Zx-C9U"/>
+                            <constraint firstItem="DId-IG-zOy" firstAttribute="leading" secondItem="mvh-hf-WwN" secondAttribute="leading" constant="90" id="Otn-FH-WRd"/>
+                            <constraint firstItem="DId-IG-zOy" firstAttribute="centerX" secondItem="2tO-v2-GVb" secondAttribute="centerX" id="dHW-zK-Ow7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="DId-IG-zOy" id="LST-rL-FRP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44.927536231884062" y="97.767857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crowCosmonautLeft" width="600" height="600"/>
+        <namedColor name="BlueLightColor">
+            <color red="0.75999999046325684" green="0.86500000953674316" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

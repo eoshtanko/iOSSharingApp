@@ -12,6 +12,13 @@ class ProfileViewController: UIViewController {
     static var isEnglish = false
     private var isProfileInfoEditing = false
     
+    private let formatter = DateFormatter()
+    private let eduProgramPickerView = UIPickerView()
+    private let dormPickerView = UIPickerView()
+    private let eduStagePickerView = UIPickerView()
+    private let campusLocationPickerView = UIPickerView()
+    private let datePicker = UIDatePicker()
+    
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var editPhotoButton: UIButton!
@@ -47,6 +54,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
     
+    // MARK: @IBAction
     
     @IBAction func editPhotoButtonPressed(_ sender: Any) {
         pickImage()
@@ -60,35 +68,25 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func canButtonPressed(_ sender: Any) {
-        
+        PersonalSkillListViewController.isContainedCanSkills = true
+        goToPersonalSkillList()
     }
     
     @IBAction func wantButtonPressed(_ sender: Any) {
-        
-    }
-    
-    @IBAction func russianButtonPressed(_ sender: Any) {
-        if ProfileViewController.isEnglish {
-            translateToRussia()
-        }
-    }
-    
-    @IBAction func englishButtonPressed(_ sender: Any) {
-        if !ProfileViewController.isEnglish {
-            translateToEnglish()
-        }
+        PersonalSkillListViewController.isContainedCanSkills = false
+        goToPersonalSkillList()
     }
     
     @IBAction func maleButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
-            maleButton.tintColor = .systemBlue
+            maleButton.tintColor = UIColor(named: "BlueDarkColor")
             femaleButton.tintColor = .gray
         }
     }
     
     @IBAction func femaleButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
-            femaleButton.tintColor = .systemBlue
+            femaleButton.tintColor = UIColor(named: "BlueDarkColor")
             maleButton.tintColor = .gray
         }
     }
@@ -101,9 +99,80 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // MARK: override
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configurePickerView()
+        configureDatePicker()
+        deactivateEditing()
+        configureNavigationButton()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureSubviews()
+    }
+    
+    // MARK: Funcs
+    
+    private func configurePickerView() {
+        eduProgramPickerView.tag = 1
+        eduProgramPickerView.delegate = self
+        eduProgramPickerView.dataSource = self
+        eduProgramTextField.inputView = eduProgramPickerView
+        
+        dormPickerView.tag = 2
+        dormPickerView.delegate = self
+        dormPickerView.dataSource = self
+        dormTextField.inputView = dormPickerView
+        
+        eduStagePickerView.tag = 3
+        eduStagePickerView.delegate = self
+        eduStagePickerView.dataSource = self
+        stageOfEduTextField.inputView = eduStagePickerView
+        
+        campusLocationPickerView.tag = 4
+        campusLocationPickerView.delegate = self
+        campusLocationPickerView.dataSource = self
+        campusLocationTextField.inputView = campusLocationPickerView
+    }
+    
+    private func configureDatePicker() {
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        birthdayTextField.inputView = datePicker
+        birthdayTextField.inputAccessoryView = createToolbar()
+    }
+    
+    private func createToolbar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneButtonPressed))
+        toolbar.setItems([doneButton], animated: true)
+        
+        return toolbar
+    }
+    
+    @objc private func doneButtonPressed() {
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        birthdayTextField.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    func configureNavigationButton() {
+        let settingsButton = UIButton()
+        if ProfileViewController.isEnglish {
+            settingsButton.setTitle("🇷🇺", for: .normal)
+        } else {
+            settingsButton.setTitle("🇬🇧", for: .normal)
+        }
+        settingsButton.titleLabel?.font = .systemFont(ofSize: 30)
+        settingsButton.addTarget(self, action: #selector(changeLanguage), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
     
     private func configureSubviews() {
@@ -113,17 +182,23 @@ class ProfileViewController: UIViewController {
         ProfileViewController.isEnglish ? translateToEnglish() : translateToRussia()
     }
     
-    private func translateToRussia() {
-        ProfileViewController.isEnglish = false
-        russianLangButton.tintColor = .systemBlue
-        englishLangButton.tintColor = .gray
-        translateProfileView(isEnglish: false)
+    @objc private func changeLanguage() {
+        if (ProfileViewController.isEnglish) {
+            translateToRussia()
+        } else {
+            translateToEnglish()
+        }
     }
     
+    private func translateToRussia() {
+        ProfileViewController.isEnglish = false
+        configureNavigationButton()
+        translateProfileView(isEnglish: false)
+    }
+
     private func translateToEnglish() {
         ProfileViewController.isEnglish = true
-        englishLangButton.tintColor = .systemBlue
-        russianLangButton.tintColor = .gray
+        configureNavigationButton()
         translateProfileView(isEnglish: true)
     }
     
@@ -229,6 +304,14 @@ class ProfileViewController: UIViewController {
         femaleButton.isUserInteractionEnabled = false
     }
     
+    private func goToPersonalSkillList() {
+        self.navigationItem.title = ""
+        let storyboard = UIStoryboard(name: "PersonalSkillList", bundle: nil)
+        let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "PersonalSkillList") as! PersonalSkillListViewController
+        
+        navigationController?.pushViewController(personalSkillListViewController, animated: true)
+    }
+    
     private enum Const {
         static let buttonBorderRadius: CGFloat = 14
         static let maxNumOfCharsInName = 16
@@ -328,5 +411,61 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         let alertController = UIAlertController(title: "Error when uploading a photo", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         present(alertController, animated: true)
+    }
+}
+
+extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView.tag {
+        case 1:
+            return ProfileViewController.isEnglish ?  DataInRussian.eduPrograms.count : DataInEnglish.eduPrograms.count
+        case 2:
+            return ProfileViewController.isEnglish ?  DataInRussian.dormitories.count : DataInEnglish.dormitories.count
+        case 3:
+            return ProfileViewController.isEnglish ?  DataInRussian.stagesOfEdu.count : DataInEnglish.stagesOfEdu.count
+        case 4:
+            return ProfileViewController.isEnglish ?  DataInRussian.universityCampuses.count : DataInEnglish.universityCampuses.count
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView.tag {
+        case 1:
+            return ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+        case 2:
+            return ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
+        case 3:
+            return ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
+        case 4:
+            return ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
+        default:
+            return ""
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView.tag {
+        case 1:
+            eduProgramTextField.text = ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+            eduProgramTextField.resignFirstResponder()
+        case 2:
+            dormTextField.text = ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
+            dormTextField.resignFirstResponder()
+        case 3:
+            stageOfEduTextField.text = ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
+            stageOfEduTextField.resignFirstResponder()
+        case 4:
+            campusLocationTextField.text = ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
+            campusLocationTextField.resignFirstResponder()
+        default:
+            return
+        }
     }
 }

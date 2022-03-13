@@ -77,6 +77,17 @@ class Api {
         return messages
     }
     
+    static var canSkills = [
+            Skill(id: 0, status: 1, name: "Писать iOS-приложения", description: "Ну работать что-то будет", category: 0, subcategory: 2, userMail: ""),
+            Skill(id: 0, status: 1, name: "Готовить гречку", description: "Ну съесть это можно будет", category: 1, subcategory: 4, userMail: ""),
+            Skill(id: 0, status: 1, name: "Программы на Java", description: "Ну работать что-то будет", category: 0, subcategory: 2, userMail: "")
+        ]
+    
+    static var wantSkills = [
+            Skill(id: 0, status: 2, name: "Решение задачек по алгебре", description: "2 курс линейная алгебра", category: 0, subcategory: 2, userMail: ""),
+            Skill(id: 0, status: 2, name: "Торт ко дню рождения", description: "Шоколадный. Нарядный", category: 1, subcategory: 4, userMail: "")
+        ]
+    
     static func getDefaultDate() -> Date {
         Api.formatter.dateFormat = "dd/MM/yyyy HH:mm"
         return Api.formatter.date(from: "1/1/2000 00:00")!

@@ -11,6 +11,10 @@
 		342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342B65BB27DBCC7500A78536 /* Profile.storyboard */; };
 		342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65BF27DBDDA200A78536 /* SearchViewController.swift */; };
 		342B65C227DBDDB400A78536 /* ExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65C127DBDDB400A78536 /* ExchangesViewController.swift */; };
+		342B65C627DE285800A78536 /* PersonalSkillListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65C527DE285800A78536 /* PersonalSkillListViewController.swift */; };
+		342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342B65C927DE300600A78536 /* PersonalSkillList.storyboard */; };
+		342B65CC27DE322500A78536 /* PersonalSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65CB27DE322500A78536 /* PersonalSkillCell.swift */; };
+		342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342B65CD27DE503700A78536 /* PersonalSkillCell.xib */; };
 		347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375BB27C62DF50029A419 /* AppDelegate.swift */; };
 		347375C527C62DF70029A419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 347375C427C62DF70029A419 /* Assets.xcassets */; };
 		347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347375C627C62DF70029A419 /* LaunchScreen.storyboard */; };
@@ -40,6 +44,10 @@
 		342B65BB27DBCC7500A78536 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		342B65BF27DBDDA200A78536 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		342B65C127DBDDB400A78536 /* ExchangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesViewController.swift; sourceTree = "<group>"; };
+		342B65C527DE285800A78536 /* PersonalSkillListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSkillListViewController.swift; sourceTree = "<group>"; };
+		342B65C927DE300600A78536 /* PersonalSkillList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalSkillList.storyboard; sourceTree = "<group>"; };
+		342B65CB27DE322500A78536 /* PersonalSkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSkillCell.swift; sourceTree = "<group>"; };
+		342B65CD27DE503700A78536 /* PersonalSkillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalSkillCell.xib; sourceTree = "<group>"; };
 		347375B827C62DF50029A419 /* HSE Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HSE Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		347375BB27C62DF50029A419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		347375C427C62DF70029A419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				342B65B927DBC6E800A78536 /* ProfileViewController.swift */,
+				342B65C527DE285800A78536 /* PersonalSkillListViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -229,6 +238,9 @@
 			isa = PBXGroup;
 			children = (
 				342B65BB27DBCC7500A78536 /* Profile.storyboard */,
+				342B65C927DE300600A78536 /* PersonalSkillList.storyboard */,
+				342B65CB27DE322500A78536 /* PersonalSkillCell.swift */,
+				342B65CD27DE503700A78536 /* PersonalSkillCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -305,8 +317,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */,
 				342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */,
 				34CBC5AE27DBA6980082FAF0 /* ConversationTableViewCell.xib in Resources */,
+				342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */,
 				347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */,
 				347375C527C62DF70029A419 /* Assets.xcassets in Resources */,
 				34CBC5AC27DBA6270082FAF0 /* EntryMessageView.xib in Resources */,
@@ -324,6 +338,7 @@
 				347375E127C653C00029A419 /* NetworkManager.swift in Sources */,
 				34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */,
 				34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */,
+				342B65C627DE285800A78536 /* PersonalSkillListViewController.swift in Sources */,
 				347375D427C646510029A419 /* Transaction.swift in Sources */,
 				347375DC27C64C410029A419 /* DataInEnglish.swift in Sources */,
 				347375D827C647520029A419 /* User.swift in Sources */,
@@ -341,6 +356,7 @@
 				34CBC5A827DBA5DE0082FAF0 /* ChatMessageCell.swift in Sources */,
 				34CBC59E27DB64840082FAF0 /* Api.swift in Sources */,
 				342B65C227DBDDB400A78536 /* ExchangesViewController.swift in Sources */,
+				342B65CC27DE322500A78536 /* PersonalSkillCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,14 +503,14 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = "shtanko.ekaterina.HSE-Sharing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -516,8 +532,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

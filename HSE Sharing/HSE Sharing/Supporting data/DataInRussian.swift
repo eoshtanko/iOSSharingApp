@@ -9,9 +9,9 @@ import Foundation
 
 struct DataInRussian {
     
-    let categories = ["Учеба", "Не учеба"]
+    static let categories = ["Учеба", "Не учеба"]
     
-    let subcategoriesStudy = [
+    static let subcategoriesStudy = [
         "Другое",
         "Языки",
         "Программирование",
@@ -27,7 +27,7 @@ struct DataInRussian {
         "Презентации"
     ];
     
-    let subcategoriesNonStudy = [
+    static let subcategoriesNonStudy = [
         "Другое",
         "Транспорт",
         "Развлечения",
@@ -39,11 +39,11 @@ struct DataInRussian {
         "Быт"
     ];
     
-    let gender = ["Мужской", "Женский"];
+    static let gender = ["Мужской", "Женский"];
     
-    let statuses = ["Может", "Хочет"];
+    static let statuses = ["Может", "Хочет"];
     
-    let eduPrograms = [
+    static let eduPrograms = [
         "Городское планирование",
         "Клеточная и молекулярная биотехнология",
         "Арабистика: язык, словесность, культура",
@@ -100,7 +100,7 @@ struct DataInRussian {
         "Фундаментальная и компьютерная лингвистика"
     ];
     
-    let dormitories = [
+    static let dormitories = [
         "-",
         "Общежитие 1",
         "Общежитие 2",
@@ -116,7 +116,7 @@ struct DataInRussian {
         "Дубки"
     ];
     
-    let buildings = [
+    static let universityCampuses = [
         "Мясницкая",
         "Покровка",
         "Шаболовка",
@@ -124,7 +124,7 @@ struct DataInRussian {
         "Другое"
     ];
     
-    let stagesOfEdu = [
+    static let stagesOfEdu = [
         "Бакаклавриат 1 курс",
         "Бакаклавриат 2 курс",
         "Бакаклавриат 3 курс",
