@@ -417,7 +417,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     private func configureActionSheet() -> UIAlertController {
-        let actionSheet = UIAlertController(title: "Image Source", message: "Select the source of your profile image", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(
+            title: ProfileViewController.isEnglish ? "Image Source" : "Источник фотографии",
+            message: ProfileViewController.isEnglish ? "Select the source of your profile image" : "Выберите источник фотографии профиля", preferredStyle: .actionSheet)
         return actionSheet
     }
     
@@ -428,36 +430,42 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     private func configureLibraryAction(_ actionSheet: UIAlertController, _ imagePickerController: UIImagePickerController) {
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action: UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(
+            title: ProfileViewController.isEnglish ? "Photo Library" : "Галерея", style: .default, handler: { (action: UIAlertAction) in
             if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
                 imagePickerController.sourceType = .photoLibrary
                 self.present(imagePickerController, animated: true)
             } else {
-                self.showAlertWith(message: "Unable to access the photo library.")
+                self.showAlertWith(
+                    message: ProfileViewController.isEnglish ? "Unable to access the photo library." : "Не удается получить доступ к библиотеке фотографий")
             }
         }))
     }
     
     private func configureCameraAction(_ actionSheet: UIAlertController, _ imagePickerController: UIImagePickerController) {
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action: UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(
+            title: ProfileViewController.isEnglish ? "Camera" : "Камера", style: .default, handler: { (action: UIAlertAction) in
             actionSheet.dismiss(animated: true) {
                 if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
                     imagePickerController.sourceType = .camera
                     self.present(imagePickerController, animated: true)
                 } else {
-                    self.showAlertWith(message: "Unable to access the camera.")
+                    self.showAlertWith(
+                        message: ProfileViewController.isEnglish ? "Unable to access the camera" : "Не удается получить доступ к камере")
                 }
             }
         }))
     }
     
     private func configureCancelAction(_ actionSheet: UIAlertController) {
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(
+            title: ProfileViewController.isEnglish ? "Cancel" : "Отмена", style: .cancel, handler: nil))
     }
     
     private func showAlertWith(message: String){
-        let alertController = UIAlertController(title: "Error when uploading a photo", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        let alertController = UIAlertController(
+            title: ProfileViewController.isEnglish ? "Error when uploading a photo" : "Ошибка при загрузке фотографии", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: ProfileViewController.isEnglish ? "OK" : "Ладушки", style: .default))
         present(alertController, animated: true)
     }
 }
