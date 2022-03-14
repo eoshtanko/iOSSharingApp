@@ -5,7 +5,7 @@
 //  Created by Екатерина on 23.02.2022.
 //
 
-import Foundation
+import UIKit
 
 struct Skill {
     var id: UInt
@@ -15,5 +15,6 @@ struct Skill {
     var description: String
     var category: Int
     var subcategory: Int
-    var userMail: String
+    var userName: String
+    var userPhoto: UIImage
 }

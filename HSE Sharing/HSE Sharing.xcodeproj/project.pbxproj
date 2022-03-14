@@ -26,6 +26,8 @@
 		347375E127C653C00029A419 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E027C653C00029A419 /* NetworkManager.swift */; };
 		347375E327C653D50029A419 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E227C653D50029A419 /* PhotoManager.swift */; };
 		347375E527C653E90029A419 /* MemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E427C653E90029A419 /* MemoryManager.swift */; };
+		34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */; };
+		34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */; };
 		34CBC59A27DB62FE0082FAF0 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59927DB62FE0082FAF0 /* Conversation.swift */; };
 		34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */; };
 		34CBC59E27DB64840082FAF0 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59D27DB64840082FAF0 /* Api.swift */; };
@@ -63,6 +65,8 @@
 		347375E027C653C00029A419 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		347375E227C653D50029A419 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		347375E427C653E90029A419 /* MemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryManager.swift; sourceTree = "<group>"; };
+		34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeCell.xib; sourceTree = "<group>"; };
+		34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
 		34CBC59927DB62FE0082FAF0 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		34CBC59D27DB64840082FAF0 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 		34CBC5B027DBA8590082FAF0 /* Exchanges */ = {
 			isa = PBXGroup;
 			children = (
+				34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */,
+				34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */,
 			);
 			path = Exchanges;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */,
 				347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */,
 				347375C527C62DF70029A419 /* Assets.xcassets in Resources */,
+				34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */,
 				34CBC5AC27DBA6270082FAF0 /* EntryMessageView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */,
 				34CBC59A27DB62FE0082FAF0 /* Conversation.swift in Sources */,
 				347375E127C653C00029A419 /* NetworkManager.swift in Sources */,
 				34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */,

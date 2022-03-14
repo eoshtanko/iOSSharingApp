@@ -44,7 +44,7 @@ class PersonalSkillListViewController: UIViewController {
         addButton.contentVerticalAlignment = .fill
         addButton.imageView?.contentMode = .scaleAspectFill
         addButton.imageView?.clipsToBounds = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
     }
     
     private func configureImage() {

@@ -9,5 +9,142 @@ import UIKit
 
 class ExchangesViewController: UIViewController {
     
+    static let tableView = UITableView(frame: .zero, style: .grouped)
+    private let pickerView = UIPickerView()
+    private let settingsButton = UIButton()
+    
+    private var transactions: [Transaction] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        transactions = Api.currentTransactions
+        configureView()
+        configureTableView()
+        configureNavigationBar()
+        configurePickerView()
+        configurePickerAppearance()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureNavigationTitle()
+    }
+    
+    private func configureView() {
+        view.backgroundColor = .white
+    }
+    
+    private func configureTableView() {
+        ExchangesViewController.tableView.register(
+            UINib(nibName: String(describing: ExchangeCell.self), bundle: nil),
+            forCellReuseIdentifier: ExchangeCell.identifier
+        )
+        ExchangesViewController.tableView.dataSource = self
+        ExchangesViewController.tableView.delegate = self
+        view.addSubview(ExchangesViewController.tableView)
+        configureTableViewAppearance()
+    }
+    
+    private func configurePickerView() {
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.isHidden = true
+        view.addSubview(pickerView)
+    }
+    
+    private func configurePickerAppearance() {
+        pickerView.backgroundColor = UIColor(named: "BlueLightColor")
+        NSLayoutConstraint.activate([
+            pickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pickerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        pickerView.frame.size = CGSize(width: pickerView.frame.size.width, height: 400)
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func configureTableViewAppearance() {
+        ExchangesViewController.tableView.backgroundColor = .white
+        NSLayoutConstraint.activate([
+            ExchangesViewController.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            ExchangesViewController.tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            ExchangesViewController.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            ExchangesViewController.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        ExchangesViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func configureNavigationBar() {
+        configureNavigationTitle()
+        configureNavigationButton()
+    }
+    
+    private func configureNavigationTitle() {
+        navigationItem.title = ProfileViewController.isEnglish ? "Current exchanges" : "Текущие обмены"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func configureNavigationButton() {
+        settingsButton.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
+        settingsButton.imageView?.tintColor = .systemBlue
+        settingsButton.contentHorizontalAlignment = .fill
+        settingsButton.contentVerticalAlignment = .fill
+        settingsButton.imageView?.contentMode = .scaleAspectFill
+        settingsButton.imageView?.clipsToBounds = true
+        settingsButton.addTarget(self, action: #selector(toggleRightPanel), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
+    }
+    
+    @objc private func toggleRightPanel() {
+        pickerView.isHidden = false
+    }
 }
 
+extension ExchangesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ExchangesViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return transactions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: ExchangeCell.identifier,
+            for: indexPath)
+        guard let transactionCell = cell as? ExchangeCell else {
+            return cell
+        }
+        let transaction = transactions[indexPath.row]
+        transactionCell.configureCell(transaction)
+        return transactionCell
+    }
+}
+
+extension ExchangesViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return ProfileViewController.isEnglish ? DataInEnglish.sectors.count : DataInRussian.sectors.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return ProfileViewController.isEnglish ? DataInEnglish.sectors[row] : DataInRussian.sectors[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerView.isHidden = true
+    }
+}

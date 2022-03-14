@@ -22,6 +22,10 @@ class PersonalSkillCell: UITableViewCell {
     @IBOutlet weak var subcategoryTextLabel: UILabel!
     
     func configureCell(_ skill: Skill) {
+        nameLabel.text = ProfileViewController.isEnglish ? "Skill:" : "Навык:"
+        descriptionLabel.text = ProfileViewController.isEnglish ? "Description:" : "Описание:"
+        categoryLabel.text = ProfileViewController.isEnglish ? "Category:" : "Категория:"
+        subcategoryLabel.text = ProfileViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
         categoryTextLabel.text = ProfileViewController.isEnglish ? DataInEnglish.categories[skill.category] : DataInRussian.categories[skill.category]

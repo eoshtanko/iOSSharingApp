@@ -133,4 +133,11 @@ struct DataInEnglish {
         "Magistracy 1st year",
         "Magistracy 2st year"
     ];
+    
+    static let sectors = [
+        "Current",
+        "Outcoming",
+        "Incomming",
+        "Completed"
+    ]
 }

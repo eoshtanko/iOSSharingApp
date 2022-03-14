@@ -8,10 +8,14 @@
 import UIKit
 
 class SearchSkillCell: UITableViewCell {
-    static let identifier = String(describing: PersonalSkillCell.self)
     
+    static let identifier = String(describing: SearchSkillCell.self)
+    
+    @IBOutlet weak var photoOfAuthorImageView: UIImageView!
     @IBOutlet weak var coloredView: UIView!
     @IBOutlet weak var innerView: UIView!
+    @IBOutlet weak var typeOfSkillTextLabel: UILabel!
+    @IBOutlet weak var authorNameTextLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameTextLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -22,15 +26,33 @@ class SearchSkillCell: UITableViewCell {
     @IBOutlet weak var subcategoryTextLabel: UILabel!
     
     func configureCell(_ skill: Skill) {
+        nameLabel.text = ProfileViewController.isEnglish ? "Skill:" : "Навык:"
+        descriptionLabel.text = ProfileViewController.isEnglish ? "Description:" : "Описание:"
+        categoryLabel.text = ProfileViewController.isEnglish ? "Category:" : "Категория:"
+        subcategoryLabel.text = ProfileViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
-        categoryTextLabel.text = ProfileViewController.isEnglish ? DataInEnglish.categories[skill.category] : DataInRussian.categories[skill.category]
-        if skill.category == 0 {
-        subcategoryTextLabel.text = ProfileViewController.isEnglish ? DataInEnglish.subcategoriesStudy[skill.subcategory] : DataInRussian.subcategoriesStudy[skill.subcategory]
+        photoOfAuthorImageView.image = skill.userPhoto
+        authorNameTextLabel.text = skill.userName
+        if ProfileViewController.isEnglish {
+            categoryTextLabel.text = DataInEnglish.categories[skill.category]
+            if skill.category == 0 {
+            subcategoryTextLabel.text = DataInEnglish.subcategoriesStudy[skill.subcategory]
+            } else {
+                subcategoryTextLabel.text = DataInEnglish.subcategoriesNonStudy[skill.subcategory]
+            }
+            typeOfSkillTextLabel.text = skill.status == 1 ? "can" : "want"
         } else {
-            subcategoryTextLabel.text = ProfileViewController.isEnglish ? DataInEnglish.subcategoriesNonStudy[skill.subcategory] : DataInRussian.subcategoriesNonStudy[skill.subcategory]
+            categoryTextLabel.text = DataInRussian.categories[skill.category]
+            if skill.category == 0 {
+            subcategoryTextLabel.text = DataInRussian.subcategoriesStudy[skill.subcategory]
+            } else {
+                subcategoryTextLabel.text = DataInRussian.subcategoriesNonStudy[skill.subcategory]
+            }
+            typeOfSkillTextLabel.text = skill.status == 1 ? "может" : "хочет"
         }
         innerView.layer.cornerRadius = 10
         coloredView.layer.cornerRadius = 10
+        photoOfAuthorImageView.layer.cornerRadius = photoOfAuthorImageView.frame.size.width / 2
     }
 }

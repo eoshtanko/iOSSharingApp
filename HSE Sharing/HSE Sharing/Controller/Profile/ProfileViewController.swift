@@ -139,8 +139,11 @@ class ProfileViewController: UIViewController {
     }
     
     private func configureDatePicker() {
+        formatter.dateStyle = .short
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
+        datePicker.minimumDate = formatter.date(from: "01.01.1970")
+        datePicker.maximumDate = formatter.date(from: "31.12.2006")
         birthdayTextField.inputView = datePicker
         birthdayTextField.inputAccessoryView = createToolbar()
     }
@@ -156,7 +159,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func doneButtonPressed() {
-        formatter.dateStyle = .medium
+        formatter.dateStyle = .short
         formatter.timeStyle = .none
         
         birthdayTextField.text = formatter.string(from: datePicker.date)
@@ -183,6 +186,9 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func changeLanguage() {
+        ExchangesViewController.tableView.reloadData()
+        SearchViewController.tableView.reloadData()
+        ConversationsListViewController.tableView.reloadData()
         if (ProfileViewController.isEnglish) {
             translateToRussia()
         } else {
@@ -259,6 +265,27 @@ class ProfileViewController: UIViewController {
             aboutMeLabel.text = "About me"
             canButton.setTitle("Can", for: .normal)
             wantButton.setTitle("Want", for: .normal)
+            if (aboutMeTextView.text == "Я...") {
+                aboutMeTextView.text = "I am..."
+            }
+            eduProgramLabel.text = "Educational program"
+            eduProgramTextField.placeholder = "Choose an educational program"
+            dormLabel.text = "Dormitory"
+            dormTextField.placeholder = "Choose a dormitory"
+            stageOfEduLabel.text = "Stage of education"
+            stageOfEduTextField.placeholder = "Choose a stage of education"
+            campusLocationLabel.text = "Campus location"
+            campusLocationTextField.placeholder = "Choose a campus location"
+            genderLabel.text = "Gender"
+            maleButton.setTitle("Male", for: .normal)
+            femaleButton.setTitle("Female", for: .normal)
+            birthdayLabel.text = "Birthday date"
+            birthdayTextField.placeholder = "Choose a birthday date"
+            if isProfileInfoEditing {
+                bottomButtom.setTitle("Save", for: .normal)
+            } else {
+                bottomButtom.setTitle("Log out", for: .normal)
+            }
         } else {
             myDataLabel.text = "Мои данные"
             nameLabel.text = "Имя"
@@ -271,6 +298,27 @@ class ProfileViewController: UIViewController {
             aboutMeLabel.text = "Обо мне"
             canButton.setTitle("Могу", for: .normal)
             wantButton.setTitle("Хочу", for: .normal)
+            if (aboutMeTextView.text == "I am...") {
+                aboutMeTextView.text = "Я..."
+            }
+            eduProgramLabel.text = "Образовательная программа"
+            eduProgramTextField.placeholder = "Выберите образовательную программу"
+            dormLabel.text = "Общежитие"
+            dormTextField.placeholder = "Выберите общежитие"
+            stageOfEduLabel.text = "Ступень обучения"
+            stageOfEduTextField.placeholder = "Выберите ступень обучения"
+            campusLocationLabel.text = "Расположение корпуса"
+            campusLocationTextField.placeholder = "Выберете расположение корпуса"
+            genderLabel.text = "Пол"
+            maleButton.setTitle("Мужской", for: .normal)
+            femaleButton.setTitle("Женский", for: .normal)
+            birthdayLabel.text = "Дата рождения"
+            birthdayTextField.placeholder = "Выберете дату рождения"
+            if isProfileInfoEditing {
+                bottomButtom.setTitle("Сохранить", for: .normal)
+            } else {
+                bottomButtom.setTitle("Выйти из аккаунта", for: .normal)
+            }
         }
     }
     
@@ -423,13 +471,13 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
         case 1:
-            return ProfileViewController.isEnglish ?  DataInRussian.eduPrograms.count : DataInEnglish.eduPrograms.count
+            return !ProfileViewController.isEnglish ?  DataInRussian.eduPrograms.count : DataInEnglish.eduPrograms.count
         case 2:
-            return ProfileViewController.isEnglish ?  DataInRussian.dormitories.count : DataInEnglish.dormitories.count
+            return !ProfileViewController.isEnglish ?  DataInRussian.dormitories.count : DataInEnglish.dormitories.count
         case 3:
-            return ProfileViewController.isEnglish ?  DataInRussian.stagesOfEdu.count : DataInEnglish.stagesOfEdu.count
+            return !ProfileViewController.isEnglish ?  DataInRussian.stagesOfEdu.count : DataInEnglish.stagesOfEdu.count
         case 4:
-            return ProfileViewController.isEnglish ?  DataInRussian.universityCampuses.count : DataInEnglish.universityCampuses.count
+            return !ProfileViewController.isEnglish ?  DataInRussian.universityCampuses.count : DataInEnglish.universityCampuses.count
         default:
             return 0
         }
@@ -438,13 +486,13 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView.tag {
         case 1:
-            return ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+            return !ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
         case 2:
-            return ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
+            return !ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
         case 3:
-            return ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
+            return !ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
         case 4:
-            return ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
+            return !ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
         default:
             return ""
         }
@@ -453,16 +501,16 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
         case 1:
-            eduProgramTextField.text = ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+            eduProgramTextField.text = !ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
             eduProgramTextField.resignFirstResponder()
         case 2:
-            dormTextField.text = ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
+            dormTextField.text = !ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
             dormTextField.resignFirstResponder()
         case 3:
-            stageOfEduTextField.text = ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
+            stageOfEduTextField.text = !ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
             stageOfEduTextField.resignFirstResponder()
         case 4:
-            campusLocationTextField.text = ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
+            campusLocationTextField.text = !ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
             campusLocationTextField.resignFirstResponder()
         default:
             return

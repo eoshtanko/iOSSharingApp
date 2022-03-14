@@ -9,7 +9,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    static let tableView = UITableView(frame: .zero, style: .grouped)
     private let searchBar = UISearchBar()
     
     private var skills: [Skill] = []
@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        skills = []
+        skills = Api.searchSkills
         filteredSkills = skills
         configureView()
         configureTableView()
@@ -34,26 +34,26 @@ class SearchViewController: UIViewController {
     }
     
     private func configureTableView() {
-        tableView.register(
-            UINib(nibName: String(describing: ConversationTableViewCell.self), bundle: nil),
-            forCellReuseIdentifier: ConversationTableViewCell.identifier
+        SearchViewController.tableView.register(
+            UINib(nibName: String(describing: SearchSkillCell.self), bundle: nil),
+            forCellReuseIdentifier: SearchSkillCell.identifier
         )
-        tableView.dataSource = self
-        tableView.delegate = self
-        view.addSubview(tableView)
+        SearchViewController.tableView.dataSource = self
+        SearchViewController.tableView.delegate = self
+        view.addSubview(SearchViewController.tableView)
         configureTableViewAppearance()
     }
     
     private func configureTableViewAppearance() {
-        tableView.backgroundColor = .white
+        SearchViewController.tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            SearchViewController.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            SearchViewController.tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            SearchViewController.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            SearchViewController.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        SearchViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureNavigationBar() {
@@ -67,11 +67,15 @@ class SearchViewController: UIViewController {
     }
     
     func configureNavigationButton() {
-//        let profileButton = UIButton(frame: CGRect(x: 0, y: 0, width: Const.sizeOfNavigationButton,
-//                                                   height: Const.sizeOfNavigationButton))
-//        setImageToNavigationButton(profileButton)
+        let settingsButton = UIButton()
+        settingsButton.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
+        settingsButton.imageView?.tintColor = .systemBlue
+        settingsButton.contentHorizontalAlignment = .fill
+        settingsButton.contentVerticalAlignment = .fill
+        settingsButton.imageView?.contentMode = .scaleAspectFill
+        settingsButton.imageView?.clipsToBounds = true
 //        profileButton.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: profileButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
 }
 
@@ -94,21 +98,21 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: ConversationTableViewCell.identifier,
+            withIdentifier: SearchSkillCell.identifier,
             for: indexPath)
-        guard let conversationCell = cell as? ConversationTableViewCell else {
+        guard let searchCell = cell as? SearchSkillCell else {
             return cell
         }
-//        let conversation = indexPath.section == 0 ? filteredOnlineConversations[indexPath.row] : filteredOfflineConversations[indexPath.row]
-//        conversationCell.configureCell(conversation)
-        return conversationCell
+        let skill = filteredSkills[indexPath.row]
+        searchCell.configureCell(skill)
+        return searchCell
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
     private func configureSearchBar() {
-        tableView.tableHeaderView = searchBar
+        SearchViewController.tableView.tableHeaderView = searchBar
         searchBar.delegate = self
         searchBar.sizeToFit()
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
@@ -120,7 +124,7 @@ extension SearchViewController: UISearchBarDelegate {
             (item: Skill) -> Bool in
             return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-        tableView.reloadData()
+        SearchViewController.tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

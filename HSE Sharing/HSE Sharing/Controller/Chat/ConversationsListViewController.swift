@@ -9,7 +9,7 @@ import UIKit
 
 class ConversationsListViewController: UIViewController {
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    static let tableView = UITableView(frame: .zero, style: .grouped)
     private let searchBar = UISearchBar()
     
     private let onlineConversations = Api.getOnlineConversations()
@@ -36,26 +36,26 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureTableView() {
-        tableView.register(
+        ConversationsListViewController.tableView.register(
             UINib(nibName: String(describing: ConversationTableViewCell.self), bundle: nil),
             forCellReuseIdentifier: ConversationTableViewCell.identifier
         )
-        tableView.dataSource = self
-        tableView.delegate = self
-        view.addSubview(tableView)
+        ConversationsListViewController.tableView.dataSource = self
+        ConversationsListViewController.tableView.delegate = self
+        view.addSubview(ConversationsListViewController.tableView)
         configureTableViewAppearance()
     }
     
     private func configureTableViewAppearance() {
-        tableView.backgroundColor = .white
+        ConversationsListViewController.tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ConversationsListViewController.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            ConversationsListViewController.tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            ConversationsListViewController.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            ConversationsListViewController.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        ConversationsListViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureNavigationBar() {
@@ -137,7 +137,7 @@ extension ConversationsListViewController: UITableViewDataSource {
 extension ConversationsListViewController: UISearchBarDelegate {
     
     private func configureSearchBar() {
-        tableView.tableHeaderView = searchBar
+        ConversationsListViewController.tableView.tableHeaderView = searchBar
         searchBar.delegate = self
         searchBar.sizeToFit()
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
@@ -155,7 +155,7 @@ extension ConversationsListViewController: UISearchBarDelegate {
             return item.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         
-        tableView.reloadData()
+        ConversationsListViewController.tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
