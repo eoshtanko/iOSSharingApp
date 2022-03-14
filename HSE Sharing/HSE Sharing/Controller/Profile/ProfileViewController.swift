@@ -93,6 +93,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func bottomButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
+            isProfileInfoEditing = false
             editProfileButton.layer.isHidden = false
             bottomButtom.setTitle(ProfileViewController.isEnglish ? "Log out" : "Выйти из аккаунта", for: .normal)
             deactivateEditing()
