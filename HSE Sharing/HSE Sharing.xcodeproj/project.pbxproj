@@ -173,11 +173,11 @@
 		347375D127C645FF0029A419 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */,
-				342B65BE27DBDD9000A78536 /* Search */,
-				342B65BD27DBDD8900A78536 /* Exchanges */,
 				342B65B827DBC6D100A78536 /* Profile */,
 				34CBC5A127DB64FA0082FAF0 /* Chat */,
+				342B65BD27DBDD8900A78536 /* Exchanges */,
+				342B65BE27DBDD9000A78536 /* Search */,
+				34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
