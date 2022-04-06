@@ -43,13 +43,6 @@
                         <color key="textColor" name="GrayTextColor"/>
                         <color key="highlightedColor" name="GrayTextColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QX4-9a-zne">
-                        <rect key="frame" x="51" y="53" width="13" height="13"/>
-                        <color key="backgroundColor" name="onlineSignColor"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="QX4-9a-zne" secondAttribute="height" multiplier="1:1" id="6A2-GV-ble"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="SaS-tK-gkv" secondAttribute="bottom" constant="2" id="0qC-XR-rEr"/>
@@ -61,11 +54,8 @@
                     <constraint firstItem="SaS-tK-gkv" firstAttribute="top" secondItem="ZJQ-tu-3XL" secondAttribute="top" constant="2" id="FDT-Ix-TMe"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1vg-eK-CUC" secondAttribute="trailing" id="OBO-Eg-ckC"/>
                     <constraint firstItem="dUx-yu-nhU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ckO-3k-GwK" secondAttribute="trailing" constant="3" id="UC8-7G-WId"/>
-                    <constraint firstItem="QX4-9a-zne" firstAttribute="bottom" secondItem="SaS-tK-gkv" secondAttribute="bottom" constant="-2" id="g3T-LM-P1R"/>
                     <constraint firstItem="ckO-3k-GwK" firstAttribute="top" secondItem="SaS-tK-gkv" secondAttribute="top" id="gUN-DH-Mya"/>
-                    <constraint firstItem="QX4-9a-zne" firstAttribute="trailing" secondItem="SaS-tK-gkv" secondAttribute="trailing" constant="-2" id="hMk-xu-QIT"/>
                     <constraint firstItem="SaS-tK-gkv" firstAttribute="leading" secondItem="ZJQ-tu-3XL" secondAttribute="leading" id="l9b-Lc-y08"/>
-                    <constraint firstItem="QX4-9a-zne" firstAttribute="width" secondItem="SaS-tK-gkv" secondAttribute="height" multiplier="1:5" id="tj8-Gi-MpX"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,7 +63,6 @@
                 <outlet property="lastMessageDateLabel" destination="dUx-yu-nhU" id="t1n-O1-2Lm"/>
                 <outlet property="lastMessageLabel" destination="1vg-eK-CUC" id="8QU-bA-aOg"/>
                 <outlet property="nameLabel" destination="ckO-3k-GwK" id="TUy-Ew-P6u"/>
-                <outlet property="onlineSignImageView" destination="QX4-9a-zne" id="Rux-z6-sAb"/>
                 <outlet property="profileImageView" destination="SaS-tK-gkv" id="3kw-bL-dRj"/>
             </connections>
             <point key="canvasLocation" x="-362.31884057971018" y="-42.1875"/>
@@ -89,9 +78,6 @@
         </namedColor>
         <namedColor name="GrayTextColor">
             <color red="0.23499999940395355" green="0.23499999940395355" blue="0.2630000114440918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="onlineSignColor">
-            <color red="0.3529999852180481" green="0.83099997043609619" blue="0.22400000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

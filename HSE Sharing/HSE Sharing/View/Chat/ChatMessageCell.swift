@@ -17,14 +17,14 @@ class ChatMessageCell: UITableViewCell {
     private var leadingConstraint: NSLayoutConstraint!
     private var trailingConstraint: NSLayoutConstraint!
     
-    func configureCell(_ chatMessage: ChatMessage) {
+    func configureCell(_ chatMessage: Message) {
         messageLabel.text = chatMessage.text
         
-        bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ?
+        bubbleBackgroundView.backgroundColor = chatMessage.senderMail == CurrentUser.user.mail ?
         UIColor(named: "IncomingMessageColor") : UIColor(named: "OutcomingMessageColor")
         messageLabel.textColor = .black
         
-        if chatMessage.isIncoming {
+        if chatMessage.senderMail == CurrentUser.user.mail {
             trailingConstraint.isActive = false
             leadingConstraint.isActive = true
         } else {

@@ -7,14 +7,28 @@
 
 import Foundation
 
-class ChatMessage {
-    var text: String?
-    var isIncoming: Bool
-    var date: Date?
+struct Message {
     
-    init(text: String?, isIncoming: Bool, date: Date?) {
+    let text: String
+    let sendTime: Date
+    let id: Int64
+    let senderMail: String
+    let receiverMail: String
+    let isRead: Bool
+    
+    init(text: String, sendTime: Date, id: Int64, senderMail: String, receiverMail: String, isRead: Bool) {
         self.text = text
-        self.isIncoming = isIncoming
-        self.date = date
+        self.sendTime = sendTime
+        self.id = id
+        self.senderMail = senderMail
+        self.receiverMail = receiverMail
+        self.isRead = isRead
     }
 }
+
+//extension ChatMessage: Comparable {
+//
+//  static func < (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
+//      return lhs.created < rhs.created
+//  }
+//}

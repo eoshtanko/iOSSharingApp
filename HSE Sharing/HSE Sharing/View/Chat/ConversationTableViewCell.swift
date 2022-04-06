@@ -15,7 +15,6 @@ class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var lastMessageDateLabel: UILabel!
-    @IBOutlet weak var onlineSignImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     
     override func layoutSubviews() {
@@ -29,16 +28,14 @@ class ConversationTableViewCell: UITableViewCell {
     
     func configureCell(_ conversation: Conversation) {
         configureNameLabel(conversation.name)
-        configureLastMessageDate(conversation.date)
-        configureLastMessageLabel(conversation.message)
-        configureOnlineIdentifier(conversation.online)
-        configureUnreadMessagesIdentifier(conversation.hasUnreadMessages)
+        configureLastMessageDate(conversation.lastActivity)
+        configureLastMessageLabel(conversation.lastMessage)
+       //configureUnreadMessagesIdentifier(conversation.hasUnreadMessages)
         configureProfileImageView(conversation.image)
     }
     
     func configureSubviews() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        onlineSignImageView.layer.cornerRadius = onlineSignImageView.frame.size.width / 2
     }
     
     private func configureNameLabel(_ name: String?) {
@@ -66,10 +63,6 @@ class ConversationTableViewCell: UITableViewCell {
         } else {
             lastMessageLabel.font = .systemFont(ofSize: Const.textSize)
         }
-    }
-    
-    private func configureOnlineIdentifier(_ online: Bool) {
-        onlineSignImageView.layer.opacity = online ? 1 : 0
     }
     
     private func configureUnreadMessagesIdentifier(_ hasUnreadMessages: Bool) {
@@ -111,7 +104,6 @@ class ConversationTableViewCell: UITableViewCell {
         static let horizontalInserts: CGFloat = 10
         static let contentViewCornerRadius: CGFloat = 10
         static let rationImageAndOnlineSign: CGFloat = 5
-        static let onlineSignImageViewWidth: CGFloat = 19
     }
 }
 

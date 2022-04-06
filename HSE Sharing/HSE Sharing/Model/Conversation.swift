@@ -2,26 +2,65 @@
 //  Conversation.swift
 //  HSE Sharing
 //
-//  Created by Екатерина on 11.03.2022.
+//  Created by Екатерина on 04.04.2022.
 //
 
 import UIKit
 
-class Conversation {
-    var name: String?
-    var message: String?
-    var date: Date?
-    var online: Bool
-    var hasUnreadMessages: Bool
-    // Ну как же можно без картинки? Без картиники нехорошо.
-    var image: UIImage?
+struct Conversation {
+
+    let identifier: String
+    let name: String
+    let lastMessage: String?
+    let lastActivity: Date?
+    let image: UIImage?
     
-    init(name: String?, message: String?, date: Date?, online: Bool, hasUnreadMessages: Bool, image: UIImage?) {
+    init(name: String) {
         self.name = name
-        self.message = message
-        self.date = date
-        self.online = online
-        self.hasUnreadMessages = hasUnreadMessages
+        self.identifier = "111"
+        self.lastMessage = nil
+        self.lastActivity = nil
+        self.image = nil
+    }
+    
+    init(identifier: String, name: String, lastMessage: String?, lastActivity: Date?, image: UIImage) {
+        self.identifier = identifier
+        self.name = name
+        self.lastMessage = lastMessage
+        self.lastActivity = lastActivity
         self.image = image
     }
+    
+//    init?(document: QueryDocumentSnapshot) {
+//        let data = document.data()
+//
+//        guard let name = data["name"] as? String,
+//              let lastMessage = data["lastMessage"] as? String,
+//              let lastActivity = data["lastActivity"] as? Timestamp else {
+//                  return nil
+//              }
+//
+//        self.identifier = document.documentID
+//        self.name = name
+//        self.lastMessage = lastMessage
+//        self.lastActivity = lastActivity.dateValue()
+//    }
+}
+
+extension Conversation {
+    
+    var toDict: [String: Any] {
+        return ["name": name, "lastMessage": "", "lastActivity": Date()]
+    }
+}
+
+extension Conversation: Comparable {
+    
+  static func == (lhs: Conversation, rhs: Conversation) -> Bool {
+    return lhs.identifier == rhs.identifier
+  }
+
+  static func < (lhs: Conversation, rhs: Conversation) -> Bool {
+      return lhs.lastActivity ?? Date() > rhs.lastActivity ?? Date()
+  }
 }

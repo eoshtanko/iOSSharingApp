@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="383" id="3G2-3h-6zv" customClass="PersonalSkillCell" customModule="HSE_Sharing" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="383" id="3G2-3h-6zv" customClass="PersonalSkillCell" customModule="HSE_Sharing" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="468" height="383"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3G2-3h-6zv" id="f8K-he-5Ip">
@@ -115,6 +115,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="trash.circle" catalog="system" symbolScale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="3G2-3h-6zv" eventType="touchUpInside" id="UBT-r8-1ZA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XlR-Me-t5l">
                                 <rect key="frame" x="391" y="316" width="30" height="30"/>
@@ -128,6 +131,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="pencil.circle" catalog="system" symbolScale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="editButtonPressed:" destination="3G2-3h-6zv" eventType="touchUpInside" id="O9G-pp-ipz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="BlueLightColor"/>

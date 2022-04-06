@@ -10,17 +10,15 @@ import UIKit
 class ConversationsListViewController: UIViewController {
     
     static let tableView = UITableView(frame: .zero, style: .grouped)
-    private let searchBar = UISearchBar()
+    let searchBar = UISearchBar()
+    var isSearching = false
     
-    private let onlineConversations = Api.getOnlineConversations()
-    private let offlineConversations = Api.getOfflineConversations()
-    private var filteredOnlineConversations: [Conversation]!
-    private var filteredOfflineConversations: [Conversation]!
+    var channels: [Conversation] = []
+    var filteredChannels: [Conversation]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filteredOnlineConversations = onlineConversations
-        filteredOfflineConversations = offlineConversations
+        filteredChannels = channels
         configureView()
         configureTableView()
         configureNavigationBar()
@@ -47,7 +45,6 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureTableViewAppearance() {
-        ConversationsListViewController.tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
             ConversationsListViewController.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             ConversationsListViewController.tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -77,42 +74,24 @@ class ConversationsListViewController: UIViewController {
 extension ConversationsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let conversation = indexPath.section == 0 ? filteredOnlineConversations[indexPath.row] : filteredOfflineConversations[indexPath.row]
-        setupConversationsBeforePushViewController(conversation)
-        
-        let conversationViewController = ConversationViewController()
-        conversationViewController.conversation = conversation
-        
+        let conversation = isSearching ? filteredChannels[indexPath.row] : channels[indexPath.row]
         self.navigationItem.title = ""
+        
+        let conversationViewController = ConversationViewController(conversation: conversation)
         navigationController?.pushViewController(conversationViewController, animated: true)
         tableView.reloadRows(at: [indexPath], with: .none)
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Const.hightOfCell
-    }
-    
-    private func setupConversationsBeforePushViewController(_ conversation: Conversation) {
-        conversation.hasUnreadMessages = false
-        if (conversation.message != nil) {
-            Api.lastMessage = ChatMessage(text: conversation.message, isIncoming: true, date: conversation.date)
-        }
     }
 }
 
 extension ConversationsListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        Const.numberOfSections
+        return Const.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == 0) {
-            return filteredOnlineConversations.count
-        } else {
-            return filteredOfflineConversations.count
-        }
+        return isSearching ? filteredChannels.count : channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,21 +101,15 @@ extension ConversationsListViewController: UITableViewDataSource {
         guard let conversationCell = cell as? ConversationTableViewCell else {
             return cell
         }
-        let conversation = indexPath.section == 0 ? filteredOnlineConversations[indexPath.row] : filteredOfflineConversations[indexPath.row]
+        let conversation = isSearching ? filteredChannels[indexPath.row] : channels[indexPath.row]
         conversationCell.configureCell(conversation)
         return conversationCell
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        section == 0 ? ProfileViewController.isEnglish ? "Online" : "Онлайн" :
-        ProfileViewController.isEnglish ? "History" : "История"
-    }
 }
 
-// Подумала, будет плюсом :)
 extension ConversationsListViewController: UISearchBarDelegate {
     
-    private func configureSearchBar() {
+    func configureSearchBar() {
         ConversationsListViewController.tableView.tableHeaderView = searchBar
         searchBar.delegate = self
         searchBar.sizeToFit()
@@ -145,16 +118,10 @@ extension ConversationsListViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredOnlineConversations = searchText.isEmpty ? onlineConversations : onlineConversations.filter {
-            (item: Conversation) -> Bool in
-            return item.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        isSearching = !searchText.isEmpty
+        filteredChannels = searchText.isEmpty ? channels : channels.filter { (item: Conversation) -> Bool in
+            return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-        
-        filteredOfflineConversations = searchText.isEmpty ? offlineConversations : offlineConversations.filter {
-            (item: Conversation) -> Bool in
-            return item.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        }
-        
         ConversationsListViewController.tableView.reloadData()
     }
     
@@ -162,6 +129,7 @@ extension ConversationsListViewController: UISearchBarDelegate {
         self.searchBar.endEditing(true)
     }
 }
+
 
 extension ConversationsListViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

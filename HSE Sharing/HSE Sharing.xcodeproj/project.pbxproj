@@ -26,9 +26,15 @@
 		347375E127C653C00029A419 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E027C653C00029A419 /* NetworkManager.swift */; };
 		347375E327C653D50029A419 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E227C653D50029A419 /* PhotoManager.swift */; };
 		347375E527C653E90029A419 /* MemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E427C653E90029A419 /* MemoryManager.swift */; };
+		347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */; };
+		347EB55B27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55A27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift */; };
+		347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */; };
+		34AB122727FDDD530027AC20 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB122627FDDD530027AC20 /* String + Extension.swift */; };
+		34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB122827FDDD780027AC20 /* ProfileViewController + UIText.swift */; };
+		34B13E8927FA33740055E6ED /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13E8827FA33740055E6ED /* Feedback.swift */; };
+		34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13E8A27FAB3A90055E6ED /* Conversation.swift */; };
 		34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */; };
 		34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */; };
-		34CBC59A27DB62FE0082FAF0 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59927DB62FE0082FAF0 /* Conversation.swift */; };
 		34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */; };
 		34CBC59E27DB64840082FAF0 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59D27DB64840082FAF0 /* Api.swift */; };
 		34CBC5A027DB64F10082FAF0 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59F27DB64F10082FAF0 /* ConversationsListViewController.swift */; };
@@ -65,9 +71,15 @@
 		347375E027C653C00029A419 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		347375E227C653D50029A419 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		347375E427C653E90029A419 /* MemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryManager.swift; sourceTree = "<group>"; };
+		347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIPickerExtension.swift"; sourceTree = "<group>"; };
+		347EB55A27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIImageExtension.swift"; sourceTree = "<group>"; };
+		347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		34AB122627FDDD530027AC20 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		34AB122827FDDD780027AC20 /* ProfileViewController + UIText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIText.swift"; sourceTree = "<group>"; };
+		34B13E8827FA33740055E6ED /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		34B13E8A27FAB3A90055E6ED /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeCell.xib; sourceTree = "<group>"; };
 		34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
-		34CBC59927DB62FE0082FAF0 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		34CBC59D27DB64840082FAF0 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		34CBC59F27DB64F10082FAF0 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +108,9 @@
 		342B65B827DBC6D100A78536 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				342B65B927DBC6E800A78536 /* ProfileViewController.swift */,
+				34AB122A27FDDD9D0027AC20 /* ProfileViewController */,
 				342B65C527DE285800A78536 /* PersonalSkillListViewController.swift */,
+				347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -154,6 +167,7 @@
 				347375E027C653C00029A419 /* NetworkManager.swift */,
 				347375E227C653D50029A419 /* PhotoManager.swift */,
 				347375E427C653E90029A419 /* MemoryManager.swift */,
+				34AB122627FDDD530027AC20 /* String + Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -186,9 +200,10 @@
 			isa = PBXGroup;
 			children = (
 				347375D327C646510029A419 /* Transaction.swift */,
+				34B13E8827FA33740055E6ED /* Feedback.swift */,
+				34B13E8A27FAB3A90055E6ED /* Conversation.swift */,
 				347375D527C647470029A419 /* Skill.swift */,
 				347375D727C647520029A419 /* User.swift */,
-				34CBC59927DB62FE0082FAF0 /* Conversation.swift */,
 				34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */,
 			);
 			path = Model;
@@ -219,6 +234,17 @@
 				347375DE27C64C640029A419 /* DataInRussian.swift */,
 			);
 			path = "Supporting data";
+			sourceTree = "<group>";
+		};
+		34AB122A27FDDD9D0027AC20 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				342B65B927DBC6E800A78536 /* ProfileViewController.swift */,
+				34AB122827FDDD780027AC20 /* ProfileViewController + UIText.swift */,
+				347EB55A27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift */,
+				347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */,
+			);
+			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
 		34CBC5A127DB64FA0082FAF0 /* Chat */ = {
@@ -349,8 +375,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */,
-				34CBC59A27DB62FE0082FAF0 /* Conversation.swift in Sources */,
 				347375E127C653C00029A419 /* NetworkManager.swift in Sources */,
+				34AB122727FDDD530027AC20 /* String + Extension.swift in Sources */,
+				34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */,
+				34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */,
 				34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */,
 				34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */,
 				342B65C627DE285800A78536 /* PersonalSkillListViewController.swift in Sources */,
@@ -358,12 +386,15 @@
 				347375DC27C64C410029A419 /* DataInEnglish.swift in Sources */,
 				347375D827C647520029A419 /* User.swift in Sources */,
 				347375DF27C64C640029A419 /* DataInRussian.swift in Sources */,
+				347EB55B27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift in Sources */,
 				347375D627C647470029A419 /* Skill.swift in Sources */,
 				342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */,
+				347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */,
 				347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */,
 				342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */,
 				34F4A88927DE8E5E00C51CE2 /* SearchSkillCell.swift in Sources */,
 				34CBC5A327DB6C9A0082FAF0 /* ConversationViewController.swift in Sources */,
+				347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */,
 				347375E527C653E90029A419 /* MemoryManager.swift in Sources */,
 				34CBC5B327DBA9BE0082FAF0 /* RootTabBarViewController.swift in Sources */,
 				34CBC5A027DB64F10082FAF0 /* ConversationsListViewController.swift in Sources */,
@@ -372,6 +403,7 @@
 				34CBC5A827DBA5DE0082FAF0 /* ChatMessageCell.swift in Sources */,
 				34CBC59E27DB64840082FAF0 /* Api.swift in Sources */,
 				342B65C227DBDDB400A78536 /* ExchangesViewController.swift in Sources */,
+				34B13E8927FA33740055E6ED /* Feedback.swift in Sources */,
 				342B65CC27DE322500A78536 /* PersonalSkillCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
