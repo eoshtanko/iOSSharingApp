@@ -208,12 +208,9 @@
 		347375D027C645EF0029A419 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				34449AE027FE42E3002763CD /* Authorization */,
-				34CBC5AF27DBA84B0082FAF0 /* Profile */,
-				34CBC5A427DBA5B90082FAF0 /* Chat */,
-				34CBC5B027DBA8590082FAF0 /* Exchanges */,
-				34CBC5B127DBA86F0082FAF0 /* Search */,
 				347375C627C62DF70029A419 /* LaunchScreen.storyboard */,
+				34449AE027FE42E3002763CD /* Authorization */,
+				34C4C7EF2801A39500769CFC /* MainApp */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,11 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				34EB7A8A28015EA90008B4CD /* Authorization */,
-				342B65B827DBC6D100A78536 /* Profile */,
-				34CBC5A127DB64FA0082FAF0 /* Chat */,
-				342B65BD27DBDD8900A78536 /* Exchanges */,
-				342B65BE27DBDD9000A78536 /* Search */,
-				34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */,
+				34C4C7EE2801A36100769CFC /* MainApp */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -281,6 +274,29 @@
 				347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */,
 			);
 			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		34C4C7EE2801A36100769CFC /* MainApp */ = {
+			isa = PBXGroup;
+			children = (
+				34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */,
+				342B65B827DBC6D100A78536 /* Profile */,
+				34CBC5A127DB64FA0082FAF0 /* Chat */,
+				342B65BD27DBDD8900A78536 /* Exchanges */,
+				342B65BE27DBDD9000A78536 /* Search */,
+			);
+			path = MainApp;
+			sourceTree = "<group>";
+		};
+		34C4C7EF2801A39500769CFC /* MainApp */ = {
+			isa = PBXGroup;
+			children = (
+				34CBC5AF27DBA84B0082FAF0 /* Profile */,
+				34CBC5A427DBA5B90082FAF0 /* Chat */,
+				34CBC5B027DBA8590082FAF0 /* Exchanges */,
+				34CBC5B127DBA86F0082FAF0 /* Search */,
+			);
+			path = MainApp;
 			sourceTree = "<group>";
 		};
 		34CBC5A127DB64FA0082FAF0 /* Chat */ = {
