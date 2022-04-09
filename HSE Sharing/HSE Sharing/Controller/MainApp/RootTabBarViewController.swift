@@ -11,8 +11,7 @@ class RootTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // person.fill
-        //
+
         let chatViewController = UINavigationController(
             rootViewController: ConversationsListViewController())
         
@@ -29,8 +28,9 @@ class RootTabBarViewController: UITabBarController {
         self.setViewControllers([searchViewController, exchangesViewController, chatViewController, profileViewController], animated: false)
         
         setImages()
+        self.selectedIndex = 3
     }
-    
+
     private func setImages() {
         self.tabBar.items?[0].image = UIImage(systemName: "magnifyingglass")
         self.tabBar.items?[1].image = UIImage(systemName: "archivebox")

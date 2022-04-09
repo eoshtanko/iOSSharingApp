@@ -62,7 +62,7 @@ class SearchViewController: UIViewController {
     }
     
     private func configureNavigationTitle() {
-        navigationItem.title = ProfileViewController.isEnglish ? "Skills search" : "Поиск навыков"
+        navigationItem.title = EnterViewController.isEnglish ? "Skills search" : "Поиск навыков"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

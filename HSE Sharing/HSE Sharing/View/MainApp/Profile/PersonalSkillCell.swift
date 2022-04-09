@@ -11,7 +11,8 @@ class PersonalSkillCell: UITableViewCell {
     
     static let identifier = String(describing: PersonalSkillCell.self)
     var deleteSkill: (() -> Void)?
-    var editSkill: (() -> Void)?
+    var editSkill: ((Skill) -> Void)?
+    private var skill: Skill?
     
     @IBOutlet weak var coloredView: UIView!
     @IBOutlet weak var innerView: UIView!
@@ -25,7 +26,9 @@ class PersonalSkillCell: UITableViewCell {
     @IBOutlet weak var subcategoryTextLabel: UILabel!
     
     @IBAction func editButtonPressed(_ sender: Any) {
-        editSkill?()
+        if let skill = skill {
+            editSkill?(skill)
+        }
     }
 
     @IBAction func deleteButtonPressed(_ sender: Any) {
@@ -36,7 +39,7 @@ class PersonalSkillCell: UITableViewCell {
         self.deleteSkill = deleteSkill
     }
     
-    func setEditSkillAction(_ editSkill: (() -> Void)?) {
+    func setEditSkillAction(_ editSkill: ((Skill) -> Void)?) {
         self.editSkill = editSkill
     }
     
@@ -47,20 +50,21 @@ class PersonalSkillCell: UITableViewCell {
     }
 
     private func configureLabelsLanguage() {
-        nameLabel.text = ProfileViewController.isEnglish ? "Skill:" : "Навык:"
-        descriptionLabel.text = ProfileViewController.isEnglish ? "Description:" : "Описание:"
-        categoryLabel.text = ProfileViewController.isEnglish ? "Category:" : "Категория:"
-        subcategoryLabel.text = ProfileViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
+        nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
+        descriptionLabel.text = EnterViewController.isEnglish ? "Description:" : "Описание:"
+        categoryLabel.text = EnterViewController.isEnglish ? "Category:" : "Категория:"
+        subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
     }
     
     private func configureData(_ skill: Skill) {
+        self.skill = skill
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
-        categoryTextLabel.text = ProfileViewController.isEnglish ? DataInEnglish.categories[skill.category] : DataInRussian.categories[skill.category]
+        categoryTextLabel.text = EnterViewController.isEnglish ? DataInEnglish.categories[skill.category] : DataInRussian.categories[skill.category]
         if skill.category == 0 {
-        subcategoryTextLabel.text = ProfileViewController.isEnglish ? DataInEnglish.subcategoriesStudy[skill.subcategory] : DataInRussian.subcategoriesStudy[skill.subcategory]
+        subcategoryTextLabel.text = EnterViewController.isEnglish ? DataInEnglish.subcategoriesStudy[skill.subcategory] : DataInRussian.subcategoriesStudy[skill.subcategory]
         } else {
-            subcategoryTextLabel.text = ProfileViewController.isEnglish ? DataInEnglish.subcategoriesNonStudy[skill.subcategory] : DataInRussian.subcategoriesNonStudy[skill.subcategory]
+            subcategoryTextLabel.text = EnterViewController.isEnglish ? DataInEnglish.subcategoriesNonStudy[skill.subcategory] : DataInRussian.subcategoriesNonStudy[skill.subcategory]
         }
     }
     

@@ -22,9 +22,9 @@ class ExchangeCell: UITableViewCell {
     @IBOutlet weak var giveLabel: UILabel!
     
     func configureCell(_ transaction: Transaction) {
-        withWhomLabel.text = ProfileViewController.isEnglish ? "With whom:" : "С кем:"
-        whatReceive.text = ProfileViewController.isEnglish ? "What receive:" : "Что получаю:"
-        whatGive.text = ProfileViewController.isEnglish ? "What give:" : "Что даю:"
+        withWhomLabel.text = EnterViewController.isEnglish ? "With whom:" : "С кем:"
+        whatReceive.text = EnterViewController.isEnglish ? "What receive:" : "Что получаю:"
+        whatGive.text = EnterViewController.isEnglish ? "What give:" : "Что даю:"
         profileImage.image = transaction.userPhoto
         nameLabel.text = transaction.userName
         receiveLabel.text = transaction.skill1

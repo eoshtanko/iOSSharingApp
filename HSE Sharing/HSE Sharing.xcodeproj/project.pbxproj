@@ -41,6 +41,11 @@
 		34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13E8A27FAB3A90055E6ED /* Conversation.swift */; };
 		34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */; };
 		34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */; };
+		34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */; };
+		34C4C7F32801DCEE00769CFC /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F22801DCEE00769CFC /* CommentsViewController.swift */; };
+		34C4C7F52801DD0F00769CFC /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C4C7F42801DD0F00769CFC /* Comments.storyboard */; };
+		34C4C7F72801FCA600769CFC /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F62801FCA600769CFC /* CommentCell.swift */; };
+		34C4C7F92801FCB100769CFC /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C4C7F82801FCB100769CFC /* CommentCell.xib */; };
 		34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */; };
 		34CBC59E27DB64840082FAF0 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59D27DB64840082FAF0 /* Api.swift */; };
 		34CBC5A027DB64F10082FAF0 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59F27DB64F10082FAF0 /* ConversationsListViewController.swift */; };
@@ -97,6 +102,11 @@
 		34B13E8A27FAB3A90055E6ED /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeCell.xib; sourceTree = "<group>"; };
 		34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
+		34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPreferences.swift; sourceTree = "<group>"; };
+		34C4C7F22801DCEE00769CFC /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		34C4C7F42801DD0F00769CFC /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
+		34C4C7F62801FCA600769CFC /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		34C4C7F82801FCB100769CFC /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		34CBC59D27DB64840082FAF0 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		34CBC59F27DB64F10082FAF0 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
@@ -131,9 +141,10 @@
 			isa = PBXGroup;
 			children = (
 				34AB122A27FDDD9D0027AC20 /* ProfileViewController */,
+				347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */,
 				342B65C527DE285800A78536 /* PersonalSkillListViewController.swift */,
 				34449ADC27FE316C002763CD /* SkillEditViewController.swift */,
-				347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */,
+				34C4C7F22801DCEE00769CFC /* CommentsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -201,6 +212,7 @@
 				34AB122627FDDD530027AC20 /* String + Extension.swift */,
 				345C17EB280169D600ED5526 /* TextField + Extension.swift */,
 				345C17E92801668200ED5526 /* Button + Extension.swift */,
+				34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -327,7 +339,10 @@
 				34449AD827FE3124002763CD /* SkillEditScreen.storyboard */,
 				342B65C927DE300600A78536 /* PersonalSkillList.storyboard */,
 				342B65CB27DE322500A78536 /* PersonalSkillCell.swift */,
+				34C4C7F82801FCB100769CFC /* CommentCell.xib */,
+				34C4C7F62801FCA600769CFC /* CommentCell.swift */,
 				342B65CD27DE503700A78536 /* PersonalSkillCell.xib */,
+				34C4C7F42801DD0F00769CFC /* Comments.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -420,6 +435,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C4C7F52801DD0F00769CFC /* Comments.storyboard in Resources */,
 				342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */,
 				34F4A88727DE866200C51CE2 /* SearchSkillCell.xib in Resources */,
 				342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */,
@@ -430,6 +446,7 @@
 				347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */,
 				347375C527C62DF70029A419 /* Assets.xcassets in Resources */,
 				34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */,
+				34C4C7F92801FCB100769CFC /* CommentCell.xib in Resources */,
 				34CBC5AC27DBA6270082FAF0 /* EntryMessageView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,9 +460,11 @@
 			files = (
 				34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */,
 				347375E127C653C00029A419 /* NetworkManager.swift in Sources */,
+				34C4C7F32801DCEE00769CFC /* CommentsViewController.swift in Sources */,
 				34AB122727FDDD530027AC20 /* String + Extension.swift in Sources */,
 				34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */,
 				34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */,
+				34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */,
 				345C17EA2801668200ED5526 /* Button + Extension.swift in Sources */,
 				34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */,
 				34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */,
@@ -470,6 +489,7 @@
 				34EB7A8E28015EF60008B4CD /* EmailViewController.swift in Sources */,
 				347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */,
 				347375E527C653E90029A419 /* MemoryManager.swift in Sources */,
+				34C4C7F72801FCA600769CFC /* CommentCell.swift in Sources */,
 				34CBC5B327DBA9BE0082FAF0 /* RootTabBarViewController.swift in Sources */,
 				34CBC5A027DB64F10082FAF0 /* ConversationsListViewController.swift in Sources */,
 				34CBC5AA27DBA6000082FAF0 /* ConversationTableViewCell.swift in Sources */,

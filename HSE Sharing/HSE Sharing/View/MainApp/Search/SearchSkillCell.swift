@@ -26,15 +26,15 @@ class SearchSkillCell: UITableViewCell {
     @IBOutlet weak var subcategoryTextLabel: UILabel!
     
     func configureCell(_ skill: Skill) {
-        nameLabel.text = ProfileViewController.isEnglish ? "Skill:" : "Навык:"
-        descriptionLabel.text = ProfileViewController.isEnglish ? "Description:" : "Описание:"
-        categoryLabel.text = ProfileViewController.isEnglish ? "Category:" : "Категория:"
-        subcategoryLabel.text = ProfileViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
+        nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
+        descriptionLabel.text = EnterViewController.isEnglish ? "Description:" : "Описание:"
+        categoryLabel.text = EnterViewController.isEnglish ? "Category:" : "Категория:"
+        subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
         photoOfAuthorImageView.image = skill.userPhoto
         authorNameTextLabel.text = skill.userName
-        if ProfileViewController.isEnglish {
+        if EnterViewController.isEnglish {
             categoryTextLabel.text = DataInEnglish.categories[skill.category]
             if skill.category == 0 {
             subcategoryTextLabel.text = DataInEnglish.subcategoriesStudy[skill.subcategory]

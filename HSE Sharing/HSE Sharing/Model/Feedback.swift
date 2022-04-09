@@ -8,6 +8,9 @@
 import Foundation
 
 struct Feedback {
-    var id: Int64
-    
+    let id: Int64
+    let gade: Int
+    let comment: String
+    let senderMail: String
+    let receiverMail: String
 }

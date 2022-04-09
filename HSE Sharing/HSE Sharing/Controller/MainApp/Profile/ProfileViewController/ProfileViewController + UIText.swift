@@ -62,7 +62,7 @@ extension ProfileViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = Const.textViewPlaceholderText
+            textView.text = "Расскажите о себе :)"
             textView.textColor = UIColor.lightGray
         }
     }

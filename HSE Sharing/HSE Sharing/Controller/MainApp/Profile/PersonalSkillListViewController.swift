@@ -3,19 +3,28 @@ import UIKit
 class PersonalSkillListViewController: UIViewController {
     
     static var isContainedCanSkills = true
-    private var skills: [Skill] = []
+    private var skills: [Skill] = [] {
+        didSet {
+            tableView.isHidden = skills.isEmpty
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSkills()
-        configureNavigationBar()
         configureTableView()
         configureNavigationButton()
         configureImage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
+        let appearance = UINavigationBarAppearance()
+        navigationController?.navigationBar.standardAppearance = appearance
     }
     
     private func configureSkills() {
@@ -32,6 +41,7 @@ class PersonalSkillListViewController: UIViewController {
         addButton.contentVerticalAlignment = .fill
         addButton.imageView?.contentMode = .scaleAspectFill
         addButton.imageView?.clipsToBounds = true
+        addButton.addTarget(self, action: #selector(createSkill), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
     }
     
@@ -55,18 +65,16 @@ class PersonalSkillListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = UIColor(named: "BlueLightColor")
         if PersonalSkillListViewController.isContainedCanSkills {
-            navigationItem.title = ProfileViewController.isEnglish ? "Can" : "Могу"
+            navigationItem.title = EnterViewController.isEnglish ? "Can" : "Могу"
         } else {
-            navigationItem.title = ProfileViewController.isEnglish ? "Want" : "Хочу"
+            navigationItem.title = EnterViewController.isEnglish ? "Want" : "Хочу"
         }
     }
     
     private func showConfirmDeletingAlert() {
         let failureAlert = UIAlertController(
-            title: ProfileViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
+            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
@@ -74,6 +82,21 @@ class PersonalSkillListViewController: UIViewController {
             //self.configureSnapshotListener()
         })
         present(failureAlert, animated: true, completion: nil)
+    }
+    
+    @objc private func createSkill() {
+        self.navigationItem.title = ""
+        let storyboard = UIStoryboard(name: "SkillEditScreen", bundle: nil)
+        let skillEditViewController = storyboard.instantiateViewController(withIdentifier: "SkillEditScreen") as! SkillEditViewController
+        navigationController?.pushViewController(skillEditViewController, animated: true)
+    }
+    
+    private func editSkill(_ skill: Skill) {
+        self.navigationItem.title = ""
+        let storyboard = UIStoryboard(name: "SkillEditScreen", bundle: nil)
+        let skillEditViewController = storyboard.instantiateViewController(withIdentifier: "SkillEditScreen") as! SkillEditViewController
+        skillEditViewController.setSkill(skill)
+        navigationController?.pushViewController(skillEditViewController, animated: true)
     }
 }
 
@@ -101,7 +124,7 @@ extension PersonalSkillListViewController: UITableViewDataSource {
         }
         let skill = skills[indexPath.row]
         personalSkillCell.configureCell(skill)
-        personalSkillCell.setEditSkillAction(nil)
+        personalSkillCell.setEditSkillAction(editSkill)
         personalSkillCell.setDeleteSkillAction(showConfirmDeletingAlert)
         return personalSkillCell
     }

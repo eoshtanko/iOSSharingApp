@@ -57,7 +57,7 @@ class ConversationTableViewCell: UITableViewCell {
     }
     
     private func configureLastMessageLabel(_ message: String?) {
-        lastMessageLabel.text = message == nil ? ProfileViewController.isEnglish ? "No messages yet" : "Сообщений еще нет" : message
+        lastMessageLabel.text = message == nil ? EnterViewController.isEnglish ? "No messages yet" : "Сообщений еще нет" : message
         if (message == nil) {
             lastMessageLabel.font = .italicSystemFont(ofSize: Const.textSize)
         } else {

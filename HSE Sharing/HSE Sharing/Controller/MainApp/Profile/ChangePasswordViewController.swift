@@ -39,12 +39,12 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func configureLanguage() {
-        titleTextLabel.text = ProfileViewController.isEnglish ? "Password change" : "Смена пароля"
-        newPasswordLabel.text = ProfileViewController.isEnglish ? "New password" : "Новый пароль"
-        repeatNewPasswordLabel.text = ProfileViewController.isEnglish ? "Repeat the password" : "Повторите пароль"
-        newPasswordTextField.placeholder = ProfileViewController.isEnglish ? "Enter a new password" : "Введите новый пароль"
-        repeatNewPasswordTextField.placeholder = ProfileViewController.isEnglish ? "Re-enter the new password" : "Повторите ввод нового пароля"
-        saveButton.setTitle(ProfileViewController.isEnglish ? "Save" : "Сохранить", for: .normal)
+        titleTextLabel.text = EnterViewController.isEnglish ? "Password change" : "Смена пароля"
+        newPasswordLabel.text = EnterViewController.isEnglish ? "New password" : "Новый пароль"
+        repeatNewPasswordLabel.text = EnterViewController.isEnglish ? "Repeat the password" : "Повторите пароль"
+        newPasswordTextField.placeholder = EnterViewController.isEnglish ? "Enter a new password" : "Введите новый пароль"
+        repeatNewPasswordTextField.placeholder = EnterViewController.isEnglish ? "Re-enter the new password" : "Повторите ввод нового пароля"
+        saveButton.setTitle(EnterViewController.isEnglish ? "Save" : "Сохранить", for: .normal)
     }
 }
 

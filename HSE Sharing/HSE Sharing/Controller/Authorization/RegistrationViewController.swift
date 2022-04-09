@@ -29,6 +29,7 @@ class RegistrationViewController : UIViewController {
     @IBOutlet weak var registrationButton: UIButton!
     @IBAction func registrationButtonPressed(_ sender: Any) {
         clearTextFields()
+        goToMainAppRootTabBarVC()
     }
     
     override func viewDidLayoutSubviews() {
@@ -36,6 +37,12 @@ class RegistrationViewController : UIViewController {
         self.navigationItem.title = ""
         configureButtons()
         configureTextFields()
+    }
+    
+    private func goToMainAppRootTabBarVC() {
+        let mainAppRootTabBarVC = RootTabBarViewController()
+        mainAppRootTabBarVC.modalPresentationStyle = .fullScreen
+        present(mainAppRootTabBarVC, animated: true)
     }
     
     private func configureButtons() {

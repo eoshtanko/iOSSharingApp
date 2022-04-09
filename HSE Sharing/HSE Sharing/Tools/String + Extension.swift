@@ -45,4 +45,8 @@ extension String {
     func isCodeValid() -> Bool {
         return self.count == 4
     }
+    
+    func isNameOfSkillValid() -> Bool {
+        return self.count > 0 && self.count <= 50
+    }
 }

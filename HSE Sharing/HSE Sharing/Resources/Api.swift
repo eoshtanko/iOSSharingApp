@@ -65,8 +65,14 @@ class Api {
         return messages
     }
     
+    static var comments = [
+        Feedback(id: 0, gade: 1, comment: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", senderMail: "", receiverMail: ""),
+        Feedback(id: 0, gade: 2, comment: "hfuhfkjhsdkjfhsk", senderMail: "", receiverMail: ""),
+        Feedback(id: 0, gade: 3, comment: "d", senderMail: "", receiverMail: "")
+    ]
+    
     static var canSkills = [
-        Skill(id: 0, status: 1, name: "Писать iOS-приложения", description: "Ну работать что-то будет", category: 0, subcategory: 2, userName: "Nikolay Romahkov", userPhoto: UIImage(named: "man1.jpg")!),
+        Skill(id: 0, status: 1, name: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", description: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", category: 0, subcategory: 2, userName: "Nikolay Romahkov", userPhoto: UIImage(named: "man1.jpg")!),
         Skill(id: 0, status: 1, name: "Готовить гречку", description: "Ну съесть это можно будет", category: 1, subcategory: 4, userName: "Charlie O'Kelly", userPhoto: UIImage(named: "man2.jpg")!),
         Skill(id: 0, status: 1, name: "Программы на Java", description: "Ну работать что-то будет", category: 0, subcategory: 2, userName: "Poppy Davies", userPhoto: UIImage(named: "woman6.jpg")!)
         ]

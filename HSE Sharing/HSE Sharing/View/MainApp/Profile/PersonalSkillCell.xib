@@ -67,7 +67,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Что-то работать будет" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="got-V2-HiK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Что-то работать будет" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="got-V2-HiK">
                                         <rect key="frame" x="20" y="119.5" width="376" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <nil key="textColor"/>
@@ -169,7 +169,7 @@
                 <outlet property="subcategoryLabel" destination="U8k-nI-o4s" id="biZ-64-vNG"/>
                 <outlet property="subcategoryTextLabel" destination="rhH-Ag-7GH" id="Fzb-zX-C1x"/>
             </connections>
-            <point key="canvasLocation" x="694" y="-127"/>
+            <point key="canvasLocation" x="694" y="-142"/>
         </tableViewCell>
     </objects>
     <resources>

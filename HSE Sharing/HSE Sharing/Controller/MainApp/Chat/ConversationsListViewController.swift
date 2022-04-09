@@ -60,7 +60,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureNavigationTitle() {
-        navigationItem.title = ProfileViewController.isEnglish ? "Chat" : "Переписки"
+        navigationItem.title = EnterViewController.isEnglish ? "Chat" : "Переписки"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

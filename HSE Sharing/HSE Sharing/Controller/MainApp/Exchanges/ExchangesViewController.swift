@@ -80,7 +80,7 @@ class ExchangesViewController: UIViewController {
     }
     
     private func configureNavigationTitle() {
-        navigationItem.title = ProfileViewController.isEnglish ? "Current exchanges" : "Текущие обмены"
+        navigationItem.title = EnterViewController.isEnglish ? "Current exchanges" : "Текущие обмены"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -137,11 +137,11 @@ extension ExchangesViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return ProfileViewController.isEnglish ? DataInEnglish.sectors.count : DataInRussian.sectors.count
+        return EnterViewController.isEnglish ? DataInEnglish.sectors.count : DataInRussian.sectors.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return ProfileViewController.isEnglish ? DataInEnglish.sectors[row] : DataInRussian.sectors[row]
+        return EnterViewController.isEnglish ? DataInEnglish.sectors[row] : DataInRussian.sectors[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

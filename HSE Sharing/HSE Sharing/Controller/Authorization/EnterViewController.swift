@@ -24,6 +24,7 @@ class EnterViewController : UIViewController {
     @IBOutlet weak var enterButton: UIButton!
     @IBAction func enterButtonAction(_ sender: Any) {
         clearTextFields()
+        goToMainAppRootTabBarVC()
     }
     
     @IBOutlet weak var registrationButton: UIButton!
@@ -41,11 +42,28 @@ class EnterViewController : UIViewController {
         translateProfileView(EnterViewController.isEnglish)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavigationBar()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.navigationItem.title = ""
         configureButtons()
         configureTextFields()
+    }
+    
+    private func goToMainAppRootTabBarVC() {
+        let mainAppRootTabBarVC = RootTabBarViewController()
+        mainAppRootTabBarVC.modalPresentationStyle = .fullScreen
+        present(mainAppRootTabBarVC, animated: true)
+    }
+    
+    private func configureNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationController?.navigationBar.standardAppearance = appearance
     }
     
     private func configureButtons() {

@@ -39,8 +39,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     private func configureActionSheet() -> UIAlertController {
         let actionSheet = UIAlertController(
-            title: ProfileViewController.isEnglish ? "Image Source" : "Источник фотографии",
-            message: ProfileViewController.isEnglish ? "Select the source of your profile image" : "Выберите источник фотографии профиля", preferredStyle: .actionSheet)
+            title: EnterViewController.isEnglish ? "Image Source" : "Источник фотографии",
+            message: EnterViewController.isEnglish ? "Select the source of your profile image" : "Выберите источник фотографии профиля", preferredStyle: .actionSheet)
         return actionSheet
     }
     
@@ -52,27 +52,27 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     private func configureLibraryAction(_ actionSheet: UIAlertController, _ imagePickerController: UIImagePickerController) {
         actionSheet.addAction(UIAlertAction(
-            title: ProfileViewController.isEnglish ? "Photo Library" : "Галерея", style: .default, handler: { (action: UIAlertAction) in
+            title: EnterViewController.isEnglish ? "Photo Library" : "Галерея", style: .default, handler: { (action: UIAlertAction) in
             if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
                 imagePickerController.sourceType = .photoLibrary
                 self.present(imagePickerController, animated: true)
             } else {
                 self.showAlertWith(
-                    message: ProfileViewController.isEnglish ? "Unable to access the photo library." : "Не удается получить доступ к библиотеке фотографий")
+                    message: EnterViewController.isEnglish ? "Unable to access the photo library." : "Не удается получить доступ к библиотеке фотографий")
             }
         }))
     }
     
     private func configureCameraAction(_ actionSheet: UIAlertController, _ imagePickerController: UIImagePickerController) {
         actionSheet.addAction(UIAlertAction(
-            title: ProfileViewController.isEnglish ? "Camera" : "Камера", style: .default, handler: { (action: UIAlertAction) in
+            title: EnterViewController.isEnglish ? "Camera" : "Камера", style: .default, handler: { (action: UIAlertAction) in
             actionSheet.dismiss(animated: true) {
                 if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
                     imagePickerController.sourceType = .camera
                     self.present(imagePickerController, animated: true)
                 } else {
                     self.showAlertWith(
-                        message: ProfileViewController.isEnglish ? "Unable to access the camera" : "Не удается получить доступ к камере")
+                        message: EnterViewController.isEnglish ? "Unable to access the camera" : "Не удается получить доступ к камере")
                 }
             }
         }))
@@ -80,13 +80,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     private func configureCancelAction(_ actionSheet: UIAlertController) {
         actionSheet.addAction(UIAlertAction(
-            title: ProfileViewController.isEnglish ? "Cancel" : "Отмена", style: .cancel, handler: nil))
+            title: EnterViewController.isEnglish ? "Cancel" : "Отмена", style: .cancel, handler: nil))
     }
     
     private func showAlertWith(message: String){
         let alertController = UIAlertController(
-            title: ProfileViewController.isEnglish ? "Error when uploading a photo" : "Ошибка при загрузке фотографии", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: ProfileViewController.isEnglish ? "OK" : "Ладушки", style: .default))
+            title: EnterViewController.isEnglish ? "Error when uploading a photo" : "Ошибка при загрузке фотографии", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "OK" : "Ладушки", style: .default))
         present(alertController, animated: true)
     }
 }

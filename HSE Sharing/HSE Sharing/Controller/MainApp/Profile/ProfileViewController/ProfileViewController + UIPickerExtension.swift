@@ -66,13 +66,13 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
         case 1:
-            return !ProfileViewController.isEnglish ?  DataInRussian.eduPrograms.count : DataInEnglish.eduPrograms.count
+            return !EnterViewController.isEnglish ?  DataInRussian.eduPrograms.count : DataInEnglish.eduPrograms.count
         case 2:
-            return !ProfileViewController.isEnglish ?  DataInRussian.dormitories.count : DataInEnglish.dormitories.count
+            return !EnterViewController.isEnglish ?  DataInRussian.dormitories.count : DataInEnglish.dormitories.count
         case 3:
-            return !ProfileViewController.isEnglish ?  DataInRussian.stagesOfEdu.count : DataInEnglish.stagesOfEdu.count
+            return !EnterViewController.isEnglish ?  DataInRussian.stagesOfEdu.count : DataInEnglish.stagesOfEdu.count
         case 4:
-            return !ProfileViewController.isEnglish ?  DataInRussian.universityCampuses.count : DataInEnglish.universityCampuses.count
+            return !EnterViewController.isEnglish ?  DataInRussian.universityCampuses.count : DataInEnglish.universityCampuses.count
         default:
             return 0
         }
@@ -81,13 +81,13 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView.tag {
         case 1:
-            return !ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+            return !EnterViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
         case 2:
-            return !ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
+            return !EnterViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
         case 3:
-            return !ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
+            return !EnterViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
         case 4:
-            return !ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
+            return !EnterViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
         default:
             return ""
         }
@@ -96,16 +96,16 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
         case 1:
-            eduProgramTextField.text = !ProfileViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+            eduProgramTextField.text = !EnterViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
             eduProgramTextField.resignFirstResponder()
         case 2:
-            dormTextField.text = !ProfileViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
+            dormTextField.text = !EnterViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
             dormTextField.resignFirstResponder()
         case 3:
-            stageOfEduTextField.text = !ProfileViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
+            stageOfEduTextField.text = !EnterViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
             stageOfEduTextField.resignFirstResponder()
         case 4:
-            campusLocationTextField.text = !ProfileViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
+            campusLocationTextField.text = !EnterViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
             campusLocationTextField.resignFirstResponder()
         default:
             return

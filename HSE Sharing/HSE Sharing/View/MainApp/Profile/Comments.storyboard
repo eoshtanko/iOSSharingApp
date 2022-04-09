@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Comments View Controller-->
+        <scene sceneID="gXD-8E-x8m">
+            <objects>
+                <viewController storyboardIdentifier="Comments" id="1YC-QX-jEi" customClass="CommentsViewController" customModule="HSE_Sharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yfw-UY-CEx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crowCosmonautLeft" translatesAutoresizingMaskIntoConstraints="NO" id="C05-mp-iI3">
+                                <rect key="frame" x="90" y="331" width="234" height="234"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="C05-mp-iI3" secondAttribute="height" multiplier="1:1" id="hvj-DF-rjp"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ONZ-yy-yaS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="B3m-Ke-d8Q"/>
+                        <color key="backgroundColor" name="BlueLightColor"/>
+                        <color key="tintColor" name="BlueLightColor"/>
+                        <constraints>
+                            <constraint firstItem="B3m-Ke-d8Q" firstAttribute="bottom" secondItem="ONZ-yy-yaS" secondAttribute="bottom" id="7Pg-VH-NnU"/>
+                            <constraint firstItem="ONZ-yy-yaS" firstAttribute="top" secondItem="B3m-Ke-d8Q" secondAttribute="top" id="FhP-mr-ibY"/>
+                            <constraint firstItem="ONZ-yy-yaS" firstAttribute="leading" secondItem="B3m-Ke-d8Q" secondAttribute="leading" id="UjN-2B-jfO"/>
+                            <constraint firstItem="C05-mp-iI3" firstAttribute="leading" secondItem="B3m-Ke-d8Q" secondAttribute="leading" constant="90" id="hyg-Wr-rjE"/>
+                            <constraint firstItem="C05-mp-iI3" firstAttribute="centerY" secondItem="yfw-UY-CEx" secondAttribute="centerY" id="lEl-YI-RaN"/>
+                            <constraint firstItem="C05-mp-iI3" firstAttribute="centerX" secondItem="yfw-UY-CEx" secondAttribute="centerX" id="meo-lv-y4m"/>
+                            <constraint firstItem="B3m-Ke-d8Q" firstAttribute="trailing" secondItem="ONZ-yy-yaS" secondAttribute="trailing" id="qj7-wM-14H"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ONZ-yy-yaS" id="ugJ-Ru-TtU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fPs-Dt-Nhf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="590" y="81"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crowCosmonautLeft" width="600" height="600"/>
+        <namedColor name="BlueLightColor">
+            <color red="0.75999999046325684" green="0.86500000953674316" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

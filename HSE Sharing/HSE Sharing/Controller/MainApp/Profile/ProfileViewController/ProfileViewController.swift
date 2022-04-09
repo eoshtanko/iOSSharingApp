@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    static var isEnglish = false
     var isProfileInfoEditing = false
     var nameIsValid: Bool = true
     var surnameIsValid: Bool = true
@@ -61,7 +60,6 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var topBottomButtonConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBottomButtonConstraint: NSLayoutConstraint!
-    
 
     @IBAction func unwindToProfileViewController(segue:UIStoryboardSegue) { }
     
@@ -69,11 +67,17 @@ class ProfileViewController: UIViewController {
         pickImage()
     }
     
+    @IBAction func commentsButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Comments", bundle: nil)
+        let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "Comments") as! CommentsViewController
+        navigationController?.pushViewController(personalSkillListViewController, animated: true)
+    }
+    
     @IBAction func editProfileInfoButtonPressed(_ sender: Any) {
         isProfileInfoEditing = true
         changePasswordButton.isHidden = false
         editProfileButton.layer.isHidden = true
-        bottomButtom.setTitle(ProfileViewController.isEnglish ? "Save" : "Сохранить", for: .normal)
+        bottomButtom.setTitle(EnterViewController.isEnglish ? "Save" : "Сохранить", for: .normal)
         topBottomButtonConstraint.constant = 80
         bottomBottomButtonConstraint.constant = 40
         activateEditing()
@@ -108,7 +112,7 @@ class ProfileViewController: UIViewController {
             changePasswordButton.isHidden = true
             isProfileInfoEditing = false
             editProfileButton.layer.isHidden = false
-            bottomButtom.setTitle(ProfileViewController.isEnglish ? "Log out" : "Выйти из аккаунта", for: .normal)
+            bottomButtom.setTitle(EnterViewController.isEnglish ? "Log out" : "Выйти из аккаунта", for: .normal)
             topBottomButtonConstraint.constant = 40
             bottomBottomButtonConstraint.constant = 40
             deactivateEditing()
@@ -119,14 +123,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = ""
         configurePickerView()
         configureDatePicker()
         deactivateEditing()
-        self.navigationItem.title = ""
         configureNavigationButton()
         configureTapGestureRecognizer()
-        aboutMeTextView.text = Const.textViewPlaceholderText
-        aboutMeTextView.textColor = .lightGray
+        configureTextViewHintText()
     }
     
     override func viewDidLayoutSubviews() {
@@ -136,9 +139,14 @@ class ProfileViewController: UIViewController {
     
     // MARK: Funcs
     
+    private func configureTextViewHintText() {
+        aboutMeTextView.text = "Расскажите о себе :)"
+        aboutMeTextView.textColor = .lightGray
+    }
+    
     func configureNavigationButton() {
         let settingsButton = UIButton()
-        if ProfileViewController.isEnglish {
+        if EnterViewController.isEnglish {
             settingsButton.setTitle("🇷🇺", for: .normal)
         } else {
             settingsButton.setTitle("🇬🇧", for: .normal)
@@ -152,7 +160,7 @@ class ProfileViewController: UIViewController {
         configureProfileImageView()
         configureTextFields()
         configureButtons()
-        ProfileViewController.isEnglish ? translateToEnglish() : translateToRussia()
+        EnterViewController.isEnglish ? translateToEnglish() : translateToRussia()
     }
     
     private func configureProfileImageView() {
@@ -231,8 +239,7 @@ class ProfileViewController: UIViewController {
     private func goToPersonalSkillList() {
         let storyboard = UIStoryboard(name: "PersonalSkillList", bundle: nil)
         let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "PersonalSkillList") as! PersonalSkillListViewController
-        let navController = UINavigationController(rootViewController: personalSkillListViewController)
-        self.present(navController, animated:true, completion: nil)
+        navigationController?.pushViewController(personalSkillListViewController, animated: true)
     }
     
     private func configureTapGestureRecognizer() {
@@ -248,7 +255,6 @@ class ProfileViewController: UIViewController {
     enum Const {
         static let buttonBorderRadius: CGFloat = 14
         static let maxNumOfCharsInName = 16
-        static let textViewPlaceholderText = "Расскажите о себе :)"
     }
 }
 
@@ -260,7 +266,8 @@ extension ProfileViewController {
         ExchangesViewController.tableView.reloadData()
         SearchViewController.tableView.reloadData()
         ConversationsListViewController.tableView.reloadData()
-        if (ProfileViewController.isEnglish) {
+        EnterViewController.isEnglish = !EnterViewController.isEnglish
+        if (EnterViewController.isEnglish) {
             translateToRussia()
         } else {
             translateToEnglish()
@@ -268,13 +275,11 @@ extension ProfileViewController {
     }
     
     private func translateToRussia() {
-        ProfileViewController.isEnglish = false
         configureNavigationButton()
         translateProfileView(isEnglish: false)
     }
 
     private func translateToEnglish() {
-        ProfileViewController.isEnglish = true
         configureNavigationButton()
         translateProfileView(isEnglish: true)
     }
