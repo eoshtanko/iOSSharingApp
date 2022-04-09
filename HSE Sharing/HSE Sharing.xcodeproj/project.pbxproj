@@ -15,6 +15,12 @@
 		342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342B65C927DE300600A78536 /* PersonalSkillList.storyboard */; };
 		342B65CC27DE322500A78536 /* PersonalSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65CB27DE322500A78536 /* PersonalSkillCell.swift */; };
 		342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342B65CD27DE503700A78536 /* PersonalSkillCell.xib */; };
+		34449AD927FE3124002763CD /* SkillEditScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34449AD827FE3124002763CD /* SkillEditScreen.storyboard */; };
+		34449ADD27FE316C002763CD /* SkillEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34449ADC27FE316C002763CD /* SkillEditViewController.swift */; };
+		34449ADF27FE3E48002763CD /* EnterScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34449ADE27FE3E48002763CD /* EnterScreen.storyboard */; };
+		345C17EA2801668200ED5526 /* Button + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C17E92801668200ED5526 /* Button + Extension.swift */; };
+		345C17EC280169D600ED5526 /* TextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C17EB280169D600ED5526 /* TextField + Extension.swift */; };
+		345C180E2801750B00ED5526 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C180D2801750B00ED5526 /* SceneDelegate.swift */; };
 		347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375BB27C62DF50029A419 /* AppDelegate.swift */; };
 		347375C527C62DF70029A419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 347375C427C62DF70029A419 /* Assets.xcassets */; };
 		347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347375C627C62DF70029A419 /* LaunchScreen.storyboard */; };
@@ -45,6 +51,11 @@
 		34CBC5AC27DBA6270082FAF0 /* EntryMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34CBC5AB27DBA6270082FAF0 /* EntryMessageView.xib */; };
 		34CBC5AE27DBA6980082FAF0 /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34CBC5AD27DBA6980082FAF0 /* ConversationTableViewCell.xib */; };
 		34CBC5B327DBA9BE0082FAF0 /* RootTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */; };
+		34EB7A8C28015EDB0008B4CD /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EB7A8B28015EDB0008B4CD /* EnterViewController.swift */; };
+		34EB7A8E28015EF60008B4CD /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EB7A8D28015EF60008B4CD /* EmailViewController.swift */; };
+		34EB7A9028015F000008B4CD /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EB7A8F28015F000008B4CD /* CodeViewController.swift */; };
+		34EB7A9228015F0C0008B4CD /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EB7A9128015F0C0008B4CD /* RegistrationViewController.swift */; };
+		34EB7A942801600B0008B4CD /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EB7A932801600B0008B4CD /* PasswordRecoveryViewController.swift */; };
 		34F4A88727DE866200C51CE2 /* SearchSkillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */; };
 		34F4A88927DE8E5E00C51CE2 /* SearchSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +69,12 @@
 		342B65C927DE300600A78536 /* PersonalSkillList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalSkillList.storyboard; sourceTree = "<group>"; };
 		342B65CB27DE322500A78536 /* PersonalSkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSkillCell.swift; sourceTree = "<group>"; };
 		342B65CD27DE503700A78536 /* PersonalSkillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalSkillCell.xib; sourceTree = "<group>"; };
+		34449AD827FE3124002763CD /* SkillEditScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SkillEditScreen.storyboard; sourceTree = "<group>"; };
+		34449ADC27FE316C002763CD /* SkillEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillEditViewController.swift; sourceTree = "<group>"; };
+		34449ADE27FE3E48002763CD /* EnterScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EnterScreen.storyboard; sourceTree = "<group>"; };
+		345C17E92801668200ED5526 /* Button + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button + Extension.swift"; sourceTree = "<group>"; };
+		345C17EB280169D600ED5526 /* TextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField + Extension.swift"; sourceTree = "<group>"; };
+		345C180D2801750B00ED5526 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		347375B827C62DF50029A419 /* HSE Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HSE Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		347375BB27C62DF50029A419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		347375C427C62DF70029A419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +107,11 @@
 		34CBC5AB27DBA6270082FAF0 /* EntryMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryMessageView.xib; sourceTree = "<group>"; };
 		34CBC5AD27DBA6980082FAF0 /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationTableViewCell.xib; sourceTree = "<group>"; };
 		34CBC5B227DBA9BE0082FAF0 /* RootTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewController.swift; sourceTree = "<group>"; };
+		34EB7A8B28015EDB0008B4CD /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		34EB7A8D28015EF60008B4CD /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		34EB7A8F28015F000008B4CD /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
+		34EB7A9128015F0C0008B4CD /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		34EB7A932801600B0008B4CD /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
 		34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSkillCell.xib; sourceTree = "<group>"; };
 		34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSkillCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +132,7 @@
 			children = (
 				34AB122A27FDDD9D0027AC20 /* ProfileViewController */,
 				342B65C527DE285800A78536 /* PersonalSkillListViewController.swift */,
+				34449ADC27FE316C002763CD /* SkillEditViewController.swift */,
 				347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */,
 			);
 			path = Profile;
@@ -129,6 +152,14 @@
 				342B65BF27DBDDA200A78536 /* SearchViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		34449AE027FE42E3002763CD /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				34449ADE27FE3E48002763CD /* EnterScreen.storyboard */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		347375AF27C62DF50029A419 = {
@@ -168,6 +199,8 @@
 				347375E227C653D50029A419 /* PhotoManager.swift */,
 				347375E427C653E90029A419 /* MemoryManager.swift */,
 				34AB122627FDDD530027AC20 /* String + Extension.swift */,
+				345C17EB280169D600ED5526 /* TextField + Extension.swift */,
+				345C17E92801668200ED5526 /* Button + Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -175,6 +208,7 @@
 		347375D027C645EF0029A419 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				34449AE027FE42E3002763CD /* Authorization */,
 				34CBC5AF27DBA84B0082FAF0 /* Profile */,
 				34CBC5A427DBA5B90082FAF0 /* Chat */,
 				34CBC5B027DBA8590082FAF0 /* Exchanges */,
@@ -187,6 +221,7 @@
 		347375D127C645FF0029A419 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				34EB7A8A28015EA90008B4CD /* Authorization */,
 				342B65B827DBC6D100A78536 /* Profile */,
 				34CBC5A127DB64FA0082FAF0 /* Chat */,
 				342B65BD27DBDD8900A78536 /* Exchanges */,
@@ -213,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				347375BB27C62DF50029A419 /* AppDelegate.swift */,
+				345C180D2801750B00ED5526 /* SceneDelegate.swift */,
 				347375C927C62DF70029A419 /* Info.plist */,
 			);
 			path = "Supporting files";
@@ -272,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				342B65BB27DBCC7500A78536 /* Profile.storyboard */,
+				34449AD827FE3124002763CD /* SkillEditScreen.storyboard */,
 				342B65C927DE300600A78536 /* PersonalSkillList.storyboard */,
 				342B65CB27DE322500A78536 /* PersonalSkillCell.swift */,
 				342B65CD27DE503700A78536 /* PersonalSkillCell.xib */,
@@ -295,6 +332,18 @@
 				34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		34EB7A8A28015EA90008B4CD /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				34EB7A8B28015EDB0008B4CD /* EnterViewController.swift */,
+				34EB7A8D28015EF60008B4CD /* EmailViewController.swift */,
+				34EB7A8F28015F000008B4CD /* CodeViewController.swift */,
+				34EB7A9128015F0C0008B4CD /* RegistrationViewController.swift */,
+				34EB7A932801600B0008B4CD /* PasswordRecoveryViewController.swift */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,7 +407,9 @@
 				342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */,
 				34F4A88727DE866200C51CE2 /* SearchSkillCell.xib in Resources */,
 				342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */,
+				34449ADF27FE3E48002763CD /* EnterScreen.storyboard in Resources */,
 				34CBC5AE27DBA6980082FAF0 /* ConversationTableViewCell.xib in Resources */,
+				34449AD927FE3124002763CD /* SkillEditScreen.storyboard in Resources */,
 				342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */,
 				347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */,
 				347375C527C62DF70029A419 /* Assets.xcassets in Resources */,
@@ -379,21 +430,28 @@
 				34AB122727FDDD530027AC20 /* String + Extension.swift in Sources */,
 				34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */,
 				34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */,
+				345C17EA2801668200ED5526 /* Button + Extension.swift in Sources */,
 				34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */,
 				34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */,
 				342B65C627DE285800A78536 /* PersonalSkillListViewController.swift in Sources */,
+				34EB7A9028015F000008B4CD /* CodeViewController.swift in Sources */,
 				347375D427C646510029A419 /* Transaction.swift in Sources */,
 				347375DC27C64C410029A419 /* DataInEnglish.swift in Sources */,
 				347375D827C647520029A419 /* User.swift in Sources */,
+				34EB7A942801600B0008B4CD /* PasswordRecoveryViewController.swift in Sources */,
 				347375DF27C64C640029A419 /* DataInRussian.swift in Sources */,
+				345C180E2801750B00ED5526 /* SceneDelegate.swift in Sources */,
 				347EB55B27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift in Sources */,
 				347375D627C647470029A419 /* Skill.swift in Sources */,
+				345C17EC280169D600ED5526 /* TextField + Extension.swift in Sources */,
 				342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */,
 				347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */,
 				347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */,
 				342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */,
 				34F4A88927DE8E5E00C51CE2 /* SearchSkillCell.swift in Sources */,
 				34CBC5A327DB6C9A0082FAF0 /* ConversationViewController.swift in Sources */,
+				34EB7A8C28015EDB0008B4CD /* EnterViewController.swift in Sources */,
+				34EB7A8E28015EF60008B4CD /* EmailViewController.swift in Sources */,
 				347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */,
 				347375E527C653E90029A419 /* MemoryManager.swift in Sources */,
 				34CBC5B327DBA9BE0082FAF0 /* RootTabBarViewController.swift in Sources */,
@@ -401,7 +459,9 @@
 				34CBC5AA27DBA6000082FAF0 /* ConversationTableViewCell.swift in Sources */,
 				347375E327C653D50029A419 /* PhotoManager.swift in Sources */,
 				34CBC5A827DBA5DE0082FAF0 /* ChatMessageCell.swift in Sources */,
+				34EB7A9228015F0C0008B4CD /* RegistrationViewController.swift in Sources */,
 				34CBC59E27DB64840082FAF0 /* Api.swift in Sources */,
+				34449ADD27FE316C002763CD /* SkillEditViewController.swift in Sources */,
 				342B65C227DBDDB400A78536 /* ExchangesViewController.swift in Sources */,
 				34B13E8927FA33740055E6ED /* Feedback.swift in Sources */,
 				342B65CC27DE322500A78536 /* PersonalSkillCell.swift in Sources */,
@@ -548,10 +608,14 @@
 				DEVELOPMENT_TEAM = LNN66QAR2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HSE Sharing/Supporting files/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera so that you can take a picture as your profile picture.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library so that you can select your profile picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = EnterScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -577,10 +641,14 @@
 				DEVELOPMENT_TEAM = LNN66QAR2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HSE Sharing/Supporting files/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera so that you can take a picture as your profile picture.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to your photo library so that you can select your profile picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = EnterScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

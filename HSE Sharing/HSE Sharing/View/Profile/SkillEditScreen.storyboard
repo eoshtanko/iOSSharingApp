@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Skill Edit View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="SkillEditViewController" customModule="HSE_Sharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название навыка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yls-ar-WFu">
+                                <rect key="frame" x="20" y="289" width="139" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите название навыка" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="BDk-lM-csc">
+                                <rect key="frame" x="20" y="319" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartQuotesType="no" textContentType="name"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minLength">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание навыка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-vH-MlC">
+                                <rect key="frame" x="20" y="373" width="141" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="eL9-9C-wFs">
+                                <rect key="frame" x="20" y="403" width="374" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="gDK-l8-83K"/>
+                                </constraints>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4N-Lk-Dmb">
+                                <rect key="frame" x="20" y="523" width="82" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите категорию" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d0m-f8-2z1">
+                                <rect key="frame" x="20" y="553" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartQuotesType="no" textContentType="name"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minLength">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подкатегория" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlQ-ai-iuU">
+                                <rect key="frame" x="20" y="607" width="112" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите подкатегорию" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JPl-Tg-Uhn">
+                                <rect key="frame" x="20" y="637" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartQuotesType="no" textContentType="email"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minLength">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="mustContain" value="@edu.hse.ru"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="mustEndWith" value="@edu.hse.ru"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Я могу" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATy-8M-pSP">
+                                <rect key="frame" x="20" y="220.5" width="89.5" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crowWithCupLeft" translatesAutoresizingMaskIntoConstraints="NO" id="5Uo-Xz-RAX">
+                                <rect key="frame" x="238.5" y="200" width="175.5" height="125"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWj-pd-jnZ">
+                                <rect key="frame" x="100" y="701" width="214" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Сохранить"/>
+                                <connections>
+                                    <action selector="saveButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Qaw-aj-6oB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="BlueLightColor"/>
+                        <constraints>
+                            <constraint firstItem="gFZ-vH-MlC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="ASC-Ad-HPe"/>
+                            <constraint firstItem="5Uo-Xz-RAX" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.424" id="BSU-k3-3Fz"/>
+                            <constraint firstItem="eL9-9C-wFs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Bwe-be-0iz"/>
+                            <constraint firstItem="Yls-ar-WFu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="CbR-KO-6qp"/>
+                            <constraint firstItem="d0m-f8-2z1" firstAttribute="top" secondItem="J4N-Lk-Dmb" secondAttribute="bottom" constant="10" id="E6Q-f0-pfD"/>
+                            <constraint firstItem="gFZ-vH-MlC" firstAttribute="top" secondItem="BDk-lM-csc" secondAttribute="bottom" constant="20" id="EfG-IE-iMc"/>
+                            <constraint firstItem="eL9-9C-wFs" firstAttribute="top" secondItem="gFZ-vH-MlC" secondAttribute="bottom" constant="10" id="FEl-xk-EMH"/>
+                            <constraint firstItem="5Uo-Xz-RAX" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.13943" id="FIO-fG-A3r"/>
+                            <constraint firstItem="BDk-lM-csc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="H5k-QI-e71"/>
+                            <constraint firstItem="5Uo-Xz-RAX" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="J52-zZ-tQT"/>
+                            <constraint firstItem="wlQ-ai-iuU" firstAttribute="top" secondItem="d0m-f8-2z1" secondAttribute="bottom" constant="20" id="M1w-sN-tGO"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JPl-Tg-Uhn" secondAttribute="trailing" constant="20" id="QMS-UF-bMA"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BDk-lM-csc" secondAttribute="trailing" constant="20" id="V5Q-FR-OKc"/>
+                            <constraint firstItem="JPl-Tg-Uhn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="bFD-1p-7NR"/>
+                            <constraint firstItem="wlQ-ai-iuU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="cMx-yn-Ba1"/>
+                            <constraint firstItem="BDk-lM-csc" firstAttribute="top" secondItem="5Uo-Xz-RAX" secondAttribute="bottom" constant="-6" id="fr3-HV-MdP"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d0m-f8-2z1" secondAttribute="trailing" constant="20" id="i77-m8-mC3"/>
+                            <constraint firstItem="Yls-ar-WFu" firstAttribute="top" secondItem="ATy-8M-pSP" secondAttribute="bottom" constant="35" id="muK-sT-zDU"/>
+                            <constraint firstItem="EWj-pd-jnZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="100" id="rBy-kM-kHU"/>
+                            <constraint firstItem="EWj-pd-jnZ" firstAttribute="top" secondItem="JPl-Tg-Uhn" secondAttribute="bottom" constant="30" id="rQ0-sa-9Mg"/>
+                            <constraint firstItem="J4N-Lk-Dmb" firstAttribute="top" secondItem="eL9-9C-wFs" secondAttribute="bottom" constant="20" id="rbG-yR-llh"/>
+                            <constraint firstItem="eL9-9C-wFs" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="txT-j5-yWB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eL9-9C-wFs" secondAttribute="trailing" constant="20" id="u4D-qC-dpL"/>
+                            <constraint firstItem="J4N-Lk-Dmb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="umD-iE-meN"/>
+                            <constraint firstItem="JPl-Tg-Uhn" firstAttribute="top" secondItem="wlQ-ai-iuU" secondAttribute="bottom" constant="10" id="wG9-Lj-mqB"/>
+                            <constraint firstItem="BDk-lM-csc" firstAttribute="top" secondItem="Yls-ar-WFu" secondAttribute="bottom" constant="10" id="yJJ-uW-Fmc"/>
+                            <constraint firstItem="EWj-pd-jnZ" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="yR3-TH-FrD"/>
+                            <constraint firstItem="d0m-f8-2z1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="yoX-3s-bNi"/>
+                            <constraint firstItem="ATy-8M-pSP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="zUy-Im-AQT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="categoryLabel" destination="J4N-Lk-Dmb" id="9XK-eJ-hGC"/>
+                        <outlet property="categoryTextField" destination="d0m-f8-2z1" id="Dji-6e-eW8"/>
+                        <outlet property="descriptionLabel" destination="gFZ-vH-MlC" id="7SZ-t4-GYV"/>
+                        <outlet property="descriptionTextView" destination="eL9-9C-wFs" id="oOf-bN-NH8"/>
+                        <outlet property="nameOfSkillLabel" destination="Yls-ar-WFu" id="vO0-eQ-2km"/>
+                        <outlet property="nameOfSkillTextField" destination="BDk-lM-csc" id="SQa-Rq-VyW"/>
+                        <outlet property="saveButton" destination="EWj-pd-jnZ" id="k5b-GM-ZE6"/>
+                        <outlet property="subcategoryLabel" destination="wlQ-ai-iuU" id="Qqv-Sw-j9M"/>
+                        <outlet property="subcategoryTextField" destination="JPl-Tg-Uhn" id="xgC-xd-C1P"/>
+                        <outlet property="titleLabel" destination="ATy-8M-pSP" id="MkK-lM-jcX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5.7971014492753632" y="72.991071428571431"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crowWithCupLeft" width="512" height="512"/>
+        <namedColor name="BlueLightColor">
+            <color red="0.75999999046325684" green="0.86500000953674316" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

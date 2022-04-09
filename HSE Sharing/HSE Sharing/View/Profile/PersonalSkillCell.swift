@@ -10,6 +10,8 @@ import UIKit
 class PersonalSkillCell: UITableViewCell {
     
     static let identifier = String(describing: PersonalSkillCell.self)
+    var deleteSkill: (() -> Void)?
+    var editSkill: (() -> Void)?
     
     @IBOutlet weak var coloredView: UIView!
     @IBOutlet weak var innerView: UIView!
@@ -29,9 +31,6 @@ class PersonalSkillCell: UITableViewCell {
     @IBAction func deleteButtonPressed(_ sender: Any) {
         deleteSkill?()
     }
-    
-    var deleteSkill: (() -> Void)?
-    var editSkill: (() -> Void)?
     
     func setDeleteSkillAction(_ deleteSkill: (() -> Void)?) {
         self.deleteSkill = deleteSkill

@@ -177,9 +177,9 @@ class ProfileViewController: UIViewController {
     private func configureButtons() {
         makeButtonCircle(button: editPhotoButton)
         makeButtonCircle(button: editProfileButton)
-        makeButtonOval(button: canButton)
-        makeButtonOval(button: wantButton)
-        makeButtonOval(button: bottomButtom)
+        canButton.makeButtonOval()
+        wantButton.makeButtonOval()
+        bottomButtom.makeButtonOval()
     }
     
     private func configureTextView() {
@@ -195,11 +195,6 @@ class ProfileViewController: UIViewController {
     
     private func makeButtonCircle(button: UIButton) {
         button.layer.cornerRadius = button.frame.size.width / 2
-        button.clipsToBounds = true
-    }
-    
-    private func makeButtonOval(button: UIButton) {
-        button.layer.cornerRadius = 10
         button.clipsToBounds = true
     }
     

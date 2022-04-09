@@ -59,7 +59,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case 1:
-            newPasswordValid = isNewPasswordValid(textField.text ?? "")
+            newPasswordValid = textField.text?.isPasswordValid() ?? false
             repeatNewPasswordIsValid = isRepeatNewPasswordIsValid(textField.text ?? "")
         case 2:
             repeatNewPasswordIsValid = isRepeatNewPasswordIsValid(textField.text ?? "")
@@ -67,10 +67,6 @@ extension ChangePasswordViewController: UITextFieldDelegate {
             return
         }
         changeValidEditingStatus()
-    }
-    
-    func isNewPasswordValid(_ newPassword: String) -> Bool {
-        return newPassword.сontainsCharactersInTheRange(min: 6, max: 40)
     }
     
     func isRepeatNewPasswordIsValid(_ repeatNewPassword: String) -> Bool {

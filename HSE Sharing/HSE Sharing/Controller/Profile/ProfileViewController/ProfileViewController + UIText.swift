@@ -18,51 +18,29 @@ extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case 1:
-            nameIsValid = isNameOrSurnameValid(textField.text ?? "")
+            nameIsValid = textField.text?.isNameOrSurnameValid() ?? false
         case 2:
-            surnameIsValid = isNameOrSurnameValid(textField.text ?? "")
+            surnameIsValid = textField.text?.isNameOrSurnameValid() ?? false
         case 3:
-            emailIsValid = isEmailValid(textField.text ?? "")
+            emailIsValid = textField.text?.isEmailValid() ?? false
         case 4:
             guard let socialNetwork = textField.text else {
                 socialNetworkIsValid = true
                 return
             }
-            socialNetworkIsValid = isSocialNetworkValid(socialNetwork) || socialNetwork.isEmpty
+            socialNetworkIsValid = socialNetwork.isSocialNetworkValid() || socialNetwork.isEmpty
         default:
             return
         }
         changeValidEditingStatus()
     }
     
-    func isSocialNetworkValid(_ network: String) -> Bool {
-        return network.starts(with: "vk.com/") || network.starts(with: "t.me/")
-    }
-    
-    func isEmailValid(_ email: String) -> Bool {
-        return email.endWith("@edu.hse.ru")
-    }
-    
-    func isNameOrSurnameValid(_ name: String) -> Bool {
-        return name.сontainsCharactersInTheRange(min: 2, max: 40) && name.containsOnlyLetters()
-    }
-    
     func changeValidEditingStatus() {
-        changeColorOfBorder(textField: nameTextFiled, isValid: nameIsValid)
-        changeColorOfBorder(textField: surnameTextField, isValid: surnameIsValid)
-        changeColorOfBorder(textField: emailTextField, isValid: emailIsValid)
-        changeColorOfBorder(textField: socialNetworkTextField, isValid: socialNetworkIsValid)
+        nameTextFiled.changeColorOfBorder(isValid: nameIsValid)
+        surnameTextField.changeColorOfBorder(isValid: surnameIsValid)
+        emailTextField.changeColorOfBorder(isValid: emailIsValid)
+        socialNetworkTextField.changeColorOfBorder(isValid: socialNetworkIsValid)
         bottomButtom.isEnabled = nameIsValid && surnameIsValid && emailIsValid && socialNetworkIsValid
-    }
-    
-    func changeColorOfBorder(textField: UITextField, isValid: Bool) {
-        if isValid {
-            textField.layer.borderWidth = 0.2
-            textField.layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
-        } else {
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = .init(red: 1, green: 0, blue: 0, alpha: 1)
-        }
     }
 }
 
