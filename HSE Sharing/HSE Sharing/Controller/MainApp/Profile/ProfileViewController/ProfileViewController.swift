@@ -7,7 +7,17 @@
 
 import UIKit
 
+// Убрать кнопки редактирования и изменения языка
+// мои данные -> Данные
+// Поменять плейсхолдеры
+// Убрать нижнюю кнопку
+// Может хочет
+// Добавить создание переписки
+
 class ProfileViewController: UIViewController {
+    
+    var isMyProfile = true
+    var user: User?
     
     var isProfileInfoEditing = false
     var nameIsValid: Bool = true
@@ -69,8 +79,11 @@ class ProfileViewController: UIViewController {
     
     @IBAction func commentsButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Comments", bundle: nil)
-        let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "Comments") as! CommentsViewController
-        navigationController?.pushViewController(personalSkillListViewController, animated: true)
+        let commentsListViewController = storyboard.instantiateViewController(withIdentifier: "Comments") as! CommentsViewController
+        if !isMyProfile && CurrentUser.user.isModer ?? false {
+            commentsListViewController.setNeedsFocusUpdate()
+        }
+        navigationController?.pushViewController(commentsListViewController, animated: true)
     }
     
     @IBAction func editProfileInfoButtonPressed(_ sender: Any) {

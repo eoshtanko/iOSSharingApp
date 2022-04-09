@@ -14,7 +14,7 @@ class Api {
     
     static func getCurrentUser() -> User {
         Api.formatter.dateFormat = "dd/MM/yyyy"
-        return User(mail: "eoshtanko@edu.hse.ru", confirmationCodeServer: "12345", confirmationCodeUser: "12345", password: "12345", name: "Екатерина", surname: "Shtanko", birthDate: formatter.date(from: "27/2/2001")!, gender: 1, studyingYearId: 3, majorId: 9, campusLocationId: 1, dormitoryId: 1, about: "Programmer", contact: "@kotkusy", photo: nil, transactions: [], skills: [])
+        return User(mail: "eoshtanko@edu.hse.ru", confirmationCodeServer: "12345", confirmationCodeUser: "12345", password: "12345", name: "Екатерина", surname: "Shtanko", birthDate: formatter.date(from: "27/2/2001")!, gender: 1, studyingYearId: 3, majorId: 9, campusLocationId: 1, dormitoryId: 1, about: "Programmer", contact: "@kotkusy", photo: nil, transactions: [], skills: [], isModer: false)
     }
     
     static func getOnlineConversations() -> [Conversation]{
@@ -83,7 +83,7 @@ class Api {
         ]
     
     static var currentTransactions = [
-        Transaction(id: 0, skill1: "Уборка", skill2: "Программа на C#", description: "Игра для курсовой", userName: "Artem Belyaev", userPhoto: UIImage(named: "man8.jpg")!, status: 0),
+        Transaction(id: 0, skill1: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", skill2: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", description: "Игра для курсовой", userName: "Artem Belyaev", userPhoto: UIImage(named: "man8.jpg")!, status: 0),
         Transaction(id: 0, skill1: "Дизайн мобильного приложения", skill2: "Тортик", description: "Шоколадный", userName: "Паша Эмильевич", userPhoto: UIImage(named: "man6.jpg")!, status: 0),
         Transaction(id: 0, skill1: "3D модель", skill2: "Фотосессия", description: "Шоколадный", userName: "Poppy Davies", userPhoto: UIImage(named: "woman6.jpg")!, status: 0),
         Transaction(id: 0, skill1: "frontend на swift", skill2: "backend на java", description: "Шоколадный", userName: "Charlie O'Kelly", userPhoto: UIImage(named: "man2.jpg")!, status: 0),
@@ -93,14 +93,14 @@ class Api {
         ]
     
     static var outcomingTransactions = [
-        Transaction(id: 0, skill1: "Портрет", skill2: "Стихи", description: "Честно сам писать буду", userName: "Nikolay Romahkov", userPhoto: UIImage(named: "man1.jpg")!, status: 0),
+        Transaction(id: 0, skill1: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", skill2: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", description: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", userName: "Nikolay Romahkov", userPhoto: UIImage(named: "man1.jpg")!, status: 0),
         Transaction(id: 0, skill1: "Презентация", skill2: "Эссе по ПАПС", description: "По материалам лекций", userName: "Poppy Davies", userPhoto: UIImage(named: "woman6.jpg")!, status: 0),
         Transaction(id: 0, skill1: "Сайт js html", skill2: "Дискретная математика", description: "10 задачек 1 курс", userName: "Artem Belyaev", userPhoto: UIImage(named: "man8.jpg")!, status: 0)
         ]
     
     static var searchSkills = [
         Skill(id: 0, status: 1, name: "Писать iOS-приложения", description: "Ну работать что-то будет", category: 0, subcategory: 2, userName: "Nikolay Romahkov", userPhoto: UIImage(named: "man1.jpg")!),
-        Skill(id: 0, status: 1, name: "Готовить гречку", description: "Ну съесть это можно будет", category: 1, subcategory: 4, userName: "Charlie O'Kelly", userPhoto: UIImage(named: "man2.jpg")!),
+        Skill(id: 0, status: 1, name: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", description: "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", category: 1, subcategory: 4, userName: "Charlie O'Kelly", userPhoto: UIImage(named: "man2.jpg")!),
         Skill(id: 0, status: 1, name: "Программы на Java", description: "Ну работать что-то будет", category: 0, subcategory: 2, userName: "Poppy Davies", userPhoto: UIImage(named: "woman6.jpg")!),
         Skill(id: 0, status: 2, name: "Решение задачек по алгебре", description: "2 курс линейная алгебра", category: 0, subcategory: 2, userName: "Паша Эмильевич", userPhoto: UIImage(named: "man6.jpg")!),
         Skill(id: 0, status: 2, name: "Торт ко дню рождения", description: "Шоколадный. Нарядный", category: 1, subcategory: 4, userName: "Artem Belyaev", userPhoto: UIImage(named: "man8.jpg")!)

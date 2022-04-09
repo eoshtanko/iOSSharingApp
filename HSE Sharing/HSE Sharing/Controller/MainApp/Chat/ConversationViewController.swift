@@ -7,6 +7,8 @@
 
 import UIKit
 
+// Сделать фото
+
 class ConversationViewController: UITableViewController {
     
     private var chatMessages: [Message] = []

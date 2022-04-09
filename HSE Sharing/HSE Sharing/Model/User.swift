@@ -27,8 +27,9 @@ class User {
     var photo: UIImage?
     var transactions: [Transaction]?
     var skills: [Skill]?
+    var isModer: Bool?
     
-    init(mail: String?, confirmationCodeServer: String?, confirmationCodeUser: String?, password: String?, name: String?, surname: String?, birthDate: Date?, gender: Int?, studyingYearId: Int?, majorId: Int?, campusLocationId: Int?, dormitoryId: Int?, about: String?, contact: String?, photo: UIImage?, transactions: [Transaction]?, skills: [Skill]?) {
+    init(mail: String?, confirmationCodeServer: String?, confirmationCodeUser: String?, password: String?, name: String?, surname: String?, birthDate: Date?, gender: Int?, studyingYearId: Int?, majorId: Int?, campusLocationId: Int?, dormitoryId: Int?, about: String?, contact: String?, photo: UIImage?, transactions: [Transaction]?, skills: [Skill]?, isModer: Bool?) {
         self.mail = mail
         self.confirmationCodeServer = confirmationCodeServer
         self.confirmationCodeUser = confirmationCodeUser
@@ -45,6 +46,7 @@ class User {
         self.photo = photo
         self.transactions = transactions
         self.skills = skills
+        self.isModer = isModer
     }
 }
 

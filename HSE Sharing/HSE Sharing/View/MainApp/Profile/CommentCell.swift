@@ -17,7 +17,8 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var gradeLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var commentText: UILabel!
+    
     @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var star1: UIImageView!
@@ -59,7 +60,7 @@ class CommentCell: UITableViewCell {
     }
     
     private func configureData(_ comment: Feedback) {
-        commentTextView.text = comment.comment
+        commentText.text = comment.comment
         if comment.gade > 0 {
             star1.tintColor = .systemYellow
         }

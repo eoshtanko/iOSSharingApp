@@ -35,6 +35,10 @@
 		347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */; };
 		347EB55B27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55A27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift */; };
 		347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */; };
+		348C2F1E280219AE00551F71 /* LeaveCommentScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 348C2F1D280219AE00551F71 /* LeaveCommentScreen.storyboard */; };
+		348C2F2028021BB400551F71 /* LeaveCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C2F1F28021BB400551F71 /* LeaveCommentViewController.swift */; };
+		348C2F222802272700551F71 /* SelectionOfParametersScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 348C2F212802272700551F71 /* SelectionOfParametersScreen.storyboard */; };
+		348C2F242802274200551F71 /* SelectionOfParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C2F232802274200551F71 /* SelectionOfParametersViewController.swift */; };
 		34AB122727FDDD530027AC20 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB122627FDDD530027AC20 /* String + Extension.swift */; };
 		34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB122827FDDD780027AC20 /* ProfileViewController + UIText.swift */; };
 		34B13E8927FA33740055E6ED /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13E8827FA33740055E6ED /* Feedback.swift */; };
@@ -96,6 +100,10 @@
 		347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIPickerExtension.swift"; sourceTree = "<group>"; };
 		347EB55A27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIImageExtension.swift"; sourceTree = "<group>"; };
 		347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		348C2F1D280219AE00551F71 /* LeaveCommentScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeaveCommentScreen.storyboard; sourceTree = "<group>"; };
+		348C2F1F28021BB400551F71 /* LeaveCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveCommentViewController.swift; sourceTree = "<group>"; };
+		348C2F212802272700551F71 /* SelectionOfParametersScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectionOfParametersScreen.storyboard; sourceTree = "<group>"; };
+		348C2F232802274200551F71 /* SelectionOfParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionOfParametersViewController.swift; sourceTree = "<group>"; };
 		34AB122627FDDD530027AC20 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		34AB122827FDDD780027AC20 /* ProfileViewController + UIText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIText.swift"; sourceTree = "<group>"; };
 		34B13E8827FA33740055E6ED /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
@@ -153,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				342B65C127DBDDB400A78536 /* ExchangesViewController.swift */,
+				348C2F1F28021BB400551F71 /* LeaveCommentViewController.swift */,
 			);
 			path = Exchanges;
 			sourceTree = "<group>";
@@ -161,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				342B65BF27DBDDA200A78536 /* SearchViewController.swift */,
+				348C2F232802274200551F71 /* SelectionOfParametersViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -338,10 +348,10 @@
 				342B65BB27DBCC7500A78536 /* Profile.storyboard */,
 				34449AD827FE3124002763CD /* SkillEditScreen.storyboard */,
 				342B65C927DE300600A78536 /* PersonalSkillList.storyboard */,
+				342B65CD27DE503700A78536 /* PersonalSkillCell.xib */,
 				342B65CB27DE322500A78536 /* PersonalSkillCell.swift */,
 				34C4C7F82801FCB100769CFC /* CommentCell.xib */,
 				34C4C7F62801FCA600769CFC /* CommentCell.swift */,
-				342B65CD27DE503700A78536 /* PersonalSkillCell.xib */,
 				34C4C7F42801DD0F00769CFC /* Comments.storyboard */,
 			);
 			path = Profile;
@@ -352,6 +362,7 @@
 			children = (
 				34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */,
 				34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */,
+				348C2F1D280219AE00551F71 /* LeaveCommentScreen.storyboard */,
 			);
 			path = Exchanges;
 			sourceTree = "<group>";
@@ -361,6 +372,7 @@
 			children = (
 				34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */,
 				34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */,
+				348C2F212802272700551F71 /* SelectionOfParametersScreen.storyboard */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -437,8 +449,10 @@
 			files = (
 				34C4C7F52801DD0F00769CFC /* Comments.storyboard in Resources */,
 				342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */,
+				348C2F222802272700551F71 /* SelectionOfParametersScreen.storyboard in Resources */,
 				34F4A88727DE866200C51CE2 /* SearchSkillCell.xib in Resources */,
 				342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */,
+				348C2F1E280219AE00551F71 /* LeaveCommentScreen.storyboard in Resources */,
 				34449ADF27FE3E48002763CD /* EnterScreen.storyboard in Resources */,
 				34CBC5AE27DBA6980082FAF0 /* ConversationTableViewCell.xib in Resources */,
 				34449AD927FE3124002763CD /* SkillEditScreen.storyboard in Resources */,
@@ -463,6 +477,7 @@
 				34C4C7F32801DCEE00769CFC /* CommentsViewController.swift in Sources */,
 				34AB122727FDDD530027AC20 /* String + Extension.swift in Sources */,
 				34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */,
+				348C2F242802274200551F71 /* SelectionOfParametersViewController.swift in Sources */,
 				34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */,
 				34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */,
 				345C17EA2801668200ED5526 /* Button + Extension.swift in Sources */,
@@ -490,6 +505,7 @@
 				347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */,
 				347375E527C653E90029A419 /* MemoryManager.swift in Sources */,
 				34C4C7F72801FCA600769CFC /* CommentCell.swift in Sources */,
+				348C2F2028021BB400551F71 /* LeaveCommentViewController.swift in Sources */,
 				34CBC5B327DBA9BE0082FAF0 /* RootTabBarViewController.swift in Sources */,
 				34CBC5A027DB64F10082FAF0 /* ConversationsListViewController.swift in Sources */,
 				34CBC5AA27DBA6000082FAF0 /* ConversationTableViewCell.swift in Sources */,

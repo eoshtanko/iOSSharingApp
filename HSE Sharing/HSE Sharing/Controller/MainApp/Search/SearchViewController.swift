@@ -20,9 +20,11 @@ class SearchViewController: UIViewController {
         skills = Api.searchSkills
         filteredSkills = skills
         configureView()
-        configureTableView()
         configureNavigationBar()
         configureSearchBar()
+        configureTableView()
+        SearchViewController.tableView.rowHeight          = UITableView.automaticDimension
+        SearchViewController.tableView.estimatedRowHeight = 400
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,9 +76,11 @@ class SearchViewController: UIViewController {
         settingsButton.contentVerticalAlignment = .fill
         settingsButton.imageView?.contentMode = .scaleAspectFill
         settingsButton.imageView?.clipsToBounds = true
-//        profileButton.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
+//        settingsButton.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
+    
+    
 }
 
 extension SearchViewController: UITableViewDelegate {
@@ -110,7 +114,7 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    
+
     private func configureSearchBar() {
         SearchViewController.tableView.tableHeaderView = searchBar
         searchBar.delegate = self

@@ -38,8 +38,8 @@ class CommentsViewController: UIViewController {
     private func configureTableView() {
         if(comments.count != 0) {
             tableView.register(
-                UINib(nibName: String(describing: PersonalSkillCell.self), bundle: nil),
-                forCellReuseIdentifier: PersonalSkillCell.identifier
+                UINib(nibName: String(describing: CommentCell.self), bundle: nil),
+                forCellReuseIdentifier: CommentCell.identifier
             )
             tableView.dataSource = self
             tableView.delegate = self
