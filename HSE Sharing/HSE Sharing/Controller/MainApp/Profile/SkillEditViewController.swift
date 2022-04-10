@@ -154,27 +154,11 @@ extension SkillEditViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         categoryPickerView.delegate = self
         categoryPickerView.dataSource = self
         categoryTextField.inputView = categoryPickerView
-        categoryTextField.inputAccessoryView = createToolbar()
         
         subcategoryPickerView.tag = 2
         subcategoryPickerView.delegate = self
         subcategoryPickerView.dataSource = self
         subcategoryTextField.inputView = subcategoryPickerView
-        subcategoryTextField.inputAccessoryView = createToolbar()
-    }
-    
-    private func createToolbar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneButtonPressed))
-        toolbar.setItems([doneButton], animated: true)
-        
-        return toolbar
-    }
-    
-    @objc private func doneButtonPressed() {
-        self.view.endEditing(true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
