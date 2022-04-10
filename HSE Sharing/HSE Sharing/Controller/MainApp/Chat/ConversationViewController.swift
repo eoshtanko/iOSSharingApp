@@ -55,7 +55,7 @@ class ConversationViewController: UITableViewController {
     }
     
     private func configureSnapshotListener() {
-        chatMessages = Api.getMessages()
+      //  chatMessages = Api.getMessages()
     }
     
     private func showFailToLoadMessagesAlert() {

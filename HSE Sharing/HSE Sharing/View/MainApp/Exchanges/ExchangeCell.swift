@@ -25,7 +25,7 @@ class ExchangeCell: UITableViewCell {
         withWhomLabel.text = EnterViewController.isEnglish ? "With whom:" : "С кем:"
         whatReceive.text = EnterViewController.isEnglish ? "What receive:" : "Что получаю:"
         whatGive.text = EnterViewController.isEnglish ? "What give:" : "Что даю:"
-        profileImage.image = transaction.userPhoto
+      //  profileImage.image = transaction.userPhoto
         nameLabel.text = transaction.userName
         receiveLabel.text = transaction.skill1
         giveLabel.text = transaction.skill2

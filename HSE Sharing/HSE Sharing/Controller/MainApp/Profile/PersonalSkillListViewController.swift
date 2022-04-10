@@ -29,7 +29,7 @@ class PersonalSkillListViewController: UIViewController {
     
     private func configureSkills() {
         if (PersonalSkillListViewController.isContainedCanSkills) {
-            skills = Api.canSkills
+           // skills = Api.canSkills
         }
     }
     

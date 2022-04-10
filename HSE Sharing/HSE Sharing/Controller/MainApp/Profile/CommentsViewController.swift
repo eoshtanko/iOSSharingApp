@@ -32,7 +32,7 @@ class CommentsViewController: UIViewController {
     }
     
     private func configureComments() {
-            comments = Api.comments
+       //     comments = Api.comments
     }
     
     private func configureTableView() {

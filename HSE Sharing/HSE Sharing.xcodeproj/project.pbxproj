@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F47A3218D9B330A4438479D /* Pods_HSE_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438E725E6EA3AA2F2DF2F9AC /* Pods_HSE_Sharing.framework */; };
 		342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65B927DBC6E800A78536 /* ProfileViewController.swift */; };
 		342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342B65BB27DBCC7500A78536 /* Profile.storyboard */; };
 		342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65BF27DBDDA200A78536 /* SearchViewController.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09230A4C2BBF04A6FFBDE315 /* Pods-HSE Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HSE Sharing.release.xcconfig"; path = "Target Support Files/Pods-HSE Sharing/Pods-HSE Sharing.release.xcconfig"; sourceTree = "<group>"; };
 		342B65B927DBC6E800A78536 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		342B65BB27DBCC7500A78536 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		342B65BF27DBDDA200A78536 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,8 @@
 		34EB7A932801600B0008B4CD /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
 		34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSkillCell.xib; sourceTree = "<group>"; };
 		34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSkillCell.swift; sourceTree = "<group>"; };
+		438E725E6EA3AA2F2DF2F9AC /* Pods_HSE_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HSE_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2BE6EFB49533837F1AA1733 /* Pods-HSE Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HSE Sharing.debug.xcconfig"; path = "Target Support Files/Pods-HSE Sharing/Pods-HSE Sharing.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F47A3218D9B330A4438479D /* Pods_HSE_Sharing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +193,8 @@
 			children = (
 				347375BA27C62DF50029A419 /* HSE Sharing */,
 				347375B927C62DF50029A419 /* Products */,
+				8E2AA5B0A4B4EB4914F92163 /* Pods */,
+				3820FEA6A83B5106390DA9C2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -389,6 +396,24 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
+		3820FEA6A83B5106390DA9C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				438E725E6EA3AA2F2DF2F9AC /* Pods_HSE_Sharing.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E2AA5B0A4B4EB4914F92163 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2BE6EFB49533837F1AA1733 /* Pods-HSE Sharing.debug.xcconfig */,
+				09230A4C2BBF04A6FFBDE315 /* Pods-HSE Sharing.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -396,9 +421,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 347375CC27C62DF70029A419 /* Build configuration list for PBXNativeTarget "HSE Sharing" */;
 			buildPhases = (
+				D41D18DEE2A68CAE42CFE7E1 /* [CP] Check Pods Manifest.lock */,
 				347375B427C62DF50029A419 /* Sources */,
 				347375B527C62DF50029A419 /* Frameworks */,
 				347375B627C62DF50029A419 /* Resources */,
+				64AEA83763AF3B689CA83024 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -466,6 +493,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		64AEA83763AF3B689CA83024 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HSE Sharing/Pods-HSE Sharing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HSE Sharing/Pods-HSE Sharing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HSE Sharing/Pods-HSE Sharing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D41D18DEE2A68CAE42CFE7E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HSE Sharing-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		347375B427C62DF50029A419 /* Sources */ = {
@@ -652,6 +721,7 @@
 		};
 		347375CD27C62DF70029A419 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2BE6EFB49533837F1AA1733 /* Pods-HSE Sharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -685,6 +755,7 @@
 		};
 		347375CE27C62DF70029A419 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09230A4C2BBF04A6FFBDE315 /* Pods-HSE Sharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

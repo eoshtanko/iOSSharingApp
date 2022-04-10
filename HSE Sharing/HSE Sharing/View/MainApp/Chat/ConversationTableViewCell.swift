@@ -31,7 +31,7 @@ class ConversationTableViewCell: UITableViewCell {
         configureLastMessageDate(conversation.lastActivity)
         configureLastMessageLabel(conversation.lastMessage)
        //configureUnreadMessagesIdentifier(conversation.hasUnreadMessages)
-        configureProfileImageView(conversation.image)
+       // configureProfileImageView(conversation.image)
     }
     
     func configureSubviews() {

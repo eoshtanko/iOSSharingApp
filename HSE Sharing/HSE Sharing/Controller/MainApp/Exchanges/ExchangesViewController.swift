@@ -17,7 +17,7 @@ class ExchangesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        transactions = Api.currentTransactions
+      //  transactions = Api.currentTransactions
         configureView()
         configureTableView()
         configureNavigationBar()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Message {
+class Message: Codable {
     
     let text: String
     let sendTime: Date

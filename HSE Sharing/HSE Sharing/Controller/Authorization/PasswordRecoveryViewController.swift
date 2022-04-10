@@ -19,6 +19,7 @@ class PasswordRecoveryViewController : UIViewController {
     
     @IBOutlet weak var recoveryButton: UIButton!
     @IBAction func recoveryButtonAction(_ sender: Any) {
+        Api1.shared.recoveryUsersPassword(email: emailTextField.text!, completion: goBack)
         clearTextFields()
     }
     
@@ -27,6 +28,10 @@ class PasswordRecoveryViewController : UIViewController {
         self.navigationItem.title = ""
         configureButtons()
         configureTextFields()
+    }
+    
+    private func goBack() {
+        
     }
     
     private func configureButtons() {

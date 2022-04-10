@@ -24,7 +24,19 @@ class EnterViewController : UIViewController {
     @IBOutlet weak var enterButton: UIButton!
     @IBAction func enterButtonAction(_ sender: Any) {
         clearTextFields()
-        goToMainAppRootTabBarVC()
+        Api1.shared.createUser { result in
+             switch result {
+             case let .success(returnedSources):
+                 print(returnedSources)
+                 print("Ура")
+             case .failure(_):
+                 print("о нет ")
+             }
+         }
+    }
+    
+    private func completion(_ result: Result<User, Error>) {
+        
     }
     
     @IBOutlet weak var registrationButton: UIButton!

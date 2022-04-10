@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        skills = Api.searchSkills
+       // skills = Api.searchSkills
         filteredSkills = skills
         configureView()
         configureNavigationBar()

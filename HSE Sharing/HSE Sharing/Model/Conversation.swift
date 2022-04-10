@@ -7,13 +7,13 @@
 
 import UIKit
 
-struct Conversation {
+class Conversation: Codable, NSCoding {
 
     let identifier: String
     let name: String
     let lastMessage: String?
     let lastActivity: Date?
-    let image: UIImage?
+    let image: Data?
     
     init(name: String) {
         self.name = name
@@ -23,7 +23,7 @@ struct Conversation {
         self.image = nil
     }
     
-    init(identifier: String, name: String, lastMessage: String?, lastActivity: Date?, image: UIImage) {
+    init(identifier: String, name: String, lastMessage: String?, lastActivity: Date?, image: Data) {
         self.identifier = identifier
         self.name = name
         self.lastMessage = lastMessage
@@ -31,20 +31,21 @@ struct Conversation {
         self.image = image
     }
     
-//    init?(document: QueryDocumentSnapshot) {
-//        let data = document.data()
-//
-//        guard let name = data["name"] as? String,
-//              let lastMessage = data["lastMessage"] as? String,
-//              let lastActivity = data["lastActivity"] as? Timestamp else {
-//                  return nil
-//              }
-//
-//        self.identifier = document.documentID
-//        self.name = name
-//        self.lastMessage = lastMessage
-//        self.lastActivity = lastActivity.dateValue()
-//    }
+    public required init?(coder: NSCoder) {
+        identifier = coder.decodeObject(forKey: "identifier") as! String
+        name = coder.decodeObject(forKey: "name") as! String
+        lastMessage = coder.decodeObject(forKey: "lastMessage") as? String
+        lastActivity = coder.decodeObject(forKey: "lastActivity") as? Date
+        image = coder.decodeObject(forKey: "image") as? Data
+    }
+    
+    public func encode(with coder: NSCoder) {
+        coder.encode(identifier, forKey:"identifier")
+        coder.encode(name, forKey: "name")
+        coder.encode(lastMessage, forKey:"lastMessage")
+        coder.encode(lastActivity, forKey: "lastActivity")
+        coder.encode(image, forKey:"image")
+    }
 }
 
 extension Conversation {

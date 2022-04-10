@@ -178,9 +178,9 @@ class ProfileViewController: UIViewController {
     
     private func configureProfileImageView() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        if(CurrentUser.user.photo != nil) {
-            profileImageView.image = CurrentUser.user.photo
-        }
+//        if(CurrentUser.user.photo != nil) {
+//           // profileImageView.image = CurrentUser.user.photo
+//        }
     }
     
     private func configureTextFields() {

@@ -32,7 +32,7 @@ class SearchSkillCell: UITableViewCell {
         subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
-        photoOfAuthorImageView.image = skill.userPhoto
+     //   photoOfAuthorImageView.image = skill.userPhoto
         authorNameTextLabel.text = skill.userName
         if EnterViewController.isEnglish {
             categoryTextLabel.text = DataInEnglish.categories[skill.category]
