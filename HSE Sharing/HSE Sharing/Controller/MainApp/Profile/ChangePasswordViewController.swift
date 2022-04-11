@@ -10,8 +10,11 @@ import UIKit
 
 class ChangePasswordViewController: UIViewController {
     
+    private var user: User?
+    
     private var newPasswordValid: Bool = false
     private var repeatNewPasswordIsValid: Bool = false
+    private var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var titleTextLabel: UILabel!
     @IBOutlet weak var newPasswordLabel: UILabel!
@@ -20,22 +23,60 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var repeatNewPasswordTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     @IBAction func saveButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "unwindToProfile", sender: nil)
+        activityIndicator.startAnimating()
+        makeRequest()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureActivityIndicator()
         configureLanguage()
-        makeButtonOval(button: saveButton)
+        saveButton.makeButtonOval()
         newPasswordTextField.tag = 1
         newPasswordTextField.delegate = self
         repeatNewPasswordTextField.tag = 2
         repeatNewPasswordTextField.delegate = self
     }
     
-    private func makeButtonOval(button: UIButton) {
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
+    func setUser(user: User?) {
+        self.user = user
+    }
+    
+    private func makeRequest() {
+        Api.shared.setUser(email: self.user!.mail!, user: self.user!) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.performSegue(withIdentifier: "unwindToProfile", sender: nil)
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Попробовать еще раз или отменить изменения?", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "Еще раз", style: UIAlertAction.Style.default) { _ in
+            self.makeRequest()
+        })
+        successAlert.addAction(UIAlertAction(title: "Отмена изменения", style: UIAlertAction.Style.default) { _ in
+            self.performSegue(withIdentifier: "unwindToProfile", sender: nil)
+        })
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
     }
     
     private func configureLanguage() {

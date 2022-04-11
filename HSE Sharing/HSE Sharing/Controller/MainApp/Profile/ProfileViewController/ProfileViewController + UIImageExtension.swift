@@ -13,6 +13,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImageView.image = image
+            currentUser?.photo = image.pngData()
+            makeRequest()
         } else {
             self.showAlertWith(message: "No image found.")
         }

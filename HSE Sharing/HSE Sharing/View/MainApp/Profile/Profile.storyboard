@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKP-bw-Ube">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844.00000000000011"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ct3-FI-dF6">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="1575.3333333333333"/>
@@ -250,7 +250,7 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Сменить пароль"/>
                                                 <connections>
-                                                    <segue destination="KRT-6F-dkZ" kind="show" identifier="" id="SuH-mJ-RA8"/>
+                                                    <action selector="changePasswordButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="uUo-eX-Fsy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5B-8M-NiY">
@@ -488,9 +488,12 @@
                         <outlet property="surnameTextField" destination="C0a-qJ-ox7" id="Wk1-ce-7bi"/>
                         <outlet property="topBottomButtonConstraint" destination="3CM-ko-x8e" id="HNi-kN-cme"/>
                         <outlet property="wantButton" destination="qZ1-xK-OC2" id="U5G-35-XEI"/>
+                        <segue destination="Vty-fn-4gZ" kind="unwind" identifier="toEnterFromProfile" unwindAction="unwindToEnterViewControllerWithSegue:" id="lhF-qS-Bq2"/>
+                        <segue destination="KRT-6F-dkZ" kind="show" identifier="toChangePasswordScreen" id="tnx-Zb-z6M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Vty-fn-4gZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="972.30769230769226" y="96.682464454976298"/>
         </scene>

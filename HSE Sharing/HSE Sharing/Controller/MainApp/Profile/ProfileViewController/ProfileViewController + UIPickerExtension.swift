@@ -96,16 +96,36 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
         case 1:
-            eduProgramTextField.text = !EnterViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+            if row == 0 {
+                eduProgramTextField.text = nil
+            } else {
+                eduProgramTextField.text = !EnterViewController.isEnglish ? DataInRussian.eduPrograms[row] : DataInEnglish.eduPrograms[row]
+            }
+            currentUser?.majorId = row
             eduProgramTextField.resignFirstResponder()
         case 2:
+            if row == 0 {
+                dormTextField.text = nil
+            } else {
             dormTextField.text = !EnterViewController.isEnglish ? DataInRussian.dormitories[row] : DataInEnglish.dormitories[row]
+            }
+            currentUser?.dormitoryId = row
             dormTextField.resignFirstResponder()
         case 3:
+            if row == 0 {
+                stageOfEduTextField.text = nil
+            } else {
             stageOfEduTextField.text = !EnterViewController.isEnglish ? DataInRussian.stagesOfEdu[row] : DataInEnglish.stagesOfEdu[row]
+            }
+            currentUser?.studyingYearId = row
             stageOfEduTextField.resignFirstResponder()
         case 4:
+            if row == 0 {
+                campusLocationTextField.text = nil
+            } else {
             campusLocationTextField.text = !EnterViewController.isEnglish ? DataInRussian.universityCampuses[row] : DataInEnglish.universityCampuses[row]
+            }
+            currentUser?.campusLocationId = row
             campusLocationTextField.resignFirstResponder()
         default:
             return

@@ -44,7 +44,7 @@ struct DataInEnglish {
     static let statuses = ["Can", "Want"];
     
     static let eduPrograms = [
-        "-",
+        "Not selected",
         "Urban planning",
         "Cellular and molecular biotechnology",
         "Arabic studies: language, literature, culture",
@@ -102,7 +102,7 @@ struct DataInEnglish {
     ];
     
     static let dormitories = [
-        "-",
+        "Not selected",
         "Dorm 1",
         "Dorm 2",
         "Dorm 3",
@@ -118,7 +118,7 @@ struct DataInEnglish {
     ];
     
     static let universityCampuses = [
-        "-",
+        "Not selected",
         "Myasnitskaya",
         "Pokrovka",
         "Shabolovka",
@@ -127,7 +127,7 @@ struct DataInEnglish {
     ];
     
     static let stagesOfEdu = [
-        "-",
+        "Not selected",
         "Bachelor 1st year",
         "Bachelor 2st year",
         "Bachelor 3st year",

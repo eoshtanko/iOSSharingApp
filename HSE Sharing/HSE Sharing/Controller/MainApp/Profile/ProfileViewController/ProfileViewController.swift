@@ -32,6 +32,8 @@ class ProfileViewController: UIViewController {
     let campusLocationPickerView = UIPickerView()
     let datePicker = UIDatePicker()
     
+    var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var editPhotoButton: UIButton!
@@ -124,13 +126,19 @@ class ProfileViewController: UIViewController {
     
     @IBAction func bottomButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
-            changePasswordButton.isHidden = true
-            isProfileInfoEditing = false
-            editProfileButton.layer.isHidden = false
-            bottomButtom.setTitle(EnterViewController.isEnglish ? "Log out" : "Выйти из аккаунта", for: .normal)
-            topBottomButtonConstraint.constant = 40
-            bottomBottomButtonConstraint.constant = 40
-            deactivateEditing()
+            makeRequest() 
+        } else {
+            logOut()
+        }
+    }
+
+    @IBAction func changePasswordButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toChangePasswordScreen", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ChangePasswordViewController {
+            destination.setUser(user: currentUser)
         }
     }
     
@@ -139,6 +147,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = ""
+        configureActivityIndicator()
         configurePickerView()
         configureDatePicker()
         deactivateEditing()
@@ -186,6 +195,62 @@ class ProfileViewController: UIViewController {
             profileImageView.image = UIImage(data: imageData)
         }
         // averageGrade
+    }
+    
+    func makeRequest() {
+        activityIndicator.startAnimating()
+        Api.shared.setUser(email: emailTextField.text!, user: currentUser!) { result in
+            switch result {
+            case .success(_):
+                CurrentUser.user = self.currentUser!
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.transitFromEditingToNormalState()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Попробовать еще раз или отменить редактирование?", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "Еще раз", style: UIAlertAction.Style.default) { _ in
+            self.makeRequest()
+        })
+        successAlert.addAction(UIAlertAction(title: "Сброс данных", style: UIAlertAction.Style.default) { _ in
+            self.currentUser = nil
+            self.configureData()
+        })
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
+    }
+    
+    private func transitFromEditingToNormalState() {
+        changePasswordButton.isHidden = true
+        isProfileInfoEditing = false
+        editProfileButton.layer.isHidden = false
+        bottomButtom.setTitle(EnterViewController.isEnglish ? "Log out" : "Выйти из аккаунта", for: .normal)
+        topBottomButtonConstraint.constant = 40
+        bottomBottomButtonConstraint.constant = 40
+        deactivateEditing()
+    }
+    
+    private func logOut() {
+        currentUser = nil
+        CurrentUser.user = nil
+        self.performSegue(withIdentifier: "toEnterFromProfile", sender: nil)
     }
     
     private func configureTextViewHintText() {
@@ -308,8 +373,6 @@ class ProfileViewController: UIViewController {
         static let maxNumOfCharsInName = 16
     }
 }
-
-
 
 extension ProfileViewController {
     

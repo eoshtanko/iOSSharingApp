@@ -19,16 +19,20 @@ extension ProfileViewController: UITextFieldDelegate {
         switch textField.tag {
         case 1:
             nameIsValid = textField.text?.isNameOrSurnameValid() ?? false
+            currentUser?.name = textField.text
         case 2:
             surnameIsValid = textField.text?.isNameOrSurnameValid() ?? false
+            currentUser?.surname = textField.text
         case 3:
             emailIsValid = textField.text?.isEmailValid() ?? false
+            currentUser?.mail = textField.text
         case 4:
             guard let socialNetwork = textField.text else {
                 socialNetworkIsValid = true
                 return
             }
             socialNetworkIsValid = socialNetwork.isSocialNetworkValid() || socialNetwork.isEmpty
+            currentUser?.contact = textField.text
         default:
             return
         }

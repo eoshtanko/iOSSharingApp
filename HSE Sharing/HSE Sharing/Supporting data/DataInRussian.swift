@@ -44,7 +44,7 @@ struct DataInRussian {
     static let statuses = ["Может", "Хочет"];
     
     static let eduPrograms = [
-        "-",
+        "Не выбрано",
         "Городское планирование",
         "Клеточная и молекулярная биотехнология",
         "Арабистика: язык, словесность, культура",
@@ -102,7 +102,7 @@ struct DataInRussian {
     ];
     
     static let dormitories = [
-        "-",
+        "Не выбрано",
         "Общежитие 1",
         "Общежитие 2",
         "Общежитие 3",
@@ -118,7 +118,7 @@ struct DataInRussian {
     ];
     
     static let universityCampuses = [
-        "-",
+        "Не выбрано",
         "Мясницкая",
         "Покровка",
         "Шаболовка",
@@ -127,7 +127,7 @@ struct DataInRussian {
     ];
     
     static let stagesOfEdu = [
-        "-",
+        "Не выбрано",
         "Бакаклавриат 1 курс",
         "Бакаклавриат 2 курс",
         "Бакаклавриат 3 курс",
