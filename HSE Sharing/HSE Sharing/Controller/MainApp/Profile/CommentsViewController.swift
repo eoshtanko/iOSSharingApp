@@ -12,7 +12,9 @@ class CommentsViewController: UIViewController {
     
     private var comments: [Feedback] = [] {
         didSet {
-            tableView.isHidden = comments.isEmpty
+            if tableView != nil {
+                tableView.isHidden = comments.isEmpty
+            }
         }
     }
     
@@ -35,14 +37,13 @@ class CommentsViewController: UIViewController {
     }
     
     private func configureTableView() {
-        if(comments.count != 0) {
             tableView.register(
                 UINib(nibName: String(describing: CommentCell.self), bundle: nil),
                 forCellReuseIdentifier: CommentCell.identifier
             )
             tableView.dataSource = self
             tableView.delegate = self
-        }
+        tableView.isHidden = comments.isEmpty
     }
     
     private func configureNavigationBar() {

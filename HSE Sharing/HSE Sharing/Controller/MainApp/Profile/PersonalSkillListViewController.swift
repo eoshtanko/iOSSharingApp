@@ -5,7 +5,9 @@ class PersonalSkillListViewController: UIViewController {
     static var isContainedCanSkills = true
     private var skills: [Skill] = [] {
         didSet {
-            tableView.isHidden = skills.isEmpty
+            if tableView != nil {
+                tableView.isHidden = skills.isEmpty
+            }
         }
     }
     
@@ -51,14 +53,13 @@ class PersonalSkillListViewController: UIViewController {
     }
     
     private func configureTableView() {
-        if(skills.count != 0) {
             tableView.register(
                 UINib(nibName: String(describing: PersonalSkillCell.self), bundle: nil),
                 forCellReuseIdentifier: PersonalSkillCell.identifier
             )
             tableView.dataSource = self
             tableView.delegate = self
-        }
+        tableView.isHidden = skills.isEmpty
     }
     
     private func configureNavigationBar() {
