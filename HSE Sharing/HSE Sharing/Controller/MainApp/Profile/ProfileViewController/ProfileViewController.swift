@@ -137,12 +137,12 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = ""
-        configureData()
         configurePickerView()
         configureDatePicker()
         deactivateEditing()
         configureNavigationButton()
         configureTapGestureRecognizer()
+        configureData()
         configureTextViewHintText()
     }
     
@@ -158,24 +158,25 @@ class ProfileViewController: UIViewController {
         nameTextFiled.text = currentUser?.name
         surnameTextField.text = currentUser?.surname
         emailTextField.text = currentUser?.mail
-        birthdayTextField.text = currentUser?.birthDate
-        if currentUser?.gender == 0 {
-            maleButton.tintColor =
+        if let birthDate = currentUser?.birthDate {
+            birthdayTextField.text = formatter.string(from: birthDate)
         }
+        maleButton.tintColor = currentUser?.gender == 0 ? UIColor(named: "BlueDarkColor") : .gray
+        femaleButton.tintColor =  currentUser?.gender == 0 ? .gray : UIColor(named: "BlueDarkColor")
         if let studyingYearId = currentUser?.studyingYearId {
             stageOfEduTextField.text = DataInEnglish.stagesOfEdu[studyingYearId]
         }
         if let majorId = currentUser?.majorId {
-            stageOfEduTextField.text = DataInEnglish.universityCampuses[majorId]
+            eduProgramTextField.text = DataInEnglish.universityCampuses[majorId]
         }
         if let campusLocationId = currentUser?.campusLocationId {
-            stageOfEduTextField.text = DataInEnglish.universityCampuses[campusLocationId]
+            campusLocationTextField.text = DataInEnglish.universityCampuses[campusLocationId]
         }
         if let dormitoryId = currentUser?.dormitoryId {
-            stageOfEduTextField.text = DataInEnglish.dormitories[dormitoryId]
+            dormTextField.text = DataInEnglish.dormitories[dormitoryId]
         }
-        aboutMeTextView.text = CurrentUser.user.about
-        socialNetworkTextField.text = CurrentUser.user.contact
+        aboutMeTextView.text = currentUser?.about
+        socialNetworkTextField.text = currentUser?.contact
         // CurrentUser.user.photo
         // averageGrade
         // isModer
@@ -185,8 +186,10 @@ class ProfileViewController: UIViewController {
     }
     
     private func configureTextViewHintText() {
-        aboutMeTextView.text = "Расскажите о себе :)"
-        aboutMeTextView.textColor = .lightGray
+        if aboutMeTextView.text.isEmpty || aboutMeTextView.textColor == .black {
+            aboutMeTextView.text = "Расскажите о себе :)"
+            aboutMeTextView.textColor = .lightGray
+        }
     }
     
     func configureNavigationButton() {
@@ -338,7 +341,7 @@ extension ProfileViewController {
             surnameTextField.placeholder = "Enter a surname"
             emailTextField.placeholder = "Enter email"
             socialNetworkLabel.text = "Social network"
-            socialNetworkTextField.placeholder = "Enter the link to the social network"
+            socialNetworkTextField.placeholder = "t.me/ or vk.com/"
             aboutMeLabel.text = "About me"
             canButton.setTitle("Can", for: .normal)
             wantButton.setTitle("Want", for: .normal)
@@ -372,7 +375,7 @@ extension ProfileViewController {
             surnameTextField.placeholder = "Введите фамилию"
             emailTextField.placeholder = "Введите почту"
             socialNetworkLabel.text = "Социальная сеть"
-            socialNetworkTextField.placeholder = "Введите ссылку на социальную сеть"
+            socialNetworkTextField.placeholder = "t.me/ или vk.com/"
             aboutMeLabel.text = "Обо мне"
             canButton.setTitle("Могу", for: .normal)
             wantButton.setTitle("Хочу", for: .normal)

@@ -50,7 +50,6 @@ class EmailViewController : UIViewController {
                     self.performSegue(withIdentifier: "toCodeScreen", sender: nil)
                     self.clearTextFields()
                 case .failure(_):
-                    print()
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
                 }

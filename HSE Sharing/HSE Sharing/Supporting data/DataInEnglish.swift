@@ -101,7 +101,7 @@ struct DataInEnglish {
     ];
     
     static let dormitories = [
-        "-",
+        "Don't live in a dorm",
         "Dorm 1",
         "Dorm 2",
         "Dorm 3",

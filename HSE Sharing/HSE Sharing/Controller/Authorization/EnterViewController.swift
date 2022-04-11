@@ -62,7 +62,8 @@ class EnterViewController : UIViewController {
     private func makeRequest() {
         Api.shared.getUserByEmail(email: emailTextField.text!) { result in
             switch result {
-            case .success(_):
+            case .success(let user):
+                CurrentUser.user = user
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.clearTextFields()

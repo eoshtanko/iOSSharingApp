@@ -101,7 +101,7 @@ struct DataInRussian {
     ];
     
     static let dormitories = [
-        "-",
+        "Не живу в общежитии",
         "Общежитие 1",
         "Общежитие 2",
         "Общежитие 3",

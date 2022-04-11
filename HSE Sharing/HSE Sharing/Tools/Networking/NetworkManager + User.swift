@@ -54,7 +54,7 @@ extension Api {
                 return
             }
             if response.statusCode == 404 {
-                completion(Result.failure(ApiError.noSuchData))
+                return completion(Result.failure(ApiError.noSuchData))
             }
             guard let safeData = data else {
                 return completion(Result.failure(ApiError.couldNotParse))
