@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKP-bw-Ube">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844.00000000000011"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ct3-FI-dF6">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="1575.3333333333333"/>
@@ -474,6 +474,7 @@
                         <outlet property="emailTextField" destination="l2Z-l4-G3h" id="Dzm-rh-O4X"/>
                         <outlet property="femaleButton" destination="l5B-8M-NiY" id="5m6-Th-Vf7"/>
                         <outlet property="genderLabel" destination="7ui-CB-pwt" id="ovs-Kt-Tcv"/>
+                        <outlet property="isModerSymbol" destination="amR-AV-NRX" id="bSs-b2-hnb"/>
                         <outlet property="maleButton" destination="wGF-91-3UT" id="2lD-Sj-L2M"/>
                         <outlet property="myDataLabel" destination="2L0-61-W6A" id="N8C-gA-8eV"/>
                         <outlet property="nameLabel" destination="VSE-tT-jNX" id="0YI-jT-HdO"/>

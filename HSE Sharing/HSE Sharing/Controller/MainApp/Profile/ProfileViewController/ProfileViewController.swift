@@ -17,7 +17,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     var isMyProfile = true
-    var user: User?
+    var currentUser: User?
     
     var isProfileInfoEditing = false
     var nameIsValid: Bool = true
@@ -68,6 +68,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
 
+    @IBOutlet weak var isModerSymbol: UIImageView!
     @IBOutlet weak var topBottomButtonConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBottomButtonConstraint: NSLayoutConstraint!
 
@@ -154,35 +155,34 @@ class ProfileViewController: UIViewController {
     // MARK: Funcs
     
     private func configureData() {
-        let currentUser = user ?? CurrentUser.user
+        if currentUser == nil {
+            currentUser = CurrentUser.user
+        }
         nameTextFiled.text = currentUser?.name
         surnameTextField.text = currentUser?.surname
         emailTextField.text = currentUser?.mail
-        if let birthDate = currentUser?.birthDate {
+        if let birthDate = currentUser?.birthDate, birthDate.get(.year) != 0001 {
             birthdayTextField.text = formatter.string(from: birthDate)
         }
-        maleButton.tintColor = currentUser?.gender == 0 ? UIColor(named: "BlueDarkColor") : .gray
-        femaleButton.tintColor =  currentUser?.gender == 0 ? .gray : UIColor(named: "BlueDarkColor")
-        if let studyingYearId = currentUser?.studyingYearId {
+        maleButton.tintColor = currentUser?.gender == 1 ? UIColor(named: "BlueDarkColor") : .gray
+        femaleButton.tintColor =  currentUser?.gender == 1 ? .gray : UIColor(named: "BlueDarkColor")
+        if let studyingYearId = currentUser?.studyingYearId, studyingYearId != 0{
             stageOfEduTextField.text = DataInEnglish.stagesOfEdu[studyingYearId]
         }
-        if let majorId = currentUser?.majorId {
+        if let majorId = currentUser?.majorId, majorId != 0 {
             eduProgramTextField.text = DataInEnglish.universityCampuses[majorId]
         }
-        if let campusLocationId = currentUser?.campusLocationId {
+        if let campusLocationId = currentUser?.campusLocationId, campusLocationId != 0 {
             campusLocationTextField.text = DataInEnglish.universityCampuses[campusLocationId]
         }
-        if let dormitoryId = currentUser?.dormitoryId {
+        if let dormitoryId = currentUser?.dormitoryId, dormitoryId != 0 {
             dormTextField.text = DataInEnglish.dormitories[dormitoryId]
         }
         aboutMeTextView.text = currentUser?.about
         socialNetworkTextField.text = currentUser?.contact
+        isModerSymbol.isHidden = !(currentUser?.isModer ?? false)
         // CurrentUser.user.photo
         // averageGrade
-        // isModer
-        // transactions: CurrentUser.user.transactions,
-        // skills: CurrentUser.user.skills,
-        // feedbacks: CurrentUser.user.feedbacks,
     }
     
     private func configureTextViewHintText() {

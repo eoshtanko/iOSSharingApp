@@ -47,6 +47,7 @@
 		34B1B3A828041BE800F14EFB /* NetworkManager + User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3A728041BE800F14EFB /* NetworkManager + User.swift */; };
 		34B1B3AA28041C5400F14EFB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3A928041C5400F14EFB /* NetworkError.swift */; };
 		34B1B3AC28041C8200F14EFB /* Formatter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */; };
+		34B1B3AF28043CBB00F14EFB /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3AE28043CBB00F14EFB /* Date + Extension.swift */; };
 		34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */; };
 		34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */; };
 		34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */; };
@@ -115,6 +116,7 @@
 		34B1B3A728041BE800F14EFB /* NetworkManager + User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager + User.swift"; sourceTree = "<group>"; };
 		34B1B3A928041C5400F14EFB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter + Extension.swift"; sourceTree = "<group>"; };
+		34B1B3AE28043CBB00F14EFB /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeCell.xib; sourceTree = "<group>"; };
 		34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
 		34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPreferences.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				345C17EB280169D600ED5526 /* TextField + Extension.swift */,
 				345C17E92801668200ED5526 /* Button + Extension.swift */,
 				34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */,
+				34B1B3AE28043CBB00F14EFB /* Date + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				345C180E2801750B00ED5526 /* SceneDelegate.swift in Sources */,
 				347EB55B27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift in Sources */,
 				347375D627C647470029A419 /* Skill.swift in Sources */,
+				34B1B3AF28043CBB00F14EFB /* Date + Extension.swift in Sources */,
 				345C17EC280169D600ED5526 /* TextField + Extension.swift in Sources */,
 				342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */,
 				347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */,
