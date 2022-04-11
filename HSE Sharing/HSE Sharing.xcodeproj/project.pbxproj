@@ -44,6 +44,9 @@
 		34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB122827FDDD780027AC20 /* ProfileViewController + UIText.swift */; };
 		34B13E8927FA33740055E6ED /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13E8827FA33740055E6ED /* Feedback.swift */; };
 		34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B13E8A27FAB3A90055E6ED /* Conversation.swift */; };
+		34B1B3A828041BE800F14EFB /* NetworkManager + User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3A728041BE800F14EFB /* NetworkManager + User.swift */; };
+		34B1B3AA28041C5400F14EFB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3A928041C5400F14EFB /* NetworkError.swift */; };
+		34B1B3AC28041C8200F14EFB /* Formatter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */; };
 		34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */; };
 		34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */; };
 		34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */; };
@@ -52,7 +55,6 @@
 		34C4C7F72801FCA600769CFC /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F62801FCA600769CFC /* CommentCell.swift */; };
 		34C4C7F92801FCB100769CFC /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C4C7F82801FCB100769CFC /* CommentCell.xib */; };
 		34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */; };
-		34CBC59E27DB64840082FAF0 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59D27DB64840082FAF0 /* Api.swift */; };
 		34CBC5A027DB64F10082FAF0 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC59F27DB64F10082FAF0 /* ConversationsListViewController.swift */; };
 		34CBC5A327DB6C9A0082FAF0 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC5A227DB6C9A0082FAF0 /* ConversationViewController.swift */; };
 		34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBC5A527DBA5C50082FAF0 /* EntryMessageView.swift */; };
@@ -110,6 +112,9 @@
 		34AB122827FDDD780027AC20 /* ProfileViewController + UIText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIText.swift"; sourceTree = "<group>"; };
 		34B13E8827FA33740055E6ED /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		34B13E8A27FAB3A90055E6ED /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		34B1B3A728041BE800F14EFB /* NetworkManager + User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager + User.swift"; sourceTree = "<group>"; };
+		34B1B3A928041C5400F14EFB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter + Extension.swift"; sourceTree = "<group>"; };
 		34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeCell.xib; sourceTree = "<group>"; };
 		34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
 		34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPreferences.swift; sourceTree = "<group>"; };
@@ -118,7 +123,6 @@
 		34C4C7F62801FCA600769CFC /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		34C4C7F82801FCB100769CFC /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		34CBC59B27DB632A0082FAF0 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
-		34CBC59D27DB64840082FAF0 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		34CBC59F27DB64F10082FAF0 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		34CBC5A227DB6C9A0082FAF0 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		34CBC5A527DBA5C50082FAF0 /* EntryMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryMessageView.swift; sourceTree = "<group>"; };
@@ -223,12 +227,10 @@
 		347375CF27C645E60029A419 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				347375E027C653C00029A419 /* NetworkManager.swift */,
+				34B1B3A628041BC500F14EFB /* Networking */,
+				34B1B3AD28041C9400F14EFB /* Extensions */,
 				347375E227C653D50029A419 /* PhotoManager.swift */,
 				347375E427C653E90029A419 /* MemoryManager.swift */,
-				34AB122627FDDD530027AC20 /* String + Extension.swift */,
-				345C17EB280169D600ED5526 /* TextField + Extension.swift */,
-				345C17E92801668200ED5526 /* Button + Extension.swift */,
 				34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */,
 			);
 			path = Tools;
@@ -280,7 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				347375C427C62DF70029A419 /* Assets.xcassets */,
-				34CBC59D27DB64840082FAF0 /* Api.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -303,6 +304,27 @@
 				347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */,
 			);
 			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		34B1B3A628041BC500F14EFB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				347375E027C653C00029A419 /* NetworkManager.swift */,
+				34B1B3A928041C5400F14EFB /* NetworkError.swift */,
+				34B1B3A728041BE800F14EFB /* NetworkManager + User.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		34B1B3AD28041C9400F14EFB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				34AB122627FDDD530027AC20 /* String + Extension.swift */,
+				345C17EB280169D600ED5526 /* TextField + Extension.swift */,
+				345C17E92801668200ED5526 /* Button + Extension.swift */,
+				34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		34C4C7EE2801A36100769CFC /* MainApp */ = {
@@ -410,7 +432,6 @@
 				A2BE6EFB49533837F1AA1733 /* Pods-HSE Sharing.debug.xcconfig */,
 				09230A4C2BBF04A6FFBDE315 /* Pods-HSE Sharing.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -547,6 +568,8 @@
 				34AB122727FDDD530027AC20 /* String + Extension.swift in Sources */,
 				34AB122927FDDD780027AC20 /* ProfileViewController + UIText.swift in Sources */,
 				348C2F242802274200551F71 /* SelectionOfParametersViewController.swift in Sources */,
+				34B1B3AC28041C8200F14EFB /* Formatter + Extension.swift in Sources */,
+				34B1B3A828041BE800F14EFB /* NetworkManager + User.swift in Sources */,
 				34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */,
 				34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */,
 				345C17EA2801668200ED5526 /* Button + Extension.swift in Sources */,
@@ -565,6 +588,7 @@
 				345C17EC280169D600ED5526 /* TextField + Extension.swift in Sources */,
 				342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */,
 				347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */,
+				34B1B3AA28041C5400F14EFB /* NetworkError.swift in Sources */,
 				347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */,
 				342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */,
 				34F4A88927DE8E5E00C51CE2 /* SearchSkillCell.swift in Sources */,
@@ -581,7 +605,6 @@
 				347375E327C653D50029A419 /* PhotoManager.swift in Sources */,
 				34CBC5A827DBA5DE0082FAF0 /* ChatMessageCell.swift in Sources */,
 				34EB7A9228015F0C0008B4CD /* RegistrationViewController.swift in Sources */,
-				34CBC59E27DB64840082FAF0 /* Api.swift in Sources */,
 				34449ADD27FE316C002763CD /* SkillEditViewController.swift in Sources */,
 				342B65C227DBDDB400A78536 /* ExchangesViewController.swift in Sources */,
 				34B13E8927FA33740055E6ED /* Feedback.swift in Sources */,

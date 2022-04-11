@@ -12,6 +12,8 @@ class EnterViewController : UIViewController {
     
     static var isEnglish = false
     
+    private var activityIndicator: UIActivityIndicatorView!
+    
     private var emailIsValid: Bool = true
     private var passwordIsValid: Bool = true
     
@@ -21,24 +23,13 @@ class EnterViewController : UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBAction func unwindToEnterViewController(segue:UIStoryboardSegue) { }
+    
     @IBOutlet weak var enterButton: UIButton!
     @IBAction func enterButtonAction(_ sender: Any) {
-        clearTextFields()
-        Api1.shared.createUser { result in
-             switch result {
-             case let .success(returnedSources):
-                 print(returnedSources)
-                 print("Ура")
-             case .failure(_):
-                 print("о нет ")
-             }
-         }
+        makeRequest()
     }
-    
-    private func completion(_ result: Result<User, Error>) {
-        
-    }
-    
+
     @IBOutlet weak var registrationButton: UIButton!
     @IBAction func registrationButtonPressed(_ sender: Any) {
         clearTextFields()
@@ -57,6 +48,7 @@ class EnterViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        configureActivityIndicator()
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,6 +56,49 @@ class EnterViewController : UIViewController {
         self.navigationItem.title = ""
         configureButtons()
         configureTextFields()
+    }
+    
+    private func makeRequest() {
+        Api.shared.getUserByEmail(email: emailTextField.text!) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.clearTextFields()
+                    self.goToMainAppRootTabBarVC()
+                }
+            case .failure(let apiError):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    if apiError as! ApiError == ApiError.noSuchData {
+                        self.noSuchUserAlert()
+                    } else {
+                        self.showFailAlert()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
+    }
+    
+    private func noSuchUserAlert() {
+        let successAlert = UIAlertController(title: "Данный пользователь не зарегистрирован", message: nil, preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
     }
     
     private func goToMainAppRootTabBarVC() {

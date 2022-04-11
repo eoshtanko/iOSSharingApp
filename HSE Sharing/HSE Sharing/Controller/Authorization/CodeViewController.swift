@@ -19,7 +19,15 @@ class CodeViewController : UIViewController {
     
     @IBOutlet weak var goNextButton: UIButton!
     @IBAction func goNextButtonAction(_ sender: Any) {
-        clearTextFields()
+        if let realCode = CurrentUser.user.confirmationCodeServer {
+            if "\(realCode)" == textField.text! {
+                clearTextFields()
+                CurrentUser.user.confirmationCodeUser = CurrentUser.user.confirmationCodeServer
+                self.performSegue(withIdentifier: "goToRegistration", sender: nil)
+            } else {
+                showFailAlert()
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -27,6 +35,18 @@ class CodeViewController : UIViewController {
         self.navigationItem.title = ""
         configureButtons()
         configureTextFields()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(CurrentUser.user.confirmationCodeServer)
+        goNextButton.isEnabled = false
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Неверный код", message: "Попробуйте еще раз. Код должен быть у Вас на почте.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
     }
     
     private func configureButtons() {

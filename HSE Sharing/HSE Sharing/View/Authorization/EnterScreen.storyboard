@@ -223,7 +223,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите почту edu.hse.ru" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="B0R-0s-gmy">
                                 <rect key="frame" x="20" y="269" width="280" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartInsertDeleteType="no" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartQuotesType="no" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-7V-3uh">
                                 <rect key="frame" x="20" y="239" width="41" height="20"/>
@@ -243,7 +243,6 @@
                                 <state key="normal" title="Далее"/>
                                 <connections>
                                     <action selector="goNextButtonAction:" destination="1ZL-oB-a5k" eventType="touchUpInside" id="Yjg-By-1DM"/>
-                                    <segue destination="uAP-RE-YyB" kind="show" id="Cly-Ao-o2B"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -272,9 +271,12 @@
                         <outlet property="emailTextField" destination="B0R-0s-gmy" id="5Eo-dp-4Qh"/>
                         <outlet property="goNextButton" destination="GIc-Wk-W5N" id="ghG-tp-3qn"/>
                         <outlet property="titleLabel" destination="JkF-db-nCX" id="dZu-Ah-yMv"/>
+                        <segue destination="uAP-RE-YyB" kind="show" identifier="toCodeScreen" id="Gl6-Bn-QVd"/>
+                        <segue destination="HXt-fv-dM1" kind="unwind" identifier="unwindToEnter" unwindAction="unwindToEnterViewControllerWithSegue:" id="Bo9-lp-E8q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbC-G2-1LH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="HXt-fv-dM1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1850.625" y="-257.74647887323943"/>
         </scene>
@@ -296,7 +298,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ8-FX-tgZ">
-                                <rect key="frame" x="100" y="343" width="120" height="30"/>
+                                <rect key="frame" x="100" y="333" width="120" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -304,16 +306,15 @@
                                 <state key="normal" title="Далее"/>
                                 <connections>
                                     <action selector="goNextButtonAction:" destination="uAP-RE-YyB" eventType="touchUpInside" id="bv8-gQ-NPx"/>
-                                    <segue destination="hRW-Z6-Ylb" kind="show" id="nXr-qT-pHj"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите код из письма" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="nbX-cS-cLa">
-                                <rect key="frame" x="20" y="269" width="280" height="34"/>
+                                <rect key="frame" x="20" y="259" width="280" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вам на почту был отправлен код подверждения. Введите его." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9Y-gZ-iEF">
-                                <rect key="frame" x="20" y="215.5" width="280" height="38.5"/>
+                                <rect key="frame" x="20" y="205.5" width="280" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -334,7 +335,7 @@
                             <constraint firstItem="I5d-dq-4Yc" firstAttribute="trailing" secondItem="j9Y-gZ-iEF" secondAttribute="trailing" constant="20" id="hgQ-mq-lbu"/>
                             <constraint firstItem="j9Y-gZ-iEF" firstAttribute="leading" secondItem="I5d-dq-4Yc" secondAttribute="leading" constant="20" id="idN-CD-I0c"/>
                             <constraint firstItem="I5d-dq-4Yc" firstAttribute="trailing" secondItem="nbX-cS-cLa" secondAttribute="trailing" constant="20" id="oTV-9Z-48u"/>
-                            <constraint firstItem="nbX-cS-cLa" firstAttribute="centerY" secondItem="I5d-dq-4Yc" secondAttribute="centerY" constant="-20" id="qIp-mz-jej"/>
+                            <constraint firstItem="nbX-cS-cLa" firstAttribute="centerY" secondItem="I5d-dq-4Yc" secondAttribute="centerY" constant="-30" id="qIp-mz-jej"/>
                             <constraint firstItem="U9H-ub-4rK" firstAttribute="width" secondItem="yGf-IZ-hSI" secondAttribute="width" multiplier="0.560386" id="rBE-5Q-3Ef"/>
                             <constraint firstItem="U9H-ub-4rK" firstAttribute="leading" secondItem="yGf-IZ-hSI" secondAttribute="leading" constant="-50" id="zPQ-Ls-gYO"/>
                         </constraints>
@@ -345,6 +346,7 @@
                         <outlet property="subTitleLabel" destination="j9Y-gZ-iEF" id="KVi-a7-O9l"/>
                         <outlet property="textField" destination="nbX-cS-cLa" id="yxm-R6-9j7"/>
                         <outlet property="titleLabel" destination="5RK-3k-t5J" id="iiM-vx-RGQ"/>
+                        <segue destination="hRW-Z6-Ylb" kind="show" identifier="goToRegistration" id="vUd-Yc-IeI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SgD-1k-DH7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

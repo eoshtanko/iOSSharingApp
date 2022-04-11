@@ -15,6 +15,8 @@ class RegistrationViewController : UIViewController {
     private var passwordIsValid: Bool = true
     private var repeatPasswordIsValid: Bool = true
     
+    private var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var titleTextLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var surnameLabel: UILabel!
@@ -28,8 +30,8 @@ class RegistrationViewController : UIViewController {
     
     @IBOutlet weak var registrationButton: UIButton!
     @IBAction func registrationButtonPressed(_ sender: Any) {
-        clearTextFields()
-        goToMainAppRootTabBarVC()
+        let user = getNewUser()
+        makeRequest(user)
     }
     
     override func viewDidLayoutSubviews() {
@@ -39,10 +41,53 @@ class RegistrationViewController : UIViewController {
         configureTextFields()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureActivityIndicator()
+    }
+    
+    private func makeRequest(_ user: User) {
+        Api.shared.setUser(email: CurrentUser.user.mail!, user: user) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.clearTextFields()
+                    self.goToMainAppRootTabBarVC()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
+    }
+    
     private func goToMainAppRootTabBarVC() {
         let mainAppRootTabBarVC = RootTabBarViewController()
         mainAppRootTabBarVC.modalPresentationStyle = .fullScreen
         present(mainAppRootTabBarVC, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registrationButton.isEnabled = false
     }
     
     private func configureButtons() {
@@ -74,6 +119,31 @@ class RegistrationViewController : UIViewController {
         surnameTextField.changeColorOfBorder(isValid: true)
         passwordTextField.changeColorOfBorder(isValid: true)
         repeatPasswordTextField.changeColorOfBorder(isValid: true)
+    }
+    
+    private func getNewUser() -> User {
+        return User(mail: CurrentUser.user.mail,
+                    confirmationCodeServer: CurrentUser.user.confirmationCodeServer,
+                    confirmationCodeUser: CurrentUser.user.confirmationCodeUser,
+                    password: passwordLabel.text!,
+                    name: nameLabel.text!,
+                    surname: surnameLabel.text!,
+                    birthDate: CurrentUser.user.birthDate,
+                    gender: CurrentUser.user.gender,
+                    studyingYearId: CurrentUser.user.studyingYearId,
+                    majorId: CurrentUser.user.majorId,
+                    campusLocationId: CurrentUser.user.campusLocationId,
+                    dormitoryId: CurrentUser.user.dormitoryId,
+                    about: CurrentUser.user.about,
+                    contact: CurrentUser.user.contact,
+                    photo: CurrentUser.user.photo,
+                    transactions: CurrentUser.user.transactions,
+                    skills: CurrentUser.user.skills,
+                    feedbacks: CurrentUser.user.feedbacks,
+                    gradesCount: CurrentUser.user.gradesCount,
+                    gradesSum: CurrentUser.user.gradesSum,
+                    averageGrade: CurrentUser.user.averageGrade,
+                    isModer: CurrentUser.user.isModer)
     }
 }
 

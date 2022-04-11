@@ -113,30 +113,34 @@ extension User {
         coder.encode(isModer, forKey:"isModer")
     }
     
-//    var toDict: [String: Any] {
-//        return ["mail": mail ?? "",
-//                "confirmationCodeServer": confirmationCodeServer ?? 0,
-//                "confirmationCodeUser": confirmationCodeUser ?? 0,
-//                "password": password ?? 00000000,
-//                "name": name ?? "",
-//                "surname": surname ?? "",
-//                "birthDate": "\(birthDate)",
-//                "gender": gender ?? 0,
-//                "studyingYearId": studyingYearId ?? 0,
-//                "majorId": majorId ?? 0,
-//                "campusLocationId": campusLocationId ?? 0,
-//                "dormitoryId": dormitoryId ?? 0,
-//                "about": about ?? "",
-//                "contact": contact ?? "",
-//                "photo": photo ?? "",
-//                "transactions": transactions ?? [],
-//                "skills": skills ?? [],
-//                "isModer": isModer ?? false,
-//        ]
-//    }
+    var toDict: [String: Any] {
+        return ["mail": mail!,
+                "confirmationCodeServer": confirmationCodeServer!,
+                "confirmationCodeUser": confirmationCodeUser!,
+                "password": password!,
+                "name": name!,
+                "surname": surname!,
+                "birthDate": Formatter.iso8601.string(from: birthDate!),
+                "gender": gender,
+                "studyingYearId": studyingYearId,
+                "majorId": majorId,
+                "campusLocationId": campusLocationId,
+                "dormitoryId": dormitoryId,
+                "about": about,
+                "contact": contact,
+                "photo": photo,
+                "transactions": transactions,
+                "skills": skills,
+                "feedbacks": feedbacks,
+                "gradesCount": gradesCount,
+                "gradesSum": gradesSum,
+                "averageGrade": averageGrade,
+                "isModer": isModer
+        ]
+    }
 }
 
 struct CurrentUser {
     static let formatter = DateFormatter()
-    static let user = Api.getCurrentUser()
+    static var user = Api.getCurrentUser()
 }
