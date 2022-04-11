@@ -67,11 +67,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var campusLocationLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
-
+    
     @IBOutlet weak var isModerSymbol: UIImageView!
     @IBOutlet weak var topBottomButtonConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBottomButtonConstraint: NSLayoutConstraint!
-
+    
     @IBAction func unwindToProfileViewController(segue:UIStoryboardSegue) { }
     
     @IBAction func editPhotoButtonPressed(_ sender: Any) {
@@ -84,6 +84,7 @@ class ProfileViewController: UIViewController {
         if !isMyProfile && CurrentUser.user.isModer ?? false {
             commentsListViewController.setNeedsFocusUpdate()
         }
+        commentsListViewController.setComments(comments: currentUser?.feedbacks)
         navigationController?.pushViewController(commentsListViewController, animated: true)
     }
     
@@ -99,12 +100,12 @@ class ProfileViewController: UIViewController {
     
     @IBAction func canButtonPressed(_ sender: Any) {
         PersonalSkillListViewController.isContainedCanSkills = true
-        goToPersonalSkillList()
+        goToPersonalSkillList(skillStatus: 1)
     }
     
     @IBAction func wantButtonPressed(_ sender: Any) {
         PersonalSkillListViewController.isContainedCanSkills = false
-        goToPersonalSkillList()
+        goToPersonalSkillList(skillStatus: 2)
     }
     
     @IBAction func maleButtonPressed(_ sender: Any) {
@@ -165,7 +166,7 @@ class ProfileViewController: UIViewController {
             birthdayTextField.text = formatter.string(from: birthDate)
         }
         maleButton.tintColor = currentUser?.gender == 1 ? UIColor(named: "BlueDarkColor") : .gray
-        femaleButton.tintColor =  currentUser?.gender == 1 ? .gray : UIColor(named: "BlueDarkColor")
+        femaleButton.tintColor = currentUser?.gender == 2 ? UIColor(named: "BlueDarkColor") : .gray
         if let studyingYearId = currentUser?.studyingYearId, studyingYearId != 0{
             stageOfEduTextField.text = DataInEnglish.stagesOfEdu[studyingYearId]
         }
@@ -181,7 +182,9 @@ class ProfileViewController: UIViewController {
         aboutMeTextView.text = currentUser?.about
         socialNetworkTextField.text = currentUser?.contact
         isModerSymbol.isHidden = !(currentUser?.isModer ?? false)
-        // CurrentUser.user.photo
+        if let imageData = CurrentUser.user.photo {
+            profileImageView.image = UIImage(data: imageData)
+        }
         // averageGrade
     }
     
@@ -213,9 +216,6 @@ class ProfileViewController: UIViewController {
     
     private func configureProfileImageView() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-//        if(CurrentUser.user.photo != nil) {
-//           // profileImageView.image = CurrentUser.user.photo
-//        }
     }
     
     private func configureTextFields() {
@@ -284,9 +284,12 @@ class ProfileViewController: UIViewController {
         femaleButton.isUserInteractionEnabled = false
     }
     
-    private func goToPersonalSkillList() {
+    private func goToPersonalSkillList(skillStatus: Int) {
         let storyboard = UIStoryboard(name: "PersonalSkillList", bundle: nil)
         let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "PersonalSkillList") as! PersonalSkillListViewController
+        personalSkillListViewController.setSkills(skills: currentUser?.skills?.filter { skill in
+            return skill.status == skillStatus
+        })
         navigationController?.pushViewController(personalSkillListViewController, animated: true)
     }
     
@@ -326,7 +329,7 @@ extension ProfileViewController {
         configureNavigationButton()
         translateProfileView(isEnglish: false)
     }
-
+    
     private func translateToEnglish() {
         configureNavigationButton()
         translateProfileView(isEnglish: true)

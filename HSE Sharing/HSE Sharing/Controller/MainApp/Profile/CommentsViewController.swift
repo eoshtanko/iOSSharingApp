@@ -20,7 +20,6 @@ class CommentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureComments()
         configureTableView()
     }
     
@@ -31,8 +30,8 @@ class CommentsViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
-    private func configureComments() {
-       //     comments = Api.comments
+    func setComments(comments: [Feedback]?) {
+        self.comments = comments ?? []
     }
     
     private func configureTableView() {

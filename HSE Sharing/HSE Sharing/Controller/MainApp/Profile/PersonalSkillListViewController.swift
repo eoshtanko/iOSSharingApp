@@ -14,7 +14,6 @@ class PersonalSkillListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSkills()
         configureTableView()
         configureNavigationButton()
         configureImage()
@@ -27,10 +26,8 @@ class PersonalSkillListViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
-    private func configureSkills() {
-        if (PersonalSkillListViewController.isContainedCanSkills) {
-           // skills = Api.canSkills
-        }
+    func setSkills(skills: [Skill]?) {
+        self.skills = skills ?? []
     }
     
     private func configureNavigationButton() {
