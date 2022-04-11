@@ -49,11 +49,11 @@ extension Api {
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse,
-                    (200...299).contains(response.statusCode) || response.statusCode == 400  else {
+                    (200...299).contains(response.statusCode) || response.statusCode == 404  else {
                 completion(Result.failure(ApiError.badResponse))
                 return
             }
-            if response.statusCode == 400 {
+            if response.statusCode == 404 {
                 completion(Result.failure(ApiError.noSuchData))
             }
             guard let safeData = data else {

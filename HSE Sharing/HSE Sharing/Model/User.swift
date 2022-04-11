@@ -142,5 +142,5 @@ extension User {
 
 struct CurrentUser {
     static let formatter = DateFormatter()
-    static var user = Api.getCurrentUser()
+    static var user: User!
 }

@@ -200,9 +200,11 @@
                         <outlet property="emailTextField" destination="okP-eg-u2Z" id="vP0-BE-ple"/>
                         <outlet property="recoveryButton" destination="KyD-gu-flv" id="Ys3-hA-a4J"/>
                         <outlet property="titleLabel" destination="TCf-a1-KuH" id="dol-Zf-WBK"/>
+                        <segue destination="adO-tv-Utx" kind="unwind" identifier="unwindToEnterFromRecovery" unwindAction="unwindToEnterViewControllerWithSegue:" id="fWT-yb-tih"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vz-dP-zwW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="adO-tv-Utx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1850.625" y="483.80281690140845"/>
         </scene>

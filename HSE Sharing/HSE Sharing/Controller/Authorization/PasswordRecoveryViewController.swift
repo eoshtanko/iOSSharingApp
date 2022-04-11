@@ -21,6 +21,7 @@ class PasswordRecoveryViewController : UIViewController {
     
     @IBOutlet weak var recoveryButton: UIButton!
     @IBAction func recoveryButtonAction(_ sender: Any) {
+        activityIndicator.startAnimating()
         makeRequest()
     }
     
@@ -42,7 +43,7 @@ class PasswordRecoveryViewController : UIViewController {
     }
     
     private func makeRequest() {
-        Api.shared.recoveryUsersPassword(email: CurrentUser.user.mail!) { result in
+        Api.shared.recoveryUsersPassword(email: emailTextField.text!) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
@@ -85,7 +86,7 @@ class PasswordRecoveryViewController : UIViewController {
     }
     
     private func goBack() {
-        
+        self.performSegue(withIdentifier: "unwindToEnterFromRecovery", sender: nil)
     }
     
     private func configureButtons() {

@@ -27,6 +27,7 @@ class EnterViewController : UIViewController {
     
     @IBOutlet weak var enterButton: UIButton!
     @IBAction func enterButtonAction(_ sender: Any) {
+        activityIndicator.startAnimating()
         makeRequest()
     }
 

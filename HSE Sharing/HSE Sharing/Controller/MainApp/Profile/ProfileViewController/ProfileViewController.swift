@@ -137,6 +137,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = ""
+        configureData()
         configurePickerView()
         configureDatePicker()
         deactivateEditing()
@@ -151,6 +152,37 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: Funcs
+    
+    private func configureData() {
+        let currentUser = user ?? CurrentUser.user
+        nameTextFiled.text = currentUser?.name
+        surnameTextField.text = currentUser?.surname
+        emailTextField.text = currentUser?.mail
+        birthdayTextField.text = currentUser?.birthDate
+        if currentUser?.gender == 0 {
+            maleButton.tintColor =
+        }
+        if let studyingYearId = currentUser?.studyingYearId {
+            stageOfEduTextField.text = DataInEnglish.stagesOfEdu[studyingYearId]
+        }
+        if let majorId = currentUser?.majorId {
+            stageOfEduTextField.text = DataInEnglish.universityCampuses[majorId]
+        }
+        if let campusLocationId = currentUser?.campusLocationId {
+            stageOfEduTextField.text = DataInEnglish.universityCampuses[campusLocationId]
+        }
+        if let dormitoryId = currentUser?.dormitoryId {
+            stageOfEduTextField.text = DataInEnglish.dormitories[dormitoryId]
+        }
+        aboutMeTextView.text = CurrentUser.user.about
+        socialNetworkTextField.text = CurrentUser.user.contact
+        // CurrentUser.user.photo
+        // averageGrade
+        // isModer
+        // transactions: CurrentUser.user.transactions,
+        // skills: CurrentUser.user.skills,
+        // feedbacks: CurrentUser.user.feedbacks,
+    }
     
     private func configureTextViewHintText() {
         aboutMeTextView.text = "Расскажите о себе :)"
