@@ -7,11 +7,6 @@
 
 import UIKit
 
-// Убрать кнопки редактирования и изменения языка
-// мои данные -> Данные
-// Поменять плейсхолдеры
-// Убрать нижнюю кнопку
-// Может хочет
 // Добавить создание переписки
 
 class ProfileViewController: UIViewController {
@@ -34,6 +29,7 @@ class ProfileViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var editPhotoButton: UIButton!
@@ -126,14 +122,17 @@ class ProfileViewController: UIViewController {
     
     @IBAction func bottomButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
-            makeRequest() 
+            makeRequest()
         } else {
             logOut()
         }
     }
-
+    
     @IBAction func changePasswordButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "toChangePasswordScreen", sender: nil)
+    }
+    
+    @IBAction func chatButtonPressed(_ sender: Any) {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -155,6 +154,10 @@ class ProfileViewController: UIViewController {
         configureTapGestureRecognizer()
         configureData()
         configureTextViewHintText()
+        editPhotoButton.isHidden = !(CurrentUser.user.mail == currentUser?.mail)
+        editProfileButton.isHidden = editPhotoButton.isHidden
+        bottomButtom.isHidden = editPhotoButton.isHidden
+        chatButton.isHidden = !editPhotoButton.isHidden
     }
     
     override func viewDidLayoutSubviews() {
@@ -255,21 +258,23 @@ class ProfileViewController: UIViewController {
     
     private func configureTextViewHintText() {
         if aboutMeTextView.text.isEmpty || aboutMeTextView.textColor == .black {
-            aboutMeTextView.text = "Расскажите о себе :)"
+            aboutMeTextView.text = CurrentUser.user.mail == currentUser?.mail ? "Расскажите о себе :)" : "Нет информации"
             aboutMeTextView.textColor = .lightGray
         }
     }
     
     func configureNavigationButton() {
-        let settingsButton = UIButton()
-        if EnterViewController.isEnglish {
-            settingsButton.setTitle("🇷🇺", for: .normal)
-        } else {
-            settingsButton.setTitle("🇬🇧", for: .normal)
+        if currentUser?.mail == CurrentUser.user.mail {
+            let settingsButton = UIButton()
+            if EnterViewController.isEnglish {
+                settingsButton.setTitle("🇷🇺", for: .normal)
+            } else {
+                settingsButton.setTitle("🇬🇧", for: .normal)
+            }
+            settingsButton.titleLabel?.font = .systemFont(ofSize: 30)
+            settingsButton.addTarget(self, action: #selector(changeLanguage), for: .touchUpInside)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
         }
-        settingsButton.titleLabel?.font = .systemFont(ofSize: 30)
-        settingsButton.addTarget(self, action: #selector(changeLanguage), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
     
     private func configureSubviews() {
@@ -400,14 +405,15 @@ extension ProfileViewController {
     
     private func translateProfileView(isEnglish: Bool) {
         if (isEnglish) {
-            myDataLabel.text = "My information"
+            myDataLabel.text = CurrentUser.user.mail == currentUser?.mail ?  "My information" : "Information"
             nameLabel.text = "Name"
             nameTextFiled.placeholder = "Enter a name"
             surnameLabel.text = "Surname"
             surnameTextField.placeholder = "Enter a surname"
             emailTextField.placeholder = "Enter email"
             socialNetworkLabel.text = "Social network"
-            socialNetworkTextField.placeholder = "t.me/ or vk.com/"
+            socialNetworkTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ?  "t.me/ or vk.com/" :
+            "Not specified"
             aboutMeLabel.text = "About me"
             canButton.setTitle("Can", for: .normal)
             wantButton.setTitle("Want", for: .normal)
@@ -415,18 +421,18 @@ extension ProfileViewController {
                 aboutMeTextView.text = "I am..."
             }
             eduProgramLabel.text = "Educational program"
-            eduProgramTextField.placeholder = "Choose an educational program"
+            eduProgramTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose an educational program" : "Not specified"
             dormLabel.text = "Dormitory"
-            dormTextField.placeholder = "Choose a dormitory"
+            dormTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a dormitory" : "Not specified"
             stageOfEduLabel.text = "Stage of education"
-            stageOfEduTextField.placeholder = "Choose a stage of education"
+            stageOfEduTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a stage of education" : "Not specified"
             campusLocationLabel.text = "Campus location"
-            campusLocationTextField.placeholder = "Choose a campus location"
+            campusLocationTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a campus location" : "Not specified"
             genderLabel.text = "Gender"
             maleButton.setTitle("Male", for: .normal)
             femaleButton.setTitle("Female", for: .normal)
             birthdayLabel.text = "Birthday date"
-            birthdayTextField.placeholder = "Choose a birthday date"
+            birthdayTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a birthday date" : "Not specified"
             if isProfileInfoEditing {
                 bottomButtom.setTitle("Save", for: .normal)
             } else {
@@ -434,33 +440,38 @@ extension ProfileViewController {
             }
             datePicker.locale = Locale(identifier: "en")
         } else {
-            myDataLabel.text = "Мои данные"
+            myDataLabel.text = CurrentUser.user.mail == currentUser?.mail ?  "Мои данные" : "Данные"
             nameLabel.text = "Имя"
             nameTextFiled.placeholder = "Введите имя"
             surnameLabel.text = "Фамилия"
             surnameTextField.placeholder = "Введите фамилию"
             emailTextField.placeholder = "Введите почту"
             socialNetworkLabel.text = "Социальная сеть"
-            socialNetworkTextField.placeholder = "t.me/ или vk.com/"
+            socialNetworkTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "t.me/ или vk.com/" : "Не указана"
             aboutMeLabel.text = "Обо мне"
-            canButton.setTitle("Могу", for: .normal)
-            wantButton.setTitle("Хочу", for: .normal)
+            if CurrentUser.user.mail == currentUser?.mail {
+                canButton.setTitle("Могу", for: .normal)
+                wantButton.setTitle("Хочу", for: .normal)
+            } else {
+                canButton.setTitle("Может", for: .normal)
+                wantButton.setTitle("Хочет", for: .normal)
+            }
             if (aboutMeTextView.text == "I am...") {
                 aboutMeTextView.text = "Я..."
             }
             eduProgramLabel.text = "Образовательная программа"
-            eduProgramTextField.placeholder = "Выберите образовательную программу"
+            eduProgramTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберите образовательную программу" : "Не указана"
             dormLabel.text = "Общежитие"
-            dormTextField.placeholder = "Выберите общежитие"
+            dormTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберите общежитие" : "Не указано"
             stageOfEduLabel.text = "Ступень обучения"
-            stageOfEduTextField.placeholder = "Выберите ступень обучения"
+            stageOfEduTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберите ступень обучения" : "Не указана"
             campusLocationLabel.text = "Расположение корпуса"
-            campusLocationTextField.placeholder = "Выберете расположение корпуса"
+            campusLocationTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберете расположение корпуса" : "Не указано"
             genderLabel.text = "Пол"
             maleButton.setTitle("Мужской", for: .normal)
             femaleButton.setTitle("Женский", for: .normal)
             birthdayLabel.text = "Дата рождения"
-            birthdayTextField.placeholder = "Выберете дату рождения"
+            birthdayTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберете дату рождения" : "Не указана"
             if isProfileInfoEditing {
                 bottomButtom.setTitle("Сохранить", for: .normal)
             } else {
