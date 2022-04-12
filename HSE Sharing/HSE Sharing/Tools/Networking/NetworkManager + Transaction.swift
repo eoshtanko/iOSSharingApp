@@ -37,7 +37,7 @@ extension Api {
         task.resume()
     }
     
-    func editSkill(transaction: Transaction, _ completion: @escaping (Result<Any>) -> Void) {
+    func editTransaction(transaction: Transaction, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
         let url = URL(string: "\(baseURL)/api/Transaction/\(transaction.id)")!
         var request = createRequest(url: url, httpMethod: .PUT)
@@ -64,9 +64,9 @@ extension Api {
         task.resume()
     }
     
-    func deleteSkill(transaction: Transaction, _ completion: @escaping (Result<Any>) -> Void) {
+    func deleteTransaction(transaction: Transaction, sendNotification: Bool, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Transaction/\(transaction.id)")!
+        let url = URL(string: "\(baseURL)/api/Transaction/\(transaction.id)?sendNotification=\(sendNotification)")!
         let request = createRequest(url: url, httpMethod: .DELETE)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -79,9 +79,10 @@ extension Api {
         task.resume()
     }
     
-    func getTransactions(_ completion: @escaping (Result<[Transaction]>) -> Void) {
+    func getCompletedTransactions(type: TransactionsType, _ completion: @escaping (Result<[Transaction]>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Users/\(CurrentUser.user.mail!)/skills")!
+        let typeString: String = type == .income ? "in" : type.rawValue
+        let url = URL(string: "\(baseURL)/api/Users/\(CurrentUser.user.mail!)/transactions/\(typeString)")!
         let request = createRequest(url: url, httpMethod: .GET)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -94,11 +95,18 @@ extension Api {
                 return completion(Result.failure(ApiError.couldNotParse))
             }
             let jsonData = Data(safeData)
-            guard let result = try? self.decoder.decode([Skill].self, from: jsonData) else {
+            guard let result = try? self.decoder.decode([Transaction].self, from: jsonData) else {
                 return completion(Result.failure(ApiError.couldNotParse))
             }
             return completion(Result.success(result))
         })
         task.resume()
     }
+}
+
+enum TransactionsType: String {
+    case completed
+    case active
+    case income
+    case out
 }
