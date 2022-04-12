@@ -68,7 +68,7 @@ extension Api {
         task.resume()
     }
     
-    func setUser(email: String, user: User, _ completion: @escaping (Result<Any>) -> Void) {
+    func editUser(email: String, user: User, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
         let url = URL(string: "\(baseURL)/api/Users/\(email)")!
         var request = createRequest(url: url, httpMethod: .PUT)

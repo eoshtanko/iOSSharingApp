@@ -24,8 +24,6 @@ class PersonalSkillListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
-        let appearance = UINavigationBarAppearance()
-        navigationController?.navigationBar.standardAppearance = appearance
     }
     
     func setSkills(skills: [Skill]?) {

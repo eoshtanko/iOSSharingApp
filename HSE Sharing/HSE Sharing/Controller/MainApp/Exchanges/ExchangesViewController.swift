@@ -12,14 +12,16 @@ class ExchangesViewController: UIViewController {
     static let tableView = UITableView(frame: .zero, style: .grouped)
     private let pickerView = UIPickerView()
     private let settingsButton = UIButton()
+    private var activityIndicator: UIActivityIndicatorView!
     
     private var transactions: [Transaction] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureActivityIndicator()
         configureView()
         configureTableView()
+        makeRequest()
         configureNavigationBar()
         configurePickerView()
         configurePickerAppearance()
@@ -27,6 +29,38 @@ class ExchangesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
+    }
+    
+    private func makeRequest() {
+        activityIndicator.startAnimating()
+//        Api.shared.getUserByEmail(email: emailTextField.text!) { result in
+//            switch result {
+//            case .success(let skills):
+//                CurrentUser.user = user
+//                DispatchQueue.main.async {
+//                    self.activityIndicator.stopAnimating()
+//                    ExchangesViewController.tableView.reloadData()
+//                }
+//            case .failure(let apiError):
+//                DispatchQueue.main.async {
+//                    self.activityIndicator.stopAnimating()
+//                    if apiError as! ApiError == ApiError.noSuchData {
+//                        self.noSuchUserAlert()
+//                    } else {
+//                        self.showFailAlert()
+//                    }
+//                }
+//            }
+//        }
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
     }
     
     private func configureView() {

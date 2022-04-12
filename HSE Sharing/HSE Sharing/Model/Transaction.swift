@@ -36,4 +36,15 @@ class Transaction: Codable, NSCoding {
         coder.encode(userPhoto, forKey: "userPhoto")
         coder.encode(status, forKey:"status")
     }
+    
+    var toDict: [String: Any] {
+        return ["id": id,
+                "skill1": skill1,
+                "skill2": skill2,
+                "description": description,
+                "userName": userName,
+                "userPhoto": userPhoto,
+                "status": status
+        ]
+    }
 }

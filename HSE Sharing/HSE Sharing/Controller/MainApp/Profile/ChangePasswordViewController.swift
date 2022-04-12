@@ -43,7 +43,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func makeRequest() {
-        Api.shared.setUser(email: self.user!.mail!, user: self.user!) { result in
+        Api.shared.editUser(email: self.user!.mail!, user: self.user!) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

@@ -9,26 +9,88 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    private var activityIndicator: UIActivityIndicatorView!
     static let tableView = UITableView(frame: .zero, style: .grouped)
     private let searchBar = UISearchBar()
+    private let refreshControl = UIRefreshControl()
     
     private var skills: [Skill] = []
-    private var filteredSkills: [Skill]!
+    private var filteredSkills: [Skill] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // skills = Api.searchSkills
-        filteredSkills = skills
+        configureActivityIndicator()
+        makeInitialRequest()
         configureView()
         configureNavigationBar()
         configureSearchBar()
         configureTableView()
-        SearchViewController.tableView.rowHeight          = UITableView.automaticDimension
-        SearchViewController.tableView.estimatedRowHeight = 400
+        configurePullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
+    }
+    
+    private func makeInitialRequest() {
+        activityIndicator.startAnimating()
+        Api.shared.getSkills { result in
+            switch result {
+            case .success(let skills):
+                DispatchQueue.main.async {
+                    self.skills = skills ?? []
+                    self.filteredSkills = self.skills
+                    SearchViewController.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    @objc private func makeRenewRequest() {
+        activityIndicator.startAnimating()
+        Api.shared.getSkills { result in
+            switch result {
+            case .success(let skills):
+                DispatchQueue.main.async {
+                    self.skills = skills ?? []
+                    self.filteredSkills = self.skills
+                    SearchViewController.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func configurePullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating")
+        refreshControl.addTarget(self, action: #selector(makeRenewRequest), for: .valueChanged)
+        SearchViewController.tableView.addSubview(refreshControl)
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
     }
     
     private func configureView() {
@@ -56,6 +118,8 @@ class SearchViewController: UIViewController {
         ])
         
         SearchViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
+        SearchViewController.tableView.rowHeight = UITableView.automaticDimension
+        SearchViewController.tableView.estimatedRowHeight = 400
     }
     
     private func configureNavigationBar() {

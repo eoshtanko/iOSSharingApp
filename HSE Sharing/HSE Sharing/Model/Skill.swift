@@ -39,4 +39,16 @@ class Skill: Codable, NSCoding {
         coder.encode(userName, forKey:"userName")
         coder.encode(userPhoto, forKey:"userPhoto")
     }
+    
+    var toDict: [String: Any] {
+        return ["id": id,
+                "status": status,
+                "name": name,
+                "description": description,
+                "category": category,
+                "subcategory": subcategory,
+                "userName": userName,
+                "userPhoto": userPhoto
+        ]
+    }
 }

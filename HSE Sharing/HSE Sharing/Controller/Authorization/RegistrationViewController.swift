@@ -47,7 +47,7 @@ class RegistrationViewController : UIViewController {
     }
     
     private func makeRequest(_ user: User) {
-        Api.shared.setUser(email: CurrentUser.user.mail!, user: user) { result in
+        Api.shared.editUser(email: CurrentUser.user.mail!, user: user) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

@@ -203,7 +203,7 @@ class ProfileViewController: UIViewController {
     
     func makeRequest() {
         activityIndicator.startAnimating()
-        Api.shared.setUser(email: emailTextField.text!, user: currentUser!) { result in
+        Api.shared.editUser(email: emailTextField.text!, user: currentUser!) { result in
             switch result {
             case .success(_):
                 CurrentUser.user = self.currentUser!

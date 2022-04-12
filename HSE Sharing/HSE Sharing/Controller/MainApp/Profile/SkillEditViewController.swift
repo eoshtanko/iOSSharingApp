@@ -31,7 +31,11 @@ class SkillEditViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func saveButtonAction(_ sender: Any) {
-        
+        if skill != nil {
+            editRequest()
+        } else {
+            createRequest()
+        }
     }
     
     override func viewDidLoad() {
@@ -46,11 +50,18 @@ class SkillEditViewController: UIViewController {
         configureTextFields()
         configureTextView()
         configurePickerView()
-        configureNavigationBar()
     }
     
     func setSkill(_ skill: Skill) {
         self.skill = skill
+    }
+    
+    private func editRequest() {
+        
+    }
+    
+    private func createRequest() {
+        
     }
     
     private func configureTextViewHintText() {
@@ -84,12 +95,6 @@ class SkillEditViewController: UIViewController {
     
     private func configureButtons() {
         saveButton.makeButtonOval()
-    }
-    
-    private func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        navigationController?.navigationBar.standardAppearance = appearance
     }
     
     private func configureTextFields() {
