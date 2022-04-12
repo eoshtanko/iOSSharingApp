@@ -22,7 +22,7 @@ class User: Codable, NSCoding {
     var dormitoryId: Int?
     var about: String?
     var contact: String?
-    var photo: Data?
+    var photo: String?
     var transactions: [Transaction]?
     var skills: [Skill]?
     var feedbacks: [Feedback]?
@@ -31,7 +31,7 @@ class User: Codable, NSCoding {
     var averageGrade: Double?
     var isModer: Bool?
     
-    init(mail: String?, confirmationCodeServer: Int?, confirmationCodeUser: Int?, password: String?, name: String?, surname: String?, birthDate: Date?, gender: Int?, studyingYearId: Int?, majorId: Int?, campusLocationId: Int?, dormitoryId: Int?, about: String?, contact: String?, photo: Data?, transactions: [Transaction]?, skills: [Skill]?, feedbacks: [Feedback]?, gradesCount: Int?, gradesSum: Int?, averageGrade: Double?, isModer: Bool?) {
+    init(mail: String?, confirmationCodeServer: Int?, confirmationCodeUser: Int?, password: String?, name: String?, surname: String?, birthDate: Date?, gender: Int?, studyingYearId: Int?, majorId: Int?, campusLocationId: Int?, dormitoryId: Int?, about: String?, contact: String?, photo: String?, transactions: [Transaction]?, skills: [Skill]?, feedbacks: [Feedback]?, gradesCount: Int?, gradesSum: Int?, averageGrade: Double?, isModer: Bool?) {
         self.mail = mail
         self.confirmationCodeServer = confirmationCodeServer
         self.confirmationCodeUser = confirmationCodeUser
@@ -71,7 +71,7 @@ class User: Codable, NSCoding {
         dormitoryId = coder.decodeInteger(forKey: "dormitoryId")
         contact = coder.decodeObject(forKey: "contact") as? String
         about = coder.decodeObject(forKey: "about") as? String
-        photo = coder.decodeObject(forKey: "photo") as? Data
+        photo = coder.decodeObject(forKey: "photo") as? String
         transactions = coder.decodeObject(forKey: "transactions") as? [Transaction]
         skills = coder.decodeObject(forKey: "skills") as? [Skill]
         feedbacks = coder.decodeObject(forKey: "feedbacks") as? [Feedback]

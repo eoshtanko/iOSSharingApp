@@ -194,8 +194,9 @@ class ProfileViewController: UIViewController {
         aboutMeTextView.text = currentUser?.about
         socialNetworkTextField.text = currentUser?.contact
         isModerSymbol.isHidden = !(currentUser?.isModer ?? false)
-        if let imageData = CurrentUser.user.photo {
-            profileImageView.image = UIImage(data: imageData)
+        if let imageBase64String = CurrentUser.user.photo {
+            let imageData = Data(base64Encoded: imageBase64String)
+            profileImageView.image = UIImage(data: imageData!)
         }
         // averageGrade
     }
