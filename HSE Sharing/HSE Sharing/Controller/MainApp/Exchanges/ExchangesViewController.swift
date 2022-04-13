@@ -69,8 +69,8 @@ class ExchangesViewController: UIViewController {
     
     private func configureTableView() {
         ExchangesViewController.tableView.register(
-            UINib(nibName: String(describing: ExchangeCell.self), bundle: nil),
-            forCellReuseIdentifier: ExchangeCell.identifier
+            UINib(nibName: String(describing: СompletedExchangeCell.self), bundle: nil),
+            forCellReuseIdentifier: СompletedExchangeCell.identifier
         )
         ExchangesViewController.tableView.dataSource = self
         ExchangesViewController.tableView.delegate = self
@@ -153,9 +153,9 @@ extension ExchangesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: ExchangeCell.identifier,
+            withIdentifier: СompletedExchangeCell.identifier,
             for: indexPath)
-        guard let transactionCell = cell as? ExchangeCell else {
+        guard let transactionCell = cell as? СompletedExchangeCell else {
             return cell
         }
         let transaction = transactions[indexPath.row]

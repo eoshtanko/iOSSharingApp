@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
-        filteredSkills = skills
+        makeInitialRequest()
         configureView()
         configureTableView()
         configureNavigationBar()
@@ -108,7 +108,6 @@ class SearchViewController: UIViewController {
     }
 
     private func configureTableViewAppearance() {
-        SearchViewController.tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
             SearchViewController.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             SearchViewController.tableView.topAnchor.constraint(equalTo: view.topAnchor),

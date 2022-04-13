@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ExchangeCell: UITableViewCell {
+class СompletedExchangeCell: UITableViewCell {
     
-    static let identifier = String(describing: ExchangeCell.self)
+    static let identifier = String(describing: СompletedExchangeCell.self)
     
     @IBOutlet weak var coloredView: UIView!
     @IBOutlet weak var innerView: UIView!

@@ -23,6 +23,12 @@
 		345C17EC280169D600ED5526 /* TextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C17EB280169D600ED5526 /* TextField + Extension.swift */; };
 		345C180E2801750B00ED5526 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C180D2801750B00ED5526 /* SceneDelegate.swift */; };
 		3467E2BE2805F6CD004A34F7 /* NetworkManager + Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E2BD2805F6CD004A34F7 /* NetworkManager + Transaction.swift */; };
+		3467E2C4280731CF004A34F7 /* CurrentExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3467E2C3280731CF004A34F7 /* CurrentExchangeCell.xib */; };
+		3467E2C6280731D7004A34F7 /* CurrentExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E2C5280731D7004A34F7 /* CurrentExchangeCell.swift */; };
+		3467E2C8280731E5004A34F7 /* IncomeExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E2C7280731E5004A34F7 /* IncomeExchangeCell.swift */; };
+		3467E2CA280731EE004A34F7 /* IncomeExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3467E2C9280731EE004A34F7 /* IncomeExchangeCell.xib */; };
+		3467E2CC28073200004A34F7 /* OutcomeExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3467E2CB28073200004A34F7 /* OutcomeExchangeCell.swift */; };
+		3467E2CE28073209004A34F7 /* OutcomeExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3467E2CD28073209004A34F7 /* OutcomeExchangeCell.xib */; };
 		347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375BB27C62DF50029A419 /* AppDelegate.swift */; };
 		347375C527C62DF70029A419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 347375C427C62DF70029A419 /* Assets.xcassets */; };
 		347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347375C627C62DF70029A419 /* LaunchScreen.storyboard */; };
@@ -49,8 +55,8 @@
 		34B1B3AA28041C5400F14EFB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3A928041C5400F14EFB /* NetworkError.swift */; };
 		34B1B3AC28041C8200F14EFB /* Formatter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */; };
 		34B1B3AF28043CBB00F14EFB /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1B3AE28043CBB00F14EFB /* Date + Extension.swift */; };
-		34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */; };
-		34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */; };
+		34B2BF0427DF1D5A00E849A0 /* СompletedExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B2BF0327DF1D5A00E849A0 /* СompletedExchangeCell.xib */; };
+		34B2BF0627DF1D6A00E849A0 /* СompletedExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2BF0527DF1D6A00E849A0 /* СompletedExchangeCell.swift */; };
 		34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */; };
 		34C4C7F32801DCEE00769CFC /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C4C7F22801DCEE00769CFC /* CommentsViewController.swift */; };
 		34C4C7F52801DD0F00769CFC /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C4C7F42801DD0F00769CFC /* Comments.storyboard */; };
@@ -91,6 +97,12 @@
 		345C17EB280169D600ED5526 /* TextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField + Extension.swift"; sourceTree = "<group>"; };
 		345C180D2801750B00ED5526 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3467E2BD2805F6CD004A34F7 /* NetworkManager + Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager + Transaction.swift"; sourceTree = "<group>"; };
+		3467E2C3280731CF004A34F7 /* CurrentExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentExchangeCell.xib; sourceTree = "<group>"; };
+		3467E2C5280731D7004A34F7 /* CurrentExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentExchangeCell.swift; sourceTree = "<group>"; };
+		3467E2C7280731E5004A34F7 /* IncomeExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeExchangeCell.swift; sourceTree = "<group>"; };
+		3467E2C9280731EE004A34F7 /* IncomeExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomeExchangeCell.xib; sourceTree = "<group>"; };
+		3467E2CB28073200004A34F7 /* OutcomeExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeExchangeCell.swift; sourceTree = "<group>"; };
+		3467E2CD28073209004A34F7 /* OutcomeExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutcomeExchangeCell.xib; sourceTree = "<group>"; };
 		347375B827C62DF50029A419 /* HSE Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HSE Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		347375BB27C62DF50029A419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		347375C427C62DF70029A419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,8 +131,8 @@
 		34B1B3A928041C5400F14EFB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		34B1B3AB28041C8200F14EFB /* Formatter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter + Extension.swift"; sourceTree = "<group>"; };
 		34B1B3AE28043CBB00F14EFB /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
-		34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeCell.xib; sourceTree = "<group>"; };
-		34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCell.swift; sourceTree = "<group>"; };
+		34B2BF0327DF1D5A00E849A0 /* СompletedExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "СompletedExchangeCell.xib"; sourceTree = "<group>"; };
+		34B2BF0527DF1D6A00E849A0 /* СompletedExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СompletedExchangeCell.swift"; sourceTree = "<group>"; };
 		34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPreferences.swift; sourceTree = "<group>"; };
 		34C4C7F22801DCEE00769CFC /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		34C4C7F42801DD0F00769CFC /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
@@ -395,8 +407,14 @@
 		34CBC5B027DBA8590082FAF0 /* Exchanges */ = {
 			isa = PBXGroup;
 			children = (
-				34B2BF0327DF1D5A00E849A0 /* ExchangeCell.xib */,
-				34B2BF0527DF1D6A00E849A0 /* ExchangeCell.swift */,
+				34B2BF0327DF1D5A00E849A0 /* СompletedExchangeCell.xib */,
+				34B2BF0527DF1D6A00E849A0 /* СompletedExchangeCell.swift */,
+				3467E2C3280731CF004A34F7 /* CurrentExchangeCell.xib */,
+				3467E2C5280731D7004A34F7 /* CurrentExchangeCell.swift */,
+				3467E2C7280731E5004A34F7 /* IncomeExchangeCell.swift */,
+				3467E2C9280731EE004A34F7 /* IncomeExchangeCell.xib */,
+				3467E2CB28073200004A34F7 /* OutcomeExchangeCell.swift */,
+				3467E2CD28073209004A34F7 /* OutcomeExchangeCell.xib */,
 				348C2F1D280219AE00551F71 /* LeaveCommentScreen.storyboard */,
 			);
 			path = Exchanges;
@@ -510,12 +528,15 @@
 				34449ADF27FE3E48002763CD /* EnterScreen.storyboard in Resources */,
 				34CBC5AE27DBA6980082FAF0 /* ConversationTableViewCell.xib in Resources */,
 				34449AD927FE3124002763CD /* SkillEditScreen.storyboard in Resources */,
+				3467E2CE28073209004A34F7 /* OutcomeExchangeCell.xib in Resources */,
 				342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */,
 				347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */,
 				347375C527C62DF70029A419 /* Assets.xcassets in Resources */,
-				34B2BF0427DF1D5A00E849A0 /* ExchangeCell.xib in Resources */,
+				34B2BF0427DF1D5A00E849A0 /* СompletedExchangeCell.xib in Resources */,
 				34C4C7F92801FCB100769CFC /* CommentCell.xib in Resources */,
+				3467E2C4280731CF004A34F7 /* CurrentExchangeCell.xib in Resources */,
 				34CBC5AC27DBA6270082FAF0 /* EntryMessageView.xib in Resources */,
+				3467E2CA280731EE004A34F7 /* IncomeExchangeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34B2BF0627DF1D6A00E849A0 /* ExchangeCell.swift in Sources */,
+				34B2BF0627DF1D6A00E849A0 /* СompletedExchangeCell.swift in Sources */,
 				347375E127C653C00029A419 /* NetworkManager.swift in Sources */,
 				34841C642805C3390041124D /* NetworkManager + Skills.swift in Sources */,
 				34C4C7F32801DCEE00769CFC /* CommentsViewController.swift in Sources */,
@@ -583,7 +604,9 @@
 				34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */,
 				34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */,
 				342B65C627DE285800A78536 /* PersonalSkillListViewController.swift in Sources */,
+				3467E2CC28073200004A34F7 /* OutcomeExchangeCell.swift in Sources */,
 				34EB7A9028015F000008B4CD /* CodeViewController.swift in Sources */,
+				3467E2C6280731D7004A34F7 /* CurrentExchangeCell.swift in Sources */,
 				347375D427C646510029A419 /* Transaction.swift in Sources */,
 				347375DC27C64C410029A419 /* DataInEnglish.swift in Sources */,
 				347375D827C647520029A419 /* User.swift in Sources */,
@@ -597,6 +620,7 @@
 				342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */,
 				347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */,
 				34B1B3AA28041C5400F14EFB /* NetworkError.swift in Sources */,
+				3467E2C8280731E5004A34F7 /* IncomeExchangeCell.swift in Sources */,
 				347375BC27C62DF50029A419 /* AppDelegate.swift in Sources */,
 				342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */,
 				3467E2BE2805F6CD004A34F7 /* NetworkManager + Transaction.swift in Sources */,
