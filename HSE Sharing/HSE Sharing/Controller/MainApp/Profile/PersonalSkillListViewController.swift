@@ -2,20 +2,26 @@ import UIKit
 
 class PersonalSkillListViewController: UIViewController {
     
-    static var isContainedCanSkills = true
+    private var activityIndicator: UIActivityIndicatorView!
+    
+    var isContainedCanSkills = true
+    var isMyProfile = true
     private var skills: [Skill] = [] {
         didSet {
             if tableView != nil {
                 tableView.isHidden = skills.isEmpty
+                view.backgroundColor = skills.isEmpty ? UIColor(named: "BlueLightColor") : .white
             }
         }
     }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBAction func unwindToPersonalSkillListViewController(segue:UIStoryboardSegue) { }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureActivityIndicator()
         configureTableView()
         configureNavigationButton()
         configureImage()
@@ -23,7 +29,18 @@ class PersonalSkillListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        view.backgroundColor = skills.isEmpty ? UIColor(named: "BlueLightColor") : .white
         configureNavigationBar()
+        if isMyProfile {
+            configureSkills()
+        }
+    }
+    
+    func configureSkills() {
+        skills = CurrentUser.user.skills!.filter { skill in
+            return skill.status == (isContainedCanSkills ? 1 : 2)
+        }
+        tableView.reloadData()
     }
     
     func setSkills(skills: [Skill]?) {
@@ -43,7 +60,7 @@ class PersonalSkillListViewController: UIViewController {
     }
     
     private func configureImage() {
-        if (PersonalSkillListViewController.isContainedCanSkills) {
+        if (isContainedCanSkills) {
             imageView.image = UIImage(named: "crowCosmonautLeft")
         } else {
             imageView.image = UIImage(named: "crowCosmonautRight")
@@ -61,29 +78,63 @@ class PersonalSkillListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        if PersonalSkillListViewController.isContainedCanSkills {
+        if isContainedCanSkills {
             navigationItem.title = EnterViewController.isEnglish ? "Can" : "Могу"
         } else {
             navigationItem.title = EnterViewController.isEnglish ? "Want" : "Хочу"
         }
     }
     
-    private func showConfirmDeletingAlert() {
+    private func showConfirmDeletingAlert(id: Int) {
         let failureAlert = UIAlertController(
             title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
         failureAlert.addAction(UIAlertAction(title: "Удалить", style: UIAlertAction.Style.destructive) {_ in
-            //self.configureSnapshotListener()
+            self.deleteSkillRequest(id: id)
         })
         present(failureAlert, animated: true, completion: nil)
+    }
+    
+    private func deleteSkillRequest(id: Int) {
+        activityIndicator.startAnimating()
+        Api.shared.deleteSkill(id: id) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.configureSkills()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
     }
     
     @objc private func createSkill() {
         self.navigationItem.title = ""
         let storyboard = UIStoryboard(name: "SkillEditScreen", bundle: nil)
         let skillEditViewController = storyboard.instantiateViewController(withIdentifier: "SkillEditScreen") as! SkillEditViewController
+        skillEditViewController.isCanSkill = isContainedCanSkills
         navigationController?.pushViewController(skillEditViewController, animated: true)
     }
     
@@ -92,6 +143,7 @@ class PersonalSkillListViewController: UIViewController {
         let storyboard = UIStoryboard(name: "SkillEditScreen", bundle: nil)
         let skillEditViewController = storyboard.instantiateViewController(withIdentifier: "SkillEditScreen") as! SkillEditViewController
         skillEditViewController.setSkill(skill)
+        skillEditViewController.isCanSkill = isContainedCanSkills
         navigationController?.pushViewController(skillEditViewController, animated: true)
     }
 }

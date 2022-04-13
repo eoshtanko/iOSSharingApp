@@ -15,8 +15,17 @@ class Skill: Codable, NSCoding {
     var description: String
     var category: Int
     var subcategory: Int
-    var userName: String
-    var userPhoto: Data
+    var userMail: String
+    
+    init(id: Int, status: Int, name: String, description: String, category: Int, subcategory: Int, userMail: String) {
+        self.id = id
+        self.status = status
+        self.name = name
+        self.description = description
+        self.category = category
+        self.subcategory = subcategory
+        self.userMail = userMail
+    }
     
     public required init?(coder: NSCoder) {
         id = coder.decodeInteger(forKey: "id")
@@ -25,8 +34,7 @@ class Skill: Codable, NSCoding {
         description = coder.decodeObject(forKey: "description") as! String
         category = coder.decodeInteger(forKey: "category")
         subcategory = coder.decodeInteger(forKey: "subcategory")
-        userName = coder.decodeObject(forKey: "userName") as! String
-        userPhoto = coder.decodeObject(forKey: "userPhoto") as! Data
+        userMail = coder.decodeObject(forKey: "userMail") as! String
     }
     
     public func encode(with coder: NSCoder) {
@@ -36,8 +44,7 @@ class Skill: Codable, NSCoding {
         coder.encode(description, forKey: "description")
         coder.encode(category, forKey:"category")
         coder.encode(subcategory, forKey: "subcategory")
-        coder.encode(userName, forKey:"userName")
-        coder.encode(userPhoto, forKey:"userPhoto")
+        coder.encode(userMail, forKey:"userMail")
     }
     
     var toDict: [String: Any] {
@@ -47,8 +54,7 @@ class Skill: Codable, NSCoding {
                 "description": description,
                 "category": category,
                 "subcategory": subcategory,
-                "userName": userName,
-                "userPhoto": userPhoto
+                "userMail": userMail,
         ]
     }
 }

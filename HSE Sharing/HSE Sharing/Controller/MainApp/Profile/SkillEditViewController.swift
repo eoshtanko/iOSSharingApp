@@ -11,7 +11,10 @@ import UIKit
 class SkillEditViewController: UIViewController {
     
     var skill: Skill?
+    var editingSkill: Skill!
+    var isCanSkill: Bool!
     
+    private var activityIndicator: UIActivityIndicatorView!
     private var nameIsValid: Bool = true
     
     let categoryPickerView = UIPickerView()
@@ -31,6 +34,7 @@ class SkillEditViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func saveButtonAction(_ sender: Any) {
+        activityIndicator.startAnimating()
         if skill != nil {
             editRequest()
         } else {
@@ -40,6 +44,8 @@ class SkillEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureEditingSkill()
+        configureActivityIndicator()
         configureTextViewHintText()
         setData()
     }
@@ -52,20 +58,71 @@ class SkillEditViewController: UIViewController {
         configurePickerView()
     }
     
+    func configureEditingSkill() {
+        editingSkill = Skill(id: skill?.id ?? 0,
+                             status: isCanSkill ? 1 : 2,
+                             name: skill?.name ?? "",
+                             description: skill?.description ?? "",
+                             category: skill?.category ?? 0,
+                             subcategory: skill?.subcategory ?? 0,
+                             userMail: CurrentUser.user.mail!)
+    }
+    
     func setSkill(_ skill: Skill) {
         self.skill = skill
     }
     
     private func editRequest() {
-        
+        Api.shared.editSkill(skill: editingSkill) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.performSegue(withIdentifier: "unwindToPersonalSkillList", sender: nil)
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
     }
     
     private func createRequest() {
-        
+        Api.shared.createSkill(skill: editingSkill) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.performSegue(withIdentifier: "unwindToPersonalSkillList", sender: nil)
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Данные не были сохранены. Проверьте интернет и попробуйте снова.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
     }
     
     private func configureTextViewHintText() {
-        if skill?.description.isEmpty ?? true {
+        if editingSkill?.description.isEmpty ?? true {
             descriptionTextView.text = "Добавьте описание навыка"
             descriptionTextView.textColor = .lightGray
         }
@@ -99,7 +156,7 @@ class SkillEditViewController: UIViewController {
     
     private func configureTextFields() {
         nameOfSkillTextField.delegate = self
-        subcategoryTextField.isEnabled = skill != nil
+        subcategoryTextField.isEnabled = editingSkill != nil
     }
     
     private func configureTextView() {
@@ -119,6 +176,9 @@ extension SkillEditViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         nameIsValid = textField.text?.isNameOfSkillValid() ?? false
+        if nameIsValid {
+            editingSkill?.name = textField.text!
+        }
         changeValidEditingStatus()
     }
     
@@ -145,6 +205,7 @@ extension SkillEditViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        editingSkill?.description = textView.text
         if textView.text.isEmpty {
             textView.text = "Добавьте описание навыка"
             textView.textColor = UIColor.lightGray
@@ -175,7 +236,7 @@ extension SkillEditViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         case 1:
             return !EnterViewController.isEnglish ?  DataInRussian.categories.count : DataInEnglish.categories.count
         case 2:
-            if skill?.category == 0 {
+            if editingSkill?.category == 0 {
             return !EnterViewController.isEnglish ? DataInRussian.subcategoriesStudy.count : DataInEnglish.subcategoriesStudy.count
             }
             return !EnterViewController.isEnglish ? DataInRussian.subcategoriesNonStudy.count : DataInEnglish.subcategoriesNonStudy.count
@@ -189,7 +250,7 @@ extension SkillEditViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         case 1:
             return !EnterViewController.isEnglish ? DataInRussian.categories[row] : DataInEnglish.categories[row]
         case 2:
-            if skill?.category == 0 {
+            if editingSkill?.category == 0 {
             return !EnterViewController.isEnglish ? DataInRussian.subcategoriesStudy[row] : DataInEnglish.subcategoriesStudy[row]
             }
             return !EnterViewController.isEnglish ? DataInRussian.subcategoriesNonStudy[row] : DataInEnglish.subcategoriesNonStudy[row]
@@ -204,16 +265,19 @@ extension SkillEditViewController: UIPickerViewDelegate, UIPickerViewDataSource 
             subcategoryTextField.isEnabled = true
             categoryTextField.text = !EnterViewController.isEnglish ? DataInRussian.categories[row] : DataInEnglish.categories[row]
             categoryTextField.resignFirstResponder()
+            editingSkill?.category = row
         case 2:
-            if skill?.category == 0 {
+            if editingSkill?.category == 0 {
                 subcategoryTextField.text = !EnterViewController.isEnglish ? DataInRussian.subcategoriesStudy[row] : DataInEnglish.subcategoriesStudy[row]
             } else {
             subcategoryTextField.text = !EnterViewController.isEnglish ? DataInRussian.subcategoriesNonStudy[row] : DataInEnglish.subcategoriesNonStudy[row]
             }
+            editingSkill?.subcategory = row
             subcategoryTextField.resignFirstResponder()
         default:
             return
         }
+        changeValidEditingStatus()
     }
 }
 

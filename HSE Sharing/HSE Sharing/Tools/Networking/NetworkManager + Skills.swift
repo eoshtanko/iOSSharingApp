@@ -21,6 +21,9 @@ extension Api {
 
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                }
                 completion(Result.failure(ApiError.badResponse))
                 return
             }
@@ -53,9 +56,10 @@ extension Api {
                 return
             }
             if let skills = CurrentUser.user.skills {
-                for i in 0...skills.count {
+                for i in 0..<skills.count {
                     if skills[i].id == skill.id {
                         CurrentUser.user.skills![i] = skill
+                        break
                     }
                 }
             }
@@ -64,9 +68,9 @@ extension Api {
         task.resume()
     }
     
-    func deleteSkill(skill: Skill, _ completion: @escaping (Result<Any>) -> Void) {
+    func deleteSkill(id: Int, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Skills/\(skill.id)")!
+        let url = URL(string: "\(baseURL)/api/Skills/\(id)")!
         let request = createRequest(url: url, httpMethod: .DELETE)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -74,6 +78,7 @@ extension Api {
                 completion(Result.failure(ApiError.badResponse))
                 return
             }
+            CurrentUser.user.skills!.removeAll(where: { $0.id == id })
             return completion(Result.success(""))
         })
         task.resume()

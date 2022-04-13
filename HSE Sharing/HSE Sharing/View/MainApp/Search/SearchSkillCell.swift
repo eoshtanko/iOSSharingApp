@@ -24,8 +24,13 @@ class SearchSkillCell: UITableViewCell {
     @IBOutlet weak var categoryTextLabel: UILabel!
     @IBOutlet weak var subcategoryLabel: UILabel!
     @IBOutlet weak var subcategoryTextLabel: UILabel!
+    @IBOutlet weak var exchangeButton: UIButton!
+    
+    @IBAction func exchangeButtonPresssed(_ sender: Any) {
+    }
     
     func configureCell(_ skill: Skill) {
+        exchangeButton.makeButtonOval()
         nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
         descriptionLabel.text = EnterViewController.isEnglish ? "Description:" : "Описание:"
         categoryLabel.text = EnterViewController.isEnglish ? "Category:" : "Категория:"
@@ -33,7 +38,7 @@ class SearchSkillCell: UITableViewCell {
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
      //   photoOfAuthorImageView.image = skill.userPhoto
-        authorNameTextLabel.text = skill.userName
+        //authorNameTextLabel.text = skill.userName
         if EnterViewController.isEnglish {
             categoryTextLabel.text = DataInEnglish.categories[skill.category]
             if skill.category == 0 {

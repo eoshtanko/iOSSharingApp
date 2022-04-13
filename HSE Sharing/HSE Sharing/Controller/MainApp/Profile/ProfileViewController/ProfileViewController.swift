@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     
     var isMyProfile = true
     var currentUser: User?
+    var prevImage: UIImage!
     
     var isProfileInfoEditing = false
     var nameIsValid: Bool = true
@@ -97,12 +98,10 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func canButtonPressed(_ sender: Any) {
-        PersonalSkillListViewController.isContainedCanSkills = true
         goToPersonalSkillList(skillStatus: 1)
     }
     
     @IBAction func wantButtonPressed(_ sender: Any) {
-        PersonalSkillListViewController.isContainedCanSkills = false
         goToPersonalSkillList(skillStatus: 2)
     }
     
@@ -122,7 +121,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func bottomButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
-            makeRequest()
+            makeRequest(isImageChanged: false)
         } else {
             logOut()
         }
@@ -169,7 +168,7 @@ class ProfileViewController: UIViewController {
     
     private func configureData() {
         if currentUser == nil {
-            currentUser = CurrentUser.user
+            currentUser = getNewUser()
         }
         nameTextFiled.text = currentUser?.name
         surnameTextField.text = currentUser?.surname
@@ -194,14 +193,39 @@ class ProfileViewController: UIViewController {
         aboutMeTextView.text = currentUser?.about
         socialNetworkTextField.text = currentUser?.contact
         isModerSymbol.isHidden = !(currentUser?.isModer ?? false)
-        if let imageBase64String = CurrentUser.user.photo {
+        if let imageBase64String = currentUser?.photo {
             let imageData = Data(base64Encoded: imageBase64String)
             profileImageView.image = UIImage(data: imageData!)
         }
         // averageGrade
     }
     
-    func makeRequest() {
+    private func getNewUser() -> User {
+        return User(mail: CurrentUser.user.mail,
+                    confirmationCodeServer: CurrentUser.user.confirmationCodeServer,
+                    confirmationCodeUser: CurrentUser.user.confirmationCodeUser,
+                    password: CurrentUser.user.password,
+                    name: CurrentUser.user.name,
+                    surname: CurrentUser.user.surname,
+                    birthDate: CurrentUser.user.birthDate,
+                    gender: CurrentUser.user.gender,
+                    studyingYearId: CurrentUser.user.studyingYearId,
+                    majorId: CurrentUser.user.majorId,
+                    campusLocationId: CurrentUser.user.campusLocationId,
+                    dormitoryId: CurrentUser.user.dormitoryId,
+                    about: CurrentUser.user.about,
+                    contact: CurrentUser.user.contact,
+                    photo: CurrentUser.user.photo,
+                    transactions: CurrentUser.user.transactions,
+                    skills: CurrentUser.user.skills,
+                    feedbacks: CurrentUser.user.feedbacks,
+                    gradesCount: CurrentUser.user.gradesCount,
+                    gradesSum: CurrentUser.user.gradesSum,
+                    averageGrade: CurrentUser.user.averageGrade,
+                    isModer: CurrentUser.user.isModer)
+    }
+    
+    func makeRequest(isImageChanged: Bool) {
         activityIndicator.startAnimating()
         Api.shared.editUser(email: emailTextField.text!, user: currentUser!) { result in
             switch result {
@@ -214,20 +238,25 @@ class ProfileViewController: UIViewController {
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.showFailAlert()
+                    self.showFailAlert(isImageChanged: isImageChanged)
                 }
             }
         }
     }
     
-    private func showFailAlert() {
+    private func showFailAlert(isImageChanged: Bool) {
         let successAlert = UIAlertController(title: "Ошибка сети", message: "Попробовать еще раз или отменить редактирование?", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "Еще раз", style: UIAlertAction.Style.default) { _ in
-            self.makeRequest()
+            self.makeRequest(isImageChanged: isImageChanged)
         })
         successAlert.addAction(UIAlertAction(title: "Сброс данных", style: UIAlertAction.Style.default) { _ in
-            self.currentUser = nil
-            self.configureData()
+            if isImageChanged {
+                self.currentUser?.photo = self.prevImage.jpegData(compressionQuality: 1)?.base64EncodedString()
+                self.profileImageView.image = self.prevImage
+            } else {
+                self.currentUser = nil
+                self.configureData()
+            }
         })
         present(successAlert, animated: true, completion: nil)
     }
@@ -358,9 +387,13 @@ class ProfileViewController: UIViewController {
     private func goToPersonalSkillList(skillStatus: Int) {
         let storyboard = UIStoryboard(name: "PersonalSkillList", bundle: nil)
         let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "PersonalSkillList") as! PersonalSkillListViewController
-        personalSkillListViewController.setSkills(skills: currentUser?.skills?.filter { skill in
-            return skill.status == skillStatus
-        })
+        if !isMyProfile {
+            personalSkillListViewController.setSkills(skills: currentUser?.skills?.filter { skill in
+                return skill.status == skillStatus
+            })
+        }
+        personalSkillListViewController.isContainedCanSkills = skillStatus == 1
+        personalSkillListViewController.isMyProfile = isMyProfile
         navigationController?.pushViewController(personalSkillListViewController, animated: true)
     }
     

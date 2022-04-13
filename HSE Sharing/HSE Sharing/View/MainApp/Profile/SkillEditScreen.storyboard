@@ -189,9 +189,11 @@
                         <outlet property="subcategoryLabel" destination="Ruy-mw-Xt1" id="Ruo-Cu-GxB"/>
                         <outlet property="subcategoryTextField" destination="BX7-xX-BWa" id="Pfd-Tt-Bob"/>
                         <outlet property="titleLabel" destination="ATy-8M-pSP" id="YuY-iG-nhd"/>
+                        <segue destination="MiS-UN-EFN" kind="unwind" identifier="unwindToPersonalSkillList" unwindAction="unwindToPersonalSkillListViewControllerWithSegue:" id="pu7-o9-jCs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LBv-AN-1aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="MiS-UN-EFN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1241" y="60"/>
         </scene>
