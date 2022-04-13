@@ -4,8 +4,8 @@ class PersonalSkillListViewController: UIViewController {
     
     private var activityIndicator: UIActivityIndicatorView!
     
-    var isContainedCanSkills = true
-    var isMyProfile = true
+    var skillStatus: Int!
+    var userEmail: String!
     private var skills: [Skill] = [] {
         didSet {
             if tableView != nil {
@@ -17,12 +17,15 @@ class PersonalSkillListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
+    
     @IBAction func unwindToPersonalSkillListViewController(segue:UIStoryboardSegue) { }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
         configureTableView()
+        tableView.isHidden = true
+        loadSkillsRequest()
         configureNavigationButton()
         configureImage()
     }
@@ -31,20 +34,38 @@ class PersonalSkillListViewController: UIViewController {
         super.viewWillAppear(animated)
         view.backgroundColor = skills.isEmpty ? UIColor(named: "BlueLightColor") : .white
         configureNavigationBar()
-        if isMyProfile {
+        if userEmail == CurrentUser.user.mail {
             configureSkills()
+        }
+    }
+    
+    private func loadSkillsRequest() {
+        activityIndicator.startAnimating()
+        Api.shared.getSkillsOfSpecificUser(email: userEmail) { result in
+            switch result {
+            case .success(let skills):
+                DispatchQueue.main.async {
+                    CurrentUser.user.skills = skills
+                    self.skills = (skills?.filter { skill in
+                        return skill.status == self.skillStatus
+                    })!
+                    self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
         }
     }
     
     func configureSkills() {
         skills = CurrentUser.user.skills!.filter { skill in
-            return skill.status == (isContainedCanSkills ? 1 : 2)
+            return skill.status == skillStatus
         }
         tableView.reloadData()
-    }
-    
-    func setSkills(skills: [Skill]?) {
-        self.skills = skills ?? []
     }
     
     private func configureNavigationButton() {
@@ -60,7 +81,7 @@ class PersonalSkillListViewController: UIViewController {
     }
     
     private func configureImage() {
-        if (isContainedCanSkills) {
+        if (skillStatus == 1) {
             imageView.image = UIImage(named: "crowCosmonautLeft")
         } else {
             imageView.image = UIImage(named: "crowCosmonautRight")
@@ -78,7 +99,7 @@ class PersonalSkillListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        if isContainedCanSkills {
+        if skillStatus == 1 {
             navigationItem.title = EnterViewController.isEnglish ? "Can" : "Могу"
         } else {
             navigationItem.title = EnterViewController.isEnglish ? "Want" : "Хочу"
@@ -134,7 +155,7 @@ class PersonalSkillListViewController: UIViewController {
         self.navigationItem.title = ""
         let storyboard = UIStoryboard(name: "SkillEditScreen", bundle: nil)
         let skillEditViewController = storyboard.instantiateViewController(withIdentifier: "SkillEditScreen") as! SkillEditViewController
-        skillEditViewController.isCanSkill = isContainedCanSkills
+        skillEditViewController.isCanSkill = skillStatus == 1
         navigationController?.pushViewController(skillEditViewController, animated: true)
     }
     
@@ -143,7 +164,7 @@ class PersonalSkillListViewController: UIViewController {
         let storyboard = UIStoryboard(name: "SkillEditScreen", bundle: nil)
         let skillEditViewController = storyboard.instantiateViewController(withIdentifier: "SkillEditScreen") as! SkillEditViewController
         skillEditViewController.setSkill(skill)
-        skillEditViewController.isCanSkill = isContainedCanSkills
+        skillEditViewController.isCanSkill = skillStatus == 1
         navigationController?.pushViewController(skillEditViewController, animated: true)
     }
 }

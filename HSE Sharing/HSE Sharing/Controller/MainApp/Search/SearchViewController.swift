@@ -22,9 +22,9 @@ class SearchViewController: UIViewController {
         configureActivityIndicator()
         makeInitialRequest()
         configureView()
+        configureTableView()
         configureNavigationBar()
         configureSearchBar()
-        configureTableView()
         configurePullToRefresh()
     }
     
@@ -53,7 +53,6 @@ class SearchViewController: UIViewController {
     }
     
     @objc private func makeRenewRequest() {
-        activityIndicator.startAnimating()
         Api.shared.getSkills { result in
             switch result {
             case .success(let skills):
