@@ -3,35 +3,35 @@
 //  HSE Sharing
 //
 //  Created by Екатерина on 11.03.2022.
-//
 
 import UIKit
 
 class SearchViewController: UIViewController {
-    
-    private var activityIndicator: UIActivityIndicatorView!
+
     static let tableView = UITableView(frame: .zero, style: .grouped)
     private let searchBar = UISearchBar()
+
     private let refreshControl = UIRefreshControl()
-    
+    private var activityIndicator: UIActivityIndicatorView!
+
     private var skills: [Skill] = []
     private var filteredSkills: [Skill] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
-        makeInitialRequest()
+        filteredSkills = skills
         configureView()
         configureTableView()
         configureNavigationBar()
         configureSearchBar()
         configurePullToRefresh()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
     }
-    
+
     private func makeInitialRequest() {
         activityIndicator.startAnimating()
         Api.shared.getSkills { result in
@@ -51,7 +51,7 @@ class SearchViewController: UIViewController {
             }
         }
     }
-    
+
     @objc private func makeRenewRequest() {
         Api.shared.getSkills { result in
             switch result {
@@ -70,32 +70,32 @@ class SearchViewController: UIViewController {
             }
         }
     }
-    
+
     private func configurePullToRefresh() {
         refreshControl.attributedTitle = NSAttributedString(string: "Updating")
         refreshControl.addTarget(self, action: #selector(makeRenewRequest), for: .valueChanged)
         SearchViewController.tableView.addSubview(refreshControl)
     }
-    
+
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        view.addSubview(activityIndicator)
+        SearchViewController.tableView.addSubview(activityIndicator)
     }
-    
+
     private func showFailAlert() {
         let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
-    
+
     private func configureView() {
         view.backgroundColor = .white
     }
-    
+
     private func configureTableView() {
         SearchViewController.tableView.register(
             UINib(nibName: String(describing: SearchSkillCell.self), bundle: nil),
@@ -106,7 +106,7 @@ class SearchViewController: UIViewController {
         view.addSubview(SearchViewController.tableView)
         configureTableViewAppearance()
     }
-    
+
     private func configureTableViewAppearance() {
         SearchViewController.tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
@@ -115,22 +115,22 @@ class SearchViewController: UIViewController {
             SearchViewController.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             SearchViewController.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
+
         SearchViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
         SearchViewController.tableView.rowHeight = UITableView.automaticDimension
         SearchViewController.tableView.estimatedRowHeight = 400
     }
-    
+
     private func configureNavigationBar() {
         configureNavigationTitle()
         configureNavigationButton()
     }
-    
+
     private func configureNavigationTitle() {
         navigationItem.title = EnterViewController.isEnglish ? "Skills search" : "Поиск навыков"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
+
     func configureNavigationButton() {
         let settingsButton = UIButton()
         settingsButton.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
@@ -142,27 +142,27 @@ class SearchViewController: UIViewController {
 //        settingsButton.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
-    
-    
+
+
 }
 
 extension SearchViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension SearchViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredSkills.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: SearchSkillCell.identifier,
@@ -185,7 +185,7 @@ extension SearchViewController: UISearchBarDelegate {
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.enablesReturnKeyAutomatically = false
     }
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredSkills = searchText.isEmpty ? skills : skills.filter {
             (item: Skill) -> Bool in
@@ -193,7 +193,7 @@ extension SearchViewController: UISearchBarDelegate {
         }
         SearchViewController.tableView.reloadData()
     }
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
     }
