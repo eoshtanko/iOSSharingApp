@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F47A3218D9B330A4438479D /* Pods_HSE_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438E725E6EA3AA2F2DF2F9AC /* Pods_HSE_Sharing.framework */; };
+		340E96862807422C008A1F9B /* NetworkManager + Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E96852807422C008A1F9B /* NetworkManager + Chat.swift */; };
 		342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65B927DBC6E800A78536 /* ProfileViewController.swift */; };
 		342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342B65BB27DBCC7500A78536 /* Profile.storyboard */; };
 		342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65BF27DBDDA200A78536 /* SearchViewController.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		09230A4C2BBF04A6FFBDE315 /* Pods-HSE Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HSE Sharing.release.xcconfig"; path = "Target Support Files/Pods-HSE Sharing/Pods-HSE Sharing.release.xcconfig"; sourceTree = "<group>"; };
+		340E96852807422C008A1F9B /* NetworkManager + Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager + Chat.swift"; sourceTree = "<group>"; };
 		342B65B927DBC6E800A78536 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		342B65BB27DBCC7500A78536 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		342B65BF27DBDDA200A78536 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				34B1B3A728041BE800F14EFB /* NetworkManager + User.swift */,
 				34841C632805C3390041124D /* NetworkManager + Skills.swift */,
 				3467E2BD2805F6CD004A34F7 /* NetworkManager + Transaction.swift */,
+				340E96852807422C008A1F9B /* NetworkManager + Chat.swift */,
 				34B1B3A928041C5400F14EFB /* NetworkError.swift */,
 			);
 			path = Networking;
@@ -639,6 +642,7 @@
 				34EB7A9228015F0C0008B4CD /* RegistrationViewController.swift in Sources */,
 				34449ADD27FE316C002763CD /* SkillEditViewController.swift in Sources */,
 				342B65C227DBDDB400A78536 /* ExchangesViewController.swift in Sources */,
+				340E96862807422C008A1F9B /* NetworkManager + Chat.swift in Sources */,
 				34B13E8927FA33740055E6ED /* Feedback.swift in Sources */,
 				342B65CC27DE322500A78536 /* PersonalSkillCell.swift in Sources */,
 			);

@@ -6,12 +6,13 @@
 //
 
 import Foundation
-import Alamofire
+import SwiftSignalRClient
 
 class Api {
     
     static let shared = Api()
     
+    var connection: HubConnection!
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     let baseURL = "https://sharingskillsapp.azurewebsites.net"

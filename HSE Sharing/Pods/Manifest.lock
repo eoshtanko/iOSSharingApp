@@ -1,16 +1,16 @@
 PODS:
-  - Alamofire (4.9.1)
+  - SwiftSignalRClient (0.9.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0)
+  - SwiftSignalRClient
 
 SPEC REPOS:
   trunk:
-    - Alamofire
+    - SwiftSignalRClient
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  SwiftSignalRClient: aba134f3d30f7eeb01008929e387b6e66546c7d5
 
-PODFILE CHECKSUM: 29955ca4214901519ee21f6377a90808b9b0cd91
+PODFILE CHECKSUM: 99c01d9bd880866141835b2d5efc71d287b6dda5
 
 COCOAPODS: 1.11.3
