@@ -13,6 +13,7 @@ class Api {
     static let shared = Api()
     
     var connection: HubConnection!
+    var chatHubConnectionDelegate: HubConnectionDelegate?
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     let baseURL = "https://sharingskillsapp.azurewebsites.net"

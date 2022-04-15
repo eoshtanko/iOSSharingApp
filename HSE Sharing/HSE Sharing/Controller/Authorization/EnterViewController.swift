@@ -42,6 +42,7 @@ class EnterViewController : UIViewController {
     
     @IBOutlet weak var changeLanguageButton: UIButton!
     @IBAction func changeLanguageButtonAction(_ sender: Any) {
+        Api.shared.sendMessage(mail: "2@edu.hse.ru", message: Message(id: 1, sendTime: "23.02.2001", text: "Hi!!!",  senderMail: "1@edu.hse.ru", receiverMail: "2@edu.hse.ru"))
         EnterViewController.isEnglish = !EnterViewController.isEnglish
         translateProfileView(EnterViewController.isEnglish)
     }
@@ -50,6 +51,11 @@ class EnterViewController : UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureActivityIndicator()
+        playing()
+    }
+    
+    func playing() {
+        Api.shared.startMessaging(email: "1@edu.hse.ru")
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,11 +69,15 @@ class EnterViewController : UIViewController {
         Api.shared.getUserByEmail(email: emailTextField.text!) { result in
             switch result {
             case .success(let user):
-                CurrentUser.user = user
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.clearTextFields()
-                    self.goToMainAppRootTabBarVC()
+                    if user?.password != self.passwordTextField.text! {
+                        self.wrongPasswordAlert()
+                    } else {
+                        CurrentUser.user = user
+                        self.clearTextFields()
+                        self.goToMainAppRootTabBarVC()
+                    }
                 }
             case .failure(let apiError):
                 DispatchQueue.main.async {
@@ -89,6 +99,12 @@ class EnterViewController : UIViewController {
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
         view.addSubview(activityIndicator)
+    }
+    
+    private func wrongPasswordAlert() {
+        let successAlert = UIAlertController(title: "Неверный пароль.", message: nil, preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
     }
     
     private func noSuchUserAlert() {

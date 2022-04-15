@@ -7,6 +7,8 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    
+    @IBAction func unwindToSearchViewController(segue:UIStoryboardSegue) { }
 
     static let tableView = UITableView(frame: .zero, style: .grouped)
     private let searchBar = UISearchBar()
@@ -30,6 +32,12 @@ class SearchViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
+    }
+    
+    func setSkills(skills: [Skill]) {
+        filteredSkills = skills
+        self.skills = skills
+        SearchViewController.tableView.reloadData()
     }
 
     private func makeInitialRequest() {
@@ -57,10 +65,10 @@ class SearchViewController: UIViewController {
             switch result {
             case .success(let skills):
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.skills = skills ?? []
                     self.filteredSkills = self.skills
                     SearchViewController.tableView.reloadData()
-                    self.refreshControl.endRefreshing()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -138,11 +146,17 @@ class SearchViewController: UIViewController {
         settingsButton.contentVerticalAlignment = .fill
         settingsButton.imageView?.contentMode = .scaleAspectFill
         settingsButton.imageView?.clipsToBounds = true
-//        settingsButton.addTarget(self, action: #selector(goToProfile), for: .touchUpInside)
+        settingsButton.addTarget(self, action: #selector(goToParametricSearch), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
 
-
+    @objc private func goToParametricSearch() {
+        self.navigationItem.title = ""
+        let storyboard = UIStoryboard(name: "SelectionOfParametersScreen", bundle: nil)
+        let selectionOfParametersScreen = storyboard.instantiateViewController(withIdentifier: "SelectionOfParametersScreen") as! SelectionOfParametersViewController
+        selectionOfParametersScreen.setInstanceOfSearchScreen(self)
+        navigationController?.pushViewController(selectionOfParametersScreen, animated: true)
+    }
 }
 
 extension SearchViewController: UITableViewDelegate {

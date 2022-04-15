@@ -39,9 +39,9 @@ struct DataInEnglish {
         "Household"
     ];
     
-    static let gender = ["-", "Male", "Female"];
+    static let gender = ["Not selected", "Male", "Female"];
     
-    static let statuses = ["Can", "Want"];
+    static let statuses = ["Not selected", "Can", "Want"];
     
     static let eduPrograms = [
         "Not selected",

@@ -39,9 +39,9 @@ struct DataInRussian {
         "Быт"
     ];
     
-    static let gender = ["-", "Мужской", "Женский"];
+    static let gender = ["Не выбран", "Мужской", "Женский"];
     
-    static let statuses = ["Может", "Хочет"];
+    static let statuses = ["Не выбран", "Может", "Хочет"];
     
     static let eduPrograms = [
         "Не выбрано",
