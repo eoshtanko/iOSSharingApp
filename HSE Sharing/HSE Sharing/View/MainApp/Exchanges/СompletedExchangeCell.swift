@@ -22,15 +22,15 @@ class СompletedExchangeCell: UITableViewCell {
     @IBOutlet weak var giveLabel: UILabel!
     
     func configureCell(_ transaction: Transaction) {
-        withWhomLabel.text = EnterViewController.isEnglish ? "With whom:" : "С кем:"
-        whatReceive.text = EnterViewController.isEnglish ? "What receive:" : "Что получаю:"
-        whatGive.text = EnterViewController.isEnglish ? "What give:" : "Что даю:"
-      //  profileImage.image = transaction.userPhoto
-        nameLabel.text = transaction.userName
-        receiveLabel.text = transaction.skill1
-        giveLabel.text = transaction.skill2
-        innerView.layer.cornerRadius = 10
-        coloredView.layer.cornerRadius = 10
-        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+//        withWhomLabel.text = EnterViewController.isEnglish ? "With whom:" : "С кем:"
+//        whatReceive.text = EnterViewController.isEnglish ? "What receive:" : "Что получаю:"
+//        whatGive.text = EnterViewController.isEnglish ? "What give:" : "Что даю:"
+//      //  profileImage.image = transaction.userPhoto
+//        nameLabel.text = transaction.userName
+//        receiveLabel.text = transaction.skill1
+//        giveLabel.text = transaction.skill2
+//        innerView.layer.cornerRadius = 10
+//        coloredView.layer.cornerRadius = 10
+//        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
     }
 }

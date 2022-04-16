@@ -26,10 +26,16 @@ class SearchSkillCell: UITableViewCell {
     @IBOutlet weak var subcategoryTextLabel: UILabel!
     @IBOutlet weak var exchangeButton: UIButton!
     
+    var createNewTransaction: ((Skill) -> Void)!
+    var skill: Skill!
+    
     @IBAction func exchangeButtonPresssed(_ sender: Any) {
+        createNewTransaction(skill)
     }
     
-    func configureCell(_ skill: Skill) {
+    func configureCell(_ skill: Skill, _ createNewTransaction: @escaping ((Skill) -> Void)) {
+        self.skill = skill
+        self.createNewTransaction = createNewTransaction
         exchangeButton.makeButtonOval()
         nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
         descriptionLabel.text = EnterViewController.isEnglish ? "Description:" : "Описание:"

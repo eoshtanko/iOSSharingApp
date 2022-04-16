@@ -56,6 +56,7 @@ class SelectionOfParametersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         configureActivityIndicator()
         configurePickerView()
         searchButton.isEnabled = false

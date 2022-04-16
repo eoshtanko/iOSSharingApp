@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Selection Of Parameters View Controller-->
         <scene sceneID="LVq-gi-oJK">
             <objects>
-                <viewController storyboardIdentifier="SelectionOfParametersScreen" id="wi0-Tz-Suc" customClass="SelectionOfParametersViewController" customModule="HSE_Sharing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectionOfParametersScreen" automaticallyAdjustsScrollViewInsets="NO" id="wi0-Tz-Suc" customClass="SelectionOfParametersViewController" customModule="HSE_Sharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iCS-YZ-9hy"/>
+                        <viewControllerLayoutGuide type="bottom" id="pCt-p4-iZO"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KVp-8d-nVX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,16 +24,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zf5-j0-zyI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="922"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="902"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGC-pt-Q9Q">
-                                                <rect key="frame" x="20" y="90" width="82" height="20"/>
+                                                <rect key="frame" x="20" y="70" width="82" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите имя" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="dPM-yj-39J">
-                                                <rect key="frame" x="20" y="120" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="100" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartQuotesType="no" textContentType="name"/>
                                                 <userDefinedRuntimeAttributes>
@@ -43,13 +46,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подкатегория" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chq-tM-eVC">
-                                                <rect key="frame" x="20" y="184" width="112" height="20"/>
+                                                <rect key="frame" x="20" y="164" width="112" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите фамилию" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x5e-N1-9St">
-                                                <rect key="frame" x="20" y="214" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="194" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartQuotesType="no" textContentType="name"/>
                                                 <userDefinedRuntimeAttributes>
@@ -62,13 +65,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тип" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82h-Pb-tAB">
-                                                <rect key="frame" x="20" y="278" width="29" height="20"/>
+                                                <rect key="frame" x="20" y="258" width="29" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите почту" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6H-1x-GAB">
-                                                <rect key="frame" x="20" y="308" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="288" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartQuotesType="no" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
@@ -80,51 +83,51 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите образовательную программу" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Rla-dz-MRD">
-                                                <rect key="frame" x="20" y="402" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="382" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Образовательная программа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY6-OC-LjO">
-                                                <rect key="frame" x="20" y="372" width="233" height="20"/>
+                                                <rect key="frame" x="20" y="352" width="233" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите общежитие" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="3sG-Mj-yqk">
-                                                <rect key="frame" x="20" y="496" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="476" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ступень обучения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KD-yl-McB">
-                                                <rect key="frame" x="20" y="466" width="145" height="20"/>
+                                                <rect key="frame" x="20" y="446" width="145" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите ступень обучения" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="kAT-LP-VyZ">
-                                                <rect key="frame" x="20" y="590" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="570" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Общежитие" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yk4-lH-Xob">
-                                                <rect key="frame" x="20" y="560" width="95" height="20"/>
+                                                <rect key="frame" x="20" y="540" width="95" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберете расположение корпуса" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="AfS-pZ-RMy">
-                                                <rect key="frame" x="20" y="684" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="664" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Расположение корпуса" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mc-wo-r9w">
-                                                <rect key="frame" x="20" y="654" width="186" height="20"/>
+                                                <rect key="frame" x="20" y="634" width="186" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пол " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGt-B0-KzR">
-                                                <rect key="frame" x="20" y="748" width="35" height="20"/>
+                                                <rect key="frame" x="20" y="728" width="35" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -136,12 +139,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберете расположение корпуса" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="FBx-IF-vAk">
-                                                <rect key="frame" x="20" y="778" width="374" height="34"/>
+                                                <rect key="frame" x="20" y="758" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfA-D6-IMC">
-                                                <rect key="frame" x="100" y="852" width="214" height="30"/>
+                                                <rect key="frame" x="100" y="832" width="214" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,7 +177,6 @@
                                             <constraint firstItem="AfS-pZ-RMy" firstAttribute="top" secondItem="2Mc-wo-r9w" secondAttribute="bottom" constant="10" id="Hyj-U6-uBl"/>
                                             <constraint firstItem="lGC-pt-Q9Q" firstAttribute="leading" secondItem="zf5-j0-zyI" secondAttribute="leading" constant="20" id="Hzk-9j-4LP"/>
                                             <constraint firstItem="chq-tM-eVC" firstAttribute="top" secondItem="dPM-yj-39J" secondAttribute="bottom" constant="30" id="JJj-wq-xFb"/>
-                                            <constraint firstItem="GIj-Ws-UUb" firstAttribute="top" secondItem="zf5-j0-zyI" secondAttribute="top" id="MSH-Pg-ZGa"/>
                                             <constraint firstItem="FBx-IF-vAk" firstAttribute="top" secondItem="bGt-B0-KzR" secondAttribute="bottom" constant="10" id="MXV-m3-py9"/>
                                             <constraint firstItem="kAT-LP-VyZ" firstAttribute="top" secondItem="Yk4-lH-Xob" secondAttribute="bottom" constant="10" id="P1N-Ow-eXZ"/>
                                             <constraint firstItem="x5e-N1-9St" firstAttribute="leading" secondItem="zf5-j0-zyI" secondAttribute="leading" constant="20" id="R1c-ro-pzt"/>
@@ -191,7 +193,7 @@
                                             <constraint firstAttribute="trailing" secondItem="x5e-N1-9St" secondAttribute="trailing" constant="20" id="jMD-7q-dA8"/>
                                             <constraint firstAttribute="trailing" secondItem="kAT-LP-VyZ" secondAttribute="trailing" constant="20" id="lkg-4N-fFN"/>
                                             <constraint firstItem="2Mc-wo-r9w" firstAttribute="leading" secondItem="zf5-j0-zyI" secondAttribute="leading" constant="20" id="pJq-d9-wEf"/>
-                                            <constraint firstItem="lGC-pt-Q9Q" firstAttribute="top" secondItem="GIj-Ws-UUb" secondAttribute="bottom" constant="60" id="rF8-g4-8UR"/>
+                                            <constraint firstItem="lGC-pt-Q9Q" firstAttribute="top" secondItem="GIj-Ws-UUb" secondAttribute="bottom" constant="40" id="rF8-g4-8UR"/>
                                             <constraint firstItem="Yk4-lH-Xob" firstAttribute="leading" secondItem="zf5-j0-zyI" secondAttribute="leading" constant="20" id="tMQ-az-nCq"/>
                                             <constraint firstItem="Rla-dz-MRD" firstAttribute="leading" secondItem="zf5-j0-zyI" secondAttribute="leading" constant="20" id="ugv-ua-d1o"/>
                                             <constraint firstItem="Yk4-lH-Xob" firstAttribute="top" secondItem="3sG-Mj-yqk" secondAttribute="bottom" constant="30" id="ukL-YD-Xq5"/>
@@ -209,17 +211,17 @@
                                     <constraint firstItem="zf5-j0-zyI" firstAttribute="top" secondItem="7CG-1e-znc" secondAttribute="top" id="Tn8-pu-VSh"/>
                                     <constraint firstItem="zf5-j0-zyI" firstAttribute="width" secondItem="i79-5b-iQl" secondAttribute="width" id="gzv-Uy-76f"/>
                                     <constraint firstItem="zf5-j0-zyI" firstAttribute="trailing" secondItem="7CG-1e-znc" secondAttribute="trailing" id="n51-Ek-3Oy"/>
+                                    <constraint firstItem="GIj-Ws-UUb" firstAttribute="top" secondItem="uyx-1e-Xvo" secondAttribute="top" id="rJ7-9V-PG8"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="7CG-1e-znc"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="i79-5b-iQl"/>
                             </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="QJm-Qs-l14"/>
                         <color key="backgroundColor" name="BlueLightColor"/>
                         <constraints>
-                            <constraint firstItem="QJm-Qs-l14" firstAttribute="trailing" secondItem="uyx-1e-Xvo" secondAttribute="trailing" id="EOF-gR-0Jl"/>
+                            <constraint firstAttribute="trailing" secondItem="uyx-1e-Xvo" secondAttribute="trailing" id="EOF-gR-0Jl"/>
                             <constraint firstAttribute="bottom" secondItem="uyx-1e-Xvo" secondAttribute="bottom" id="TlE-uD-3iu"/>
-                            <constraint firstItem="uyx-1e-Xvo" firstAttribute="leading" secondItem="QJm-Qs-l14" secondAttribute="leading" id="lrc-CC-g9g"/>
+                            <constraint firstItem="uyx-1e-Xvo" firstAttribute="leading" secondItem="KVp-8d-nVX" secondAttribute="leading" id="lrc-CC-g9g"/>
                             <constraint firstItem="uyx-1e-Xvo" firstAttribute="top" secondItem="KVp-8d-nVX" secondAttribute="top" id="ppW-oR-RYU"/>
                         </constraints>
                     </view>

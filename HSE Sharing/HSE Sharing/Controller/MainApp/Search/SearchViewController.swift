@@ -149,6 +149,14 @@ class SearchViewController: UIViewController {
         settingsButton.addTarget(self, action: #selector(goToParametricSearch), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
     }
+    
+    private func createNewTransaction(skill: Skill) {
+        self.navigationItem.title = ""
+        let storyboard = UIStoryboard(name: "NewExchangeScreen", bundle: nil)
+        let newExchangeScreen = storyboard.instantiateViewController(withIdentifier: "NewExchangeScreen") as! NewExchangeViewController
+        newExchangeScreen.setSkill(skill: skill)
+        navigationController?.pushViewController(newExchangeScreen, animated: true)
+    }
 
     @objc private func goToParametricSearch() {
         self.navigationItem.title = ""
@@ -184,7 +192,9 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         }
         let skill = filteredSkills[indexPath.row]
-        searchCell.configureCell(skill)
+        searchCell.configureCell(skill, { skill in
+            self.createNewTransaction(skill: skill)
+        })
         return searchCell
     }
 }

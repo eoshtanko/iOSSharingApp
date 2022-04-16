@@ -10,6 +10,8 @@
 		0F47A3218D9B330A4438479D /* Pods_HSE_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438E725E6EA3AA2F2DF2F9AC /* Pods_HSE_Sharing.framework */; };
 		340E96862807422C008A1F9B /* NetworkManager + Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E96852807422C008A1F9B /* NetworkManager + Chat.swift */; };
 		340E969928099AE0008A1F9B /* SelectionOfParametersViewController + UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E969828099ADF008A1F9B /* SelectionOfParametersViewController + UIPickerView.swift */; };
+		340E969B2809E2DA008A1F9B /* NewExchangeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340E969A2809E2DA008A1F9B /* NewExchangeScreen.storyboard */; };
+		340E969D280AABD6008A1F9B /* NewExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E969C280AABD6008A1F9B /* NewExchangeViewController.swift */; };
 		342B65BA27DBC6E800A78536 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65B927DBC6E800A78536 /* ProfileViewController.swift */; };
 		342B65BC27DBCC7500A78536 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342B65BB27DBCC7500A78536 /* Profile.storyboard */; };
 		342B65C027DBDDA200A78536 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65BF27DBDDA200A78536 /* SearchViewController.swift */; };
@@ -86,6 +88,8 @@
 		09230A4C2BBF04A6FFBDE315 /* Pods-HSE Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HSE Sharing.release.xcconfig"; path = "Target Support Files/Pods-HSE Sharing/Pods-HSE Sharing.release.xcconfig"; sourceTree = "<group>"; };
 		340E96852807422C008A1F9B /* NetworkManager + Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager + Chat.swift"; sourceTree = "<group>"; };
 		340E969828099ADF008A1F9B /* SelectionOfParametersViewController + UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectionOfParametersViewController + UIPickerView.swift"; sourceTree = "<group>"; };
+		340E969A2809E2DA008A1F9B /* NewExchangeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewExchangeScreen.storyboard; sourceTree = "<group>"; };
+		340E969C280AABD6008A1F9B /* NewExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExchangeViewController.swift; sourceTree = "<group>"; };
 		342B65B927DBC6E800A78536 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		342B65BB27DBCC7500A78536 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		342B65BF27DBDDA200A78536 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				342B65BF27DBDDA200A78536 /* SearchViewController.swift */,
 				348C2F232802274200551F71 /* SelectionOfParametersViewController.swift */,
 				340E969828099ADF008A1F9B /* SelectionOfParametersViewController + UIPickerView.swift */,
+				340E969C280AABD6008A1F9B /* NewExchangeViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				34F4A88627DE866200C51CE2 /* SearchSkillCell.xib */,
 				34F4A88827DE8E5E00C51CE2 /* SearchSkillCell.swift */,
 				348C2F212802272700551F71 /* SelectionOfParametersScreen.storyboard */,
+				340E969A2809E2DA008A1F9B /* NewExchangeScreen.storyboard */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 				347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */,
 				347375C527C62DF70029A419 /* Assets.xcassets in Resources */,
 				34B2BF0427DF1D5A00E849A0 /* СompletedExchangeCell.xib in Resources */,
+				340E969B2809E2DA008A1F9B /* NewExchangeScreen.storyboard in Resources */,
 				34C4C7F92801FCB100769CFC /* CommentCell.xib in Resources */,
 				3467E2C4280731CF004A34F7 /* CurrentExchangeCell.xib in Resources */,
 				34CBC5AC27DBA6270082FAF0 /* EntryMessageView.xib in Resources */,
@@ -606,6 +613,7 @@
 				34B1B3A828041BE800F14EFB /* NetworkManager + User.swift in Sources */,
 				34B13E8B27FAB3A90055E6ED /* Conversation.swift in Sources */,
 				34C4C7F12801DAF400769CFC /* ApplicationPreferences.swift in Sources */,
+				340E969D280AABD6008A1F9B /* NewExchangeViewController.swift in Sources */,
 				345C17EA2801668200ED5526 /* Button + Extension.swift in Sources */,
 				34CBC5A627DBA5C50082FAF0 /* EntryMessageView.swift in Sources */,
 				34CBC59C27DB632A0082FAF0 /* ChatMessage.swift in Sources */,
