@@ -22,6 +22,10 @@ extension Api {
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 completion(Result.failure(ApiError.badResponse))
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                    print(transaction.toDict)
+                }
                 return
             }
             guard let safeData = data else {
@@ -79,7 +83,7 @@ extension Api {
         task.resume()
     }
     
-    func getCompletedTransactions(type: TransactionsType, _ completion: @escaping (Result<[Transaction]>) -> Void) {
+    func getTransactions(type: TransactionsType, _ completion: @escaping (Result<[Transaction]>) -> Void) {
         let session = createSession()
         let typeString: String = type == .income ? "in" : type.rawValue
         let url = URL(string: "\(baseURL)/api/Users/\(CurrentUser.user.mail!)/transactions/\(typeString)")!

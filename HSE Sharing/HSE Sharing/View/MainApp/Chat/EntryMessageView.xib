@@ -11,65 +11,58 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1sM-UC-0gv" customClass="EntryMessageView" customModule="ChatApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="583" height="75"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H33-MO-rhl" customClass="EntryMessageView" customModule="ChatApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="598" height="74"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMn-Cr-Acq">
-                    <rect key="frame" x="0.0" y="10" width="583" height="65"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H95-8l-KnH">
+                    <rect key="frame" x="0.0" y="0.0" width="598" height="74"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZo-OW-33C">
-                            <rect key="frame" x="548" y="7.5" width="25" height="21"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPc-W1-YHv">
+                            <rect key="frame" x="563" y="16.5" width="25" height="21"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title=" " image="arrow.up.circle.fill" catalog="system"/>
-                            <connections>
-                                <action selector="sendMessage:" destination="1sM-UC-0gv" eventType="touchUpInside" id="H7H-RN-I3N"/>
-                            </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7MG-Cu-LIB">
-                            <rect key="frame" x="10" y="0.0" width="528" height="36"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text=" " translatesAutoresizingMaskIntoConstraints="NO" id="5jy-Zb-Rfo">
+                            <rect key="frame" x="10" y="10" width="543" height="34"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="36" id="gPh-tW-Ldv"/>
-                            </constraints>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
                         </textView>
                     </subviews>
+                    <color key="backgroundColor" name="BackgroundNavigationBarColor"/>
                     <constraints>
-                        <constraint firstItem="7MG-Cu-LIB" firstAttribute="top" secondItem="jMn-Cr-Acq" secondAttribute="top" id="2OV-3g-AdC"/>
-                        <constraint firstAttribute="trailing" secondItem="7MG-Cu-LIB" secondAttribute="trailing" constant="45" id="5Bb-sF-lgs"/>
-                        <constraint firstItem="7MG-Cu-LIB" firstAttribute="leading" secondItem="jMn-Cr-Acq" secondAttribute="leading" constant="10" id="FF4-9Q-siU"/>
-                        <constraint firstAttribute="trailing" secondItem="OZo-OW-33C" secondAttribute="trailing" constant="10" id="PhW-OO-f4E"/>
-                        <constraint firstItem="OZo-OW-33C" firstAttribute="centerY" secondItem="7MG-Cu-LIB" secondAttribute="centerY" id="fBx-7q-6sk"/>
+                        <constraint firstAttribute="trailing" secondItem="uPc-W1-YHv" secondAttribute="trailing" constant="10" id="6cm-61-Kfb"/>
+                        <constraint firstItem="5jy-Zb-Rfo" firstAttribute="top" secondItem="H95-8l-KnH" secondAttribute="top" constant="10" id="NeB-W0-Zdn"/>
+                        <constraint firstItem="5jy-Zb-Rfo" firstAttribute="leading" secondItem="H95-8l-KnH" secondAttribute="leading" constant="10" id="XpE-60-948"/>
+                        <constraint firstItem="uPc-W1-YHv" firstAttribute="leading" secondItem="5jy-Zb-Rfo" secondAttribute="trailing" constant="10" id="p5D-1A-xRn"/>
+                        <constraint firstAttribute="bottom" secondItem="5jy-Zb-Rfo" secondAttribute="bottom" constant="30" id="sKq-fh-nPi"/>
+                        <constraint firstItem="uPc-W1-YHv" firstAttribute="centerY" secondItem="5jy-Zb-Rfo" secondAttribute="centerY" id="t6Y-qI-w3K"/>
                     </constraints>
                 </view>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="kXN-1Y-gGu"/>
-            <color key="backgroundColor" name="BackgroundNavigationBarColor"/>
+            <viewLayoutGuide key="safeArea" id="jyg-6g-I4T"/>
             <constraints>
-                <constraint firstItem="jMn-Cr-Acq" firstAttribute="bottom" secondItem="1sM-UC-0gv" secondAttribute="bottom" id="V3x-bG-5tc"/>
-                <constraint firstItem="jMn-Cr-Acq" firstAttribute="leading" secondItem="1sM-UC-0gv" secondAttribute="leading" id="eq9-aI-4MD"/>
-                <constraint firstAttribute="trailing" secondItem="jMn-Cr-Acq" secondAttribute="trailing" id="obk-vK-3J2"/>
-                <constraint firstItem="jMn-Cr-Acq" firstAttribute="top" secondItem="1sM-UC-0gv" secondAttribute="top" constant="10" id="pUH-Rk-rPC"/>
+                <constraint firstAttribute="trailing" secondItem="H95-8l-KnH" secondAttribute="trailing" id="5Gv-Ny-lzh"/>
+                <constraint firstAttribute="bottom" secondItem="H95-8l-KnH" secondAttribute="bottom" id="aJn-YO-dkm"/>
+                <constraint firstItem="H95-8l-KnH" firstAttribute="top" secondItem="H33-MO-rhl" secondAttribute="top" id="j1L-87-ddz"/>
+                <constraint firstItem="H95-8l-KnH" firstAttribute="leading" secondItem="H33-MO-rhl" secondAttribute="leading" id="zW2-1D-DfS"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="entryMessageView" destination="jMn-Cr-Acq" id="bKW-Jm-ckr"/>
-                <outlet property="sendMessageButton" destination="OZo-OW-33C" id="Zej-BM-U2p"/>
-                <outlet property="textView" destination="7MG-Cu-LIB" id="9lX-gx-46d"/>
-                <outlet property="textViewHightConstraint" destination="gPh-tW-Ldv" id="Jv5-Dv-DKQ"/>
+                <outlet property="entryMessageView" destination="H95-8l-KnH" id="cyT-GS-Fmd"/>
+                <outlet property="textView" destination="5jy-Zb-Rfo" id="H2B-Gd-U7q"/>
             </connections>
-            <point key="canvasLocation" x="-809.4202898550725" y="-329.12946428571428"/>
+            <point key="canvasLocation" x="-798.55072463768124" y="-287.61160714285711"/>
         </view>
     </objects>
     <resources>
         <image name="arrow.up.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="BackgroundNavigationBarColor">
-            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

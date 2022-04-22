@@ -106,7 +106,7 @@ class PersonalSkillListViewController: UIViewController {
         }
     }
     
-    private func showConfirmDeletingAlert(id: Int) {
+    private func showConfirmDeletingAlert(id: Int64) {
         let failureAlert = UIAlertController(
             title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
             message: nil,
@@ -118,7 +118,7 @@ class PersonalSkillListViewController: UIViewController {
         present(failureAlert, animated: true, completion: nil)
     }
     
-    private func deleteSkillRequest(id: Int) {
+    private func deleteSkillRequest(id: Int64) {
         activityIndicator.startAnimating()
         Api.shared.deleteSkill(id: id) { result in
             switch result {

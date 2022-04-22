@@ -79,6 +79,10 @@ extension Api {
 
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                    print(response.description)
+                }
                 completion(Result.failure(ApiError.badResponse))
                 return
             }

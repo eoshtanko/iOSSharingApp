@@ -44,7 +44,7 @@ class CommentCell: UITableViewCell {
     
     private func setInitialDeleteSettings() {
         canBeDeleted = false
-        deleteButton.isHidden = true
+       // deleteButton.isHidden = true
     }
 
     private func configureLabelsLanguage() {
@@ -56,7 +56,7 @@ class CommentCell: UITableViewCell {
     
     private func setCanBeDeleted() {
         canBeDeleted = true
-        deleteButton.isHidden = false
+       // deleteButton.isHidden = false
     }
     
     private func configureData(_ comment: Feedback) {

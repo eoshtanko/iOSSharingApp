@@ -121,22 +121,46 @@ extension User {
                 "name": name!,
                 "surname": surname!,
                 "birthDate": Formatter.iso8601.string(from: birthDate!),
-                "gender": gender as Any,
-                "studyingYearId": studyingYearId as Any,
-                "majorId": majorId as Any,
-                "campusLocationId": campusLocationId as Any,
-                "dormitoryId": dormitoryId as Any,
-                "about": about as Any,
+                "gender": gender!,
+                "studyingYearId": studyingYearId!,
+                "majorId": majorId!,
+                "campusLocationId": campusLocationId!,
+                "dormitoryId": dormitoryId!,
+                "about": about!,
                 "contact": contact as Any,
                 "photo": photo as Any,
-                "transactions": transactions as Any,
-                "skills": skills as Any,
-                "feedbacks": feedbacks as Any,
-                "gradesCount": gradesCount as Any,
-                "gradesSum": gradesSum as Any,
-                "averageGrade": averageGrade as Any,
-                "isModer": isModer as Any
+                "transactions": getDictTransactions(),
+                "skills": getDictSkills(),
+                "feedbacks": getDictFeedbacks(),
+                "gradesCount": gradesCount!,
+                "gradesSum": gradesSum!,
+                "averageGrade": averageGrade!,
+                "isModer": isModer!
         ]
+    }
+    
+    func getDictFeedbacks() -> [[String: Any]] {
+        var dict: [[String: Any]] = []
+        for feedback in feedbacks! {
+            dict.append(feedback.toDict)
+        }
+        return dict
+    }
+    
+    func getDictSkills() -> [[String: Any]] {
+        var dict: [[String: Any]] = []
+        for skill in skills! {
+            dict.append(skill.toDict)
+        }
+        return dict
+    }
+
+    func getDictTransactions() -> [[String: Any]] {
+        var dict: [[String: Any]] = []
+        for transaction in transactions! {
+            dict.append(transaction.toDict)
+        }
+        return dict
     }
 }
 

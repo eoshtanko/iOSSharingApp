@@ -10,7 +10,7 @@ import UIKit
 class PersonalSkillCell: UITableViewCell {
     
     static let identifier = String(describing: PersonalSkillCell.self)
-    var deleteSkill: ((Int) -> Void)?
+    var deleteSkill: ((Int64) -> Void)?
     var editSkill: ((Skill) -> Void)?
     private var skill: Skill?
     
@@ -35,7 +35,7 @@ class PersonalSkillCell: UITableViewCell {
         deleteSkill?(skill!.id)
     }
     
-    func setDeleteSkillAction(_ deleteSkill: ((Int) -> Void)?) {
+    func setDeleteSkillAction(_ deleteSkill: ((Int64) -> Void)?) {
         self.deleteSkill = deleteSkill
     }
     

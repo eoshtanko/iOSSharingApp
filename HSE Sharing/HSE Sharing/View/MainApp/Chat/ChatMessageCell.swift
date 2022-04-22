@@ -1,8 +1,8 @@
 //
 //  ChatMessageCell.swift
-//  HSE Sharing
+//  ChatApp
 //
-//  Created by Екатерина on 11.03.2022.
+//  Created by Екатерина on 09.03.2022.
 //
 
 import UIKit
@@ -18,19 +18,19 @@ class ChatMessageCell: UITableViewCell {
     private var trailingConstraint: NSLayoutConstraint!
     
     func configureCell(_ chatMessage: Message) {
-        messageLabel.text = chatMessage.text
-        
-        bubbleBackgroundView.backgroundColor = chatMessage.senderMail == CurrentUser.user.mail ?
-        UIColor(named: "IncomingMessageColor") : UIColor(named: "OutcomingMessageColor")
-        messageLabel.textColor = .black
-        
-        if chatMessage.senderMail == CurrentUser.user.mail {
-            trailingConstraint.isActive = false
-            leadingConstraint.isActive = true
-        } else {
-            leadingConstraint.isActive = false
-            trailingConstraint.isActive = true
-        }
+//        messageLabel.text = chatMessage.text
+//        
+//        bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ?
+//        UIColor(named: "IncomingMessageColor") : UIColor(named: "OutcomingMessageColor")
+//        messageLabel.textColor = .black
+//        
+//        if chatMessage.isIncoming {
+//            trailingConstraint.isActive = false
+//            leadingConstraint.isActive = true
+//        } else {
+//            leadingConstraint.isActive = false
+//            trailingConstraint.isActive = true
+//        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

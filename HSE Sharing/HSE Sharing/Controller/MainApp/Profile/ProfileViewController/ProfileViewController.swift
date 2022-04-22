@@ -7,8 +7,6 @@
 
 import UIKit
 
-// Добавить создание переписки
-
 class ProfileViewController: UIViewController {
     
     var isMyProfile = true
@@ -179,16 +177,16 @@ class ProfileViewController: UIViewController {
         maleButton.tintColor = currentUser?.gender == 1 ? UIColor(named: "BlueDarkColor") : .gray
         femaleButton.tintColor = currentUser?.gender == 2 ? UIColor(named: "BlueDarkColor") : .gray
         if let studyingYearId = currentUser?.studyingYearId, studyingYearId != 0{
-            stageOfEduTextField.text = DataInEnglish.stagesOfEdu[studyingYearId]
+            stageOfEduTextField.text = DataInRussian.stagesOfEdu[studyingYearId]
         }
         if let majorId = currentUser?.majorId, majorId != 0 {
-            eduProgramTextField.text = DataInEnglish.universityCampuses[majorId]
+            eduProgramTextField.text = DataInRussian.eduPrograms[majorId]
         }
         if let campusLocationId = currentUser?.campusLocationId, campusLocationId != 0 {
-            campusLocationTextField.text = DataInEnglish.universityCampuses[campusLocationId]
+            campusLocationTextField.text = DataInRussian.universityCampuses[campusLocationId]
         }
         if let dormitoryId = currentUser?.dormitoryId, dormitoryId != 0 {
-            dormTextField.text = DataInEnglish.dormitories[dormitoryId]
+            dormTextField.text = DataInRussian.dormitories[dormitoryId]
         }
         aboutMeTextView.text = currentUser?.about
         socialNetworkTextField.text = currentUser?.contact
@@ -411,9 +409,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController {
     
     @objc private func changeLanguage() {
-        ExchangesViewController.tableView.reloadData()
         SearchViewController.tableView.reloadData()
-        ConversationsListViewController.tableView.reloadData()
         EnterViewController.isEnglish = !EnterViewController.isEnglish
         if (EnterViewController.isEnglish) {
             translateToRussia()
@@ -469,7 +465,7 @@ extension ProfileViewController {
             }
             datePicker.locale = Locale(identifier: "en")
         } else {
-            myDataLabel.text = CurrentUser.user.mail == currentUser?.mail ?  "Мои данные" : "Данные"
+            myDataLabel.text =  "Мои данные"
             nameLabel.text = "Имя"
             nameTextFiled.placeholder = "Введите имя"
             surnameLabel.text = "Фамилия"
@@ -478,7 +474,7 @@ extension ProfileViewController {
             socialNetworkLabel.text = "Социальная сеть"
             socialNetworkTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "t.me/ или vk.com/" : "Не указана"
             aboutMeLabel.text = "Обо мне"
-            if CurrentUser.user.mail == currentUser?.mail {
+            if CurrentUser.user.mail == currentUser?.mail || currentUser?.mail == nil {
                 canButton.setTitle("Могу", for: .normal)
                 wantButton.setTitle("Хочу", for: .normal)
             } else {

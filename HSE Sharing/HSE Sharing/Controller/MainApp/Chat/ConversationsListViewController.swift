@@ -1,32 +1,97 @@
 //
 //  ConversationsListViewController.swift
-//  HSE Sharing
+//  ChatApp
 //
-//  Created by Екатерина on 11.03.2022.
+//  Created by Екатерина on 06.03.2022.
 //
 
 import UIKit
 
 class ConversationsListViewController: UIViewController {
     
-    static let tableView = UITableView(frame: .zero, style: .grouped)
-    let searchBar = UISearchBar()
-    var isSearching = false
+    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let searchBar = UISearchBar()
+    private var activityIndicator: UIActivityIndicatorView!
+    private let refreshControl = UIRefreshControl()
     
-    var channels: [Conversation] = []
-    var filteredChannels: [Conversation]!
+    private var conversations: [Conversation]?
+    private var filteredConversations: [Conversation]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filteredChannels = channels
+        configureActivityIndicator()
         configureView()
         configureTableView()
         configureNavigationBar()
         configureSearchBar()
+        configurePullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
+        loadConversationsRequest()
+    }
+    
+    private func loadConversationsRequest() {
+        activityIndicator.startAnimating()
+        Api.shared.getConversations(email: CurrentUser.user.mail!) { result in
+            switch result {
+            case .success(let conversations):
+                DispatchQueue.main.async {
+                    self.conversations = conversations
+                    self.filteredConversations = conversations
+                    self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+
+    private func configurePullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating")
+        refreshControl.addTarget(self, action: #selector(makeRenewRequest), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc private func makeRenewRequest() {
+        Api.shared.getConversations(email: CurrentUser.user.mail!) { result in
+            switch result {
+            case .success(let conversations):
+                DispatchQueue.main.async {
+                    self.conversations = conversations
+                    self.filteredConversations = conversations
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        successAlert.addAction(UIAlertAction(title: "Повторить попытку", style: UIAlertAction.Style.default) {_ in
+            self.loadConversationsRequest()})
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
     }
     
     private func configureView() {
@@ -34,25 +99,26 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureTableView() {
-        ConversationsListViewController.tableView.register(
+        tableView.register(
             UINib(nibName: String(describing: ConversationTableViewCell.self), bundle: nil),
             forCellReuseIdentifier: ConversationTableViewCell.identifier
         )
-        ConversationsListViewController.tableView.dataSource = self
-        ConversationsListViewController.tableView.delegate = self
-        view.addSubview(ConversationsListViewController.tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
         configureTableViewAppearance()
     }
     
     private func configureTableViewAppearance() {
+        tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
-            ConversationsListViewController.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            ConversationsListViewController.tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            ConversationsListViewController.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            ConversationsListViewController.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        ConversationsListViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureNavigationBar() {
@@ -60,7 +126,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureNavigationTitle() {
-        navigationItem.title = EnterViewController.isEnglish ? "Chat" : "Переписки"
+        navigationItem.title = "Переписки"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -74,24 +140,28 @@ class ConversationsListViewController: UIViewController {
 extension ConversationsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let conversation = isSearching ? filteredChannels[indexPath.row] : channels[indexPath.row]
-        self.navigationItem.title = ""
-        
-        let conversationViewController = ConversationViewController(conversation: conversation)
-        navigationController?.pushViewController(conversationViewController, animated: true)
-        tableView.reloadRows(at: [indexPath], with: .none)
+        if let conversation = filteredConversations?[indexPath.row] {
+            
+            let conversationViewController = ConversationViewController(channel: conversation)
+            self.navigationItem.title = ""
+            navigationController?.pushViewController(conversationViewController!, animated: true)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Const.hightOfCell
     }
 }
 
 extension ConversationsListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Const.numberOfSections
+        1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredChannels.count : channels.count
+            return filteredConversations?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,16 +171,17 @@ extension ConversationsListViewController: UITableViewDataSource {
         guard let conversationCell = cell as? ConversationTableViewCell else {
             return cell
         }
-        let conversation = isSearching ? filteredChannels[indexPath.row] : channels[indexPath.row]
-        conversationCell.configureCell(conversation)
+        if let conversation = filteredConversations?[indexPath.row] {
+            conversationCell.configureCell(conversation)
+        }
         return conversationCell
     }
 }
 
 extension ConversationsListViewController: UISearchBarDelegate {
     
-    func configureSearchBar() {
-        ConversationsListViewController.tableView.tableHeaderView = searchBar
+    private func configureSearchBar() {
+        tableView.tableHeaderView = searchBar
         searchBar.delegate = self
         searchBar.sizeToFit()
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
@@ -118,18 +189,20 @@ extension ConversationsListViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        isSearching = !searchText.isEmpty
-        filteredChannels = searchText.isEmpty ? channels : channels.filter { (item: Conversation) -> Bool in
-            return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        if let conversations = conversations {
+            filteredConversations = searchText.isEmpty ? conversations : conversations.filter {
+                (item: Conversation) -> Bool in
+                let search = item.mail1 == CurrentUser.user.mail ? item.name2 : item.name1
+                return search.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+            }
+            tableView.reloadData()
         }
-        ConversationsListViewController.tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
     }
 }
-
 
 extension ConversationsListViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

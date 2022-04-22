@@ -81,10 +81,12 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         exchangeButton.isEnabled = false
         mySkillPickerView.delegate = self
         mySkillPickerView.dataSource = self
+        mySkillTextField.inputView = mySkillPickerView
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        messageTextView.layer.cornerRadius = 10
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
         photoOfAuthorImageView.layer.cornerRadius = photoOfAuthorImageView.frame.size.width / 2
@@ -136,7 +138,7 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     private func setSkills(skills: [Skill]?) {
         self.mySkills = (skills?.filter { skill in
-            return skill.status == self.skill.status
+            return skill.status == (self.skill.status == 1 ? 2 : 1)
         })!
         
         if mySkills.isEmpty {

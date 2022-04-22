@@ -15,12 +15,13 @@ class RootTabBarViewController: UITabBarController {
         let chatViewController = UINavigationController(
             rootViewController: ConversationsListViewController())
         
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let storyboardProfile = UIStoryboard(name: "Profile", bundle: nil)
         let profileViewController = UINavigationController(
-            rootViewController: storyboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController)
+            rootViewController: storyboardProfile.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController)
         
+        let storyboardCurrentExchanges = UIStoryboard(name: "CurrentExchanges", bundle: nil)
         let exchangesViewController = UINavigationController(
-            rootViewController: ExchangesViewController())
+            rootViewController: storyboardCurrentExchanges.instantiateViewController(withIdentifier: "CurrentExchanges") as! ExchangesViewController)
         
         let searchViewController = UINavigationController(
             rootViewController: SearchViewController())

@@ -65,7 +65,10 @@ class SkillEditViewController: UIViewController {
                              description: skill?.description ?? "",
                              category: skill?.category ?? 0,
                              subcategory: skill?.subcategory ?? 0,
-                             userMail: CurrentUser.user.mail!)
+                             userMail: CurrentUser.user.mail!,
+                             userName: CurrentUser.user.name!,
+                             userSurname: CurrentUser.user.surname!,
+                             photo: CurrentUser.user.photo)
     }
     
     func setSkill(_ skill: Skill) {

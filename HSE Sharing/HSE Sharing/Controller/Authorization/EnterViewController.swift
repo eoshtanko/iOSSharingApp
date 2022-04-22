@@ -42,7 +42,7 @@ class EnterViewController : UIViewController {
     
     @IBOutlet weak var changeLanguageButton: UIButton!
     @IBAction func changeLanguageButtonAction(_ sender: Any) {
-        Api.shared.sendMessage(mail: "2@edu.hse.ru", message: Message(id: 1, sendTime: "23.02.2001", text: "Hi!!!",  senderMail: "1@edu.hse.ru", receiverMail: "2@edu.hse.ru"))
+//        Api.shared.sendMessage(mail: "2@edu.hse.ru", message: Message(id: 1, sendTime: "23.02.2001", text: "Hi!!!",  senderMail: "1@edu.hse.ru", receiverMail: "2@edu.hse.ru"))
         EnterViewController.isEnglish = !EnterViewController.isEnglish
         translateProfileView(EnterViewController.isEnglish)
     }
@@ -55,7 +55,7 @@ class EnterViewController : UIViewController {
     }
     
     func playing() {
-        Api.shared.startMessaging(email: "1@edu.hse.ru")
+       // Api.shared.startMessaging(email: "1@edu.hse.ru")
     }
     
     override func viewDidLayoutSubviews() {

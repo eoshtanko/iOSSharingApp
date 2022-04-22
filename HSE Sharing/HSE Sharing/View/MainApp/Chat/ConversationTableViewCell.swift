@@ -1,8 +1,8 @@
 //
 //  ConversationTableViewCell.swift
-//  HSE Sharing
+//  ChatApp
 //
-//  Created by Екатерина on 11.03.2022.
+//  Created by Екатерина on 06.03.2022.
 //
 
 import UIKit
@@ -15,6 +15,7 @@ class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var lastMessageDateLabel: UILabel!
+    @IBOutlet weak var onlineSignImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     
     override func layoutSubviews() {
@@ -27,15 +28,20 @@ class ConversationTableViewCell: UITableViewCell {
     }
     
     func configureCell(_ conversation: Conversation) {
-        configureNameLabel(conversation.name)
-        configureLastMessageDate(conversation.lastActivity)
+        if conversation.mail1 == CurrentUser.user.mail {
+            configureNameLabel(conversation.name2)
+            configureProfileImageView(conversation.photo2)
+        } else {
+            configureNameLabel(conversation.name1)
+            configureProfileImageView(conversation.photo1)
+        }
+        print(conversation.sendTime)
         configureLastMessageLabel(conversation.lastMessage)
-       //configureUnreadMessagesIdentifier(conversation.hasUnreadMessages)
-       // configureProfileImageView(conversation.image)
     }
     
     func configureSubviews() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        onlineSignImageView.layer.cornerRadius = onlineSignImageView.frame.size.width / 2
     }
     
     private func configureNameLabel(_ name: String?) {
@@ -57,7 +63,7 @@ class ConversationTableViewCell: UITableViewCell {
     }
     
     private func configureLastMessageLabel(_ message: String?) {
-        lastMessageLabel.text = message == nil ? EnterViewController.isEnglish ? "No messages yet" : "Сообщений еще нет" : message
+        lastMessageLabel.text = message == nil ? "No messages yet" : message
         if (message == nil) {
             lastMessageLabel.font = .italicSystemFont(ofSize: Const.textSize)
         } else {
@@ -65,15 +71,10 @@ class ConversationTableViewCell: UITableViewCell {
         }
     }
     
-    private func configureUnreadMessagesIdentifier(_ hasUnreadMessages: Bool) {
-        if (hasUnreadMessages) {
-            lastMessageLabel.font = .systemFont(ofSize: Const.textSize, weight: .bold)
-        }
-    }
-    
-    private func configureProfileImageView(_ image: UIImage?) {
-        if let image = image {
-            profileImageView.image = image
+    private func configureProfileImageView(_ image: String?) {
+        if let imageBase64String = image {
+            let imageData = Data(base64Encoded: imageBase64String)
+            profileImageView.image = UIImage(data: imageData!)
         } else {
             setDefaultImage()
         }
@@ -104,6 +105,6 @@ class ConversationTableViewCell: UITableViewCell {
         static let horizontalInserts: CGFloat = 10
         static let contentViewCornerRadius: CGFloat = 10
         static let rationImageAndOnlineSign: CGFloat = 5
+        static let onlineSignImageViewWidth: CGFloat = 19
     }
 }
-

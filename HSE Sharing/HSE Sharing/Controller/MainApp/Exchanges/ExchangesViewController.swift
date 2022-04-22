@@ -9,49 +9,65 @@ import UIKit
 
 class ExchangesViewController: UIViewController {
     
-    static let tableView = UITableView(frame: .zero, style: .grouped)
+    @IBOutlet weak var tableView: UITableView!
+    
     private let pickerView = UIPickerView()
     private let settingsButton = UIButton()
     private var activityIndicator: UIActivityIndicatorView!
     
-    private var transactions: [Transaction] = []
+    @IBAction func unwindToExchangesViewController(segue:UIStoryboardSegue) { }
+    
+    private var transactions: [Transaction] = [] {
+        didSet {
+            if tableView != nil {
+                tableView.isHidden = transactions.isEmpty
+                view.backgroundColor = transactions.isEmpty ? UIColor(named: "BlueLightColor") : .white
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
-        configureView()
         configureTableView()
-        makeRequest()
         configureNavigationBar()
         configurePickerView()
         configurePickerAppearance()
+        makeRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
+        //makeRequest()
     }
     
     private func makeRequest() {
         activityIndicator.startAnimating()
-//        Api.shared.getUserByEmail(email: emailTextField.text!) { result in
-//            switch result {
-//            case .success(let skills):
-//                CurrentUser.user = user
-//                DispatchQueue.main.async {
-//                    self.activityIndicator.stopAnimating()
-//                    ExchangesViewController.tableView.reloadData()
-//                }
-//            case .failure(let apiError):
-//                DispatchQueue.main.async {
-//                    self.activityIndicator.stopAnimating()
-//                    if apiError as! ApiError == ApiError.noSuchData {
-//                        self.noSuchUserAlert()
-//                    } else {
-//                        self.showFailAlert()
-//                    }
-//                }
-//            }
-//        }
+        Api.shared.getTransactions(type: .active) { result in
+            switch result {
+            case .success(let transactions):
+                DispatchQueue.main.async {
+                    if let transactions = transactions {
+                        self.transactions = transactions
+                    } else {
+                        self.transactions = []
+                    }
+                    self.activityIndicator.stopAnimating()
+                    self.tableView.reloadData()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
     }
     
     private func configureActivityIndicator() {
@@ -63,18 +79,14 @@ class ExchangesViewController: UIViewController {
         view.addSubview(activityIndicator)
     }
     
-    private func configureView() {
-        view.backgroundColor = .white
-    }
-    
     private func configureTableView() {
-        ExchangesViewController.tableView.register(
-            UINib(nibName: String(describing: СompletedExchangeCell.self), bundle: nil),
-            forCellReuseIdentifier: СompletedExchangeCell.identifier
+        tableView.register(
+            UINib(nibName: String(describing: CurrentExchangeCell.self), bundle: nil),
+            forCellReuseIdentifier: CurrentExchangeCell.identifier
         )
-        ExchangesViewController.tableView.dataSource = self
-        ExchangesViewController.tableView.delegate = self
-        view.addSubview(ExchangesViewController.tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
         configureTableViewAppearance()
     }
     
@@ -97,15 +109,15 @@ class ExchangesViewController: UIViewController {
     }
     
     private func configureTableViewAppearance() {
-        ExchangesViewController.tableView.backgroundColor = .white
+        tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
-            ExchangesViewController.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            ExchangesViewController.tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            ExchangesViewController.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            ExchangesViewController.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        ExchangesViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureNavigationBar() {
@@ -153,14 +165,31 @@ extension ExchangesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: СompletedExchangeCell.identifier,
+            withIdentifier: CurrentExchangeCell.identifier,
             for: indexPath)
-        guard let transactionCell = cell as? СompletedExchangeCell else {
+        guard let transactionCell = cell as? CurrentExchangeCell else {
             return cell
         }
         let transaction = transactions[indexPath.row]
-        transactionCell.configureCell(transaction)
+        transactionCell.configureCell(transaction, imageTapped) {
+            self.navigationItem.title = ""
+            let storyboard = UIStoryboard(name: "LeaveCommentScreen", bundle: nil)
+            let leaveCommentScreen = storyboard.instantiateViewController(withIdentifier: "LeaveCommentScreen") as! LeaveCommentViewController
+            self.navigationController?.pushViewController(leaveCommentScreen, animated: true)
+        }
         return transactionCell
+    }
+    
+    func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, transaction: Transaction, user: User?)
+    {
+        guard let user = user else {
+            return
+        }
+        self.navigationItem.title = ""
+        let storyboard = UIStoryboard(name: "ForeignProfile", bundle: nil)
+        let profileViewController = storyboard.instantiateViewController(withIdentifier: "ForeignProfile") as! ForeignProfileViewController
+        profileViewController.setUser(user: user)
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
 
@@ -171,7 +200,7 @@ extension ExchangesViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return EnterViewController.isEnglish ? DataInEnglish.sectors.count : DataInRussian.sectors.count
+        return EnterViewController.isEnglish ? DataInEnglish.sectors.count - 1 : DataInRussian.sectors.count - 1
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -179,6 +208,23 @@ extension ExchangesViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.navigationItem.title = ""
+        switch row {
+        case 0:
+            let storyboard = UIStoryboard(name: "OutcomeExchanges", bundle: nil)
+            let outcomeExchanges = storyboard.instantiateViewController(withIdentifier: "OutcomeExchanges") as! OutcomeExchangesViewController
+            navigationController?.pushViewController(outcomeExchanges, animated: true)
+        case 1:
+            let storyboard = UIStoryboard(name: "IncomeExchanges", bundle: nil)
+            let incomeExchanges = storyboard.instantiateViewController(withIdentifier: "IncomeExchanges") as! IncomeExchangesViewController
+            navigationController?.pushViewController(incomeExchanges, animated: true)
+        case 2:
+            let storyboard = UIStoryboard(name: "CompletedExchanges", bundle: nil)
+            let completedExchanges = storyboard.instantiateViewController(withIdentifier: "CompletedExchanges") as! CompletedExchangesViewController
+            navigationController?.pushViewController(completedExchanges, animated: true)
+        default:
+            return
+        }
         pickerView.isHidden = true
     }
 }

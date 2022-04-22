@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Outcome Exchanges View Controller-->
+        <scene sceneID="HkK-9O-2gH">
+            <objects>
+                <viewController storyboardIdentifier="OutcomeExchanges" id="7ZW-tv-Fk9" customClass="OutcomeExchangesViewController" customModule="HSE_Sharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yj1-A8-aOE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crowCosmonautLeft" translatesAutoresizingMaskIntoConstraints="NO" id="XJ7-Sa-Ubl">
+                                <rect key="frame" x="90" y="331" width="234" height="234"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XJ7-Sa-Ubl" secondAttribute="height" multiplier="1:1" id="H5F-50-QwC"/>
+                                </constraints>
+                            </imageView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tOv-9s-4nc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qlj-rn-2WU"/>
+                        <color key="backgroundColor" name="BlueLightColor"/>
+                        <color key="tintColor" name="BlueLightColor"/>
+                        <constraints>
+                            <constraint firstItem="XJ7-Sa-Ubl" firstAttribute="leading" secondItem="qlj-rn-2WU" secondAttribute="leading" constant="90" id="1uB-EI-1Ex"/>
+                            <constraint firstItem="XJ7-Sa-Ubl" firstAttribute="centerX" secondItem="Yj1-A8-aOE" secondAttribute="centerX" id="DtE-dP-smq"/>
+                            <constraint firstItem="tOv-9s-4nc" firstAttribute="leading" secondItem="qlj-rn-2WU" secondAttribute="leading" id="FQ2-0L-jvX"/>
+                            <constraint firstItem="qlj-rn-2WU" firstAttribute="trailing" secondItem="tOv-9s-4nc" secondAttribute="trailing" id="LyG-Yu-R6a"/>
+                            <constraint firstItem="qlj-rn-2WU" firstAttribute="bottom" secondItem="tOv-9s-4nc" secondAttribute="bottom" id="VD5-hc-Z2G"/>
+                            <constraint firstItem="tOv-9s-4nc" firstAttribute="top" secondItem="qlj-rn-2WU" secondAttribute="top" id="cea-9Q-OPO"/>
+                            <constraint firstItem="XJ7-Sa-Ubl" firstAttribute="centerY" secondItem="Yj1-A8-aOE" secondAttribute="centerY" id="xmG-UG-sJ6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="tOv-9s-4nc" id="As5-Wt-hc2"/>
+                        <segue destination="CYv-Pr-ycK" kind="unwind" identifier="unwindToExchanges" unwindAction="unwindToExchangesViewControllerWithSegue:" id="b9n-4w-ZtA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8PY-EW-8eQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="CYv-Pr-ycK" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="600" y="76"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crowCosmonautLeft" width="600" height="600"/>
+        <namedColor name="BlueLightColor">
+            <color red="0.75999999046325684" green="0.86500000953674316" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -8,7 +8,7 @@
 import UIKit
 
 class Skill: Codable, NSCoding {
-    var id: Int
+    var id: Int64
     // Статус: 1 - могу, 2 - хочу
     var status: Int
     var name: String
@@ -16,8 +16,11 @@ class Skill: Codable, NSCoding {
     var category: Int
     var subcategory: Int
     var userMail: String
+    var userName: String
+    var userSurname: String
+    var photo: String?
     
-    init(id: Int, status: Int, name: String, description: String, category: Int, subcategory: Int, userMail: String) {
+    init(id: Int64, status: Int, name: String, description: String, category: Int, subcategory: Int, userMail: String, userName: String, userSurname: String, photo: String?) {
         self.id = id
         self.status = status
         self.name = name
@@ -25,16 +28,22 @@ class Skill: Codable, NSCoding {
         self.category = category
         self.subcategory = subcategory
         self.userMail = userMail
+        self.userName = userName
+        self.userSurname = userSurname
+        self.photo = photo
     }
     
     public required init?(coder: NSCoder) {
-        id = coder.decodeInteger(forKey: "id")
+        id = coder.decodeInt64(forKey: "id")
         status = coder.decodeInteger(forKey: "status")
         name = coder.decodeObject(forKey: "name") as! String
         description = coder.decodeObject(forKey: "description") as! String
         category = coder.decodeInteger(forKey: "category")
         subcategory = coder.decodeInteger(forKey: "subcategory")
         userMail = coder.decodeObject(forKey: "userMail") as! String
+        userName = coder.decodeObject(forKey: "userName") as! String
+        userSurname = coder.decodeObject(forKey: "userSurname") as! String
+        photo = coder.decodeObject(forKey: "photo") as? String
     }
     
     public func encode(with coder: NSCoder) {
@@ -45,6 +54,9 @@ class Skill: Codable, NSCoding {
         coder.encode(category, forKey:"category")
         coder.encode(subcategory, forKey: "subcategory")
         coder.encode(userMail, forKey:"userMail")
+        coder.encode(userName, forKey: "userName")
+        coder.encode(userSurname, forKey: "userSurname")
+        coder.encode(photo, forKey: "photo")
     }
     
     var toDict: [String: Any] {
@@ -55,6 +67,9 @@ class Skill: Codable, NSCoding {
                 "category": category,
                 "subcategory": subcategory,
                 "userMail": userMail,
+                "userName": userName,
+                "userSurname": userSurname,
+                "photo": photo as Any
         ]
     }
 }

@@ -14,6 +14,14 @@ class Feedback: Codable, NSCoding {
     let senderMail: String
     let receiverMail: String
     
+    init(id: Int64, gade: Int, comment: String, senderMail: String, receiverMail: String) {
+        self.id = id
+        self.gade = gade
+        self.comment = comment
+        self.senderMail = senderMail
+        self.receiverMail = receiverMail
+    }
+    
     public required init?(coder: NSCoder) {
         id = coder.decodeInt64(forKey: "id")
         gade = coder.decodeInteger(forKey: "gade")
@@ -28,5 +36,14 @@ class Feedback: Codable, NSCoding {
         coder.encode(comment, forKey:"comment")
         coder.encode(senderMail, forKey: "senderMail")
         coder.encode(receiverMail, forKey:"receiverMail")
+    }
+    
+    var toDict: [String: Any] {
+        return ["id": id,
+                "gade": gade,
+                "comment": comment,
+                "senderMail": senderMail,
+                "receiverMail": receiverMail
+        ]
     }
 }

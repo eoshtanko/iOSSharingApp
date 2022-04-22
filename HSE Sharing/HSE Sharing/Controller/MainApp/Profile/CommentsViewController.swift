@@ -14,6 +14,7 @@ class CommentsViewController: UIViewController {
         didSet {
             if tableView != nil {
                 tableView.isHidden = comments.isEmpty
+                view.backgroundColor = comments.isEmpty ? UIColor(named: "BlueLightColor") : .white
             }
         }
     }
@@ -22,6 +23,7 @@ class CommentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        comments = [Feedback(id: 1, gade: 4, comment: "Опоздал на встречу, но в остальном все хорошо.", senderMail: "", receiverMail: "")]
         configureTableView()
     }
     
@@ -33,7 +35,7 @@ class CommentsViewController: UIViewController {
     }
     
     func setComments(comments: [Feedback]?) {
-        self.comments = comments ?? []
+       // self.comments = comments ?? []
     }
     
     private func configureTableView() {

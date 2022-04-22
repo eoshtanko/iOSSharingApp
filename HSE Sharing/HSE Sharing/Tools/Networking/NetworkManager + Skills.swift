@@ -68,7 +68,7 @@ extension Api {
         task.resume()
     }
     
-    func deleteSkill(id: Int, _ completion: @escaping (Result<Any>) -> Void) {
+    func deleteSkill(id: Int64, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
         let url = URL(string: "\(baseURL)/api/Skills/\(id)")!
         let request = createRequest(url: url, httpMethod: .DELETE)
@@ -113,8 +113,10 @@ extension Api {
         let request = createRequest(url: url, httpMethod: .GET)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            guard let response = response as? HTTPURLResponse,
-                    (200...299).contains(response.statusCode) else {
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                }
                 completion(Result.failure(ApiError.badResponse))
                 return
             }

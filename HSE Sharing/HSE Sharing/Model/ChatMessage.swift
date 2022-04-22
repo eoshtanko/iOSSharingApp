@@ -1,8 +1,8 @@
 //
 //  ChatMessage.swift
-//  HSE Sharing
+//  ChatApp
 //
-//  Created by Екатерина on 11.03.2022.
+//  Created by Екатерина on 09.03.2022.
 //
 
 import Foundation
@@ -47,10 +47,3 @@ class Message: Codable, NSCoding {
                 "receiverMail": receiverMail]
     }
 }
-
-//extension ChatMessage: Comparable {
-//
-//  static func < (lhs: ChatMessage, rhs: ChatMessage) -> Bool {
-//      return lhs.created < rhs.created
-//  }
-//}

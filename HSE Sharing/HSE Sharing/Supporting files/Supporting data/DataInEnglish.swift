@@ -68,7 +68,7 @@ struct DataInEnglish {
         "Applied Mathematics and Computer science",
         "The program of two diplomas of the HSE and the University of London \"Applied Data Analysis\"",
         "Joint Bachelor's Degree of HSE and CPM",
-        "Applied data analysis",
+        "Applied data analysis", // 
         "Geography of global changes and geoinformation technologies",
         "International relations",
         "Political Science",
@@ -138,9 +138,9 @@ struct DataInEnglish {
     ];
     
     static let sectors = [
-        "Current",
         "Outcoming",
         "Incomming",
-        "Completed"
+        "Completed",
+        "Current"
     ]
 }

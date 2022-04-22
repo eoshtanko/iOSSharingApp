@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Income Exchanges View Controller-->
+        <scene sceneID="ThU-Fo-QKH">
+            <objects>
+                <viewController storyboardIdentifier="IncomeExchanges" id="zfy-C2-a5f" customClass="IncomeExchangesViewController" customModule="HSE_Sharing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="upb-k6-rfN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crowCosmonautLeft" translatesAutoresizingMaskIntoConstraints="NO" id="sNa-3z-3dA">
+                                <rect key="frame" x="90" y="331" width="234" height="234"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sNa-3z-3dA" secondAttribute="height" multiplier="1:1" id="HMI-ZM-zxO"/>
+                                </constraints>
+                            </imageView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vaE-M6-oNv">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mco-Dg-P4I"/>
+                        <color key="backgroundColor" name="BlueLightColor"/>
+                        <color key="tintColor" name="BlueLightColor"/>
+                        <constraints>
+                            <constraint firstItem="sNa-3z-3dA" firstAttribute="leading" secondItem="Mco-Dg-P4I" secondAttribute="leading" constant="90" id="6PV-od-UBb"/>
+                            <constraint firstItem="Mco-Dg-P4I" firstAttribute="trailing" secondItem="vaE-M6-oNv" secondAttribute="trailing" id="DYk-ZA-6lw"/>
+                            <constraint firstItem="vaE-M6-oNv" firstAttribute="top" secondItem="Mco-Dg-P4I" secondAttribute="top" id="GyX-lg-adL"/>
+                            <constraint firstItem="sNa-3z-3dA" firstAttribute="centerX" secondItem="upb-k6-rfN" secondAttribute="centerX" id="LA4-BA-C5v"/>
+                            <constraint firstItem="vaE-M6-oNv" firstAttribute="leading" secondItem="Mco-Dg-P4I" secondAttribute="leading" id="QLJ-75-W9u"/>
+                            <constraint firstItem="sNa-3z-3dA" firstAttribute="centerY" secondItem="upb-k6-rfN" secondAttribute="centerY" id="VxZ-zh-eXs"/>
+                            <constraint firstItem="Mco-Dg-P4I" firstAttribute="bottom" secondItem="vaE-M6-oNv" secondAttribute="bottom" id="kg0-Af-6CY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="vaE-M6-oNv" id="aCR-DD-UTt"/>
+                        <segue destination="vC8-Gk-Tpw" kind="unwind" identifier="unwindToExchanges" unwindAction="unwindToExchangesViewControllerWithSegue:" id="fsf-Vz-bGe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6EW-vQ-2kR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="vC8-Gk-Tpw" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="600" y="76"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crowCosmonautLeft" width="600" height="600"/>
+        <namedColor name="BlueLightColor">
+            <color red="0.75999999046325684" green="0.86500000953674316" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
