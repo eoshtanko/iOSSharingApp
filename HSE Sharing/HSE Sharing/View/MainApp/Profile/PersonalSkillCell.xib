@@ -161,8 +161,10 @@
                 <outlet property="categoryLabel" destination="TI3-a1-LhG" id="LXi-dO-45A"/>
                 <outlet property="categoryTextLabel" destination="LAC-Me-Zx5" id="cPC-ND-9gB"/>
                 <outlet property="coloredView" destination="wUZ-sU-vxd" id="5O7-f3-mJh"/>
+                <outlet property="deleteButton" destination="Bwp-3S-afW" id="AqP-s0-Ne2"/>
                 <outlet property="descriptionLabel" destination="qR0-n9-gBQ" id="wmU-fa-9WN"/>
                 <outlet property="descriptionTextLabel" destination="got-V2-HiK" id="aHH-Ei-GJC"/>
+                <outlet property="editButton" destination="XlR-Me-t5l" id="1Te-ZX-r5C"/>
                 <outlet property="innerView" destination="1Xv-5n-pG7" id="vl0-V8-23W"/>
                 <outlet property="nameLabel" destination="861-wx-x04" id="nXE-TN-ziV"/>
                 <outlet property="nameTextLabel" destination="V3c-YG-mVl" id="6jx-mi-VVc"/>

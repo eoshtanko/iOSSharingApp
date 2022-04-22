@@ -16,9 +16,9 @@ class Skill: Codable, NSCoding {
     var category: Int
     var subcategory: Int
     var userMail: String
-    var userName: String
-    var userSurname: String
-    var photo: String?
+    var userName: String?
+    var userSurname: String?
+    var userPhoto: String?
     
     init(id: Int64, status: Int, name: String, description: String, category: Int, subcategory: Int, userMail: String, userName: String, userSurname: String, photo: String?) {
         self.id = id
@@ -30,7 +30,7 @@ class Skill: Codable, NSCoding {
         self.userMail = userMail
         self.userName = userName
         self.userSurname = userSurname
-        self.photo = photo
+        self.userPhoto = photo
     }
     
     public required init?(coder: NSCoder) {
@@ -41,9 +41,9 @@ class Skill: Codable, NSCoding {
         category = coder.decodeInteger(forKey: "category")
         subcategory = coder.decodeInteger(forKey: "subcategory")
         userMail = coder.decodeObject(forKey: "userMail") as! String
-        userName = coder.decodeObject(forKey: "userName") as! String
-        userSurname = coder.decodeObject(forKey: "userSurname") as! String
-        photo = coder.decodeObject(forKey: "photo") as? String
+        userName = coder.decodeObject(forKey: "userName") as? String
+        userSurname = coder.decodeObject(forKey: "userSurname") as? String
+        userPhoto = coder.decodeObject(forKey: "userPhoto") as? String
     }
     
     public func encode(with coder: NSCoder) {
@@ -56,7 +56,7 @@ class Skill: Codable, NSCoding {
         coder.encode(userMail, forKey:"userMail")
         coder.encode(userName, forKey: "userName")
         coder.encode(userSurname, forKey: "userSurname")
-        coder.encode(photo, forKey: "photo")
+        coder.encode(userPhoto, forKey: "userPhoto")
     }
     
     var toDict: [String: Any] {
@@ -67,9 +67,9 @@ class Skill: Codable, NSCoding {
                 "category": category,
                 "subcategory": subcategory,
                 "userMail": userMail,
-                "userName": userName,
-                "userSurname": userSurname,
-                "photo": photo as Any
+                "userName": userName as Any,
+                "userSurname": userSurname as Any,
+                "userPhoto": userPhoto as Any
         ]
     }
 }

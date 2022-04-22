@@ -26,7 +26,9 @@ class PersonalSkillListViewController: UIViewController {
         configureTableView()
         tableView.isHidden = true
         loadSkillsRequest()
-        configureNavigationButton()
+        if userEmail == CurrentUser.user.mail {
+            configureNavigationButton()
+        }
         configureImage()
     }
     

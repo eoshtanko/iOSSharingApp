@@ -24,6 +24,8 @@ class PersonalSkillCell: UITableViewCell {
     @IBOutlet weak var categoryTextLabel: UILabel!
     @IBOutlet weak var subcategoryLabel: UILabel!
     @IBOutlet weak var subcategoryTextLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     @IBAction func editButtonPressed(_ sender: Any) {
         if let skill = skill {
@@ -44,6 +46,8 @@ class PersonalSkillCell: UITableViewCell {
     }
     
     func configureCell(_ skill: Skill) {
+        deleteButton.isHidden = skill.userMail != CurrentUser.user.mail
+        editButton.isHidden = skill.userMail != CurrentUser.user.mail
         configureLabelsLanguage()
         configureData(skill)
         configureView()

@@ -15,7 +15,6 @@ class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var lastMessageDateLabel: UILabel!
-    @IBOutlet weak var onlineSignImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     
     override func layoutSubviews() {
@@ -41,7 +40,6 @@ class ConversationTableViewCell: UITableViewCell {
     
     func configureSubviews() {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        onlineSignImageView.layer.cornerRadius = onlineSignImageView.frame.size.width / 2
     }
     
     private func configureNameLabel(_ name: String?) {
@@ -104,7 +102,5 @@ class ConversationTableViewCell: UITableViewCell {
         static let verticalInserts: CGFloat = 15
         static let horizontalInserts: CGFloat = 10
         static let contentViewCornerRadius: CGFloat = 10
-        static let rationImageAndOnlineSign: CGFloat = 5
-        static let onlineSignImageViewWidth: CGFloat = 19
     }
 }
