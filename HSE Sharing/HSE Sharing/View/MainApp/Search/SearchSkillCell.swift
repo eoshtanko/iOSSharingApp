@@ -26,6 +26,7 @@ class SearchSkillCell: UITableViewCell {
     @IBOutlet weak var subcategoryTextLabel: UILabel!
     @IBOutlet weak var exchangeButton: UIButton!
     
+    var action: ((UITapGestureRecognizer, String) -> Void)!
     var createNewTransaction: ((Skill) -> Void)!
     var skill: Skill!
     
@@ -33,8 +34,9 @@ class SearchSkillCell: UITableViewCell {
         createNewTransaction(skill)
     }
     
-    func configureCell(_ skill: Skill, _ createNewTransaction: @escaping ((Skill) -> Void)) {
+    func configureCell(_ skill: Skill, _ action: @escaping ((UITapGestureRecognizer, String) -> Void), _ createNewTransaction: @escaping ((Skill) -> Void)) {
         self.skill = skill
+        self.action = action
         self.createNewTransaction = createNewTransaction
         exchangeButton.makeButtonOval()
         nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
@@ -43,8 +45,13 @@ class SearchSkillCell: UITableViewCell {
         subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
         nameTextLabel.text = skill.name
         descriptionTextLabel.text = skill.description
-     //   photoOfAuthorImageView.image = skill.userPhoto
-        //authorNameTextLabel.text = skill.userName
+        if let imageBase64String = skill.userPhoto {
+            let imageData = Data(base64Encoded: imageBase64String)
+            self.photoOfAuthorImageView.image = UIImage(data: imageData!)
+        } else {
+            setDefaultImage()
+        }
+        authorNameTextLabel.text = skill.userName
         if EnterViewController.isEnglish {
             categoryTextLabel.text = DataInEnglish.categories[skill.category]
             if skill.category == 0 {
@@ -65,5 +72,22 @@ class SearchSkillCell: UITableViewCell {
         innerView.layer.cornerRadius = 10
         coloredView.layer.cornerRadius = 10
         photoOfAuthorImageView.layer.cornerRadius = photoOfAuthorImageView.frame.size.width / 2
+        
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        photoOfAuthorImageView.isUserInteractionEnabled = true
+        photoOfAuthorImageView.addGestureRecognizer(tapGestureRecognizer1)
+        
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        nameTextLabel.isUserInteractionEnabled = true
+        nameTextLabel.addGestureRecognizer(tapGestureRecognizer2)
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        action(tapGestureRecognizer, skill.userMail)
+    }
+    
+    private func setDefaultImage() {
+        photoOfAuthorImageView.image = UIImage(systemName: "crowsHoldingWings")
     }
 }

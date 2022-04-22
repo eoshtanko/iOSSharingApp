@@ -193,10 +193,34 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         }
         let skill = filteredSkills[indexPath.row]
-        searchCell.configureCell(skill, { skill in
+        searchCell.configureCell(skill, imageTapped, { skill in
             self.createNewTransaction(skill: skill)
         })
         return searchCell
+    }
+    
+    private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, mail: String) {
+        self.activityIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            Api.shared.getUserByEmail(email: mail) { result in
+                switch result {
+                case .success(let user):
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.navigationItem.title = ""
+                        let storyboard = UIStoryboard(name: "ForeignProfile", bundle: nil)
+                        let profileViewController = storyboard.instantiateViewController(withIdentifier: "ForeignProfile") as! ForeignProfileViewController
+                        profileViewController.setUser(user: user!)
+                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.showFailAlert()
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -65,6 +65,8 @@ class IncomeExchangeCell: UITableViewCell {
                     if let imageBase64String = user?.photo {
                         let imageData = Data(base64Encoded: imageBase64String)
                         self.profileImage.image = UIImage(data: imageData!)
+                    } else {
+                        self.setDefaultImage()
                     }
                     self.nameLabel.text = user?.name!
                 }
@@ -77,8 +79,6 @@ class IncomeExchangeCell: UITableViewCell {
     }
     
     private func setDefaultImage() {
-        profileImage.image = UIImage(systemName: "person.fill")
-        profileImage.tintColor = UIColor(named: "DefaultImageColor")
-        profileImage.backgroundColor = UIColor(named: "BackgroundImageColor")
+        profileImage.image = UIImage(systemName: "crowsHoldingWings")
     }
 }
