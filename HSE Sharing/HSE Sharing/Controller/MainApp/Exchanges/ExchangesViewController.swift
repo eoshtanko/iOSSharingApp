@@ -76,7 +76,7 @@ class ExchangesViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
     }
     
     private func configureTableView() {
@@ -86,8 +86,6 @@ class ExchangesViewController: UIViewController {
         )
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(tableView)
-        configureTableViewAppearance()
     }
     
     private func configurePickerView() {
@@ -106,18 +104,6 @@ class ExchangesViewController: UIViewController {
         ])
         pickerView.frame.size = CGSize(width: pickerView.frame.size.width, height: 400)
         pickerView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func configureTableViewAppearance() {
-        tableView.backgroundColor = .white
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureNavigationBar() {
@@ -201,6 +187,7 @@ extension ExchangesViewController: UITableViewDataSource {
                     self.navigationItem.title = ""
                     let storyboard = UIStoryboard(name: "LeaveCommentScreen", bundle: nil)
                     let leaveCommentScreen = storyboard.instantiateViewController(withIdentifier: "LeaveCommentScreen") as! LeaveCommentViewController
+                    leaveCommentScreen.anotherUserMail = transaction.receiverMail == CurrentUser.user.mail ? transaction.senderMail : transaction.receiverMail
                     self.navigationController?.pushViewController(leaveCommentScreen, animated: true)
                 }
             case .failure(_):

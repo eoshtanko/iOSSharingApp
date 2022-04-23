@@ -48,6 +48,10 @@ class SkillEditViewController: UIViewController {
         configureActivityIndicator()
         configureTextViewHintText()
         setData()
+        if categoryTextField.text == nil || categoryTextField.text!.isEmpty {
+            subcategoryTextField.isHidden = true
+            subcategoryLabel.isHidden = true
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,6 +97,7 @@ class SkillEditViewController: UIViewController {
     }
     
     private func createRequest() {
+
         Api.shared.createSkill(skill: editingSkill) { result in
             switch result {
             case .success(_):
@@ -239,6 +244,9 @@ extension SkillEditViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         case 1:
             return !EnterViewController.isEnglish ?  DataInRussian.categories.count : DataInEnglish.categories.count
         case 2:
+            if categoryTextField.text == nil || categoryTextField.text!.isEmpty {
+                return 0
+            }
             if editingSkill?.category == 0 {
             return !EnterViewController.isEnglish ? DataInRussian.subcategoriesStudy.count : DataInEnglish.subcategoriesStudy.count
             }
@@ -265,10 +273,17 @@ extension SkillEditViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
         case 1:
+            let prevText = categoryTextField.text
             subcategoryTextField.isEnabled = true
             categoryTextField.text = !EnterViewController.isEnglish ? DataInRussian.categories[row] : DataInEnglish.categories[row]
             categoryTextField.resignFirstResponder()
             editingSkill?.category = row
+            subcategoryTextField.isHidden = false
+            subcategoryLabel.isHidden = false
+            
+            if !(prevText == nil || prevText!.isEmpty || prevText == DataInRussian.categories[row] || prevText == DataInEnglish.categories[row]) {
+                subcategoryTextField.text = ""
+            }
         case 2:
             if editingSkill?.category == 0 {
                 subcategoryTextField.text = !EnterViewController.isEnglish ? DataInRussian.subcategoriesStudy[row] : DataInEnglish.subcategoriesStudy[row]

@@ -27,12 +27,12 @@ class IncomeExchangesViewController: UIViewController {
         super.viewDidLoad()
         configureActivityIndicator()
         configureTableView()
-        makeRequest()
         configureNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
+        makeRequest()
     }
     
     private func makeRequest() {
@@ -68,11 +68,12 @@ class IncomeExchangesViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center = view.center
+        let yoffset = view.frame.midY - 60
+        activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
     }
     
     private func configureTableView() {
@@ -83,20 +84,8 @@ class IncomeExchangesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        configureTableViewAppearance()
     }
-    
-    private func configureTableViewAppearance() {
-        tableView.backgroundColor = .white
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-    }
+
     
     private func configureNavigationBar() {
         configureNavigationTitle()
@@ -172,20 +161,21 @@ extension IncomeExchangesViewController: UITableViewDataSource {
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Отказаться", style: UIAlertAction.Style.destructive) {_ in
+        failureAlert.addAction(UIAlertAction(title: "Согласиться", style: UIAlertAction.Style.destructive) {_ in
+            self.activityIndicator.startAnimating()
             self.agree(transaction: transaction)
         })
         present(failureAlert, animated: true, completion: nil)
     }
     
     private func agree(transaction: Transaction) {
-        self.activityIndicator.startAnimating()
         let transaction = Transaction(id: transaction.id, skill1: transaction.skill1, skill2: transaction.skill2, description: transaction.description, senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 1, users: transaction.users)
         
         Api.shared.editTransaction(transaction: transaction) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
+                    self.makeRequest()
                     self.activityIndicator.stopAnimating()
                 }
             case .failure(_):

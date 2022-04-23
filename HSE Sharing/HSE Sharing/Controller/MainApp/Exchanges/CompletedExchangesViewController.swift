@@ -26,8 +26,8 @@ class CompletedExchangesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
-        configureTableView()
         makeRequest()
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +67,8 @@ class CompletedExchangesViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center = view.center
+        let yoffset = view.frame.midY - 60
+        activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
@@ -82,19 +83,6 @@ class CompletedExchangesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        configureTableViewAppearance()
-    }
-    
-    private func configureTableViewAppearance() {
-        tableView.backgroundColor = .white
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureNavigationBar() {

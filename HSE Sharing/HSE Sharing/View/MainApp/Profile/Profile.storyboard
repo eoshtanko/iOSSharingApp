@@ -315,7 +315,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xd-sr-sBk">
-                                                <rect key="frame" x="20" y="176.5" width="27" height="22"/>
+                                                <rect key="frame" x="20" y="179" width="27" height="19.5"/>
                                                 <color key="tintColor" name="BlueDarkColor"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title=" " image="note.text" catalog="system"/>
@@ -331,15 +331,6 @@
                                                     <constraint firstAttribute="width" secondItem="amR-AV-NRX" secondAttribute="height" multiplier="1:1" id="bDv-wv-VoS"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndr-yG-XMp">
-                                                <rect key="frame" x="273" y="176.5" width="27" height="22"/>
-                                                <color key="tintColor" name="BlueDarkColor"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title=" " image="message.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="chatButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="arv-d8-7Ha"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -364,7 +355,6 @@
                                             <constraint firstItem="RvF-1N-sv5" firstAttribute="leading" secondItem="ct3-FI-dF6" secondAttribute="leading" constant="80" id="E1x-eN-vTe"/>
                                             <constraint firstItem="0ZH-EB-k6g" firstAttribute="leading" secondItem="ct3-FI-dF6" secondAttribute="leading" constant="20" id="EN8-rc-4h7"/>
                                             <constraint firstItem="7ui-CB-pwt" firstAttribute="leading" secondItem="ct3-FI-dF6" secondAttribute="leading" constant="20" id="ENb-Qf-m3g"/>
-                                            <constraint firstItem="Ndr-yG-XMp" firstAttribute="top" secondItem="9Xd-sr-sBk" secondAttribute="top" id="ESy-0L-g3r"/>
                                             <constraint firstItem="l2Z-l4-G3h" firstAttribute="leading" secondItem="ct3-FI-dF6" secondAttribute="leading" constant="20" id="EZz-vk-hYb"/>
                                             <constraint firstItem="l5B-8M-NiY" firstAttribute="centerY" secondItem="wGF-91-3UT" secondAttribute="centerY" id="FrF-bW-FoX"/>
                                             <constraint firstAttribute="trailing" secondItem="2oS-w9-rGp" secondAttribute="trailing" constant="20" id="FrX-k9-qYa"/>
@@ -373,7 +363,6 @@
                                             <constraint firstItem="xva-cx-g5R" firstAttribute="top" secondItem="C0a-qJ-ox7" secondAttribute="bottom" constant="30" id="Gey-bH-g46"/>
                                             <constraint firstItem="xva-cx-g5R" firstAttribute="leading" secondItem="ct3-FI-dF6" secondAttribute="leading" constant="20" id="I5y-zi-mH5"/>
                                             <constraint firstAttribute="trailing" secondItem="l5B-8M-NiY" secondAttribute="trailing" constant="50" id="IWX-99-jw6"/>
-                                            <constraint firstItem="Ndr-yG-XMp" firstAttribute="bottom" secondItem="9Xd-sr-sBk" secondAttribute="bottom" id="Igr-vg-63R"/>
                                             <constraint firstItem="q9R-uL-bU4" firstAttribute="top" secondItem="VSE-tT-jNX" secondAttribute="bottom" constant="10" id="JzM-Bo-3u2"/>
                                             <constraint firstItem="G0X-CT-iJg" firstAttribute="bottom" secondItem="2gJ-7j-pTl" secondAttribute="bottom" id="K0c-77-gkg"/>
                                             <constraint firstItem="1cd-Gr-wdy" firstAttribute="centerY" secondItem="2L0-61-W6A" secondAttribute="centerY" id="LXE-E0-QTA"/>
@@ -432,7 +421,6 @@
                                             <constraint firstItem="6oa-9N-qUN" firstAttribute="leading" secondItem="7q1-Yq-GvF" secondAttribute="trailing" constant="5" id="r0K-Aj-7dF"/>
                                             <constraint firstAttribute="trailing" secondItem="amR-AV-NRX" secondAttribute="trailing" constant="20" id="rKk-ct-exW"/>
                                             <constraint firstItem="e5y-qM-yqw" firstAttribute="centerY" secondItem="G0X-CT-iJg" secondAttribute="centerY" id="rsp-cp-DnR"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ndr-yG-XMp" secondAttribute="trailing" constant="20" id="s5i-Ws-EwT"/>
                                             <constraint firstItem="nUY-ZX-5wY" firstAttribute="top" secondItem="0ZH-EB-k6g" secondAttribute="bottom" constant="30" id="sk0-wg-yLp"/>
                                             <constraint firstItem="wGF-91-3UT" firstAttribute="top" secondItem="7ui-CB-pwt" secondAttribute="bottom" constant="10" id="tTg-0N-rOK"/>
                                             <constraint firstItem="q9R-uL-bU4" firstAttribute="leading" secondItem="ct3-FI-dF6" secondAttribute="leading" constant="20" id="tUo-UQ-gdU"/>
@@ -477,7 +465,6 @@
                         <outlet property="campusLocationTextField" destination="YeZ-Tr-DcT" id="PEQ-e2-XhS"/>
                         <outlet property="canButton" destination="Qr7-VU-jfR" id="dot-ZU-sxS"/>
                         <outlet property="changePasswordButton" destination="vFg-If-nc7" id="trW-B9-4wJ"/>
-                        <outlet property="chatButton" destination="Ndr-yG-XMp" id="zEW-cr-dG1"/>
                         <outlet property="dormLabel" destination="a5g-vo-GdP" id="Ytr-76-MnY"/>
                         <outlet property="dormTextField" destination="e1F-9Z-LgQ" id="cNO-EA-CSc"/>
                         <outlet property="editPhotoButton" destination="G0X-CT-iJg" id="dHe-ZQ-16c"/>
@@ -618,7 +605,6 @@
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="crown.fill" catalog="system" width="128" height="92"/>
         <image name="crowsHoldingWings" width="341.5" height="341.5"/>
-        <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>

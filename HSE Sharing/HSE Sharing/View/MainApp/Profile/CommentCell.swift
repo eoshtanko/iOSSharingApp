@@ -53,19 +53,19 @@ class CommentCell: UITableViewCell {
     private func configureData(_ comment: Feedback) {
         self.comment = comment
         commentText.text = comment.comment
-        if comment.gade > 0 {
+        if comment.grade > 0 {
             star1.tintColor = .systemYellow
         }
-        if comment.gade > 1 {
+        if comment.grade > 1 {
             star2.tintColor = .systemYellow
         }
-        if comment.gade > 2 {
+        if comment.grade > 2 {
             star3.tintColor = .systemYellow
         }
-        if comment.gade > 3 {
+        if comment.grade > 3 {
             star4.tintColor = .systemYellow
         }
-        if comment.gade > 4 {
+        if comment.grade > 4 {
             star5.tintColor = .systemYellow
         }
     }

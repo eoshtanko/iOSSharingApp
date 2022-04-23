@@ -28,7 +28,6 @@ class ProfileViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var editPhotoButton: UIButton!
@@ -129,9 +128,6 @@ class ProfileViewController: UIViewController {
         performSegue(withIdentifier: "toChangePasswordScreen", sender: nil)
     }
     
-    @IBAction func chatButtonPressed(_ sender: Any) {
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ChangePasswordViewController {
             destination.setUser(user: currentUser)
@@ -151,10 +147,6 @@ class ProfileViewController: UIViewController {
         configureTapGestureRecognizer()
         configureData()
         configureTextViewHintText()
-        editPhotoButton.isHidden = !(CurrentUser.user.mail == currentUser?.mail)
-        editProfileButton.isHidden = editPhotoButton.isHidden
-        bottomButtom.isHidden = editPhotoButton.isHidden
-        chatButton.isHidden = !editPhotoButton.isHidden
     }
     
     override func viewDidLayoutSubviews() {

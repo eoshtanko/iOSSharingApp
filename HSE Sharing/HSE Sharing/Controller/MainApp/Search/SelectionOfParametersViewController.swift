@@ -60,6 +60,8 @@ class SelectionOfParametersViewController: UIViewController {
         configureActivityIndicator()
         configurePickerView()
         searchButton.isEnabled = false
+        subcategoryTextField.isHidden = true
+        subcategoryLabel.isHidden = true
     }
     
     func setInstanceOfSearchScreen(_ instanceOfSearchScreen: SearchViewController) {

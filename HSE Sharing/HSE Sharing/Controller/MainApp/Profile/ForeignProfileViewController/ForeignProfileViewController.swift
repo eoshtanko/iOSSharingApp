@@ -71,6 +71,7 @@ class ForeignProfileViewController: UIViewController {
     }
     
     private func getChatRequest() {
+        activityIndicator.startAnimating()
         Api.shared.getConversations(email: CurrentUser.user.mail!) { result in
             switch result {
             case .success(let conversations):

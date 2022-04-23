@@ -9,14 +9,14 @@ import Foundation
 
 class Feedback: Codable, NSCoding {
     let id: Int64
-    let gade: Int
+    let grade: Int
     let comment: String
     let senderMail: String
     let receiverMail: String
     
-    init(id: Int64, gade: Int, comment: String, senderMail: String, receiverMail: String) {
+    init(id: Int64, grade: Int, comment: String, senderMail: String, receiverMail: String) {
         self.id = id
-        self.gade = gade
+        self.grade = grade
         self.comment = comment
         self.senderMail = senderMail
         self.receiverMail = receiverMail
@@ -24,7 +24,7 @@ class Feedback: Codable, NSCoding {
     
     public required init?(coder: NSCoder) {
         id = coder.decodeInt64(forKey: "id")
-        gade = coder.decodeInteger(forKey: "gade")
+        grade = coder.decodeInteger(forKey: "grade")
         comment = coder.decodeObject(forKey: "comment") as! String
         senderMail = coder.decodeObject(forKey: "senderMail") as! String
         receiverMail = coder.decodeObject(forKey: "receiverMail") as! String
@@ -32,18 +32,18 @@ class Feedback: Codable, NSCoding {
     
     public func encode(with coder: NSCoder) {
         coder.encode(id, forKey:"id")
-        coder.encode(gade, forKey: "gade")
+        coder.encode(grade, forKey: "grade")
         coder.encode(comment, forKey:"comment")
         coder.encode(senderMail, forKey: "senderMail")
         coder.encode(receiverMail, forKey:"receiverMail")
     }
     
     var toDict: [String: Any] {
-        return ["id": id,
-                "gade": gade,
-                "comment": comment,
-                "senderMail": senderMail,
-                "receiverMail": receiverMail
+        return [
+            "grade": grade,
+            "comment": comment,
+            "senderMail": senderMail,
+            "receiverMail": receiverMail
         ]
     }
 }

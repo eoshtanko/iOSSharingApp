@@ -27,12 +27,12 @@ class OutcomeExchangesViewController: UIViewController {
         super.viewDidLoad()
         configureActivityIndicator()
         configureTableView()
-        makeRequest()
         configureNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
+        makeRequest()
     }
     
     private func makeRequest() {
@@ -68,11 +68,12 @@ class OutcomeExchangesViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center = view.center
+        let yoffset = view.frame.midY - 60
+        activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
     }
     
     private func configureTableView() {
@@ -83,19 +84,6 @@ class OutcomeExchangesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        configureTableViewAppearance()
-    }
-    
-    private func configureTableViewAppearance() {
-        tableView.backgroundColor = .white
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureNavigationBar() {
@@ -143,7 +131,7 @@ extension OutcomeExchangesViewController: UITableViewDataSource {
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Отказаться", style: UIAlertAction.Style.destructive) {_ in
+        failureAlert.addAction(UIAlertAction(title: "Удалить", style: UIAlertAction.Style.destructive) {_ in
             self.delete(transaction: transaction)
         })
         present(failureAlert, animated: true, completion: nil)

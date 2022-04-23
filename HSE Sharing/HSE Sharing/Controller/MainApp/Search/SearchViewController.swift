@@ -200,8 +200,7 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, mail: String) {
-        self.activityIndicator.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.activityIndicator.startAnimating()
             Api.shared.getUserByEmail(email: mail) { result in
                 switch result {

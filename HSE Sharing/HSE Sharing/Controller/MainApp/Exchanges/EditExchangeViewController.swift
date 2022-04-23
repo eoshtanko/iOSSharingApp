@@ -36,6 +36,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     private func loadUser() {
+        activityIndicator.startAnimating()
         Api.shared.getUserByEmail(email: transaction.receiverMail) { result in
             switch result {
             case .success(let user):

@@ -96,10 +96,11 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXO-zD-0Gb">
-                                <rect key="frame" x="100" y="285" width="258" height="35"/>
+                                <rect key="frame" x="149" y="285" width="160" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="JOB-jo-djU"/>
+                                    <constraint firstAttribute="width" constant="160" id="voh-VH-5H9"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -118,7 +119,6 @@
                             <constraint firstItem="qXO-zD-0Gb" firstAttribute="centerX" secondItem="iO4-3a-e3c" secondAttribute="centerX" id="LNP-i4-1f5"/>
                             <constraint firstItem="3em-yI-QQF" firstAttribute="top" secondItem="iO4-3a-e3c" secondAttribute="top" constant="5" id="OLi-Js-0AK"/>
                             <constraint firstItem="3em-yI-QQF" firstAttribute="leading" secondItem="iO4-3a-e3c" secondAttribute="leading" constant="5" id="UOb-qO-hOI"/>
-                            <constraint firstItem="qXO-zD-0Gb" firstAttribute="leading" secondItem="iO4-3a-e3c" secondAttribute="leading" constant="100" id="kLW-gY-on8"/>
                             <constraint firstAttribute="bottom" secondItem="qXO-zD-0Gb" secondAttribute="bottom" constant="5" id="pwn-KJ-r4U"/>
                             <constraint firstItem="qXO-zD-0Gb" firstAttribute="top" secondItem="3em-yI-QQF" secondAttribute="bottom" constant="5" id="zum-Zs-PzO"/>
                         </constraints>
