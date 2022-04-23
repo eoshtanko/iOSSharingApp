@@ -12,6 +12,7 @@ class CommentCell: UITableViewCell {
     static let identifier = String(describing: CommentCell.self)
     private var deleteComment: ((Feedback) -> Void)?
     private var canBeDeleted: Bool = false
+    private var comment: Feedback!
     
     @IBOutlet weak var coloredView: UIView!
     @IBOutlet weak var innerView: UIView!
@@ -28,7 +29,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var star5: UIImageView!
 
     @IBAction func deleteButtonPressed(_ sender: Any) {
-        deleteComment?()
+        deleteComment?(comment)
     }
     
     func setDeleteCommentAction(_ deleteComment: ((Feedback) -> Void)?) {
@@ -50,6 +51,7 @@ class CommentCell: UITableViewCell {
     }
     
     private func configureData(_ comment: Feedback) {
+        self.comment = comment
         commentText.text = comment.comment
         if comment.gade > 0 {
             star1.tintColor = .systemYellow

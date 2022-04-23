@@ -22,31 +22,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTo-vx-hZG">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="596"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="606"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jdi-i4-k4p">
-                                                <rect key="frame" x="20" y="85.5" width="50" height="47"/>
+                                                <rect key="frame" x="20" y="85.5" width="60" height="57"/>
                                                 <color key="backgroundColor" name="BackgroundImageColor"/>
                                                 <color key="tintColor" name="DefaultImageColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="CLk-CL-Xf4"/>
+                                                    <constraint firstAttribute="height" constant="60" id="CLk-CL-Xf4"/>
                                                     <constraint firstAttribute="width" secondItem="jdi-i4-k4p" secondAttribute="height" multiplier="1:1" id="LR7-Bw-NKx"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="может" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="y7j-td-rXp">
-                                                <rect key="frame" x="170.5" y="98" width="50.5" height="21"/>
+                                                <rect key="frame" x="180.5" y="103" width="50.5" height="21"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                 <color key="textColor" name="BlueDarkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cbi-eG-yUL">
-                                                <rect key="frame" x="82" y="99" width="83.5" height="20"/>
+                                                <rect key="frame" x="92" y="104" width="83.5" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Навык:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xad-UB-s3A">
-                                                <rect key="frame" x="20" y="144" width="57" height="20"/>
+                                                <rect key="frame" x="20" y="154" width="57" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -58,37 +58,37 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мое предложение:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1P9-ju-GJG">
-                                                <rect key="frame" x="20" y="292" width="151" height="20"/>
+                                                <rect key="frame" x="20" y="302" width="151" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbm-pP-LqM">
-                                                <rect key="frame" x="20" y="376" width="98" height="20"/>
+                                                <rect key="frame" x="20" y="386" width="98" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hB-tc-0nC">
-                                                <rect key="frame" x="20" y="208.5" width="84" height="20"/>
+                                                <rect key="frame" x="20" y="218.5" width="84" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Разработка под iOS" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRR-kh-Mev">
-                                                <rect key="frame" x="20" y="169" width="280" height="19.5"/>
+                                                <rect key="frame" x="20" y="179" width="280" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Разработка мобильных приложений за ночь. Что-то да будет работать." lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMf-Mz-iIB">
-                                                <rect key="frame" x="20" y="233.5" width="280" height="38.5"/>
+                                                <rect key="frame" x="20" y="243.5" width="280" height="38.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9S-aP-upR">
-                                                <rect key="frame" x="80" y="536" width="160" height="30"/>
+                                                <rect key="frame" x="80" y="546" width="160" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="5Tv-aA-Nz7"/>
@@ -109,7 +109,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите один из своих навыков" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="ehO-UG-BrF">
-                                                <rect key="frame" x="20" y="322" width="280" height="34"/>
+                                                <rect key="frame" x="20" y="332" width="280" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -122,7 +122,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="o4s-ID-ZZR">
-                                                <rect key="frame" x="20" y="406" width="280" height="100"/>
+                                                <rect key="frame" x="20" y="416" width="280" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="SLX-Mr-eXn"/>
@@ -214,7 +214,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bve-V6-dNd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="d4E-If-8fD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="969.375" y="96.126760563380287"/>
+            <point key="canvasLocation" x="1028" y="59"/>
         </scene>
     </scenes>
     <resources>

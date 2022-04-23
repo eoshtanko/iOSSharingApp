@@ -133,8 +133,68 @@ extension IncomeExchangesViewController: UITableViewDataSource {
             return cell
         }
         let transaction = transactions[indexPath.row]
-        transactionCell.configureCell(transaction, imageTapped)
+        transactionCell.configureCell(transaction, cancel: showConfirmCancelAlert, agree: showConfirmAgreeAlert, imageTapped)
         return transactionCell
+    }
+    
+    private func showConfirmCancelAlert(transaction: Transaction) {
+        let failureAlert = UIAlertController(
+            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите отказаться от обмена?",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert)
+        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: "Отказаться", style: UIAlertAction.Style.destructive) {_ in
+            self.cancel(transaction: transaction)
+        })
+        present(failureAlert, animated: true, completion: nil)
+    }
+    
+    private func cancel(transaction: Transaction) {
+        activityIndicator.startAnimating()
+        Api.shared.deleteTransaction(transaction: transaction, sendNotification: true) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.makeRequest()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showConfirmAgreeAlert(transaction: Transaction) {
+        let failureAlert = UIAlertController(
+            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите согласится на обмен?",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert)
+        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: "Отказаться", style: UIAlertAction.Style.destructive) {_ in
+            self.agree(transaction: transaction)
+        })
+        present(failureAlert, animated: true, completion: nil)
+    }
+    
+    private func agree(transaction: Transaction) {
+        self.activityIndicator.startAnimating()
+        let transaction = Transaction(id: transaction.id, skill1: transaction.skill1, skill2: transaction.skill2, description: transaction.description, senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 1, users: transaction.users)
+        
+        Api.shared.editTransaction(transaction: transaction) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
     }
     
     func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, transaction: Transaction, user: User?)

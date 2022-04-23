@@ -55,12 +55,15 @@ extension Api {
     
     func getFeetbacksOfSpecificUser(email: String, _ completion: @escaping (Result<[Feedback]>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/User/\(email)/feedbacks")!
+        let url = URL(string: "\(baseURL)/api/Users/\(email)/feedbacks")!
         let request = createRequest(url: url, httpMethod: .GET)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode) else {
+                        if let response = response as? HTTPURLResponse {
+                            print(response.statusCode)
+                        }
                 completion(Result.failure(ApiError.badResponse))
                 return
             }

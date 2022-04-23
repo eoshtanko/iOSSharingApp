@@ -20,20 +20,25 @@ class IncomeExchangeCell: UITableViewCell {
     @IBOutlet weak var receiveLabel: UILabel!
     @IBOutlet weak var whatGive: UILabel!
     @IBOutlet weak var giveLabel: UILabel!
+    var cancel: ((Transaction) -> Void)?
+    var agree: ((Transaction) -> Void)?
     
     @IBAction func cancelAction(_ sender: Any) {
+        cancel?(transaction)
     }
     
     @IBAction func agreeAction(_ sender: Any) {
-        
+        agree?(transaction)
     }
     
     var user: User?
     var transaction: Transaction!
     var action: ((UITapGestureRecognizer, Transaction, User?) -> Void)!
     
-    func configureCell(_ transaction: Transaction, _ action: @escaping ((UITapGestureRecognizer, Transaction, User?) -> Void)) {
+    func configureCell(_ transaction: Transaction, cancel: ((Transaction) -> Void)?, agree: ((Transaction) -> Void)?, _ action: @escaping ((UITapGestureRecognizer, Transaction, User?) -> Void)) {
         self.transaction = transaction
+        self.agree = agree
+        self.cancel = cancel
         self.action = action
         makeRequest(mail: transaction.senderMail == CurrentUser.user.mail ? transaction.receiverMail : transaction.senderMail)
         receiveLabel.text = transaction.skill1

@@ -67,6 +67,20 @@ class Transaction: Codable, NSCoding {
         ]
     }
     
+    var toDictEdit: [String: Any] {
+        return [
+            "id": id,
+            "skill1": skill1,
+            "skill2": skill2,
+            "description": description,
+            "senderMail": senderMail,
+            "receiverMail": receiverMail,
+            "whoWantMail": whoWantMail,
+            "status": status,
+            "users": getDictUsers()
+        ]
+    }
+    
     func getDictUsers() -> [[String: Any]] {
         var dict: [[String: Any]] = []
         for user in users! {

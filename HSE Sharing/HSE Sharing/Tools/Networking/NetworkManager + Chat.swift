@@ -10,6 +10,7 @@ import SwiftSignalRClient
 
 extension Api: HubConnectionDelegate {
     func connectionDidOpen(hubConnection: HubConnection) {
+        let mail = CurrentUser.user.mail!
         connection.invoke(method: "SetMail",  CurrentUser.user.mail) { error in
             if let error = error {
                 print("error: \(error)")
@@ -20,21 +21,22 @@ extension Api: HubConnectionDelegate {
     }
 
     func connectionDidFailToOpen(error: Error) {
-        Api.shared.startMessaging()
+        print(#function)
+        print(error)
+       // Api.shared.startMessaging()
     }
 
     func connectionDidClose(error: Error?) {
         if error != nil {
-            Api.shared.startMessaging()
+           // Api.shared.startMessaging()
         }
-        print("!!!!!!!!!!!!!!!!!")
         print(#function)
         print(error)
     }
 
     private func initSignalRService() {
         let url = URL(string: "\(baseURL)/chat")!
-        connection = HubConnectionBuilder(url: url).withLogging(minLogLevel: .error).build()
+        connection = HubConnectionBuilder(url: url).withAutoReconnect().withLogging(minLogLevel: .error).build()
         connection.delegate = self
         connection.on(method: "Receive", callback: { (message: Message) in
             print(#function)

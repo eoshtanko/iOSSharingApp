@@ -94,8 +94,8 @@ extension ConversationViewController {
     }
     
     private func showFailToSendMessageAlert() {
+        Api.shared.startMessaging()
         DispatchQueue.main.async {
-
         let failureAlert = UIAlertController(title: "Ошибка",
                                              message: "Не удалось отправить сообщение.",
                                              preferredStyle: UIAlertController.Style.alert)

@@ -39,7 +39,7 @@ extension Api {
         task.resume()
     }
     
-    func deleteConversation(id: Int, _ completion: @escaping (Result<Any>) -> Void) {
+    func deleteConversation(id: Int64, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
         let url = URL(string: "\(baseURL)/api/Chats/\(id)")!
         let request = createRequest(url: url, httpMethod: .DELETE)

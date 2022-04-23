@@ -87,11 +87,12 @@ class ConversationsListViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center = view.center
+        let yoffset = view.frame.midY - 60
+        activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
     }
     
     private func configureView() {
@@ -175,6 +176,51 @@ extension ConversationsListViewController: UITableViewDataSource {
             conversationCell.configureCell(conversation)
         }
         return conversationCell
+    }
+    
+    private func showConfirmDeletingAlert(conversation: Conversation) {
+        let failureAlert = UIAlertController(
+            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert)
+        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: "Удалить", style: UIAlertAction.Style.destructive) {_ in
+            self.deleteConversationRequest(conversation: conversation)
+        })
+        present(failureAlert, animated: true, completion: nil)
+    }
+    
+    private func deleteConversationRequest(conversation: Conversation) {
+        activityIndicator.startAnimating()
+        Api.shared.deleteConversation(id: conversation.id) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.loadConversationsRequest()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if let conversation = filteredConversations?[indexPath.row] {
+            let action = UIContextualAction(style: .destructive,
+                                            title: "Delete") { [weak self] (_, _, completionHandler) in
+                
+                self?.showConfirmDeletingAlert(conversation: conversation)
+                completionHandler(true)
+            }
+            action.backgroundColor = .systemRed
+            action.image = UIImage(named: "trash")
+            return UISwipeActionsConfiguration(actions: [action])
+        }
+        return UISwipeActionsConfiguration(actions: [])
     }
 }
 

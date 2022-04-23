@@ -43,22 +43,26 @@ extension Api {
     
     func editTransaction(transaction: Transaction, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Transaction/\(transaction.id)")!
+        let url = URL(string: "\(baseURL)/api/Transactions/\(transaction.id)")!
         var request = createRequest(url: url, httpMethod: .PUT)
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: transaction.toDict, options: .prettyPrinted)
+            request.httpBody = try JSONSerialization.data(withJSONObject: transaction.toDictEdit, options: .prettyPrinted)
         } catch let error {
             print(error.localizedDescription)
         }
 
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                    print(transaction.toDict)
+                }
                 completion(Result.failure(ApiError.badResponse))
                 return
             }
-            if let transactions = CurrentUser.user.transactions {
+            if let transactions = CurrentUser.user.transactions, !CurrentUser.user.transactions!.isEmpty {
                 for i in 0...transactions.count {
-                    if transactions[i].id == transaction.id {
+                    if !transactions.isEmpty && transactions[i].id == transaction.id {
                         CurrentUser.user.transactions![i] = transaction
                     }
                 }
@@ -70,7 +74,7 @@ extension Api {
     
     func deleteTransaction(transaction: Transaction, sendNotification: Bool, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Transaction/\(transaction.id)?sendNotification=\(sendNotification)")!
+        let url = URL(string: "\(baseURL)/api/Transactions/\(transaction.id)?sendNotification=\(sendNotification)")!
         let request = createRequest(url: url, httpMethod: .DELETE)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in

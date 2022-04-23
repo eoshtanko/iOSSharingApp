@@ -1,18 +1,19 @@
 //
-//  NewExchangeViewController.swift
+//  EditExchangeViewController.swift
 //  HSE Sharing
 //
-//  Created by Екатерина on 16.04.2022.
+//  Created by Екатерина on 23.04.2022.
 //
 
 import Foundation
 import UIKit
 
-class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     private var activityIndicator: UIActivityIndicatorView!
-    var skill: Skill!
-    var mySkills: [Skill]!
+    var transaction: Transaction!
+    var mySkills: [Skill]?
+    var user: User?
     @IBOutlet weak var titleTextLabel: UILabel!
     @IBOutlet weak var withWhomTextLabel: UILabel!
     @IBOutlet weak var photoOfAuthorImageView: UIImageView!
@@ -20,32 +21,34 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var authorNameTextLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameTextLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var descriptionTextLabel: UILabel!
     @IBOutlet weak var mySkillLabel: UILabel!
     @IBOutlet weak var mySkillTextField: UITextField!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var messageTextView: UITextView!
     let mySkillPickerView = UIPickerView()
     
-    @IBOutlet weak var exchangeButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
-    @IBAction func exchangeButtonPresssed(_ sender: Any) {
-        createTransaction()
+    @IBAction func saveButtonPresssed(_ sender: Any) {
+        if let user = user {
+            editTransactionWithUser(user: user)
+        }
     }
     
-    private func createTransaction() {
-        self.activityIndicator.startAnimating()
-        Api.shared.getUserByEmail(email: skill.userMail) { result in
+    private func loadUser() {
+        Api.shared.getUserByEmail(email: transaction.receiverMail) { result in
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {
-                    if let user = user {
-                        self.createTransactionWithUser(user: user)
+                    self.user = user
+                    self.authorNameTextLabel.text = user?.name ?? "No Name"
+                    if let imageBase64String = user?.photo {
+                        let imageData = Data(base64Encoded: imageBase64String)
+                        self.photoOfAuthorImageView.image = UIImage(data: imageData!)
                     } else {
-                        self.activityIndicator.stopAnimating()
-                        self.showFailAlert()
+                        self.photoOfAuthorImageView.image = UIImage(named: "crowsHoldingWings")
                     }
+                    self.loadSkillsRequest()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -56,15 +59,20 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
-    private func createTransactionWithUser(user: User) {
-        let transaction = Transaction(id: 1, skill1: skill.name, skill2: mySkillTextField.text!, description: messageTextView.text ?? "", senderMail: CurrentUser.user.mail!, receiverMail: skill.userMail, whoWantMail: skill.status == 1 ? CurrentUser.user.mail! : skill.userMail, status:  0, users: [CurrentUser.user, user])
+    private func editTransactionWithUser(user: User) {
+        let transactionLocal = transaction
+        var anotherSkill = transaction.skill2
+        if CurrentUser.user.skills!.contains(where: {$0.name == transactionLocal!.skill1}) {
+            anotherSkill = transaction.skill1
+        }
+        let transaction = Transaction(id: transaction.id, skill1: anotherSkill, skill2: mySkillTextField.text!, description: messageTextView.text ?? "", senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 0, users: transaction.users)
         
-        Api.shared.createTransaction(transaction: transaction) { result in
+        Api.shared.editTransaction(transaction: transaction) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
+                    self.performSegue(withIdentifier: "unwindOutcomingExchanges", sender: nil)
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -79,7 +87,8 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         configureActivityIndicator()
-        exchangeButton.isEnabled = false
+        loadUser()
+        saveButton.isEnabled = false
         mySkillPickerView.delegate = self
         mySkillPickerView.dataSource = self
         mySkillTextField.inputView = mySkillPickerView
@@ -88,18 +97,17 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         messageTextView.layer.cornerRadius = 10
-        authorNameTextLabel.text = skill.userName ?? "No Name"
-        if let imageBase64String = skill.userPhoto {
+        authorNameTextLabel.text = user?.name ?? "No Name"
+        if let imageBase64String = user?.photo {
             let imageData = Data(base64Encoded: imageBase64String)
             photoOfAuthorImageView.image = UIImage(data: imageData!)
         } else {
             photoOfAuthorImageView.image = UIImage(named: "crowsHoldingWings")
         }
-        nameTextLabel.text = skill.name
-        descriptionTextLabel.text = skill.description
+        nameTextLabel.text = transaction.skill2
+        messageTextView.text = transaction.description
         photoOfAuthorImageView.layer.cornerRadius = photoOfAuthorImageView.frame.size.width / 2
-        exchangeButton.makeButtonOval()
-            loadSkillsRequest()
+        saveButton.makeButtonOval()
     }
     
     private func configureActivityIndicator() {
@@ -111,12 +119,11 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         view.addSubview(activityIndicator)
     }
     
-    func setSkill(skill: Skill) {
-        self.skill = skill
+    func setExchange(transaction: Transaction) {
+        self.transaction = transaction
     }
     
     private func loadSkillsRequest() {
-        activityIndicator.startAnimating()
         Api.shared.getSkillsOfSpecificUser(email: CurrentUser.user.mail!) { result in
             switch result {
             case .success(let skills):
@@ -142,10 +149,10 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     private func setSkills(skills: [Skill]?) {
         self.mySkills = (skills?.filter { skill in
-            return skill.status == (self.skill.status == 1 ? 2 : 1)
+            return skill.status == (self.transaction.whoWantMail == CurrentUser.user.mail ? 2 : 1)
         })!
         
-        if mySkills.isEmpty {
+        if mySkills == nil || mySkills!.isEmpty {
             showNoSkillsAlert()
         }
     }
@@ -153,7 +160,7 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private func showNoSkillsAlert() {
         let successAlert = UIAlertController(title: "У Вас не добавлены соответствующие навыки", message: "Добавьте навыки в профиле.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {_ in
-            self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
+            self.performSegue(withIdentifier: "unwindOutcomingExchanges", sender: nil)
         })
         present(successAlert, animated: true, completion: nil)
     }
@@ -163,17 +170,18 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        mySkills.count
+        mySkills?.count ?? 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return mySkills[row].name
+        return mySkills?[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        mySkillTextField.text =  mySkills[row].name
+        mySkillTextField.text =  mySkills?[row].name
         mySkillTextField.resignFirstResponder()
-        exchangeButton.isEnabled = true
+        saveButton.isEnabled = true
     }
 }
+

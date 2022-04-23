@@ -10,7 +10,7 @@ import UIKit
 class OutcomeExchangesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBAction func unwindOutcomeExchangesViewController(segue:UIStoryboardSegue) { }
     private let settingsButton = UIButton()
     private var activityIndicator: UIActivityIndicatorView!
     
@@ -133,8 +133,20 @@ extension OutcomeExchangesViewController: UITableViewDataSource {
             return cell
         }
         let transaction = transactions[indexPath.row]
-        transactionCell.configureCell(transaction, delete: delete, edit: edit, imageTapped)
+        transactionCell.configureCell(transaction, delete: showConfirmDeleteAlert, edit: edit, imageTapped)
         return transactionCell
+    }
+    
+    private func showConfirmDeleteAlert(transaction: Transaction) {
+        let failureAlert = UIAlertController(
+            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите отказаться от обмена?",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert)
+        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: "Отказаться", style: UIAlertAction.Style.destructive) {_ in
+            self.delete(transaction: transaction)
+        })
+        present(failureAlert, animated: true, completion: nil)
     }
     
     private func delete(transaction: Transaction) {
@@ -156,10 +168,10 @@ extension OutcomeExchangesViewController: UITableViewDataSource {
     
     private func edit(transaction: Transaction) {
         self.navigationItem.title = ""
-        let storyboard = UIStoryboard(name: "NewExchangeScreen", bundle: nil)
-        let newExchangeScreen = storyboard.instantiateViewController(withIdentifier: "NewExchangeScreen") as! NewExchangeViewController
-        newExchangeScreen.
-        navigationController?.pushViewController(newExchangeScreen, animated: true)
+        let storyboard = UIStoryboard(name: "EditExchangeScreen", bundle: nil)
+        let editExchangeScreen = storyboard.instantiateViewController(withIdentifier: "EditExchangeScreen") as! EditExchangeViewController
+        editExchangeScreen.setExchange(transaction: transaction)
+        navigationController?.pushViewController(editExchangeScreen, animated: true)
     }
     
     private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, transaction: Transaction, user: User?)

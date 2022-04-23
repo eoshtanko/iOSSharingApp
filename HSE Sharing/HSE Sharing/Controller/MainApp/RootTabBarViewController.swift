@@ -31,6 +31,10 @@ class RootTabBarViewController: UITabBarController {
         setImages()
         self.selectedIndex = 3
     }
+    
+    deinit {
+        Api.shared.stopMessaging()
+    }
 
     private func setImages() {
         self.tabBar.items?[0].image = UIImage(systemName: "magnifyingglass")

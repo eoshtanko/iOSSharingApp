@@ -54,7 +54,7 @@ class ForeignProfileViewController: UIViewController {
         if CurrentUser.user.isModer ?? false {
             commentsListViewController.setNeedsFocusUpdate()
         }
-        commentsListViewController.setComments(comments: currentUser?.feedbacks)
+        commentsListViewController.userMail = currentUser!.mail!
         navigationController?.pushViewController(commentsListViewController, animated: true)
     }
     

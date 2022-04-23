@@ -31,6 +31,7 @@ class CurrentExchangeCell: UITableViewCell {
     }
     
     func configureCell(_ transaction: Transaction, _ action: @escaping ((UITapGestureRecognizer, Transaction, User?) -> Void), _ complete: @escaping (() -> Void)) {
+        completeButton.makeButtonOval()
         self.complete = complete
         self.transaction = transaction
         self.action = action

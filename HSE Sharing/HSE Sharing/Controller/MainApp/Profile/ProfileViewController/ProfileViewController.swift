@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController {
         if !isMyProfile && CurrentUser.user.isModer ?? false {
             commentsListViewController.setNeedsFocusUpdate()
         }
-        commentsListViewController.setComments(comments: currentUser?.feedbacks)
+        commentsListViewController.userMail = CurrentUser.user.mail
         navigationController?.pushViewController(commentsListViewController, animated: true)
     }
     
@@ -506,3 +506,4 @@ extension ProfileViewController {
         }
     }
 }
+

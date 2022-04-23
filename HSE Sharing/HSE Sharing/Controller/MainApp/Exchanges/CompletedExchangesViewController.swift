@@ -47,7 +47,6 @@ class CompletedExchangesViewController: UIViewController {
                     }
                     self.activityIndicator.stopAnimating()
                     self.tableView.reloadData()
-                    self.transactions = [Transaction(id: 1, skill1: "Помощь с уборкой", skill2: "Монтаж видео", description: "", senderMail: "", receiverMail: "", whoWantMail: "", status: 0, users: [])]
                 }
             case .failure(_):
                 DispatchQueue.main.async {

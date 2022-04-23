@@ -33,12 +33,12 @@ class ExchangesViewController: UIViewController {
         configureNavigationBar()
         configurePickerView()
         configurePickerAppearance()
-        makeRequest()
+        // makeRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationTitle()
-        //makeRequest()
+        makeRequest()
     }
     
     private func makeRequest() {
@@ -172,13 +172,46 @@ extension ExchangesViewController: UITableViewDataSource {
         }
         let transaction = transactions[indexPath.row]
         transactionCell.configureCell(transaction, imageTapped) {
-            self.navigationItem.title = ""
-            let storyboard = UIStoryboard(name: "LeaveCommentScreen", bundle: nil)
-            let leaveCommentScreen = storyboard.instantiateViewController(withIdentifier: "LeaveCommentScreen") as! LeaveCommentViewController
-            self.navigationController?.pushViewController(leaveCommentScreen, animated: true)
+            self.showConfirmDeletingAlert(transaction: transaction)
         }
         return transactionCell
     }
+    
+    private func showConfirmDeletingAlert(transaction: Transaction) {
+        let failureAlert = UIAlertController(
+            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите завершить обмен?",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert)
+        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: "Завершить", style: UIAlertAction.Style.destructive) {_ in
+            self.complete(transaction: transaction)
+        })
+        present(failureAlert, animated: true, completion: nil)
+    }
+    
+    private func complete(transaction: Transaction) {
+        self.activityIndicator.startAnimating()
+        let transaction = Transaction(id: transaction.id, skill1: transaction.skill1, skill2: transaction.skill2, description: transaction.description, senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 2, users: transaction.users)
+        
+        Api.shared.editTransaction(transaction: transaction) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.navigationItem.title = ""
+                    let storyboard = UIStoryboard(name: "LeaveCommentScreen", bundle: nil)
+                    let leaveCommentScreen = storyboard.instantiateViewController(withIdentifier: "LeaveCommentScreen") as! LeaveCommentViewController
+                    self.navigationController?.pushViewController(leaveCommentScreen, animated: true)
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
     
     func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, transaction: Transaction, user: User?)
     {

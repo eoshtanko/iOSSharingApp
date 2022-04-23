@@ -35,7 +35,7 @@ class OutcomeExchangeCell: UITableViewCell {
     var edit: ((Transaction) -> Void)?
     var action: ((UITapGestureRecognizer, Transaction, User?) -> Void)!
     
-    func configureCell(_ transaction: Transaction, delete: @escaping ((Transaction) -> Void)?, edit: @escaping ((Transaction) -> Void)?, _ action: @escaping ((UITapGestureRecognizer, Transaction, User?) -> Void)) {
+    func configureCell(_ transaction: Transaction, delete: ((Transaction) -> Void)?, edit: ((Transaction) -> Void)?, _ action: @escaping ((UITapGestureRecognizer, Transaction, User?) -> Void)) {
         self.transaction = transaction
         self.action = action
         self.delete = delete

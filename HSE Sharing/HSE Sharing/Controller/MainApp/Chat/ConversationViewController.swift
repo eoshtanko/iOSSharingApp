@@ -47,15 +47,16 @@ class ConversationViewController: UITableViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center = view.center
+        let yoffset = view.frame.midY // - 60
+        activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
     }
     
     private func loadMessages() {
-        activityIndicator.startAnimating()
+     // activityIndicator.startAnimating()
         Api.shared.getMessages(email: channel?.mail1 == CurrentUser.user.mail ? (channel?.mail2)! : (channel?.mail1)! , id: 0) { result in
             switch result {
             case .success(let messages):
