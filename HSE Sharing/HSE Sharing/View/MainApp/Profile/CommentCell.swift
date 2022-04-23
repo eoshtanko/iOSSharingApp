@@ -10,7 +10,7 @@ import UIKit
 class CommentCell: UITableViewCell {
     
     static let identifier = String(describing: CommentCell.self)
-    private var deleteComment: (() -> Void)?
+    private var deleteComment: ((Feedback) -> Void)?
     private var canBeDeleted: Bool = false
     
     @IBOutlet weak var coloredView: UIView!
@@ -31,32 +31,22 @@ class CommentCell: UITableViewCell {
         deleteComment?()
     }
     
-    func setDeleteCommentAction(_ deleteComment: (() -> Void)?) {
+    func setDeleteCommentAction(_ deleteComment: ((Feedback) -> Void)?) {
         self.deleteComment = deleteComment
     }
 
     func configureCell(_ comment: Feedback) {
-        setInitialDeleteSettings()
         configureLabelsLanguage()
         configureData(comment)
         configureView()
+        deleteButton.isHidden = !CurrentUser.user.isModer!
     }
     
-    private func setInitialDeleteSettings() {
-        canBeDeleted = false
-       // deleteButton.isHidden = true
-    }
-
     private func configureLabelsLanguage() {
 //        nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
 //        descriptionLabel.text = EnterViewController.isEnglish ? "Description:" : "Описание:"
 //        categoryLabel.text = EnterViewController.isEnglish ? "Category:" : "Категория:"
 //        subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
-    }
-    
-    private func setCanBeDeleted() {
-        canBeDeleted = true
-       // deleteButton.isHidden = false
     }
     
     private func configureData(_ comment: Feedback) {

@@ -97,11 +97,23 @@ extension Conversation {
 
 extension Conversation: Comparable {
     
-  static func == (lhs: Conversation, rhs: Conversation) -> Bool {
-    return lhs.id == rhs.id
-  }
-
-  static func < (lhs: Conversation, rhs: Conversation) -> Bool {
-      return lhs.sendTime > rhs.sendTime
-  }
+    static func == (lhs: Conversation, rhs: Conversation) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    static func < (lhs: Conversation, rhs: Conversation) -> Bool {
+        guard let date1 = getDate(lhs.sendTime), let date2 = getDate(rhs.sendTime) else {
+            return false
+        }
+        return date1 > date2
+    }
+    
+    static func getDate(_ str: String) -> Date? {
+        print(str)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        return dateFormatter.date(from: str) // replace Date String
+    }
 }

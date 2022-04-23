@@ -38,8 +38,8 @@ class ConversationsListViewController: UIViewController {
             switch result {
             case .success(let conversations):
                 DispatchQueue.main.async {
-                    self.conversations = conversations
-                    self.filteredConversations = conversations
+                    self.conversations = conversations?.sorted()
+                    self.filteredConversations = self.conversations
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
                 }
@@ -63,8 +63,8 @@ class ConversationsListViewController: UIViewController {
             switch result {
             case .success(let conversations):
                 DispatchQueue.main.async {
-                    self.conversations = conversations
-                    self.filteredConversations = conversations
+                    self.conversations = conversations?.sorted()
+                    self.filteredConversations = self.conversations
                     self.tableView.reloadData()
                     self.refreshControl.endRefreshing()
                 }

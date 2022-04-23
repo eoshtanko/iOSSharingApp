@@ -35,6 +35,7 @@ class ConversationTableViewCell: UITableViewCell {
             configureProfileImageView(conversation.photo1)
         }
         print(conversation.sendTime)
+        configureLastMessageDate(getDate(str: conversation.sendTime))
         configureLastMessageLabel(conversation.lastMessage)
     }
     
@@ -79,9 +80,7 @@ class ConversationTableViewCell: UITableViewCell {
     }
     
     private func setDefaultImage() {
-        profileImageView.backgroundColor = UIColor(named: "BackgroundImageColor")
-        profileImageView.tintColor = UIColor(named: "DefaultImageColor")
-        profileImageView.image = UIImage(systemName: "person.fill")
+        profileImageView.image = UIImage(named: "crowsHoldingWings")
     }
     
     private func fromDateToString(from date: Date) -> String {
@@ -95,6 +94,14 @@ class ConversationTableViewCell: UITableViewCell {
         ConversationTableViewCell.formatter.locale = Locale(identifier: "en_GB")
         ConversationTableViewCell.formatter.doesRelativeDateFormatting = true
         return ConversationTableViewCell.formatter.string(from: date)
+    }
+    
+    func getDate(str: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        return dateFormatter.date(from: str) // replace Date String
     }
     
     private enum Const {

@@ -20,7 +20,7 @@ class Skill: Codable, NSCoding {
     var userSurname: String?
     var userPhoto: String?
     
-    init(id: Int64, status: Int, name: String, description: String, category: Int, subcategory: Int, userMail: String, userName: String, userSurname: String, photo: String?) {
+    init(id: Int64, status: Int, name: String, description: String, category: Int, subcategory: Int, userMail: String, userName: String?, userSurname: String?, photo: String?) {
         self.id = id
         self.status = status
         self.name = name

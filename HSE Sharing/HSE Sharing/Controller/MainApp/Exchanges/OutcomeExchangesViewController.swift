@@ -133,11 +133,36 @@ extension OutcomeExchangesViewController: UITableViewDataSource {
             return cell
         }
         let transaction = transactions[indexPath.row]
-        transactionCell.configureCell(transaction, imageTapped)
+        transactionCell.configureCell(transaction, delete: delete, edit: edit, imageTapped)
         return transactionCell
     }
     
-    func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, transaction: Transaction, user: User?)
+    private func delete(transaction: Transaction) {
+        activityIndicator.startAnimating()
+        Api.shared.deleteTransaction(transaction: transaction, sendNotification: false) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.makeRequest()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func edit(transaction: Transaction) {
+        self.navigationItem.title = ""
+        let storyboard = UIStoryboard(name: "NewExchangeScreen", bundle: nil)
+        let newExchangeScreen = storyboard.instantiateViewController(withIdentifier: "NewExchangeScreen") as! NewExchangeViewController
+        newExchangeScreen.
+        navigationController?.pushViewController(newExchangeScreen, animated: true)
+    }
+    
+    private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, transaction: Transaction, user: User?)
     {
         guard let user = user else {
             return

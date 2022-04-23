@@ -79,6 +79,6 @@ class IncomeExchangeCell: UITableViewCell {
     }
     
     private func setDefaultImage() {
-        profileImage.image = UIImage(systemName: "crowsHoldingWings")
+        profileImage.image = UIImage(named: "crowsHoldingWings")
     }
 }

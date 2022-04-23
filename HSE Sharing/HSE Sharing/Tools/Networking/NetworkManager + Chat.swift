@@ -10,8 +10,7 @@ import SwiftSignalRClient
 
 extension Api: HubConnectionDelegate {
     func connectionDidOpen(hubConnection: HubConnection) {
-        print(#function)
-        connection.invoke(method: "SetMail", "1@edu.hse.ru") { error in
+        connection.invoke(method: "SetMail",  CurrentUser.user.mail) { error in
             if let error = error {
                 print("error: \(error)")
             } else {
@@ -21,11 +20,16 @@ extension Api: HubConnectionDelegate {
     }
 
     func connectionDidFailToOpen(error: Error) {
-        print(#function)
+        Api.shared.startMessaging()
     }
 
     func connectionDidClose(error: Error?) {
+        if error != nil {
+            Api.shared.startMessaging()
+        }
+        print("!!!!!!!!!!!!!!!!!")
         print(#function)
+        print(error)
     }
 
     private func initSignalRService() {
@@ -35,7 +39,7 @@ extension Api: HubConnectionDelegate {
         connection.on(method: "Receive", callback: { (message: Message) in
             print(#function)
             print(message.text)
-            self.handleMessage(message)
+            self.handleMessage?(message)
         })
 
         connection.on(method: "Send", callback: { () in
@@ -44,25 +48,22 @@ extension Api: HubConnectionDelegate {
         connection.start()
     }
 
-    func startMessaging(email: String) {
+    func startMessaging() {
         initSignalRService()
     }
 
-    func sendMessage(mail: String, message: Message) {
+    func sendMessage(mail: String, message: Message, complitionSeccess:  @escaping ((Message) -> Void), complitionFail:  @escaping (() -> Void)) {
         connection.invoke(method: "Send", arguments: [mail, message]) { error in
-            if let error = error {
-                print("error: \(error)")
+            if  error != nil {
+                Api.shared.startMessaging()
+                complitionFail()
             } else {
-                print(#function)
+               complitionSeccess(message)
             }
         }
     }
 
     func stopMessaging() {
         connection.stop()
-    }
-
-    private func handleMessage(_ message: Message) {
-        print(#function)
     }
 }

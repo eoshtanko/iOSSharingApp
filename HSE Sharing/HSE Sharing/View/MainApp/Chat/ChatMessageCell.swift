@@ -17,20 +17,21 @@ class ChatMessageCell: UITableViewCell {
     private var leadingConstraint: NSLayoutConstraint!
     private var trailingConstraint: NSLayoutConstraint!
     
-    func configureCell(_ chatMessage: Message) {
-//        messageLabel.text = chatMessage.text
-//        
-//        bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ?
-//        UIColor(named: "IncomingMessageColor") : UIColor(named: "OutcomingMessageColor")
-//        messageLabel.textColor = .black
-//        
-//        if chatMessage.isIncoming {
-//            trailingConstraint.isActive = false
-//            leadingConstraint.isActive = true
-//        } else {
-//            leadingConstraint.isActive = false
-//            trailingConstraint.isActive = true
-//        }
+    func configureCell(_ message: Message) {
+        messageLabel.text = message.text
+        
+        let isIncoming = message.receiverMail == CurrentUser.user.mail!
+        bubbleBackgroundView.backgroundColor = isIncoming ?
+        UIColor(named: "IncomingMessageColor") : UIColor(named: "OutcomingMessageColor")
+        messageLabel.textColor = .black
+        
+        if isIncoming {
+            trailingConstraint.isActive = false
+            leadingConstraint.isActive = true
+        } else {
+            leadingConstraint.isActive = false
+            trailingConstraint.isActive = true
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

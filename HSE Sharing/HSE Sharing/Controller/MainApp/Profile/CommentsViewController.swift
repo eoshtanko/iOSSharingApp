@@ -10,6 +10,8 @@ import UIKit
 
 class CommentsViewController: UIViewController {
     
+    private var activityIndicator: UIActivityIndicatorView!
+    var userMail: String!
     private var comments: [Feedback] = [] {
         didSet {
             if tableView != nil {
@@ -23,8 +25,43 @@ class CommentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        comments = [Feedback(id: 1, gade: 4, comment: "Опоздал на встречу, но в остальном все хорошо.", senderMail: "", receiverMail: "")]
+        configureActivityIndicator()
         configureTableView()
+        loadCommentsRequest()
+    }
+    
+    private func loadCommentsRequest() {
+        activityIndicator.startAnimating()
+        Api.shared.getFeetbacksOfSpecificUser(email: self.userMail) { result in
+            switch result {
+            case .success(let comments):
+                DispatchQueue.main.async {
+                    self.comments = comments!
+                    self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func showFailAlert() {
+        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,10 +69,6 @@ class CommentsViewController: UIViewController {
         configureNavigationBar()
         let appearance = UINavigationBarAppearance()
         navigationController?.navigationBar.standardAppearance = appearance
-    }
-    
-    func setComments(comments: [Feedback]?) {
-       // self.comments = comments ?? []
     }
     
     private func configureTableView() {
@@ -52,18 +85,34 @@ class CommentsViewController: UIViewController {
             navigationItem.title = EnterViewController.isEnglish ? "Comments" : "Комментарии"
     }
     
-    private func showConfirmDeletingAlert() {
+    private func showConfirmDeletingAlert(comment: Feedback) {
         let failureAlert = UIAlertController(
             title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
         failureAlert.addAction(UIAlertAction(title: "Удалить", style: UIAlertAction.Style.destructive) {_ in
-            //self.configureSnapshotListener()
+            self.deleteComment(comment: comment)
         })
         present(failureAlert, animated: true, completion: nil)
     }
     
+    private func deleteComment(comment: Feedback) {
+        activityIndicator.startAnimating()
+        Api.shared.deleteFeetback(id: comment.id) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.loadCommentsRequest()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
 }
 
 extension CommentsViewController: UITableViewDelegate {

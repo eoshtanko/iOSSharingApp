@@ -45,7 +45,9 @@ class EmailViewController : UIViewController {
         Api.shared.createUser(email: mail) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(_):
+                case .success(let user):
+                    CurrentUser.user = user
+                    Api.shared.startMessaging()
                     self.activityIndicator.stopAnimating()
                     self.performSegue(withIdentifier: "toCodeScreen", sender: nil)
                     self.clearTextFields()

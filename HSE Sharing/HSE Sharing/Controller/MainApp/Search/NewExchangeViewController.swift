@@ -12,7 +12,9 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     private var activityIndicator: UIActivityIndicatorView!
     var skill: Skill!
+    var transaction: Transaction!
     var mySkills: [Skill]!
+    var isEditingTransaction: Bool = false
     @IBOutlet weak var titleTextLabel: UILabel!
     @IBOutlet weak var withWhomTextLabel: UILabel!
     @IBOutlet weak var photoOfAuthorImageView: UIImageView!
@@ -31,7 +33,15 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var exchangeButton: UIButton!
     
     @IBAction func exchangeButtonPresssed(_ sender: Any) {
-        createTransaction()
+        if isEditingTransaction {
+            editTransaction()
+        } else {
+            createTransaction()
+        }
+    }
+    
+    private func editTransaction() {
+        
     }
     
     private func createTransaction() {

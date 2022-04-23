@@ -22,21 +22,24 @@ class OutcomeExchangeCell: UITableViewCell {
     @IBOutlet weak var giveLabel: UILabel!
     
     @IBAction func deleteAction(_ sender: Any) {
-        
+        delete?(transaction)
     }
     
     @IBAction func editAction(_ sender: Any) {
-        
+        edit?(transaction)
     }
-    
     
     var user: User?
     var transaction: Transaction!
+    var delete: ((Transaction) -> Void)?
+    var edit: ((Transaction) -> Void)?
     var action: ((UITapGestureRecognizer, Transaction, User?) -> Void)!
     
-    func configureCell(_ transaction: Transaction, _ action: @escaping ((UITapGestureRecognizer, Transaction, User?) -> Void)) {
+    func configureCell(_ transaction: Transaction, delete: @escaping ((Transaction) -> Void)?, edit: @escaping ((Transaction) -> Void)?, _ action: @escaping ((UITapGestureRecognizer, Transaction, User?) -> Void)) {
         self.transaction = transaction
         self.action = action
+        self.delete = delete
+        self.edit = edit
         makeRequest(mail: transaction.senderMail == CurrentUser.user.mail ? transaction.receiverMail : transaction.senderMail)
         receiveLabel.text = transaction.skill1
         giveLabel.text = transaction.skill2
@@ -81,6 +84,6 @@ class OutcomeExchangeCell: UITableViewCell {
     }
     
     private func setDefaultImage() {
-        profileImage.image = UIImage(systemName: "crowsHoldingWings")
+        profileImage.image = UIImage(named: "crowsHoldingWings")
     }
 }

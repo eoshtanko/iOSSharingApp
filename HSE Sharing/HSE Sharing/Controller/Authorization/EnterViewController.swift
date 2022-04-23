@@ -51,11 +51,6 @@ class EnterViewController : UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureActivityIndicator()
-        playing()
-    }
-    
-    func playing() {
-       // Api.shared.startMessaging(email: "1@edu.hse.ru")
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,6 +70,7 @@ class EnterViewController : UIViewController {
                         self.wrongPasswordAlert()
                     } else {
                         CurrentUser.user = user
+                        Api.shared.startMessaging()
                         self.clearTextFields()
                         self.goToMainAppRootTabBarVC()
                     }

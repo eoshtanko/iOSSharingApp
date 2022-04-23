@@ -12,6 +12,7 @@ class Api {
     
     static let shared = Api()
     
+    var handleMessage: ((Message) -> Void)?
     var connection: HubConnection!
     var chatHubConnectionDelegate: HubConnectionDelegate?
     let decoder = JSONDecoder()

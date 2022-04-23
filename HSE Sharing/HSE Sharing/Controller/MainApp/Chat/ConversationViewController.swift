@@ -9,10 +9,13 @@ import UIKit
 
 class ConversationViewController: UITableViewController {
     
-    private let channel: Conversation?
-
+    let channel: Conversation?
+    private var activityIndicator: UIActivityIndicatorView!
+    
     var entreMessageBar: EntryMessageView?
     var hightOfKeyboard: CGFloat?
+    
+    var messages: [Message]? = []
     
     init?(channel: Conversation?) {
         self.channel = channel
@@ -21,11 +24,55 @@ class ConversationViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureActivityIndicator()
+        loadMessages()
+        configureMessageReceiving()
         configureTableView()
         configureNavigationBar()
         registerKeyboardNotifications()
         configureTapGestureRecognizer()
         scrollToBottom(animated: false)
+    }
+    
+    private func configureMessageReceiving() {
+        Api.shared.handleMessage = self.handleMessage
+    }
+    
+    private func handleMessage(message: Message) {
+        if message.senderMail == (CurrentUser.user.mail == channel?.mail1 ? channel?.mail2 : channel?.mail1) {
+            messages?.append(message)
+            tableView.reloadData()
+        }
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
+        view.addSubview(activityIndicator)
+    }
+    
+    private func loadMessages() {
+        activityIndicator.startAnimating()
+        Api.shared.getMessages(email: channel?.mail1 == CurrentUser.user.mail ? (channel?.mail2)! : (channel?.mail1)! , id: 0) { result in
+            switch result {
+            case .success(let messages):
+                DispatchQueue.main.async {
+                    self.messages = messages
+                    self.tableView.reloadData()
+                    self.scrollToBottom(animated: false)
+                    self.activityIndicator.stopAnimating()
+                    self.scrollToBottom(animated: false)
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showFailToLoadMessagesAlert()
+                }
+            }
+        }
     }
     
     private func showFailToLoadMessagesAlert() {
@@ -36,7 +83,7 @@ class ConversationViewController: UITableViewController {
                                              style: UIAlertAction.Style.default))
         failureAlert.addAction(UIAlertAction(title: "Повторить",
                                              style: UIAlertAction.Style.cancel) {_ in
-            // self.configureSnapshotListener()
+            self.loadMessages()
         })
         present(failureAlert, animated: true, completion: nil)
     }
@@ -53,7 +100,7 @@ class ConversationViewController: UITableViewController {
     }
     
     private func configureNavigationBar() {
-    //    navigationItem.title = channel?.name
+        navigationItem.title = channel?.mail1 == CurrentUser.user.mail ? channel?.name2 : channel?.name1
         navigationItem.largeTitleDisplayMode = .never
     }
     

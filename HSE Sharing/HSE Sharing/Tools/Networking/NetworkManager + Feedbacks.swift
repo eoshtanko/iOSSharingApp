@@ -1,20 +1,19 @@
 //
-//  NetworkManager + Conversations.swift
+//  NetworkManager + Feedbacks.swift
 //  HSE Sharing
 //
-//  Created by Екатерина on 22.04.2022.
+//  Created by Екатерина on 23.04.2022.
 //
 
 import Foundation
 
 extension Api {
-    
-    func createConversation(conversation: Conversation, _ completion: @escaping (Result<Conversation>) -> Void) {
+    func createFeedback(feedback: Feedback, _ completion: @escaping (Result<Feedback>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Chats")!
+        let url = URL(string: "\(baseURL)/api/Feedbacks")!
         var request = createRequest(url: url, httpMethod: .POST)
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: conversation.toDict, options: .prettyPrinted)
+            request.httpBody = try JSONSerialization.data(withJSONObject: feedback.toDict, options: .prettyPrinted)
         } catch let error {
             print(error.localizedDescription)
         }
@@ -31,7 +30,7 @@ extension Api {
                 return completion(Result.failure(ApiError.couldNotParse))
             }
             let jsonData = Data(safeData)
-            guard let result = try? self.decoder.decode(Conversation.self, from: jsonData) else {
+            guard let result = try? self.decoder.decode(Feedback.self, from: jsonData) else {
                 return completion(Result.failure(ApiError.couldNotParse))
             }
             return completion(Result.success(result))
@@ -39,9 +38,9 @@ extension Api {
         task.resume()
     }
     
-    func deleteConversation(id: Int, _ completion: @escaping (Result<Any>) -> Void) {
+    func deleteFeetback(id: Int64, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Chats/\(id)")!
+        let url = URL(string: "\(baseURL)/api/Feedbacks/\(id)")!
         let request = createRequest(url: url, httpMethod: .DELETE)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -54,9 +53,9 @@ extension Api {
         task.resume()
     }
     
-    func getConversations(email: String, _ completion: @escaping (Result<[Conversation]>) -> Void) {
+    func getFeetbacksOfSpecificUser(email: String, _ completion: @escaping (Result<[Feedback]>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Chats/\(email)/user")!
+        let url = URL(string: "\(baseURL)/User/\(email)/feedbacks")!
         let request = createRequest(url: url, httpMethod: .GET)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -69,30 +68,10 @@ extension Api {
                 return completion(Result.failure(ApiError.couldNotParse))
             }
             let jsonData = Data(safeData)
-            guard let result = try? self.decoder.decode([Conversation].self, from: jsonData) else {
+            guard let result = try? self.decoder.decode([Feedback].self, from: jsonData) else {
                 return completion(Result.failure(ApiError.couldNotParse))
             }
             return completion(Result.success(result))
-        })
-        task.resume()
-    }
-    
-    func editConversation(conversation: Conversation, _ completion: @escaping (Result<Any>) -> Void) {
-        let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Chats/\(conversation.id)")!
-        var request = createRequest(url: url, httpMethod: .PUT)
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: conversation.toDict, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                completion(Result.failure(ApiError.badResponse))
-                return
-            }
-            return completion(Result.success(""))
         })
         task.resume()
     }

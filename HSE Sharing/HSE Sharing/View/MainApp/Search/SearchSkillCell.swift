@@ -88,6 +88,6 @@ class SearchSkillCell: UITableViewCell {
     }
     
     private func setDefaultImage() {
-        photoOfAuthorImageView.image = UIImage(systemName: "crowsHoldingWings")
+        photoOfAuthorImageView.image = UIImage(named: "crowsHoldingWings")
     }
 }
