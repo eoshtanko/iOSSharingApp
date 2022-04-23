@@ -60,13 +60,30 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+            self.activityIndicator.startAnimating()
+        Api.shared.getUserByEmail(email: self.transaction.receiverMail) { result in
+                switch result {
+                case .success(let user):
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.navigationItem.title = ""
+                        let storyboard = UIStoryboard(name: "ForeignProfile", bundle: nil)
+                        let profileViewController = storyboard.instantiateViewController(withIdentifier: "ForeignProfile") as! ForeignProfileViewController
+                        profileViewController.setUser(user: user!)
+                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.showFailAlert()
+                    }
+                }
+            }
+    }
+    
     private func editTransactionWithUser(user: User) {
-        let transactionLocal = transaction
-        var anotherSkill = transaction.skill2
-        if CurrentUser.user.skills!.contains(where: {$0.name == transactionLocal!.skill1}) {
-            anotherSkill = transaction.skill1
-        }
-        let transaction = Transaction(id: transaction.id, skill1: anotherSkill, skill2: mySkillTextField.text!, description: messageTextView.text ?? "", senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 0, users: transaction.users)
+        let transaction = Transaction(id: transaction.id, skill1: transaction.skill1, skill2: mySkillTextField.text!, description: messageTextView.text ?? "", senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 0, users: transaction.users)
         
         Api.shared.editTransaction(transaction: transaction) { result in
             switch result {
@@ -93,6 +110,14 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
         mySkillPickerView.delegate = self
         mySkillPickerView.dataSource = self
         mySkillTextField.inputView = mySkillPickerView
+        
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        photoOfAuthorImageView.isUserInteractionEnabled = true
+        photoOfAuthorImageView.addGestureRecognizer(tapGestureRecognizer1)
+        
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        nameTextLabel.isUserInteractionEnabled = true
+        nameTextLabel.addGestureRecognizer(tapGestureRecognizer2)
     }
     
     override func viewDidLayoutSubviews() {

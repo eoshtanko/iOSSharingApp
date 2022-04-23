@@ -411,6 +411,11 @@
                         <outlet property="socialNetworkTextField" destination="gKh-2A-Oh9" id="PUR-b3-ZIK"/>
                         <outlet property="stageOfEduLabel" destination="YwX-b6-k1g" id="eE5-8X-9nx"/>
                         <outlet property="stageOfEduTextField" destination="g0C-LN-7AU" id="wzJ-zd-a7B"/>
+                        <outlet property="star1" destination="SJY-uq-tfi" id="rIW-Wa-Plb"/>
+                        <outlet property="star2" destination="Xfx-uH-S3d" id="vpK-dA-RlH"/>
+                        <outlet property="star3" destination="pyR-bw-t6p" id="MTt-TE-7Lk"/>
+                        <outlet property="star4" destination="h1W-85-hXo" id="wgO-9b-Vsn"/>
+                        <outlet property="star5" destination="AQu-B2-npC" id="JWY-tq-KtO"/>
                         <outlet property="surnameLabel" destination="cZB-T3-Tik" id="bA1-hH-Yh7"/>
                         <outlet property="surnameTextField" destination="Cdq-H6-29A" id="8fe-Xv-839"/>
                         <outlet property="wantButton" destination="mW1-pU-zL9" id="hBj-hc-HlR"/>

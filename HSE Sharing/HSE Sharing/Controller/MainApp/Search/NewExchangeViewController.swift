@@ -79,10 +79,19 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         configureActivityIndicator()
+        typeOfSkillTextLabel.text = skill.status == 1 ? "Может" : "Хочет"
         exchangeButton.isEnabled = false
         mySkillPickerView.delegate = self
         mySkillPickerView.dataSource = self
         mySkillTextField.inputView = mySkillPickerView
+        
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        photoOfAuthorImageView.isUserInteractionEnabled = true
+        photoOfAuthorImageView.addGestureRecognizer(tapGestureRecognizer1)
+        
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        nameTextLabel.isUserInteractionEnabled = true
+        nameTextLabel.addGestureRecognizer(tapGestureRecognizer2)
     }
     
     override func viewDidLayoutSubviews() {
@@ -134,6 +143,28 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+            self.activityIndicator.startAnimating()
+            Api.shared.getUserByEmail(email: self.skill.userMail) { result in
+                switch result {
+                case .success(let user):
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.navigationItem.title = ""
+                        let storyboard = UIStoryboard(name: "ForeignProfile", bundle: nil)
+                        let profileViewController = storyboard.instantiateViewController(withIdentifier: "ForeignProfile") as! ForeignProfileViewController
+                        profileViewController.setUser(user: user!)
+                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                    }
+                case .failure(_):
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.showFailAlert()
+                    }
+                }
+            }
+    }
+    
     private func showFailAlert() {
         let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
@@ -142,7 +173,7 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     private func setSkills(skills: [Skill]?) {
         self.mySkills = (skills?.filter { skill in
-            return skill.status == (self.skill.status == 1 ? 2 : 1)
+            return skill.status == self.skill.status
         })!
         
         if mySkills.isEmpty {

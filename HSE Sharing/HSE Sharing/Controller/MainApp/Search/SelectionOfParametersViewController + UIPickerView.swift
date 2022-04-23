@@ -60,9 +60,6 @@ extension SelectionOfParametersViewController: UIPickerViewDelegate, UIPickerVie
         case 1:
             return !EnterViewController.isEnglish ?  DataInRussian.categories.count : DataInEnglish.categories.count
         case 2:
-            if categoryTextField.text == nil || categoryTextField.text!.isEmpty {
-                return 0
-            }
             if categoryIsStudy {
                 return !EnterViewController.isEnglish ?  DataInRussian.subcategoriesStudy.count : DataInEnglish.subcategoriesStudy.count
             } else {
@@ -116,22 +113,20 @@ extension SelectionOfParametersViewController: UIPickerViewDelegate, UIPickerVie
         switch pickerView.tag {
         case 1:
             let prevText = categoryTextField.text
-            subcategoryTextField.isEnabled = true
             if row == 0 {
-                subcategoryTextField.isHidden = true
-                subcategoryLabel.isHidden = true
                 categoryTextField.text = nil
                 searchParametrs.category = -1
+                subcategoryTextField.isEnabled = false
+                subcategoryTextField.text = ""
             } else {
-                subcategoryTextField.isHidden = false
-                subcategoryLabel.isHidden = false
+                subcategoryTextField.isEnabled = true
                 categoryTextField.text = !EnterViewController.isEnglish ? DataInRussian.categories[row] : DataInEnglish.categories[row]
                 categoryIsStudy = row == 1
+                if !(prevText == nil || prevText!.isEmpty || prevText == DataInRussian.categories[row] || prevText == DataInEnglish.categories[row]) {
+                    subcategoryTextField.text = ""
+                }
             }
             searchParametrs.category = row
-            if !(prevText == nil || prevText!.isEmpty || prevText == DataInRussian.categories[row] || prevText == DataInEnglish.categories[row]) {
-                subcategoryTextField.text = ""
-            }
             categoryTextField.resignFirstResponder()
         case 2:
             if row == 0 {

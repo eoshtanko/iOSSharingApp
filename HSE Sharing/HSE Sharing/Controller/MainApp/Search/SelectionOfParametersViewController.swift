@@ -59,9 +59,8 @@ class SelectionOfParametersViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         configureActivityIndicator()
         configurePickerView()
+        subcategoryTextField.isEnabled = false
         searchButton.isEnabled = false
-        subcategoryTextField.isHidden = true
-        subcategoryLabel.isHidden = true
     }
     
     func setInstanceOfSearchScreen(_ instanceOfSearchScreen: SearchViewController) {

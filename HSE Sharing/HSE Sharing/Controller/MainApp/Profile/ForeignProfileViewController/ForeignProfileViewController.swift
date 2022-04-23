@@ -31,6 +31,12 @@ class ForeignProfileViewController: UIViewController {
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var aboutMeTextView: UITextView!
     
+    @IBOutlet weak var star1: UIImageView!
+    @IBOutlet weak var star2: UIImageView!
+    @IBOutlet weak var star3: UIImageView!
+    @IBOutlet weak var star4: UIImageView!
+    @IBOutlet weak var star5: UIImageView!
+    
     @IBOutlet weak var maleButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
@@ -146,6 +152,7 @@ class ForeignProfileViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureSubviews()
+        configureTextView()
     }
 
     func setUser(user: User) {
@@ -218,8 +225,75 @@ class ForeignProfileViewController: UIViewController {
             let imageData = Data(base64Encoded: imageBase64String)
             profileImageView.image = UIImage(data: imageData!)
         }
-        // averageGrade
+        setStars()
     }
+    
+    private func setStars() {
+        star1.tintColor = .lightGray
+        star2.tintColor = .lightGray
+        star3.tintColor = .lightGray
+        star4.tintColor = .lightGray
+        star5.tintColor = .lightGray
+        
+        print(currentUser?.averageGrade)
+        
+        if currentUser!.averageGrade! > 0 && currentUser!.averageGrade! < 0.5{
+            star1.image = withBottomHalfOverlayColor(myImage: star1.image!)
+        }
+        if currentUser!.averageGrade! > 0.5 {
+            star1.tintColor = .systemYellow
+        }
+        if currentUser!.averageGrade! > 1 && currentUser!.averageGrade! < 1.5{
+            star2.image = withBottomHalfOverlayColor(myImage: star2.image!)
+        }
+        if currentUser!.averageGrade! > 1.5 {
+            star2.tintColor = .systemYellow
+        }
+        if currentUser!.averageGrade! > 2 &&  currentUser!.averageGrade! < 2.5 {
+            star3.image = withBottomHalfOverlayColor(myImage: star3.image!)
+        }
+        if currentUser!.averageGrade! > 2.5 {
+             star3.tintColor = .systemYellow
+        }
+        if currentUser!.averageGrade! > 3 && currentUser!.averageGrade! < 3.5 {
+            star4.image = withBottomHalfOverlayColor(myImage: star4.image!)
+        }
+        if currentUser!.averageGrade! > 3.5 {
+            star4.tintColor = .systemYellow
+        }
+        if currentUser!.averageGrade! > 4 && currentUser!.averageGrade! < 4.5 {
+            star5.image = withBottomHalfOverlayColor(myImage: star5.image!)
+        }
+        if currentUser!.averageGrade! > 4.5 {
+            star5.tintColor = .systemYellow
+        }
+    }
+    
+    func withBottomHalfOverlayColor(myImage: UIImage) -> UIImage
+      {
+        let rect = CGRect(x: 0, y: 0, width: myImage.size.width, height: myImage.size.height)
+
+
+        UIGraphicsBeginImageContextWithOptions(myImage.size, false, myImage.scale)
+        myImage.draw(in: rect)
+
+        let context = UIGraphicsGetCurrentContext()!
+        context.setBlendMode(CGBlendMode.sourceIn)
+
+        context.setFillColor(UIColor.systemYellow.cgColor)
+
+        let rectToFill = CGRect(x: 0, y: 0, width: myImage.size.width * 0.5, height: myImage.size.height)
+        context.fill(rectToFill)
+          
+          context.setFillColor(UIColor.lightGray.cgColor)
+          let rectToFill2 = CGRect(x: myImage.size.width * 0.5, y: 0, width: myImage.size.width * 0.5, height: myImage.size.height)
+          context.fill(rectToFill2)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage!
+      }
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()

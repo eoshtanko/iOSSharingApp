@@ -19,6 +19,11 @@ class IncomeExchangesViewController: UIViewController {
             if tableView != nil {
                 tableView.isHidden = transactions.isEmpty
                 view.backgroundColor = transactions.isEmpty ? UIColor(named: "BlueLightColor") : .white
+                if transactions.isEmpty {
+                    view.addSubview(activityIndicator)
+                } else {
+                    tableView.addSubview(activityIndicator)
+                }
             }
         }
     }
@@ -73,7 +78,7 @@ class IncomeExchangesViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        tableView.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
     }
     
     private func configureTableView() {
@@ -161,7 +166,7 @@ extension IncomeExchangesViewController: UITableViewDataSource {
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Согласиться", style: UIAlertAction.Style.destructive) {_ in
+        failureAlert.addAction(UIAlertAction(title: "Согласиться", style: UIAlertAction.Style.default) {_ in
             self.activityIndicator.startAnimating()
             self.agree(transaction: transaction)
         })

@@ -19,6 +19,11 @@ class OutcomeExchangesViewController: UIViewController {
             if tableView != nil {
                 tableView.isHidden = transactions.isEmpty
                 view.backgroundColor = transactions.isEmpty ? UIColor(named: "BlueLightColor") : .white
+                if transactions.isEmpty {
+                    view.addSubview(activityIndicator)
+                } else {
+                    tableView.addSubview(activityIndicator)
+                }
             }
         }
     }
@@ -73,7 +78,7 @@ class OutcomeExchangesViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)
-        tableView.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
     }
     
     private func configureTableView() {
