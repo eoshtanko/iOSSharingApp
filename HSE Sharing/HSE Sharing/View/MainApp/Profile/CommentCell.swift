@@ -37,17 +37,9 @@ class CommentCell: UITableViewCell {
     }
 
     func configureCell(_ comment: Feedback) {
-        configureLabelsLanguage()
         configureData(comment)
         configureView()
-        deleteButton.isHidden = !CurrentUser.user.isModer!
-    }
-    
-    private func configureLabelsLanguage() {
-//        nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
-//        descriptionLabel.text = EnterViewController.isEnglish ? "Description:" : "Описание:"
-//        categoryLabel.text = EnterViewController.isEnglish ? "Category:" : "Категория:"
-//        subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
+        deleteButton.isHidden = !(CurrentUser.user.isModer! && comment.receiverMail != CurrentUser.user.mail!)
     }
     
     private func configureData(_ comment: Feedback) {
