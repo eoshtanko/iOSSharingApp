@@ -110,6 +110,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func maleButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
+            currentUser?.gender = 1
             maleButton.tintColor = UIColor(named: "BlueDarkColor")
             femaleButton.tintColor = .gray
         }
@@ -117,6 +118,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func femaleButtonPressed(_ sender: Any) {
         if isProfileInfoEditing {
+            currentUser?.gender = 2
             femaleButton.tintColor = UIColor(named: "BlueDarkColor")
             maleButton.tintColor = .gray
         }
@@ -290,17 +292,20 @@ class ProfileViewController: UIViewController {
     
     func makeRequest(isImageChanged: Bool) {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.editUser(email: emailTextField.text!, user: currentUser!) { result in
             switch result {
             case .success(_):
                 CurrentUser.user = self.currentUser!
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.transitFromEditingToNormalState()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert(isImageChanged: isImageChanged)
                 }
             }
@@ -357,7 +362,6 @@ class ProfileViewController: UIViewController {
     }
     
     func configureNavigationButton() {
-        if currentUser?.mail == CurrentUser.user.mail {
             let settingsButton = UIButton()
             if EnterViewController.isEnglish {
                 settingsButton.setTitle("🇷🇺", for: .normal)
@@ -367,7 +371,6 @@ class ProfileViewController: UIViewController {
             settingsButton.titleLabel?.font = .systemFont(ofSize: 30)
             settingsButton.addTarget(self, action: #selector(changeLanguage), for: .touchUpInside)
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingsButton)
-        }
     }
     
     private func configureSubviews() {
@@ -476,7 +479,7 @@ extension ProfileViewController {
     @objc private func changeLanguage() {
         SearchViewController.tableView.reloadData()
         EnterViewController.isEnglish = !EnterViewController.isEnglish
-        if (EnterViewController.isEnglish) {
+        if (!EnterViewController.isEnglish) {
             translateToRussia()
         } else {
             translateToEnglish()
@@ -529,6 +532,34 @@ extension ProfileViewController {
                 bottomButtom.setTitle("Log out", for: .normal)
             }
             datePicker.locale = Locale(identifier: "en")
+            
+            if eduProgramTextField.text != nil || !eduProgramTextField.text!.isEmpty {
+                let i = DataInRussian.eduPrograms.firstIndex(of: eduProgramTextField.text! )
+                if let i = i {
+                    eduProgramTextField.text = DataInEnglish.eduPrograms[i]
+                }
+            }
+            
+            if dormTextField.text != nil || !dormTextField.text!.isEmpty {
+                let i = DataInRussian.dormitories.firstIndex(of: dormTextField.text! )
+                if let i = i {
+                    dormTextField.text = DataInEnglish.dormitories[i]
+                }
+            }
+            
+            if stageOfEduTextField.text != nil || !stageOfEduTextField.text!.isEmpty {
+                let i = DataInRussian.stagesOfEdu.firstIndex(of: stageOfEduTextField.text! )
+                if let i = i {
+                    stageOfEduTextField.text = DataInEnglish.stagesOfEdu[i]
+                }
+            }
+            
+            if campusLocationTextField.text != nil || !campusLocationTextField.text!.isEmpty {
+                let i = DataInRussian.universityCampuses.firstIndex(of: campusLocationTextField.text! )
+                if let i = i {
+                    campusLocationTextField.text = DataInEnglish.universityCampuses[i]
+                }
+            }
         } else {
             myDataLabel.text =  "Мои данные"
             nameLabel.text = "Имя"
@@ -568,6 +599,34 @@ extension ProfileViewController {
                 bottomButtom.setTitle("Выйти из аккаунта", for: .normal)
             }
             datePicker.locale = Locale(identifier: "ru")
+            
+            if eduProgramTextField.text != nil || !eduProgramTextField.text!.isEmpty {
+                let i = DataInEnglish.eduPrograms.firstIndex(of: eduProgramTextField.text! )
+                if let i = i {
+                    eduProgramTextField.text = DataInRussian.eduPrograms[i]
+                }
+            }
+            
+            if dormTextField.text != nil || !dormTextField.text!.isEmpty {
+                let i = DataInEnglish.dormitories.firstIndex(of: dormTextField.text! )
+                if let i = i {
+                    dormTextField.text = DataInRussian.dormitories[i]
+                }
+            }
+            
+            if stageOfEduTextField.text != nil || !stageOfEduTextField.text!.isEmpty {
+                let i = DataInEnglish.stagesOfEdu.firstIndex(of: stageOfEduTextField.text! )
+                if let i = i {
+                    stageOfEduTextField.text = DataInRussian.stagesOfEdu[i]
+                }
+            }
+            
+            if campusLocationTextField.text != nil || !campusLocationTextField.text!.isEmpty {
+                let i = DataInEnglish.universityCampuses.firstIndex(of: campusLocationTextField.text! )
+                if let i = i {
+                    campusLocationTextField.text = DataInRussian.universityCampuses[i]
+                }
+            }
         }
     }
 }

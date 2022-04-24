@@ -54,6 +54,7 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     @objc private func doneButtonPressed() {
         formatter.dateStyle = .short
         formatter.timeStyle = .none
+        currentUser?.birthDate = datePicker.date
         
         birthdayTextField.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)

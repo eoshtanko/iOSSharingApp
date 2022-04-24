@@ -32,6 +32,7 @@ class CommentsViewController: UIViewController {
     
     private func loadCommentsRequest() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getFeetbacksOfSpecificUser(email: self.userMail) { result in
             switch result {
             case .success(let comments):
@@ -39,10 +40,12 @@ class CommentsViewController: UIViewController {
                     self.comments = comments!
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
@@ -98,6 +101,7 @@ class CommentsViewController: UIViewController {
     }
     
     private func deleteComment(comment: Feedback) {
+        self.view.isUserInteractionEnabled = false
         activityIndicator.startAnimating()
         Api.shared.deleteFeetback(id: comment.id) { result in
             switch result {
@@ -108,6 +112,7 @@ class CommentsViewController: UIViewController {
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }

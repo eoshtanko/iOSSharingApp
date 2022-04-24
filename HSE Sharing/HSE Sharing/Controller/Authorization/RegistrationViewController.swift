@@ -47,17 +47,21 @@ class RegistrationViewController : UIViewController {
     }
     
     private func makeRequest(_ user: User) {
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.editUser(email: CurrentUser.user.mail!, user: user) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.clearTextFields()
                     self.goToMainAppRootTabBarVC()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }

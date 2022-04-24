@@ -78,6 +78,7 @@ class ForeignProfileViewController: UIViewController {
     
     private func getChatRequest() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getConversations(email: CurrentUser.user.mail!) { result in
             switch result {
             case .success(let conversations):
@@ -86,6 +87,7 @@ class ForeignProfileViewController: UIViewController {
                     for c in conversations! {
                         if c.mail1 == self.currentUser?.mail || c.mail2 == self.currentUser?.mail {
                             self.activityIndicator.stopAnimating()
+                            self.view.isUserInteractionEnabled = true
                             found = true
                             self.goToChat(conversation: c)
                             break
@@ -98,6 +100,7 @@ class ForeignProfileViewController: UIViewController {
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                      self.showFailAlert()
                 }
             }
@@ -121,10 +124,12 @@ class ForeignProfileViewController: UIViewController {
             case .success(let conversation):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.goToChat(conversation: conversation!)
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
                 }
@@ -163,26 +168,22 @@ class ForeignProfileViewController: UIViewController {
         userEmail = email
     }
     
-    private func configureUser() {
-        if currentUser != nil {
-            configureData()
-        } else {
-            makeRequest()
-        }
-    }
-    
     private func makeRequest() {
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getUserByEmail(email: userEmail!) { result in
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.currentUser = user
                     self.configureData()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                         self.showFailAlert()
                 }
             }

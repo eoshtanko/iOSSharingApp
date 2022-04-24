@@ -48,7 +48,7 @@ extension SelectionOfParametersViewController: UIPickerViewDelegate, UIPickerVie
         genderPickerView.tag = 8
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
-        campusLocationTextField.inputView = genderPickerView
+        genderTextField.inputView = genderPickerView
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

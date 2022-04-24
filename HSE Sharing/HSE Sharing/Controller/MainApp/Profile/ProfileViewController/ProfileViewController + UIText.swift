@@ -14,7 +14,6 @@ extension ProfileViewController: UITextFieldDelegate {
         return false
     }
     
-    // TODO: проваливаться в case
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case 1:
@@ -68,6 +67,8 @@ extension ProfileViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = CurrentUser.user.mail == currentUser?.mail ? "Расскажите о себе :)" : "Нет информации"
             textView.textColor = UIColor.lightGray
+        } else {
+            currentUser?.about = textView.text
         }
     }
 }

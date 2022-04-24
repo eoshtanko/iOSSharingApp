@@ -42,10 +42,12 @@ class SearchViewController: UIViewController {
 
     private func makeInitialRequest() {
         activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
         Api.shared.getSkills { result in
             switch result {
             case .success(let skills):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.skills = skills ?? []
                     self.filteredSkills = self.skills
                     SearchViewController.tableView.reloadData()
@@ -53,6 +55,7 @@ class SearchViewController: UIViewController {
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
                 }
@@ -87,7 +90,7 @@ class SearchViewController: UIViewController {
 
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        let yoffset = view.frame.midY - 60
+        let yoffset = view.frame.midY  * 0.72
         activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
@@ -200,13 +203,14 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer, mail: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.activityIndicator.startAnimating()
+            view.isUserInteractionEnabled = false
             Api.shared.getUserByEmail(email: mail) { result in
                 switch result {
                 case .success(let user):
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
+                        self.view.isUserInteractionEnabled = true
                         self.navigationItem.title = ""
                         let storyboard = UIStoryboard(name: "ForeignProfile", bundle: nil)
                         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ForeignProfile") as! ForeignProfileViewController
@@ -216,11 +220,11 @@ extension SearchViewController: UITableViewDataSource {
                 case .failure(_):
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
+                        self.view.isUserInteractionEnabled = true
                         self.showFailAlert()
                     }
                 }
             }
-        }
     }
 }
 

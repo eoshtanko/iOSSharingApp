@@ -43,15 +43,18 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func makeRequest() {
+        self.view.isUserInteractionEnabled = false
         Api.shared.editUser(email: self.user!.mail!, user: self.user!) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.performSegue(withIdentifier: "unwindToProfile", sender: nil)
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
                 }

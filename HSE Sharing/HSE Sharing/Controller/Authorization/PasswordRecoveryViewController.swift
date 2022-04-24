@@ -43,17 +43,20 @@ class PasswordRecoveryViewController : UIViewController {
     }
     
     private func makeRequest() {
+        self.view.isUserInteractionEnabled = false
         Api.shared.recoveryUsersPassword(email: emailTextField.text!) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.clearTextFields()
                     self.goBack()
                 }
             case .failure(let apiError):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     if apiError as! ApiError == ApiError.noSuchData {
                         self.noSuchUserAlert()
                     } else {

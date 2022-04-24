@@ -43,6 +43,7 @@ class PersonalSkillListViewController: UIViewController {
     
     private func loadSkillsRequest() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getSkillsOfSpecificUser(email: userEmail) { result in
             switch result {
             case .success(let skills):
@@ -53,10 +54,12 @@ class PersonalSkillListViewController: UIViewController {
                     })!
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
@@ -122,16 +125,19 @@ class PersonalSkillListViewController: UIViewController {
     
     private func deleteSkillRequest(id: Int64) {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.deleteSkill(id: id) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.configureSkills()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }

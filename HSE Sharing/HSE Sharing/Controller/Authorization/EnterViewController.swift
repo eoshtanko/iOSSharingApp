@@ -42,7 +42,6 @@ class EnterViewController : UIViewController {
     
     @IBOutlet weak var changeLanguageButton: UIButton!
     @IBAction func changeLanguageButtonAction(_ sender: Any) {
-//        Api.shared.sendMessage(mail: "2@edu.hse.ru", message: Message(id: 1, sendTime: "23.02.2001", text: "Hi!!!",  senderMail: "1@edu.hse.ru", receiverMail: "2@edu.hse.ru"))
         EnterViewController.isEnglish = !EnterViewController.isEnglish
         translateProfileView(EnterViewController.isEnglish)
     }
@@ -61,10 +60,12 @@ class EnterViewController : UIViewController {
     }
     
     private func makeRequest() {
+        self.view.isUserInteractionEnabled = false
         Api.shared.getUserByEmail(email: emailTextField.text!) { result in
             switch result {
             case .success(let user):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     if user?.password != self.passwordTextField.text! {
                         self.wrongPasswordAlert()
@@ -78,6 +79,7 @@ class EnterViewController : UIViewController {
             case .failure(let apiError):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     if apiError as! ApiError == ApiError.noSuchData {
                         self.noSuchUserAlert()
                     } else {

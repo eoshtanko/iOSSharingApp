@@ -87,7 +87,8 @@ class ConversationsListViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        let yoffset = view.frame.midY - 60
+        let yoffset = view.frame.midY * 0.72
+        print(view.frame.midY)
         activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large

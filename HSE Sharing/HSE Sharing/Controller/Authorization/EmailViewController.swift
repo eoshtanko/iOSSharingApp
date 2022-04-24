@@ -22,6 +22,7 @@ class EmailViewController : UIViewController {
     @IBOutlet weak var goNextButton: UIButton!
     @IBAction func goNextButtonAction(_ sender: Any) {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         makeRequest()
     }
     
@@ -32,6 +33,7 @@ class EmailViewController : UIViewController {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showAlreadyExistAlert()
                     self.clearTextFields()
                 }
@@ -49,10 +51,12 @@ class EmailViewController : UIViewController {
                     CurrentUser.user = user
                     Api.shared.startMessaging()
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.performSegue(withIdentifier: "toCodeScreen", sender: nil)
                     self.clearTextFields()
                 case .failure(_):
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
