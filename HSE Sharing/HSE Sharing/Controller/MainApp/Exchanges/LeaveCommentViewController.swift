@@ -33,6 +33,9 @@ class LeaveCommentViewController: UIViewController {
         super.viewDidLoad()
         setStars()
         configureActivityIndicator()
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     private func configureActivityIndicator() {
@@ -143,16 +146,19 @@ class LeaveCommentViewController: UIViewController {
         let feedback = Feedback(id: 0, grade: grade, comment: commentSpace.text ?? "", senderMail: CurrentUser.user.mail!, receiverMail: anotherUserMail)
         
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.createFeedback(feedback: feedback) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.performSegue(withIdentifier: "unwindToExchanges", sender: nil)
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }

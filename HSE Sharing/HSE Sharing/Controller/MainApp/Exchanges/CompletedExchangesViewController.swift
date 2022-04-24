@@ -36,6 +36,7 @@ class CompletedExchangesViewController: UIViewController {
     
     private func makeRequest() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getTransactions(type: .completed) { result in
             switch result {
             case .success(let transactions):
@@ -46,11 +47,13 @@ class CompletedExchangesViewController: UIViewController {
                         self.transactions = []
                     }
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.tableView.reloadData()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
@@ -67,8 +70,7 @@ class CompletedExchangesViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        let yoffset = view.frame.midY - 60
-        activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
+        activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.transform = CGAffineTransform(scaleX: 3, y: 3)

@@ -123,6 +123,7 @@ class ConversationViewController: UITableViewController {
     }
     
     private func loadMessages() {
+        self.view.isUserInteractionEnabled = false
         Api.shared.getMessages(email: channel?.mail1 == CurrentUser.user.mail ? (channel?.mail2)! : (channel?.mail1)! , id: 0) { result in
             switch result {
             case .success(let messages):
@@ -130,12 +131,12 @@ class ConversationViewController: UITableViewController {
                     self.messages = messages
                     self.tableView.reloadData()
                     self.scrollToBottom(animated: false)
-                    self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.scrollToBottom(animated: false)
                 }
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailToLoadMessagesAlert()
                 }
             }

@@ -36,6 +36,9 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.delegate = self
         repeatNewPasswordTextField.tag = 2
         repeatNewPasswordTextField.delegate = self
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     func setUser(user: User?) {

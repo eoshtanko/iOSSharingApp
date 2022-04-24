@@ -90,7 +90,7 @@ extension ConversationViewController {
     }
     
     @objc func keyboardWillHide(_ notification: NSNotification) {
-      //  scrollToBottom(animated: false)
+        scrollToBottom(animated: false)
     }
     
     private func showFailToSendMessageAlert() {

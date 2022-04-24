@@ -52,6 +52,9 @@ class SkillEditViewController: UIViewController {
             subcategoryTextField.isHidden = true
             subcategoryLabel.isHidden = true
         }
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidLayoutSubviews() {

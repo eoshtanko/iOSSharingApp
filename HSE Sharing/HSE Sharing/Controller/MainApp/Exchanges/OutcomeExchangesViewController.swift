@@ -21,8 +21,12 @@ class OutcomeExchangesViewController: UIViewController {
                 view.backgroundColor = transactions.isEmpty ? UIColor(named: "BlueLightColor") : .white
                 if transactions.isEmpty {
                     view.addSubview(activityIndicator)
+                    let yoffset = view.frame.midY
+                    activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
                 } else {
                     tableView.addSubview(activityIndicator)
+                    let yoffset = view.frame.midY  * 0.72
+                    activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
                 }
             }
         }
@@ -42,6 +46,7 @@ class OutcomeExchangesViewController: UIViewController {
     
     private func makeRequest() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getTransactions(type: .out) { result in
             switch result {
             case .success(let transactions):
@@ -52,11 +57,13 @@ class OutcomeExchangesViewController: UIViewController {
                         self.transactions = []
                     }
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.tableView.reloadData()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
@@ -73,7 +80,7 @@ class OutcomeExchangesViewController: UIViewController {
     
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
-        let yoffset = view.frame.midY - 60
+        let yoffset = view.frame.midY
         activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
@@ -144,6 +151,7 @@ extension OutcomeExchangesViewController: UITableViewDataSource {
     
     private func delete(transaction: Transaction) {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.deleteTransaction(transaction: transaction, sendNotification: false) { result in
             switch result {
             case .success(_):
@@ -154,6 +162,7 @@ extension OutcomeExchangesViewController: UITableViewDataSource {
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
+                    self.view.isUserInteractionEnabled = true
                 }
             }
         }

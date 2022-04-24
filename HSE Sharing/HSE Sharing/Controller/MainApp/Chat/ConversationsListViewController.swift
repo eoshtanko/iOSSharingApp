@@ -34,6 +34,7 @@ class ConversationsListViewController: UIViewController {
     
     private func loadConversationsRequest() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getConversations(email: CurrentUser.user.mail!) { result in
             switch result {
             case .success(let conversations):
@@ -42,10 +43,12 @@ class ConversationsListViewController: UIViewController {
                     self.filteredConversations = self.conversations
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
@@ -59,17 +62,20 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc private func makeRenewRequest() {
+        self.view.isUserInteractionEnabled = false
         Api.shared.getConversations(email: CurrentUser.user.mail!) { result in
             switch result {
             case .success(let conversations):
                 DispatchQueue.main.async {
                     self.conversations = conversations?.sorted()
+                    self.view.isUserInteractionEnabled = true
                     self.filteredConversations = self.conversations
                     self.tableView.reloadData()
                     self.refreshControl.endRefreshing()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.refreshControl.endRefreshing()
                     self.showFailAlert()
                 }
@@ -88,7 +94,6 @@ class ConversationsListViewController: UIViewController {
     private func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView()
         let yoffset = view.frame.midY * 0.72
-        print(view.frame.midY)
         activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
@@ -193,6 +198,7 @@ extension ConversationsListViewController: UITableViewDataSource {
     
     private func deleteConversationRequest(conversation: Conversation) {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.deleteConversation(id: conversation.id) { result in
             switch result {
             case .success(_):
@@ -201,6 +207,7 @@ extension ConversationsListViewController: UITableViewDataSource {
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
                 }

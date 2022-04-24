@@ -155,6 +155,9 @@ class ProfileViewController: UIViewController {
         configureTapGestureRecognizer()
         configureData()
         configureTextViewHintText()
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidLayoutSubviews() {
@@ -423,7 +426,7 @@ class ProfileViewController: UIViewController {
     private func activateEditing() {
         nameTextFiled.isUserInteractionEnabled = true
         surnameTextField.isUserInteractionEnabled = true
-        emailTextField.isUserInteractionEnabled = true
+        emailTextField.isUserInteractionEnabled = false
         socialNetworkTextField.isUserInteractionEnabled = true
         eduProgramTextField.isUserInteractionEnabled = true
         dormTextField.isUserInteractionEnabled = true

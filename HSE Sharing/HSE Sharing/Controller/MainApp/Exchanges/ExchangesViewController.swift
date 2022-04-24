@@ -24,8 +24,12 @@ class ExchangesViewController: UIViewController {
                 view.backgroundColor = transactions.isEmpty ? UIColor(named: "BlueLightColor") : .white
                 if transactions.isEmpty {
                     view.addSubview(activityIndicator)
+                    let yoffset = view.frame.midY
+                    activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
                 } else {
                     tableView.addSubview(activityIndicator)
+                    let yoffset = view.frame.midY * 0.72
+                    activityIndicator.center = CGPoint(x: view.frame.midX, y: yoffset)
                 }
             }
         }
@@ -38,7 +42,6 @@ class ExchangesViewController: UIViewController {
         configureNavigationBar()
         configurePickerView()
         configurePickerAppearance()
-        // makeRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +51,7 @@ class ExchangesViewController: UIViewController {
     
     private func makeRequest() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getTransactions(type: .active) { result in
             switch result {
             case .success(let transactions):
@@ -57,11 +61,13 @@ class ExchangesViewController: UIViewController {
                     } else {
                         self.transactions = []
                     }
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.tableView.reloadData()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
                 }
@@ -182,6 +188,7 @@ extension ExchangesViewController: UITableViewDataSource {
     
     private func complete(transaction: Transaction) {
         self.activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         let transaction = Transaction(id: transaction.id, skill1: transaction.skill1, skill2: transaction.skill2, description: transaction.description, senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 2, users: transaction.users)
         
         Api.shared.editTransaction(transaction: transaction) { result in
@@ -189,6 +196,7 @@ extension ExchangesViewController: UITableViewDataSource {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.navigationItem.title = ""
                     let storyboard = UIStoryboard(name: "LeaveCommentScreen", bundle: nil)
                     let leaveCommentScreen = storyboard.instantiateViewController(withIdentifier: "LeaveCommentScreen") as! LeaveCommentViewController
@@ -197,6 +205,7 @@ extension ExchangesViewController: UITableViewDataSource {
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.showFailAlert()
                 }

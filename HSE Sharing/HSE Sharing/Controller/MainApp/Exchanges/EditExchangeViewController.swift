@@ -37,6 +37,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     private func loadUser() {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getUserByEmail(email: transaction.receiverMail) { result in
             switch result {
             case .success(let user):
@@ -54,6 +55,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
@@ -62,11 +64,13 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
             self.activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getUserByEmail(email: self.transaction.receiverMail) { result in
                 switch result {
                 case .success(let user):
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
+                        self.view.isUserInteractionEnabled = true
                         self.navigationItem.title = ""
                         let storyboard = UIStoryboard(name: "ForeignProfile", bundle: nil)
                         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ForeignProfile") as! ForeignProfileViewController
@@ -76,6 +80,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
                 case .failure(_):
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
+                        self.view.isUserInteractionEnabled = true
                         self.showFailAlert()
                     }
                 }
@@ -84,17 +89,20 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     private func editTransactionWithUser(user: User) {
         let transaction = Transaction(id: transaction.id, skill1: transaction.skill1, skill2: mySkillTextField.text!, description: messageTextView.text ?? "", senderMail: transaction.senderMail, receiverMail: transaction.receiverMail, whoWantMail: transaction.whoWantMail, status: 0, users: transaction.users)
-        
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.editTransaction(transaction: transaction) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.performSegue(withIdentifier: "unwindOutcomingExchanges", sender: nil)
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
@@ -118,6 +126,9 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
         let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         nameTextLabel.isUserInteractionEnabled = true
         nameTextLabel.addGestureRecognizer(tapGestureRecognizer2)
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidLayoutSubviews() {
@@ -150,6 +161,8 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     private func loadSkillsRequest() {
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         Api.shared.getSkillsOfSpecificUser(email: CurrentUser.user.mail!) { result in
             switch result {
             case .success(let skills):
@@ -157,10 +170,12 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
                     CurrentUser.user.skills = skills
                     self.setSkills(skills: skills)
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }

@@ -61,6 +61,9 @@ class SelectionOfParametersViewController: UIViewController {
         configurePickerView()
         subcategoryTextField.isEnabled = false
         searchButton.isEnabled = false
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     func setInstanceOfSearchScreen(_ instanceOfSearchScreen: SearchViewController) {
@@ -68,6 +71,8 @@ class SelectionOfParametersViewController: UIViewController {
     }
     
     private func makeRequest() {
+        self.view.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
         Api.shared.getSkillsByParametrs(params: searchParametrs) { result in
             switch result {
             case .success(let skills):
@@ -77,11 +82,13 @@ class SelectionOfParametersViewController: UIViewController {
                     }
                     self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     self.showFailAlert()
                 }
             }
