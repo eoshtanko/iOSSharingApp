@@ -44,7 +44,7 @@ class SearchSkillCell: UITableViewCell {
         categoryLabel.text = EnterViewController.isEnglish ? "Category:" : "Категория:"
         subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory:" : "Подкатегория:"
         nameTextLabel.text = skill.name
-        descriptionTextLabel.text = skill.description
+        descriptionTextLabel.text = skill.description.isEmpty ? (EnterViewController.isEnglish ? "No description" : "Нет описания") : skill.description
         if let imageBase64String = skill.userPhoto {
             let imageData = Data(base64Encoded: imageBase64String)
             self.photoOfAuthorImageView.image = UIImage(data: imageData!)
