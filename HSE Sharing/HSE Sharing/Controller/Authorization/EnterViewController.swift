@@ -10,7 +10,11 @@ import UIKit
 
 class EnterViewController : UIViewController {
     
-    static var isEnglish = false
+    static var isEnglish = false {
+        didSet {
+            MemoryManager.instance.saveApplicationPreferences([ApplicationPreferences(isEnglish: isEnglish)])
+        }
+    }
     
     private var activityIndicator: UIActivityIndicatorView!
     
@@ -50,6 +54,8 @@ class EnterViewController : UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureActivityIndicator()
+        EnterViewController.isEnglish = getLanguageFromMemory()
+        translate(EnterViewController.isEnglish)
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,6 +63,19 @@ class EnterViewController : UIViewController {
         self.navigationItem.title = ""
         configureButtons()
         configureTextFields()
+    }
+    
+    private func getLanguageFromMemory() -> Bool {
+        let language = MemoryManager.instance.getApplicationPreferences()
+        guard let language = language else {
+            return false
+        }
+        if !language.isEmpty {
+            print(language[0].isEnglish)
+            return language[0].isEnglish
+        } else {
+            return false
+        }
     }
     
     private func makeRequest() {
