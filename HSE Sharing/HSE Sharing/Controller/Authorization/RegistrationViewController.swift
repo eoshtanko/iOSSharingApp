@@ -102,12 +102,36 @@ class RegistrationViewController : UIViewController {
     private func configureTextFields() {
         configureTextFieldsDelegate(textField: nameTextFiled)
         nameTextFiled.tag = 1
+        nameTextFiled.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
         configureTextFieldsDelegate(textField: surnameTextField)
         surnameTextField.tag = 2
+        surnameTextField.addTarget(self, action: #selector(surnameTextFieldDidChange), for: .editingChanged)
         configureTextFieldsDelegate(textField: passwordTextField)
         passwordTextField.tag = 3
+        passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange), for: .editingChanged)
         configureTextFieldsDelegate(textField: repeatPasswordTextField)
         repeatPasswordTextField.tag = 4
+        repeatPasswordTextField.addTarget(self, action: #selector(repeatPasswordTextFieldDidChange), for: .editingChanged)
+    }
+    
+    @objc private func nameTextFieldDidChange() {
+        nameIsValid = nameTextFiled.text?.isNameOrSurnameValid() ?? false
+        changeValidEditingStatus()
+    }
+    
+    @objc private func surnameTextFieldDidChange() {
+        surnameIsValid = surnameTextField.text?.isNameOrSurnameValid() ?? false
+        changeValidEditingStatus()
+    }
+    
+    @objc private func passwordTextFieldDidChange() {
+        passwordIsValid = passwordTextField.text?.isPasswordValid() ?? false
+        changeValidEditingStatus()
+    }
+    
+    @objc private func repeatPasswordTextFieldDidChange() {
+        repeatPasswordIsValid = isRepeatNewPasswordIsValid(repeatPasswordTextField.text ?? "")
+        changeValidEditingStatus()
     }
     
     private func configureTextFieldsDelegate(textField: UITextField) {
@@ -197,6 +221,7 @@ extension RegistrationViewController: UITextFieldDelegate {
         surnameTextField.changeColorOfBorder(isValid: surnameIsValid)
         passwordTextField.changeColorOfBorder(isValid: passwordIsValid)
         repeatPasswordTextField.changeColorOfBorder(isValid: repeatPasswordIsValid)
-        registrationButton.isEnabled = nameIsValid && surnameIsValid && passwordIsValid && repeatPasswordIsValid
+        registrationButton.isEnabled = nameIsValid && !(nameTextFiled.text?.isEmpty ?? true) && surnameIsValid && !(surnameTextField.text?.isEmpty ?? true) && passwordIsValid && !(passwordTextField.text?.isEmpty ?? true) && repeatPasswordIsValid && !(repeatPasswordTextField.text?.isEmpty ?? true)
     }
 }
+
