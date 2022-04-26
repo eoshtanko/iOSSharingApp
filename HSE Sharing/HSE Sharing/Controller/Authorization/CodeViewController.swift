@@ -58,6 +58,12 @@ class CodeViewController : UIViewController {
     
     private func configureTextFields() {
         textField.delegate = self
+        textField.addTarget(self, action: #selector(codeTextFieldDidChange), for: .editingChanged)
+    }
+    
+    @objc private func codeTextFieldDidChange() {
+        codeIsValid = textField.text?.isCodeValid() ?? false
+        changeValidEditingStatus()
     }
     
     private func clearTextFields() {
