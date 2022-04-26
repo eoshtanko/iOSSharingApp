@@ -137,9 +137,21 @@ class EnterViewController : UIViewController {
     
     private func configureTextFields() {
         configureTextFieldsDelegate(textField: emailTextField)
+        emailTextField.addTarget(self, action: #selector(emailTextFieldDidChange), for: .editingChanged)
         emailTextField.tag = 1
         configureTextFieldsDelegate(textField: passwordTextField)
+        passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange), for: .editingChanged)
         passwordTextField.tag = 2
+    }
+    
+    @objc private func emailTextFieldDidChange() {
+        emailIsValid = emailTextField.text?.isEmailValid() ?? false
+        changeValidEditingStatus()
+    }
+    
+    @objc private func passwordTextFieldDidChange() {
+        passwordIsValid = passwordTextField.text?.isPasswordValid() ?? false
+        changeValidEditingStatus()
     }
     
     private func configureTextFieldsDelegate(textField: UITextField) {

@@ -89,6 +89,12 @@ class EmailViewController : UIViewController {
     
     private func configureTextFields() {
         emailTextField.delegate = self
+        emailTextField.addTarget(self, action: #selector(emailTextFieldDidChange), for: .editingChanged)
+    }
+    
+    @objc private func emailTextFieldDidChange() {
+        emailIsValid = emailTextField.text?.isEmailValid() ?? false
+        changeValidEditingStatus()
     }
     
     private func clearTextFields() {
