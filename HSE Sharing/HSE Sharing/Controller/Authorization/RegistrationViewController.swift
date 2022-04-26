@@ -2,7 +2,7 @@
 //  RegistrationViewController.swift
 //  HSE Sharing
 //
-//  Created by Екатерина on 09.04.2022.
+//  Created by Екатерина on 09.04.2022. 
 //
 
 import Foundation
@@ -104,12 +104,15 @@ class RegistrationViewController : UIViewController {
         nameTextFiled.tag = 1
         nameTextFiled.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
         configureTextFieldsDelegate(textField: surnameTextField)
+        
         surnameTextField.tag = 2
         surnameTextField.addTarget(self, action: #selector(surnameTextFieldDidChange), for: .editingChanged)
         configureTextFieldsDelegate(textField: passwordTextField)
+        
         passwordTextField.tag = 3
         passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange), for: .editingChanged)
         configureTextFieldsDelegate(textField: repeatPasswordTextField)
+        
         repeatPasswordTextField.tag = 4
         repeatPasswordTextField.addTarget(self, action: #selector(repeatPasswordTextFieldDidChange), for: .editingChanged)
     }
