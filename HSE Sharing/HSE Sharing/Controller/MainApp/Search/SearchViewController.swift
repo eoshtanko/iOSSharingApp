@@ -159,6 +159,7 @@ class SearchViewController: UIViewController {
         let storyboard = UIStoryboard(name: "NewExchangeScreen", bundle: nil)
         let newExchangeScreen = storyboard.instantiateViewController(withIdentifier: "NewExchangeScreen") as! NewExchangeViewController
         newExchangeScreen.setSkill(skill: skill)
+        newExchangeScreen.fromSearch  = true
         navigationController?.pushViewController(newExchangeScreen, animated: true)
     }
 

@@ -336,8 +336,8 @@ class ForeignProfileViewController: UIViewController {
     }
     
     private func goToPersonalSkillList(skillStatus: Int) {
-        let storyboard = UIStoryboard(name: "PersonalSkillList", bundle: nil)
-        let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "PersonalSkillList") as! PersonalSkillListViewController
+        let storyboard = UIStoryboard(name: "ForeignPersonalSkillList", bundle: nil)
+        let personalSkillListViewController = storyboard.instantiateViewController(withIdentifier: "ForeignPersonalSkillList") as! ForeignPersonalSkillListViewController
         personalSkillListViewController.skillStatus = skillStatus
         personalSkillListViewController.userEmail = currentUser?.mail
         navigationController?.pushViewController(personalSkillListViewController, animated: true)

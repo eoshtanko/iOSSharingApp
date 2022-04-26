@@ -190,7 +190,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     private func setSkills(skills: [Skill]?) {
         self.mySkills = (skills?.filter { skill in
-            return skill.status == (self.transaction.whoWantMail == CurrentUser.user.mail ? 2 : 1)
+            return skill.status == (self.transaction.whoWantMail == CurrentUser.user.mail ? 1 : 2)
         })!
         
         if mySkills == nil || mySkills!.isEmpty {

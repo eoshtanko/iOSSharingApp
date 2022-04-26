@@ -11,6 +11,7 @@ import UIKit
 class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     private var activityIndicator: UIActivityIndicatorView!
+    var fromSearch = true
     var skill: Skill!
     var mySkills: [Skill]!
     @IBOutlet weak var titleTextLabel: UILabel!
@@ -68,7 +69,11 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.view.isUserInteractionEnabled = true
-                    self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
+                    if self.fromSearch {
+                        self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
+                    } else {
+                        self.performSegue(withIdentifier: "unwindToForeignPersonalSkillList", sender: nil)
+                    }
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -198,7 +203,11 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private func showNoSkillsAlert() {
         let successAlert = UIAlertController(title: "У Вас не добавлены соответствующие навыки", message: "Добавьте навыки в профиле.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {_ in
-            self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
+            if self.fromSearch {
+                self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "unwindToForeignPersonalSkillList", sender: nil)
+            }
         })
         present(successAlert, animated: true, completion: nil)
     }

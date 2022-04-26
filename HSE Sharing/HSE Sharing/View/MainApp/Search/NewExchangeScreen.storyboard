@@ -209,6 +209,7 @@
                         <outlet property="typeOfSkillTextLabel" destination="y7j-td-rXp" id="ff0-r9-bT3"/>
                         <outlet property="withWhomTextLabel" destination="mWn-XW-Mo3" id="i8d-6z-9zc"/>
                         <segue destination="d4E-If-8fD" kind="unwind" identifier="unwindToSearch" unwindAction="unwindToSearchViewControllerWithSegue:" id="Vhc-fr-ntu"/>
+                        <segue destination="d4E-If-8fD" kind="unwind" identifier="unwindToForeignPersonalSkillList" unwindAction="unwindToForeignPersonalSkillListViewControllerWithSegue:" id="6Xx-Jm-MLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bve-V6-dNd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

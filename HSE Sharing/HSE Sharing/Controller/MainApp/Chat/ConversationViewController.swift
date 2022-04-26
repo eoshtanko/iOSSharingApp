@@ -35,6 +35,8 @@ class ConversationViewController: UITableViewController {
         configureTapGestureRecognizer()
         configureNavigationButton()
         scrollToBottom(animated: false)
+        scrollToBottom(animated: false)
+        scrollToBottom(animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {

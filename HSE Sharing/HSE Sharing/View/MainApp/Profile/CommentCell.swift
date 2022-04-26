@@ -39,7 +39,7 @@ class CommentCell: UITableViewCell {
     func configureCell(_ comment: Feedback) {
         configureData(comment)
         configureView()
-        deleteButton.isHidden = !(CurrentUser.user.isModer! && comment.receiverMail != CurrentUser.user.mail!)
+        deleteButton.isHidden = !((CurrentUser.user.isModer! && comment.receiverMail != CurrentUser.user.mail!) || comment.senderMail == CurrentUser.user.mail)
     }
     
     private func configureData(_ comment: Feedback) {

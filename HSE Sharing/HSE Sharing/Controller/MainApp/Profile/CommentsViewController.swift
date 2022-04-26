@@ -75,17 +75,17 @@ class CommentsViewController: UIViewController {
     }
     
     private func configureTableView() {
-            tableView.register(
-                UINib(nibName: String(describing: CommentCell.self), bundle: nil),
-                forCellReuseIdentifier: CommentCell.identifier
-            )
-            tableView.dataSource = self
-            tableView.delegate = self
+        tableView.register(
+            UINib(nibName: String(describing: CommentCell.self), bundle: nil),
+            forCellReuseIdentifier: CommentCell.identifier
+        )
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.isHidden = comments.isEmpty
     }
     
     private func configureNavigationBar() {
-            navigationItem.title = EnterViewController.isEnglish ? "Comments" : "Комментарии"
+        navigationItem.title = EnterViewController.isEnglish ? "Comments" : "Комментарии"
     }
     
     private func showConfirmDeletingAlert(comment: Feedback) {
@@ -95,15 +95,38 @@ class CommentsViewController: UIViewController {
             preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
         failureAlert.addAction(UIAlertAction(title: "Удалить", style: UIAlertAction.Style.destructive) {_ in
-            self.deleteComment(comment: comment)
+            if CurrentUser.user.isModer! {
+                self.deleteCommentModer(comment: comment)
+            } else {
+                self.deleteCommentUser(comment: comment)
+            }
         })
         present(failureAlert, animated: true, completion: nil)
     }
     
-    private func deleteComment(comment: Feedback) {
+    private func deleteCommentModer(comment: Feedback) {
         self.view.isUserInteractionEnabled = false
         activityIndicator.startAnimating()
-        Api.shared.deleteFeetback(id: comment.id) { result in
+        Api.shared.deleteFeetbackModer(id: comment.id) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.loadCommentsRequest()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
+                    self.showFailAlert()
+                }
+            }
+        }
+    }
+    
+    private func deleteCommentUser(comment: Feedback) {
+        self.view.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
+        Api.shared.deleteFeetbackUser(id: comment.id) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

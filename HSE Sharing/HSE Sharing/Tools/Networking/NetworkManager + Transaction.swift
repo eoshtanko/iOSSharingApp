@@ -62,7 +62,7 @@ extension Api {
             }
             if let transactions = CurrentUser.user.transactions, !CurrentUser.user.transactions!.isEmpty {
                 for i in 0...transactions.count {
-                    if !transactions.isEmpty && transactions[i].id == transaction.id {
+                    if !transactions.isEmpty && i < transactions.count && transactions[i].id == transaction.id {
                         CurrentUser.user.transactions![i] = transaction
                     }
                 }

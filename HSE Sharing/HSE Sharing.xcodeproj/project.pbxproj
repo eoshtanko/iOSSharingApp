@@ -27,6 +27,8 @@
 		342B65CA27DE300600A78536 /* PersonalSkillList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342B65C927DE300600A78536 /* PersonalSkillList.storyboard */; };
 		342B65CC27DE322500A78536 /* PersonalSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B65CB27DE322500A78536 /* PersonalSkillCell.swift */; };
 		342B65CE27DE503700A78536 /* PersonalSkillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342B65CD27DE503700A78536 /* PersonalSkillCell.xib */; };
+		342CCCC728154D160099B067 /* ForeignPersonalSkillList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342CCCC628154D160099B067 /* ForeignPersonalSkillList.storyboard */; };
+		342CCCC928154D460099B067 /* ForeignPersonalSkillListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342CCCC828154D460099B067 /* ForeignPersonalSkillListViewController.swift */; };
 		34449AD927FE3124002763CD /* SkillEditScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34449AD827FE3124002763CD /* SkillEditScreen.storyboard */; };
 		34449ADD27FE316C002763CD /* SkillEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34449ADC27FE316C002763CD /* SkillEditViewController.swift */; };
 		34449ADF27FE3E48002763CD /* EnterScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34449ADE27FE3E48002763CD /* EnterScreen.storyboard */; };
@@ -59,7 +61,6 @@
 		347375DC27C64C410029A419 /* DataInEnglish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375DB27C64C410029A419 /* DataInEnglish.swift */; };
 		347375DF27C64C640029A419 /* DataInRussian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375DE27C64C640029A419 /* DataInRussian.swift */; };
 		347375E127C653C00029A419 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E027C653C00029A419 /* NetworkManager.swift */; };
-		347375E527C653E90029A419 /* MemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347375E427C653E90029A419 /* MemoryManager.swift */; };
 		347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */; };
 		347EB55B27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55A27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift */; };
 		347EB55D27F9EC37006DA78E /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */; };
@@ -122,6 +123,8 @@
 		342B65C927DE300600A78536 /* PersonalSkillList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalSkillList.storyboard; sourceTree = "<group>"; };
 		342B65CB27DE322500A78536 /* PersonalSkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSkillCell.swift; sourceTree = "<group>"; };
 		342B65CD27DE503700A78536 /* PersonalSkillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalSkillCell.xib; sourceTree = "<group>"; };
+		342CCCC628154D160099B067 /* ForeignPersonalSkillList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForeignPersonalSkillList.storyboard; sourceTree = "<group>"; };
+		342CCCC828154D460099B067 /* ForeignPersonalSkillListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignPersonalSkillListViewController.swift; sourceTree = "<group>"; };
 		34449AD827FE3124002763CD /* SkillEditScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SkillEditScreen.storyboard; sourceTree = "<group>"; };
 		34449ADC27FE316C002763CD /* SkillEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillEditViewController.swift; sourceTree = "<group>"; };
 		34449ADE27FE3E48002763CD /* EnterScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EnterScreen.storyboard; sourceTree = "<group>"; };
@@ -156,7 +159,6 @@
 		347375DB27C64C410029A419 /* DataInEnglish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInEnglish.swift; sourceTree = "<group>"; };
 		347375DE27C64C640029A419 /* DataInRussian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataInRussian.swift; sourceTree = "<group>"; };
 		347375E027C653C00029A419 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		347375E427C653E90029A419 /* MemoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryManager.swift; sourceTree = "<group>"; };
 		347EB55827F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIPickerExtension.swift"; sourceTree = "<group>"; };
 		347EB55A27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController + UIImageExtension.swift"; sourceTree = "<group>"; };
 		347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				34AB122A27FDDD9D0027AC20 /* ProfileViewController */,
 				347EB55C27F9EC37006DA78E /* ChangePasswordViewController.swift */,
 				342B65C527DE285800A78536 /* PersonalSkillListViewController.swift */,
+				342CCCC828154D460099B067 /* ForeignPersonalSkillListViewController.swift */,
 				34C4C7F22801DCEE00769CFC /* CommentsViewController.swift */,
 				34449ADC27FE316C002763CD /* SkillEditViewController.swift */,
 			);
@@ -310,7 +313,6 @@
 			children = (
 				34B1B3A628041BC500F14EFB /* Networking */,
 				34B1B3AD28041C9400F14EFB /* Extensions */,
-				347375E427C653E90029A419 /* MemoryManager.swift */,
 				34C4C7F02801DAF400769CFC /* ApplicationPreferences.swift */,
 			);
 			path = Tools;
@@ -468,6 +470,7 @@
 				344DA31F2812986A0028020E /* ForeignProfile.storyboard */,
 				34449AD827FE3124002763CD /* SkillEditScreen.storyboard */,
 				342B65C927DE300600A78536 /* PersonalSkillList.storyboard */,
+				342CCCC628154D160099B067 /* ForeignPersonalSkillList.storyboard */,
 				342B65CD27DE503700A78536 /* PersonalSkillCell.xib */,
 				342B65CB27DE322500A78536 /* PersonalSkillCell.swift */,
 				34C4C7F82801FCB100769CFC /* CommentCell.xib */,
@@ -615,6 +618,7 @@
 				347375C827C62DF70029A419 /* LaunchScreen.storyboard in Resources */,
 				347375C527C62DF70029A419 /* Assets.xcassets in Resources */,
 				34B2BF0427DF1D5A00E849A0 /* СompletedExchangeCell.xib in Resources */,
+				342CCCC728154D160099B067 /* ForeignPersonalSkillList.storyboard in Resources */,
 				340E969B2809E2DA008A1F9B /* NewExchangeScreen.storyboard in Resources */,
 				340E96A1280B0C8A008A1F9B /* CurrentExchanges.storyboard in Resources */,
 				34C4C7F92801FCB100769CFC /* CommentCell.xib in Resources */,
@@ -707,6 +711,7 @@
 				347EB55B27F97EDD006DA78E /* ProfileViewController + UIImageExtension.swift in Sources */,
 				340E96AB280B0D45008A1F9B /* IncomeExchangesViewController.swift in Sources */,
 				344DA31A28127C720028020E /* ConversationViewController + UITableViewExtensions.swift in Sources */,
+				342CCCC928154D460099B067 /* ForeignPersonalSkillListViewController.swift in Sources */,
 				347375D627C647470029A419 /* Skill.swift in Sources */,
 				344DA31E28128EF50028020E /* NetworkManager + Conversations.swift in Sources */,
 				344DA3272813FDAF0028020E /* NetworkManager + Feedbacks.swift in Sources */,
@@ -724,7 +729,6 @@
 				34EB7A8C28015EDB0008B4CD /* EnterViewController.swift in Sources */,
 				34EB7A8E28015EF60008B4CD /* EmailViewController.swift in Sources */,
 				347EB55927F97EA7006DA78E /* ProfileViewController + UIPickerExtension.swift in Sources */,
-				347375E527C653E90029A419 /* MemoryManager.swift in Sources */,
 				344DA323281299AA0028020E /* ForeignProfileViewController.swift in Sources */,
 				340E96AD280B0D50008A1F9B /* OutcomeExchangesViewController.swift in Sources */,
 				34C4C7F72801FCA600769CFC /* CommentCell.swift in Sources */,

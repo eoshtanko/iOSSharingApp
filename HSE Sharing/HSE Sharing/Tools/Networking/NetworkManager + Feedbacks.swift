@@ -38,9 +38,27 @@ extension Api {
         task.resume()
     }
     
-    func deleteFeetback(id: Int64, _ completion: @escaping (Result<Any>) -> Void) {
+    func deleteFeetbackModer(id: Int64, _ completion: @escaping (Result<Any>) -> Void) {
         let session = createSession()
-        let url = URL(string: "\(baseURL)/api/Feedbacks/\(id)")!
+        let url = URL(string: "\(baseURL)/api/Feedbacks/moder/\(CurrentUser.user.mail!)/\(id)")!
+        let request = createRequest(url: url, httpMethod: .DELETE)
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                }
+                completion(Result.failure(ApiError.badResponse))
+                return
+            }
+            return completion(Result.success(""))
+        })
+        task.resume()
+    }
+    
+    func deleteFeetbackUser(id: Int64, _ completion: @escaping (Result<Any>) -> Void) {
+        let session = createSession()
+        let url = URL(string: "\(baseURL)/api/Feedbacks/user/\(CurrentUser.user.mail!)/\(id)")!
         let request = createRequest(url: url, httpMethod: .DELETE)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in

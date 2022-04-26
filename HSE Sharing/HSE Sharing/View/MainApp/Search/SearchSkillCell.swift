@@ -26,7 +26,7 @@ class SearchSkillCell: UITableViewCell {
     @IBOutlet weak var subcategoryTextLabel: UILabel!
     @IBOutlet weak var exchangeButton: UIButton!
     
-    var action: ((UITapGestureRecognizer, String) -> Void)!
+    var action: ((UITapGestureRecognizer, String) -> Void)?
     var createNewTransaction: ((Skill) -> Void)!
     var skill: Skill!
     
@@ -34,7 +34,7 @@ class SearchSkillCell: UITableViewCell {
         createNewTransaction(skill)
     }
     
-    func configureCell(_ skill: Skill, _ action: @escaping ((UITapGestureRecognizer, String) -> Void), _ createNewTransaction: @escaping ((Skill) -> Void)) {
+    func configureCell(_ skill: Skill, _ action: ((UITapGestureRecognizer, String) -> Void)?, _ createNewTransaction: @escaping ((Skill) -> Void)) {
         self.skill = skill
         self.action = action
         self.createNewTransaction = createNewTransaction
@@ -78,13 +78,13 @@ class SearchSkillCell: UITableViewCell {
         photoOfAuthorImageView.addGestureRecognizer(tapGestureRecognizer1)
         
         let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        nameTextLabel.isUserInteractionEnabled = true
-        nameTextLabel.addGestureRecognizer(tapGestureRecognizer2)
+        authorNameTextLabel.isUserInteractionEnabled = true
+        authorNameTextLabel.addGestureRecognizer(tapGestureRecognizer2)
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        action(tapGestureRecognizer, skill.userMail)
+        action?(tapGestureRecognizer, skill.userMail)
     }
     
     private func setDefaultImage() {
