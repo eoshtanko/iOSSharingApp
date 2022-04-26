@@ -28,6 +28,9 @@ class PasswordRecoveryViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
+        titleLabel.text = EnterViewController.isEnglish ? "Password Recovery" : "Восстановление пароля"
+        emailTextField.placeholder = EnterViewController.isEnglish ? "Enter your edu.hse.ru email" :"Введите почту edu.hse.ru"
+        recoveryButton.setTitle(EnterViewController.isEnglish ? "Send the password to the mail" : "Отправить пароль на почту", for: .normal)
     }
     
     override func viewDidLayoutSubviews() {
@@ -77,15 +80,15 @@ class PasswordRecoveryViewController : UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "Network error" :"Ошибка сети", message: EnterViewController.isEnglish ? "Check the Internet." : "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
     
     private func noSuchUserAlert() {
-        let successAlert = UIAlertController(title: "Данный пользователь не зарегистрирован", message: nil, preferredStyle: UIAlertController.Style.alert)
-        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
-        present(successAlert, animated: true, completion: nil)
+        let noSuchUserAlert = UIAlertController(title: (EnterViewController.isEnglish ? "This user is not registered" : "Данный пользователь не зарегистрирован"), message: nil, preferredStyle: UIAlertController.Style.alert)
+        noSuchUserAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(noSuchUserAlert, animated: true, completion: nil)
     }
     
     private func goBack() {

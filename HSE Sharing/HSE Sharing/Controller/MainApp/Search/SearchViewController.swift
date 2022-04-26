@@ -83,7 +83,7 @@ class SearchViewController: UIViewController {
     }
 
     private func configurePullToRefresh() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Updating")
+        refreshControl.attributedTitle = NSAttributedString(string: EnterViewController.isEnglish ? "Updating" : "Обновление")
         refreshControl.addTarget(self, action: #selector(makeRenewRequest), for: .valueChanged)
         SearchViewController.tableView.addSubview(refreshControl)
     }
@@ -99,7 +99,7 @@ class SearchViewController: UIViewController {
     }
 
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }

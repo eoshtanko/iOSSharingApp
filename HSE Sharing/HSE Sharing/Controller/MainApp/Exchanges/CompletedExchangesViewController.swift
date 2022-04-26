@@ -61,7 +61,7 @@ class CompletedExchangesViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {_ in
             self.performSegue(withIdentifier: "unwindToExchanges", sender: nil)
         })

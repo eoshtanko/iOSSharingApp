@@ -117,6 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="commentSpace" destination="VPe-jS-Ahc" id="x1A-PW-mIc"/>
+                        <outlet property="messageLabel" destination="d13-hB-daw" id="wYO-6h-r19"/>
                         <outlet property="saveButton" destination="gi4-kP-CSk" id="Ky2-vf-rsl"/>
                         <outlet property="star1" destination="phX-hb-DXh" id="bIJ-Pk-Y5T"/>
                         <outlet property="star2" destination="4RX-a7-ucb" id="Lnq-GI-OdY"/>

@@ -66,11 +66,11 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Попробовать еще раз или отменить изменения?", preferredStyle: UIAlertController.Style.alert)
-        successAlert.addAction(UIAlertAction(title: "Еще раз", style: UIAlertAction.Style.default) { _ in
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "Network error" : "Ошибка сети", message: EnterViewController.isEnglish ? "Try again or undo the changes?" : "Попробовать еще раз или отменить изменения?", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Try again" : "Еще раз", style: UIAlertAction.Style.default) { _ in
             self.makeRequest()
         })
-        successAlert.addAction(UIAlertAction(title: "Отмена изменения", style: UIAlertAction.Style.default) { _ in
+        successAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Undo the changes" : "Отмена изменения", style: UIAlertAction.Style.default) { _ in
             self.performSegue(withIdentifier: "unwindToProfile", sender: nil)
         })
         present(successAlert, animated: true, completion: nil)

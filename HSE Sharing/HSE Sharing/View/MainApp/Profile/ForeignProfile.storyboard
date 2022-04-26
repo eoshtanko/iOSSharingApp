@@ -109,11 +109,6 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="mustEndWith" value="@edu.hse.ru"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите социальную сеть" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="gKh-2A-Oh9">
-                                                <rect key="frame" x="20" y="664.5" width="374" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartQuotesType="no"/>
-                                            </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите образовательную программу" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="L5j-z0-bsg">
                                                 <rect key="frame" x="20" y="918.5" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -125,6 +120,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите социальную сеть" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="gKh-2A-Oh9">
+                                                <rect key="frame" x="20" y="664.5" width="374" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done" smartQuotesType="no"/>
+                                            </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Образовательная программа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cJ-ep-4rC">
                                                 <rect key="frame" x="20" y="888.5" width="233" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>

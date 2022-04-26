@@ -80,6 +80,8 @@ class SearchSkillCell: UITableViewCell {
         let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         authorNameTextLabel.isUserInteractionEnabled = true
         authorNameTextLabel.addGestureRecognizer(tapGestureRecognizer2)
+        
+        exchangeButton.setTitle(EnterViewController.isEnglish ? "Exchange" : "Обмен", for: .normal)
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)

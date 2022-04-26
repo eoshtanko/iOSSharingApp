@@ -35,6 +35,9 @@ class CodeViewController : UIViewController {
         self.navigationItem.title = ""
         configureButtons()
         configureTextFields()
+        titleLabel.text = EnterViewController.isEnglish ? "Code" : "Код"
+        subTitleLabel.text = EnterViewController.isEnglish ? "A confirmation code has been sent to your email. Enter it." : "Вам на почту был отправлен код подверждения. Введите его."
+        goNextButton.setTitle(EnterViewController.isEnglish ? "Next" : "Далее", for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +47,7 @@ class CodeViewController : UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Неверный код", message: "Попробуйте еще раз. Код должен быть у Вас на почте.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "Invalid code" : "Неверный код" , message: EnterViewController.isEnglish ?  "Try again. The code must be in your mail." : "Попробуйте еще раз. Код должен быть у Вас на почте.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }

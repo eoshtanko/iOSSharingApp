@@ -64,6 +64,7 @@ class SelectionOfParametersViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+        setLanguage()
     }
     
     func setInstanceOfSearchScreen(_ instanceOfSearchScreen: SearchViewController) {
@@ -109,7 +110,7 @@ class SelectionOfParametersViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
@@ -117,6 +118,31 @@ class SelectionOfParametersViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         searchButton.makeButtonOval()
+    }
+    
+    
+    private func setLanguage() {
+        searchButton.setTitle(EnterViewController.isEnglish ? "Search" : "Поиск", for: .normal)
+        
+        titleLabel.text = EnterViewController.isEnglish ? "Search by parameters" : "Поиск по параметрам"
+        
+        categoryLabel.text = EnterViewController.isEnglish ? "Category" : "Категория"
+        subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory" : "Подкатегория"
+        typeLabel.text = EnterViewController.isEnglish ? "Type" : "Тип"
+        eduProgramLabel.text = EnterViewController.isEnglish ? "Educational program" : "Образовательная программа"
+        dormLabel.text = EnterViewController.isEnglish ? "Dormitory" : "Общежитие"
+        stageOfEduLabel.text = EnterViewController.isEnglish ? "Stage of education" : "Ступень обучения"
+        campusLocationLabel.text = EnterViewController.isEnglish ? "Campus location" : "Расположение корпуса"
+        genderLabel.text = EnterViewController.isEnglish ? "Gender" : "Пол"
+        
+        categoryTextField.placeholder = EnterViewController.isEnglish ? "Select a category" : "Выберите категорию"
+        subcategoryTextField.placeholder = EnterViewController.isEnglish ? "Select a subcategory" : "Выберите подкатегорию"
+        typeTextField.placeholder = EnterViewController.isEnglish ? "Select a type" : "Выберите тип"
+        eduProgramTextField.placeholder = EnterViewController.isEnglish ? "Select a educational program" : "Выберите образовательная программу"
+        dormTextField.placeholder = EnterViewController.isEnglish ? "Select a dormitory" : "Выберите общежитие"
+        stageOfEduTextField.placeholder = EnterViewController.isEnglish ? "Select a stage of education" : "Выберите ступень обучения"
+        campusLocationTextField.placeholder = EnterViewController.isEnglish ? "Select a campus location" : "Выберите расположение корпуса"
+        genderTextField.placeholder = EnterViewController.isEnglish ? "Select a gender" : "Выберите пол"
     }
 }
 

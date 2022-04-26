@@ -145,6 +145,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
         messageTextView.text = transaction.description
         photoOfAuthorImageView.layer.cornerRadius = photoOfAuthorImageView.frame.size.width / 2
         saveButton.makeButtonOval()
+        setLanguage()
     }
     
     private func configureActivityIndicator() {
@@ -183,7 +184,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
@@ -199,7 +200,7 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     private func showNoSkillsAlert() {
-        let successAlert = UIAlertController(title: "У Вас не добавлены соответствующие навыки", message: "Добавьте навыки в профиле.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "You have not added the appropriate skills" : "У Вас не добавлены соответствующие навыки", message: EnterViewController.isEnglish ? "Add skills to your profile." : "Добавьте навыки в профиле.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {_ in
             self.performSegue(withIdentifier: "unwindOutcomingExchanges", sender: nil)
         })
@@ -223,6 +224,16 @@ class EditExchangeViewController: UIViewController, UIPickerViewDelegate, UIPick
         mySkillTextField.text =  mySkills?[row].name
         mySkillTextField.resignFirstResponder()
         saveButton.isEnabled = true
+    }
+    
+    private func setLanguage() {
+        withWhomTextLabel.text = EnterViewController.isEnglish ? "With whom:" : "С кем:"
+        nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
+        mySkillLabel.text = EnterViewController.isEnglish ? "My offer:" : "Мое предложение:"
+        messageLabel.text = EnterViewController.isEnglish ? "Message:" : "Сообщение:"
+        typeOfSkillTextLabel.text = transaction.whoWantMail == CurrentUser.user.mail ? EnterViewController.isEnglish ? "can" : "может" : EnterViewController.isEnglish ? "want" : "хочет"
+        saveButton.setTitle(EnterViewController.isEnglish ? "Save" : "Сохранить", for: .normal)
+        mySkillTextField.placeholder = EnterViewController.isEnglish ? "Choose one of your skills" : "Выберите один из своих навыков"
     }
 }
 

@@ -40,6 +40,8 @@ class CommentCell: UITableViewCell {
         configureData(comment)
         configureView()
         deleteButton.isHidden = !((CurrentUser.user.isModer! && comment.receiverMail != CurrentUser.user.mail!) || comment.senderMail == CurrentUser.user.mail)
+        gradeLabel.text = EnterViewController.isEnglish ? "Grade:" : "Оценка"
+        commentLabel.text = EnterViewController.isEnglish ? "Comment:" : "Комментарий:"
     }
     
     private func configureData(_ comment: Feedback) {

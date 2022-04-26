@@ -146,12 +146,12 @@ class ConversationViewController: UITableViewController {
     }
     
     private func showFailToLoadMessagesAlert() {
-        let failureAlert = UIAlertController(title: "Ошибка",
-                                             message: "Не удалось загрузить сообщения.",
+        let failureAlert = UIAlertController(title: EnterViewController.isEnglish ? "Error" : "Ошибка",
+                                             message: EnterViewController.isEnglish ? "Failed to load messages." : "Не удалось загрузить сообщения.",
                                              preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "OK",
                                              style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Повторить",
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Try again" : "Повторить",
                                              style: UIAlertAction.Style.cancel) {_ in
             self.loadMessages()
         })

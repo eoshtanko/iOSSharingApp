@@ -48,6 +48,22 @@ extension ConversationViewController {
         createMessage(message: message)
     }
     
+    private func showFailToSendMessageAlert() {
+        Api.shared.startMessaging()
+        DispatchQueue.main.async {
+        let failureAlert = UIAlertController(title: EnterViewController.isEnglish ? "Error" : "Ошибка",
+                                             message: EnterViewController.isEnglish ? "The message could not be sent." : "Не удалось отправить сообщение.",
+                                             preferredStyle: UIAlertController.Style.alert)
+        failureAlert.addAction(UIAlertAction(title: "OK",
+                                             style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Try again" : "Повторить",
+                                             style: UIAlertAction.Style.cancel) {_ in
+            self.entreMessageBar?.sendMessage()
+        })
+            self.present(failureAlert, animated: true, completion: nil)
+        }
+    }
+    
     func createMessage(message: Message) {
         Api.shared.createMessage(message: message) {result in
             switch result {
@@ -93,25 +109,9 @@ extension ConversationViewController {
         scrollToBottom(animated: false)
     }
     
-    private func showFailToSendMessageAlert() {
-        Api.shared.startMessaging()
-        DispatchQueue.main.async {
-        let failureAlert = UIAlertController(title: "Ошибка",
-                                             message: "Не удалось отправить сообщение.",
-                                             preferredStyle: UIAlertController.Style.alert)
-        failureAlert.addAction(UIAlertAction(title: "OK",
-                                             style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Повторить",
-                                             style: UIAlertAction.Style.cancel) {_ in
-            self.entreMessageBar?.sendMessage()
-        })
-            self.present(failureAlert, animated: true, completion: nil)
-        }
-    }
-    
     private func showFailToSaveMessageAlert(message: Message) {
-        let failureAlert = UIAlertController(title: "Ошибка",
-                                             message: "Не удалось отправить сообщение.",
+        let failureAlert = UIAlertController(title: EnterViewController.isEnglish ? "Error" : "Ошибка",
+                                             message: EnterViewController.isEnglish ? "The message could not be sent." : "Не удалось отправить сообщение.",
                                              preferredStyle: UIAlertController.Style.alert)
         failureAlert.addAction(UIAlertAction(title: "OK",
                                              style: UIAlertAction.Style.default) {_ in
@@ -121,7 +121,7 @@ extension ConversationViewController {
             self.tableView.reloadData()
             self.scrollToBottom(animated: false)
         })
-        failureAlert.addAction(UIAlertAction(title: "Повторить",
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Try again" : "Повторить",
                                              style: UIAlertAction.Style.cancel) {_ in
             self.createMessage(message: message)
         })

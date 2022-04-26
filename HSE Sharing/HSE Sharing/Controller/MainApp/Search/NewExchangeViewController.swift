@@ -89,7 +89,7 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         configureActivityIndicator()
-        typeOfSkillTextLabel.text = skill.status == 1 ? "Может" : "Хочет"
+        typeOfSkillTextLabel.text = skill.status == 1 ? EnterViewController.isEnglish ? "can" : "может" : EnterViewController.isEnglish ? "want" : "хочет"
         exchangeButton.isEnabled = false
         mySkillPickerView.delegate = self
         mySkillPickerView.dataSource = self
@@ -122,6 +122,7 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         photoOfAuthorImageView.layer.cornerRadius = photoOfAuthorImageView.frame.size.width / 2
         exchangeButton.makeButtonOval()
             loadSkillsRequest()
+        setLanguage()
     }
     
     private func configureActivityIndicator() {
@@ -185,7 +186,7 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
@@ -201,7 +202,7 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     private func showNoSkillsAlert() {
-        let successAlert = UIAlertController(title: "У Вас не добавлены соответствующие навыки", message: "Добавьте навыки в профиле.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "You have not added the appropriate skills" : "У Вас не добавлены соответствующие навыки", message: EnterViewController.isEnglish ? "Add skills to your profile." : "Добавьте навыки в профиле.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {_ in
             if self.fromSearch {
                 self.performSegue(withIdentifier: "unwindToSearch", sender: nil)
@@ -229,5 +230,16 @@ class NewExchangeViewController: UIViewController, UIPickerViewDelegate, UIPicke
         mySkillTextField.text =  mySkills[row].name
         mySkillTextField.resignFirstResponder()
         exchangeButton.isEnabled = true
+    }
+    
+    private func setLanguage() {
+        titleTextLabel.text = EnterViewController.isEnglish ? "Exchange" : "Обмен"
+        withWhomTextLabel.text = EnterViewController.isEnglish ? "With whom:" : "С кем:"
+        nameLabel.text = EnterViewController.isEnglish ? "Skill:" : "Навык:"
+        mySkillLabel.text = EnterViewController.isEnglish ? "My offer:" : "Мое предложение:"
+        messageLabel.text = EnterViewController.isEnglish ? "Message:" : "Сообщение:"
+        exchangeButton.setTitle(EnterViewController.isEnglish ? "Exchange" : "Обмен", for: .normal)
+        descriptionLabel.text = EnterViewController.isEnglish ? "Description:" : "Описание:"
+        mySkillTextField.placeholder = EnterViewController.isEnglish ? "Choose one of your skills" : "Выберите один из своих навыков"
     }
 }

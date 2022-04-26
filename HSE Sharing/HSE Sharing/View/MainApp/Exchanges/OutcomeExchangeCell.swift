@@ -54,6 +54,10 @@ class OutcomeExchangeCell: UITableViewCell {
         let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         nameLabel.isUserInteractionEnabled = true
         nameLabel.addGestureRecognizer(tapGestureRecognizer2)
+        
+        withWhomLabel.text = EnterViewController.isEnglish ? "With whom:" : "С кем:"
+        whatGive.text = EnterViewController.isEnglish ? "What give:" : "Что даю:"
+        whatReceive.text = EnterViewController.isEnglish ? "What receive:" : "Что получаю:"
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)

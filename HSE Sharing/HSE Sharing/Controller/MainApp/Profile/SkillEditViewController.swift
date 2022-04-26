@@ -63,6 +63,7 @@ class SkillEditViewController: UIViewController {
         configureTextFields()
         configureTextView()
         configurePickerView()
+        setLanguage()
     }
     
     func configureEditingSkill() {
@@ -125,7 +126,7 @@ class SkillEditViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Данные не были сохранены. Проверьте интернет и попробуйте снова.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: EnterViewController.isEnglish ? "The data was not saved. Check the internet and try again." : "Данные не были сохранены. Проверьте интернет и попробуйте снова.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
@@ -141,7 +142,7 @@ class SkillEditViewController: UIViewController {
     
     private func configureTextViewHintText() {
         if editingSkill?.description.isEmpty ?? true {
-            descriptionTextView.text = "Добавьте описание навыка"
+            descriptionTextView.text = EnterViewController.isEnglish ? "Add a description of the skill" : "Добавьте описание навыка"
             descriptionTextView.textColor = .lightGray
         }
     }
@@ -182,6 +183,20 @@ class SkillEditViewController: UIViewController {
         descriptionTextView.layer.borderWidth = 0.5
         descriptionTextView.layer.borderColor = CGColor(red: 0.557, green: 0.557, blue: 0.576, alpha: 1)
         descriptionTextView.layer.cornerRadius = 10
+    }
+    
+    private func setLanguage() {
+        titleLabel.text = isCanSkill ? EnterViewController.isEnglish ? "I can" : "Я могу" : EnterViewController.isEnglish ? "I want" : "Я хочу"
+        nameOfSkillLabel.text = EnterViewController.isEnglish ? "Skill name" : "Название навыка"
+        descriptionLabel.text = EnterViewController.isEnglish ? "Skill description" : "Описание навыка"
+        categoryLabel.text = EnterViewController.isEnglish ? "Category" : "Категория"
+        subcategoryLabel.text = EnterViewController.isEnglish ? "Subcategory" : "Подкатегория"
+        
+        nameOfSkillTextField.placeholder = EnterViewController.isEnglish ? "Enter the skill name" : "Введите название навыка"
+        categoryTextField.placeholder = EnterViewController.isEnglish ? "Select a category" : "Выберите категорию"
+        subcategoryTextField.placeholder = EnterViewController.isEnglish ? "Select a subcategory" : "Выберите подкатегорию"
+        
+        saveButton.setTitle(EnterViewController.isEnglish ? "Save" : "Сохранить", for: .normal)
     }
 }
 
@@ -225,7 +240,7 @@ extension SkillEditViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         editingSkill?.description = textView.text
         if textView.text.isEmpty {
-            textView.text = "Добавьте описание навыка"
+            textView.text = EnterViewController.isEnglish ? "Add a description of the skill" : "Добавьте описание навыка"
             textView.textColor = UIColor.lightGray
         }
     }

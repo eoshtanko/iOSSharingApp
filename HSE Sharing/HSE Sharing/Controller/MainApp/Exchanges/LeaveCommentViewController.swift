@@ -13,6 +13,7 @@ class LeaveCommentViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var commentSpace: UITextView!
     
+    @IBOutlet weak var messageLabel: UILabel!
     private var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -36,6 +37,9 @@ class LeaveCommentViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+        saveButton.setTitle(EnterViewController.isEnglish ? "Assess" : "Оценить", for: .normal)
+        titleLabel.text = EnterViewController.isEnglish ? "Assess the exchange" : "Оцените обмен"
+        messageLabel.text = EnterViewController.isEnglish ? "Message:" : "Сообщение:"
     }
     
     private func configureActivityIndicator() {
@@ -136,7 +140,7 @@ class LeaveCommentViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Данные не были сохранены. Проверьте интернет и попробуйте снова.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "The data was not saved. Check the internet and try again." : "Данные не были сохранены. Проверьте интернет и попробуйте снова."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }

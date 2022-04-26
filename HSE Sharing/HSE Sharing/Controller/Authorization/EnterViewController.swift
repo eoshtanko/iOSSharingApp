@@ -43,7 +43,7 @@ class EnterViewController : UIViewController {
     @IBOutlet weak var changeLanguageButton: UIButton!
     @IBAction func changeLanguageButtonAction(_ sender: Any) {
         EnterViewController.isEnglish = !EnterViewController.isEnglish
-        translateProfileView(EnterViewController.isEnglish)
+        translate(EnterViewController.isEnglish)
     }
     
     override func viewDidLoad() {
@@ -100,19 +100,19 @@ class EnterViewController : UIViewController {
     }
     
     private func wrongPasswordAlert() {
-        let successAlert = UIAlertController(title: "Неверный пароль.", message: nil, preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Wrong password" : "Неверный пароль."), message: nil, preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
     
     private func noSuchUserAlert() {
-        let successAlert = UIAlertController(title: "Данный пользователь не зарегистрирован", message: nil, preferredStyle: UIAlertController.Style.alert)
-        successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
-        present(successAlert, animated: true, completion: nil)
+        let noSuchUserAlert = UIAlertController(title: (EnterViewController.isEnglish ? "This user is not registered" : "Данный пользователь не зарегистрирован"), message: nil, preferredStyle: UIAlertController.Style.alert)
+        noSuchUserAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        present(noSuchUserAlert, animated: true, completion: nil)
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
@@ -183,11 +183,23 @@ extension EnterViewController: UITextFieldDelegate {
 
 extension EnterViewController {
     
-    private func translateProfileView(_ isEnglish: Bool) {
+    private func translate(_ isEnglish: Bool) {
         if isEnglish {
             changeLanguageButton.setTitle("🇷🇺", for: .normal)
+            passwordLabel.text = "Password"
+            enterButton.setTitle("Enter", for: .normal)
+            registrationButton.setTitle("Registration", for: .normal)
+            recoverPasswordButton.setTitle("Password Recovery", for: .normal)
+            emailTextField.placeholder = "Enter your edu.hse.ru email"
+            passwordTextField.placeholder = "Enter the password"
         } else {
             changeLanguageButton.setTitle("🇬🇧", for: .normal)
+            passwordLabel.text = "Пароль"
+            enterButton.setTitle("Вход", for: .normal)
+            registrationButton.setTitle("Регистрация", for: .normal)
+            recoverPasswordButton.setTitle("Восстановление пароля", for: .normal)
+            emailTextField.placeholder = "Введите почту edu.hse.ru"
+            passwordTextField.placeholder = "Введите пароль"
         }
     }
 }

@@ -116,8 +116,8 @@ class PersonalSkillListViewController: UIViewController {
             title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
-        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Удалить", style: UIAlertAction.Style.destructive) {_ in
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Cancel" : "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Delete" : "Удалить", style: UIAlertAction.Style.destructive) {_ in
             self.deleteSkillRequest(id: id)
         })
         present(failureAlert, animated: true, completion: nil)
@@ -145,7 +145,7 @@ class PersonalSkillListViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }

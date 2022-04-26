@@ -17,7 +17,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             currentUser?.photo = image.jpegData(compressionQuality: 1)?.base64EncodedString()
             makeRequest(isImageChanged: true)
         } else {
-            self.showAlertWith(message: "No image found.")
+            self.showAlertWith(message: EnterViewController.isEnglish ? "No image found." : "Изображение не найдено.")
         }
         picker.dismiss(animated: true, completion: nil)
     }

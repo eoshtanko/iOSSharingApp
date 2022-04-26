@@ -56,7 +56,7 @@ class ConversationsListViewController: UIViewController {
     }
 
     private func configurePullToRefresh() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Updating")
+        refreshControl.attributedTitle = NSAttributedString(string: EnterViewController.isEnglish ? "Updating" : "Обновление")
         refreshControl.addTarget(self, action: #selector(makeRenewRequest), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
@@ -84,9 +84,9 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
-        successAlert.addAction(UIAlertAction(title: "Повторить попытку", style: UIAlertAction.Style.default) {_ in
+        successAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Try again" : "Еще раз", style: UIAlertAction.Style.default) {_ in
             self.loadConversationsRequest()})
         present(successAlert, animated: true, completion: nil)
     }
@@ -133,7 +133,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func configureNavigationTitle() {
-        navigationItem.title = "Переписки"
+        navigationItem.title = EnterViewController.isEnglish ? "Chats" : "Переписки"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -189,8 +189,8 @@ extension ConversationsListViewController: UITableViewDataSource {
             title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите удалить?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
-        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Удалить", style: UIAlertAction.Style.destructive) {_ in
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Cancel" : "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Delete" : "Удалить", style: UIAlertAction.Style.destructive) {_ in
             self.deleteConversationRequest(conversation: conversation)
         })
         present(failureAlert, animated: true, completion: nil)
@@ -219,7 +219,7 @@ extension ConversationsListViewController: UITableViewDataSource {
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if let conversation = filteredConversations?[indexPath.row] {
             let action = UIContextualAction(style: .destructive,
-                                            title: "Delete") { [weak self] (_, _, completionHandler) in
+                                            title: EnterViewController.isEnglish ? "Delete" : "Удалить") { [weak self] (_, _, completionHandler) in
                 
                 self?.showConfirmDeletingAlert(conversation: conversation)
                 completionHandler(true)

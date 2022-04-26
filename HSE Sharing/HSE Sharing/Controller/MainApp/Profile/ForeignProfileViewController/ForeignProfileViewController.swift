@@ -152,6 +152,7 @@ class ForeignProfileViewController: UIViewController {
         configureActivityIndicator()
         configureData()
         configureTextViewHintText()
+        translateProfileView(isEnglish: EnterViewController.isEnglish)
     }
     
     override func viewDidLayoutSubviews() {
@@ -191,9 +192,9 @@ class ForeignProfileViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "Network error" : "Ошибка сети", message: EnterViewController.isEnglish ? "Check the internet" : "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
-        successAlert.addAction(UIAlertAction(title: "Повторить попытку", style: UIAlertAction.Style.default) {_ in
+        successAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Try again" : "Повторить попытку", style: UIAlertAction.Style.default) {_ in
             self.makeRequest()})
         present(successAlert, animated: true, completion: nil)
     }
@@ -308,7 +309,7 @@ class ForeignProfileViewController: UIViewController {
     
     private func configureTextViewHintText() {
         if aboutMeTextView.text.isEmpty || aboutMeTextView.textColor == .black {
-            aboutMeTextView.text = "Нет информации"
+            aboutMeTextView.text = EnterViewController.isEnglish ? "" : "Нет информации"
             aboutMeTextView.textColor = .lightGray
         }
     }
@@ -377,7 +378,7 @@ extension ForeignProfileViewController {
             surnameTextField.placeholder = "Enter a surname"
             emailTextField.placeholder = "Enter email"
             socialNetworkLabel.text = "Social network"
-            socialNetworkTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ?  "t.me/ or vk.com/" :
+            socialNetworkTextField.placeholder =
             "Not specified"
             aboutMeLabel.text = "About me"
             canButton.setTitle("Can", for: .normal)
@@ -386,50 +387,45 @@ extension ForeignProfileViewController {
                 aboutMeTextView.text = "I am..."
             }
             eduProgramLabel.text = "Educational program"
-            eduProgramTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose an educational program" : "Not specified"
+            eduProgramTextField.placeholder = "Not specified"
             dormLabel.text = "Dormitory"
-            dormTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a dormitory" : "Not specified"
+            dormTextField.placeholder = "Not specified"
             stageOfEduLabel.text = "Stage of education"
-            stageOfEduTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a stage of education" : "Not specified"
+            stageOfEduTextField.placeholder = "Not specified"
             campusLocationLabel.text = "Campus location"
-            campusLocationTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a campus location" : "Not specified"
+            campusLocationTextField.placeholder = "Not specified"
             genderLabel.text = "Gender"
             maleButton.setTitle("Male", for: .normal)
             femaleButton.setTitle("Female", for: .normal)
             birthdayLabel.text = "Birthday date"
-            birthdayTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Choose a birthday date" : "Not specified"
+            birthdayTextField.placeholder = "Not specified"
         } else {
             nameLabel.text = "Имя"
-            nameTextFiled.placeholder = "Введите имя"
+            nameTextFiled.placeholder = "Имя не указано"
             surnameLabel.text = "Фамилия"
-            surnameTextField.placeholder = "Введите фамилию"
-            emailTextField.placeholder = "Введите почту"
+            surnameTextField.placeholder = "Фамилия не указана"
+            emailTextField.placeholder = "Почта не указана"
             socialNetworkLabel.text = "Социальная сеть"
-            socialNetworkTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "t.me/ или vk.com/" : "Не указана"
+            socialNetworkTextField.placeholder = "оциальная сеть не указана"
             aboutMeLabel.text = "Обо мне"
-            if CurrentUser.user.mail == currentUser?.mail || currentUser?.mail == nil {
-                canButton.setTitle("Могу", for: .normal)
-                wantButton.setTitle("Хочу", for: .normal)
-            } else {
-                canButton.setTitle("Может", for: .normal)
-                wantButton.setTitle("Хочет", for: .normal)
-            }
+            canButton.setTitle("Может", for: .normal)
+            wantButton.setTitle("Хочет", for: .normal)
             if (aboutMeTextView.text == "I am...") {
                 aboutMeTextView.text = "Я..."
             }
             eduProgramLabel.text = "Образовательная программа"
-            eduProgramTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберите образовательную программу" : "Не указана"
+            eduProgramTextField.placeholder = "Не указана"
             dormLabel.text = "Общежитие"
-            dormTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберите общежитие" : "Не указано"
+            dormTextField.placeholder =  "Не указано"
             stageOfEduLabel.text = "Ступень обучения"
-            stageOfEduTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберите ступень обучения" : "Не указана"
+            stageOfEduTextField.placeholder = "Не указана"
             campusLocationLabel.text = "Расположение корпуса"
-            campusLocationTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберете расположение корпуса" : "Не указано"
+            campusLocationTextField.placeholder = "Не указано"
             genderLabel.text = "Пол"
             maleButton.setTitle("Мужской", for: .normal)
             femaleButton.setTitle("Женский", for: .normal)
             birthdayLabel.text = "Дата рождения"
-            birthdayTextField.placeholder = CurrentUser.user.mail == currentUser?.mail ? "Выберете дату рождения" : "Не указана"
+            birthdayTextField.placeholder = "Не указана"
         }
     }
 }

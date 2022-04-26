@@ -76,7 +76,7 @@ class ExchangesViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
@@ -176,11 +176,11 @@ extension ExchangesViewController: UITableViewDataSource {
     
     private func showConfirmDeletingAlert(transaction: Transaction) {
         let failureAlert = UIAlertController(
-            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите завершить обмен?",
+            title: EnterViewController.isEnglish ? "Are you sure you want to complete the exchange?" : "Уверены, что хотите завершить обмен?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
-        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Завершить", style: UIAlertAction.Style.destructive) {_ in
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Cancel" : "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Complete" : "Завершить", style: UIAlertAction.Style.destructive) {_ in
             self.complete(transaction: transaction)
         })
         present(failureAlert, animated: true, completion: nil)

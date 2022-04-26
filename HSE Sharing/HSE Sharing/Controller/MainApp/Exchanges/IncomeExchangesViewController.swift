@@ -71,7 +71,7 @@ class IncomeExchangesViewController: UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: (EnterViewController.isEnglish ? "Network error" : "Ошибка сети"), message: (EnterViewController.isEnglish ? "Check the internet." : "Проверьте интернет."), preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {_ in
             self.performSegue(withIdentifier: "unwindToExchanges", sender: nil)
         })
@@ -140,11 +140,11 @@ extension IncomeExchangesViewController: UITableViewDataSource {
     
     private func showConfirmCancelAlert(transaction: Transaction) {
         let failureAlert = UIAlertController(
-            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите отказаться от обмена?",
+            title: EnterViewController.isEnglish ? "Are you sure you want to refuse the exchange?" : "Уверены, что хотите отказаться от обмена?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
-        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Отказаться", style: UIAlertAction.Style.destructive) {_ in
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Cancel" : "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Refuse" : "Отказаться", style: UIAlertAction.Style.destructive) {_ in
             self.cancel(transaction: transaction)
         })
         present(failureAlert, animated: true, completion: nil)
@@ -171,11 +171,11 @@ extension IncomeExchangesViewController: UITableViewDataSource {
     
     private func showConfirmAgreeAlert(transaction: Transaction) {
         let failureAlert = UIAlertController(
-            title: EnterViewController.isEnglish ? "Are you sure you want to delete it?" : "Уверены, что хотите согласится на обмен?",
+            title: EnterViewController.isEnglish ? "Are you sure you want to agree to an exchange?" : "Уверены, что хотите согласится на обмен?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert)
-        failureAlert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default))
-        failureAlert.addAction(UIAlertAction(title: "Согласиться", style: UIAlertAction.Style.default) {_ in
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Cancel" : "Отмена", style: UIAlertAction.Style.default))
+        failureAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Agree" : "Согласиться", style: UIAlertAction.Style.default) {_ in
             self.activityIndicator.startAnimating()
             self.agree(transaction: transaction)
         })

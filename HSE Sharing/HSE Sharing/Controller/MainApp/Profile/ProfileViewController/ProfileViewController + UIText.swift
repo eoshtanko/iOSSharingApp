@@ -65,7 +65,7 @@ extension ProfileViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = CurrentUser.user.mail == currentUser?.mail ? "Расскажите о себе :)" : "Нет информации"
+            textView.text = EnterViewController.isEnglish ? "Tell about yourself :)" : "Расскажите о себе :)"
             textView.textColor = UIColor.lightGray
         } else {
             currentUser?.about = textView.text

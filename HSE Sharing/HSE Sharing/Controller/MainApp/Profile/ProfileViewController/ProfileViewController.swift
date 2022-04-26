@@ -155,6 +155,7 @@ class ProfileViewController: UIViewController {
         configureTapGestureRecognizer()
         configureData()
         configureTextViewHintText()
+        translateProfileView(isEnglish: EnterViewController.isEnglish)
         
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
@@ -316,11 +317,11 @@ class ProfileViewController: UIViewController {
     }
     
     private func showFailAlert(isImageChanged: Bool) {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Попробовать еще раз или отменить редактирование?", preferredStyle: UIAlertController.Style.alert)
-        successAlert.addAction(UIAlertAction(title: "Еще раз", style: UIAlertAction.Style.default) { _ in
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "Network error" : "Ошибка сети", message: EnterViewController.isEnglish ? "Should I try again or cancel the edit?" : "Попробовать еще раз или отменить редактирование?", preferredStyle: UIAlertController.Style.alert)
+        successAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "One more time" : "Еще раз", style: UIAlertAction.Style.default) { _ in
             self.makeRequest(isImageChanged: isImageChanged)
         })
-        successAlert.addAction(UIAlertAction(title: "Сброс данных", style: UIAlertAction.Style.default) { _ in
+        successAlert.addAction(UIAlertAction(title: EnterViewController.isEnglish ? "Reset changes" : "Сброс данных", style: UIAlertAction.Style.default) { _ in
             if isImageChanged {
                 self.currentUser?.photo = self.prevImage.jpegData(compressionQuality: 1)?.base64EncodedString()
                 self.profileImageView.image = self.prevImage
@@ -359,7 +360,7 @@ class ProfileViewController: UIViewController {
     
     private func configureTextViewHintText() {
         if aboutMeTextView.text.isEmpty || aboutMeTextView.textColor == .black {
-            aboutMeTextView.text = CurrentUser.user.mail == currentUser?.mail ? "Расскажите о себе :)" : "Нет информации"
+            aboutMeTextView.text = EnterViewController.isEnglish ? "Tell about yourself :)" : "Расскажите о себе :)"
             aboutMeTextView.textColor = .lightGray
         }
     }
@@ -535,6 +536,7 @@ extension ProfileViewController {
                 bottomButtom.setTitle("Log out", for: .normal)
             }
             datePicker.locale = Locale(identifier: "en")
+            changePasswordButton.setTitle("Change Password", for: .normal)
             
             if eduProgramTextField.text != nil || !eduProgramTextField.text!.isEmpty {
                 let i = DataInRussian.eduPrograms.firstIndex(of: eduProgramTextField.text! )
@@ -601,6 +603,7 @@ extension ProfileViewController {
             } else {
                 bottomButtom.setTitle("Выйти из аккаунта", for: .normal)
             }
+            changePasswordButton.setTitle("Сменить пароль", for: .normal)
             datePicker.locale = Locale(identifier: "ru")
             
             if eduProgramTextField.text != nil || !eduProgramTextField.text!.isEmpty {

@@ -66,6 +66,9 @@ class EmailViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
+        titleLabel.text = EnterViewController.isEnglish ? "Email confirmation" :"Подтверждение почты"
+        goNextButton.setTitle(EnterViewController.isEnglish ? "Next" : "Далее", for: .normal)
+        emailTextField.placeholder = EnterViewController.isEnglish ? "Enter your edu.hse.ru email" :"Введите почту edu.hse.ru"
     }
     
     override func viewDidLayoutSubviews() {
@@ -104,13 +107,13 @@ class EmailViewController : UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "Network error" :"Ошибка сети", message: EnterViewController.isEnglish ? "Check the Internet." : "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
     
     private func showAlreadyExistAlert() {
-        let successAlert = UIAlertController(title: "Данный пользователь уже зарегистрирован", message: nil, preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "This user is already registered" : "Данный пользователь уже зарегистрирован", message: nil, preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {_ in
             self.performSegue(withIdentifier: "unwindToEnter", sender: nil)
         })

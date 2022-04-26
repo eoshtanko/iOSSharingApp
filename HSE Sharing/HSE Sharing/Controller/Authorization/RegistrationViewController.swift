@@ -44,6 +44,7 @@ class RegistrationViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureActivityIndicator()
+        translate()
     }
     
     private func makeRequest(_ user: User) {
@@ -78,7 +79,7 @@ class RegistrationViewController : UIViewController {
     }
     
     private func showFailAlert() {
-        let successAlert = UIAlertController(title: "Ошибка сети", message: "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
+        let successAlert = UIAlertController(title: EnterViewController.isEnglish ? "Network error" :"Ошибка сети", message: EnterViewController.isEnglish ? "Check the Internet." : "Проверьте интернет.", preferredStyle: UIAlertController.Style.alert)
         successAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         present(successAlert, animated: true, completion: nil)
     }
@@ -148,6 +149,19 @@ class RegistrationViewController : UIViewController {
                     gradesSum: CurrentUser.user.gradesSum,
                     averageGrade: CurrentUser.user.averageGrade,
                     isModer: CurrentUser.user.isModer)
+    }
+    
+    private func translate() {
+        titleTextLabel.text = EnterViewController.isEnglish ? "Registration" : "Регистрация"
+        nameLabel.text = EnterViewController.isEnglish ? "Name" : "Имя"
+        surnameLabel.text = EnterViewController.isEnglish ? "Surname" : "Фамилия"
+        passwordLabel.text = EnterViewController.isEnglish ? "Password" : "Пароль"
+        repeatPasswordLabel.text = EnterViewController.isEnglish ? "Repeat the password" : "Повторите пароль"
+        nameTextFiled.placeholder = EnterViewController.isEnglish ? "Enter name" : "Выберите имя"
+        surnameTextField.placeholder = EnterViewController.isEnglish ? "Enter surname" : "Введите фамилию"
+        passwordTextField.placeholder = EnterViewController.isEnglish ? "Enter password" : "Введите пароль"
+        repeatPasswordTextField.placeholder = EnterViewController.isEnglish ? "Repeat the password" : "Повторите пароль"
+        registrationButton.setTitle(EnterViewController.isEnglish ? "Registration" : "Регистрация", for: .normal)
     }
 }
 
